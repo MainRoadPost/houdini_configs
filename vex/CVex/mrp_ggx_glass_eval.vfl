@@ -1,0 +1,205 @@
+#include <math.h>
+#include <pbr.h>
+#include <ggx_utils.h>
+
+cvex mrp_ggx_glass_eval(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+    vector v = 0;           // Incoming light direction, from the surface to the light
+
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+    int reverse = 0;        // Whether evaluating from the camera(0) or the light source(1)
+
+    export vector refl = 0; // The reflectivity (albedo) of the bsdf
+
+    export vector eval = 0; // The evaluated reflectance for the given directions
+
+    export float pdf = 0;   // The sampling pdf for the given directions.
+                            // The integral of this value over the sphere should be equal to luminance(refl)*2*PI.
+                            // For perfect importance sampling, pdf == luminance(eval).
+    int mybounces   = 0;    // Looks like it's default value mapped from default "label" input
+    int reflectmask = 0;
+    int refractmask = 0;
+    float reflect = -1.0;
+    float refract = -1.0;
+    vector nn = 0;
+    vector ng = 0;
+    vector xg = 0;
+    vector yg = 0;
+    float roughnessx = 0.5;
+    float roughnessy = 0.5;
+    float eta = 1.0;       // outside ior / inside ior
+
+    string albedo_lookup_glass   = "ggx_glass_albedo.vdb";
+
+    // overridden by pathtracer
+    // do not specify these when defining the BSDF.
+    float   nested_eta = 0.0;
+
+    float   maxroughness        = -1.0;
+)
+{
+    if (bounces & mybounces)
+    {
+        vector nu = select(reverse,v,u);
+        vector nv = select(reverse,u,v);
+
+        float minrough = .001;
+        float rx = roughnessx;
+        float ry = roughnessy;
+        if (maxroughness >= 0.0)
+        {
+            rx = max(rx, min(1,maxroughness));
+            ry = max(ry, min(1,maxroughness));
+        }
+        float ax = max(minrough, rx);
+        float ay = max(minrough, ry);
+
+        // scale for roughness close to zero
+        float ax_corr = min(100,pow(1.0-(ax-rx)/minrough,-0.25));
+        float ay_corr = min(100,pow(1.0-(ay-ry)/minrough,-0.25));
+
+        float rho = 0.5*(ax*ay);
+
+        // Creating tangent space
+        vector xn = normalize(cross(nn, yg));
+        vector yn = normalize(cross(nn, xg));
+        matrix3 to_world = set(xn, yn, nn);
+        matrix3 to_local = transpose(to_world);
+
+        int flip = dot(nu,nn) < 0.0;
+        vector flipv = {1,1,1};
+        flipv.z = select(flip, -flipv.z, flipv.z);
+
+        vector wi = flipv * normalize(nu * to_local);
+        vector wo = flipv * normalize(nv * to_local);
+        vector wg = flipv * normalize(ng * to_local);
+        vector wm = 0;
+
+        int valid = 1;
+
+        float kr, kt;
+
+        // if neither reflect or refract are specified (they're both -1), we
+        // fall back to the old method of determining the path based on the
+        // BSDF label (mybounces). With that method, the reflection/refraction
+        // path is predetermined and we don't pick it here.
+        int bylabel = reflect < 0 && refract < 0;
+        float realReflect   = select(bylabel && (PBR_REFLECT_MASK & mybounces), 1, reflect);
+        float realRefract   = select(bylabel && (PBR_REFRACT_MASK & mybounces), 1, refract);
+        int realReflectmask = select(bylabel && (PBR_REFLECT_MASK & mybounces), PBR_REFLECT_MASK, reflectmask);
+        int realRefractmask = select(bylabel && (PBR_REFRACT_MASK & mybounces), PBR_REFRACT_MASK, refractmask);
+
+        // refract_ and reflect_ are refract and reflect masked by mybounce
+        // (only used to determine selection ratio)
+        float refract_ = clamp(realRefract, 0, 1) * ((PBR_REFRACT_MASK & mybounces & bounces) > 0);
+        float reflect_ = clamp(realReflect, 0, 1) * ((PBR_REFLECT_MASK & mybounces & bounces) > 0);
+
+        int sample_refract = sign(dot(wo,wg)) != sign(dot(wi,wg));
+        int bouncetype = 0;
+        float neta = select(nested_eta > 0, nested_eta, eta);
+        neta = select(flip, 1.0/neta, neta);
+
+        // compute microfacet normal
+        if (sample_refract)
+        {
+            vector ht = -(neta * wi + wo);
+            if (dot(ht, ht) < 1e-6){
+                ht = cross(cross(wi,{0,0,1}),wi);
+            }
+            wm = /*flipv */ normalize(ht);
+            //wm = select(flip, -1, 1) * normalize(ht);
+        } else {
+            wm = normalize(wi+wo);
+        }
+        wm = normalize(wm*set(ax_corr,ay_corr,1));
+
+        // compute fresnel
+        if (length2(wm) != 0)
+        {
+            fresnel(-wi, wm, neta, kr, kt);
+            kt = 1.0 - kr;// * realReflect;
+        } else {
+            kr = kt = 1.0;
+        }
+
+        // odds of selecting reflection or refraction based on fresnel
+        float select_ratio = (kt*refract_) / (kt*refract_ + kr*reflect_);
+        if (!sample_refract) select_ratio = 1.0f - select_ratio;
+
+        if (!sample_refract && reflect_ > 0.0f)
+        {
+            float Gi = smith_g(wi, ax, ay);
+            float D = computeD(wm, ax, ay);
+            float Dwi = computeDwi(wi, wm, Gi, D);
+
+            float cosMO = abs(dot(wm,wo));
+            pdf = Dwi / (4.0 * cosMO * rho);
+
+            eval = pdf;
+            pdf *= select_ratio;
+
+            // from here everything is the same in eval & sample functions
+            eval *= kr * realReflect;
+
+            // masking
+            eval *= smith_g(wo, ax, ay);
+
+            valid = sign(wo.z) == sign(wi.z) && sign(dot(wo,wg)) == sign(dot(wi,wg));
+            if (valid) bouncetype = realReflectmask;
+        }
+        else if (sample_refract && refract_ > 0.0f)
+        {
+            vector ht = neta * wi + wo;
+
+            if (dot(ht, ht) <= 1e-6)
+            {
+                // some arbitrarily high pdf to bias toward bsdf sampling
+                // (ideally when roughness is 0, or appears 0 because eta is 1,
+                // it should only do bsdf sampling)
+                eval = pdf = 1e6;
+                kr = 0;
+            }
+            else
+            {
+                wm = select(flip, 1, -1) * normalize(ht);
+
+                float Gi = smith_g(wi, ax, ay);
+                float D = computeD(wm, ax, ay);
+                float Dwi = computeDwi(wi, wm, Gi, D);
+
+                float cosMO = dot(wm,wo);
+                pdf = Dwi * abs(cosMO) / (dot(ht, ht) * rho);
+                eval = pdf;
+                pdf *= select_ratio;
+            }
+
+            // from here everything is the same in eval & sample functions
+            eval *= kt * realRefract;
+
+            // masking
+            eval *= smith_g(-wo, ax, ay);
+
+            valid = kt > 0 && sign(wo.z) != sign(wi.z) && sign(dot(wo,wg)) != sign(dot(wi,wg));
+            if (valid) bouncetype = realRefractmask;
+        }
+
+        // TODO: Unfortunately I don't yet know how to make albedo for anisotropic variant
+        float lookup_rough = sqrt(0.5*(ax+ay));
+        lookup_rough = select(lookup_rough>1, 2.0-1.0/lookup_rough, lookup_rough);
+        float lookup_angle = abs(wi.z)*4;
+        float lookup_fresnel = select(neta>1,1.0+exp(-sqrt(neta-1.001)),1.0-sqrt(neta));
+
+        vector albedo_packed = volumesamplev(albedo_lookup_glass,"ggx_glass_albedo",set(lookup_angle,lookup_rough,lookup_fresnel));
+
+        float maxRT = max(realReflect,realRefract);
+        float diffRT = (realReflect-realRefract)/maxRT;
+
+        refl = maxRT * select(diffRT>=0, lerp(albedo_packed.z, albedo_packed.x, diffRT), lerp(albedo_packed.z, albedo_packed.y, -diffRT));
+        float lum_refl = luminance(refl);
+        pdf *= lum_refl;
+
+        valid = valid && (bouncetype & bounces);
+        eval *= valid;
+        pdf  *= valid;
+    }
+}

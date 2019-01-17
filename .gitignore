@@ -1,0 +1,10 @@
+*.pyc
+backup/
+develop/
+#Idea project files
+.idea
+#VS Code project and settings
+.vscode
+*.ipr
+*.iws
+*.iml

@@ -1,0 +1,207 @@
+#include <math.h>
+#include <pbr.h>
+#include <ggx_utils.h>
+#include <dispersion.h>
+
+cvex mrp_ggx_glass_sample(
+    export int flags = 0;
+
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+    float sx = 0;           // Uniform random value between 0 and 1, correlated with sy in a 2D sampling pattern
+    float sy = 0;           // Uniform random value between 0 and 1, correlated with sx in a 2D sampling pattern
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+
+    export vector refl = 0;     // The reflectivity (albedo) of the bsdf, tinted by the color of the light in the sampled direction.
+                                // The luminance of this value should match refl from the evaluation function.
+                                // If the sampling distribution does not match the evaluation function exactly,
+                                // this value should be scaled by the ratio of the evaluation distribution to the sampling distribution.
+
+    export vector v = 0;        // Sampled light direction, from the surface to the light
+    export int bouncetype = 0;  // The specific component type selected by sampling
+    export float pdf = 0;       // The sampling pdf. The integral of this value over the sphere should be a constant 2*PI
+                                // note that this differs from the pdf produced by the evaluation function
+                                // by a factor of luminance(refl).
+    int mybounces    = 0;       // Looks like it's default value mapped from default "label" input
+    int reflectmask  = 0;
+    int refractmask  = 0;
+    vector nn        = 0;
+    vector ng        = 0;
+    vector xg   = 0;
+    vector yg   = 0;
+    float roughnessx = 0.5;
+    float roughnessy = 0.5;
+    float eta        = 1.0;
+    float reflect    = -1.0; // if -1, this is ignored and 'mybounces'..
+    float refract    = -1.0; // ..is used to determine refraction/reflection
+    float dispersion = 0.0;
+
+    // overridden by pathtracer
+    // do not specify these when defining the BSDF.
+    float   nested_eta          = 0.0;
+    float   nested_dispersion   = 0.0;
+    float   sx_dispersion       = -1.0;
+    int     ismono              = 0;
+
+    float   maxroughin          = -1.0;
+    export  float maxroughout   = -1.0;
+)
+{
+    float rx = roughnessx;
+    float ry = roughnessy;
+    if (maxroughin >= 0.0)
+    {
+        rx = max(rx, min(1,maxroughin));
+        ry = max(ry, min(1,maxroughin));
+        maxroughout = max(maxroughout,(rx + ry) * 0.5);
+    }
+
+    float minrough = .001;
+    float ax = max(minrough,rx);
+    float ay = max(minrough,ry);
+
+    // scale for roughness close to zero
+    float ax_corr = min(100,pow(1.0-(ax-rx)/minrough,-0.25));
+    float ay_corr = min(100,pow(1.0-(ay-ry)/minrough,-0.25));
+
+    float rho = 0.5 * (ax*ay);
+
+    bouncetype = 0;
+    if (bounces & mybounces)
+    {
+        refl = set(rho,rho,rho);
+
+        vector xn = normalize(cross(nn, yg));
+        vector yn = normalize(cross(nn, xg));
+        matrix3 to_world = set(xn, yn, nn);
+        matrix3 to_local = transpose(to_world);
+
+        vector wo, wm;
+        vector wi = normalize(u*to_local);
+        vector wg = normalize(ng*to_local);
+
+        int flip = wi.z < 0;
+        vector flipv = {1,1,1};
+        flipv.z = select(flip, -flipv.z, flipv.z);
+        wi.z *= flipv.z;
+
+        float dispersion_ = select(nested_dispersion > 0, max(dispersion, nested_dispersion), dispersion);
+        int do_dispersion = dispersion_ > 0 && sx_dispersion > -0.5;
+        float wavelength = cmf_sample_wavelength(sx_dispersion);
+        vector monocolor = cmf_wavelength_to_normalized_color(wavelength);
+
+        float neta = select(nested_eta > 0, nested_eta, eta);
+
+        float dispersed_neta = select(
+                do_dispersion,
+                1.0/disperse_ior(1.0/neta, dispersion_, wavelength),
+                neta);
+
+        // It's not strictly correct to set the dispersed eta for both
+        // reflection & refraction here, because reflection doesn't disperse.
+        // Doesn't seem to make much difference though and we save a fresnel
+        // computation.
+        neta = dispersed_neta;
+
+        neta = select(flip, 1.0/neta, neta);
+        dispersed_neta = select(flip, 1.0/dispersed_neta, dispersed_neta);
+
+        // if neither reflect or refract are specified (they're both -1), we
+        // fall back to the old method of determining the path based on the
+        // BSDF label (mybounces). With that method, the reflection/refraction
+        // path is predetermined and we don't pick it here.
+        int bylabel = reflect < 0 && refract < 0;
+        float realReflect   = select(bylabel && (PBR_REFLECT_MASK & mybounces), 1, reflect);
+        float realRefract   = select(bylabel && (PBR_REFRACT_MASK & mybounces), 1, refract);
+        int realReflectmask = select(bylabel && (PBR_REFLECT_MASK & mybounces), PBR_REFLECT_MASK, reflectmask);
+        int realRefractmask = select(bylabel && (PBR_REFRACT_MASK & mybounces), PBR_REFRACT_MASK, refractmask);
+        // refract_ and reflect_ are refract and reflect masked by mybounce
+        // (only used to determine selection ratio)
+        float refract_ = clamp(realRefract, 0, 1) * ((PBR_REFRACT_MASK & mybounces & bounces) > 0);
+        float reflect_ = clamp(realReflect, 0, 1) * ((PBR_REFLECT_MASK & mybounces & bounces) > 0);
+
+        float sz = rand(12497*sx+1987*sy); // make extra axis of random sample
+        // swap elements to improve correllation in neighbour pixels
+        vector smp = select(refract_>0 && reflect_>0, set(sz,sy,sx), set(sx,sy,sz));
+
+        // sample from distribution of visible normals
+        wm = sample_ggx(wi, ax, ay, smp.x, smp.y);
+        wm = normalize(wm/set(ax_corr,ay_corr,1));
+
+        int valid = 1;
+
+        float Gi = smith_g(wi, ax, ay);
+
+        float D = computeD(wm, ax, ay);
+        float Dwi = computeDwi(wi, wm, Gi, D);
+
+        // compute fresnel
+        float kr, kt;
+        vector R, T;
+        fresnel(-wi, wm, neta, kr, kt, R, T);
+
+        // If both reflection & refraction are allowed, decide here based kt.
+        // choice for this sample
+        kt = 1.0 - kr;// * realReflect;
+
+        // odds of selecting reflection or refraction based on fresnel
+        float select_ratio = (kt*refract_) / (kt*refract_ + kr*reflect_);
+        int sample_refract = smp.z <= select_ratio;
+        if (!sample_refract) select_ratio = 1.0f - select_ratio;
+
+        if (!sample_refract && reflect_ > 0.0f)
+        {
+            wo = R;
+
+            // additional division by rho compared to eval function
+            float cosMO = abs(dot(wm,wo));
+            pdf = Dwi / (4.0 * cosMO * rho);
+
+            // select_ratio is used directly on refl instead of pdf because we
+            // assume ideal sampling in reflections and pdf may never get used.
+
+            // from here everything is the same in eval & sample
+            refl *= kr * realReflect / select_ratio;
+
+            // masking
+            refl = refl * smith_g(wo, ax, ay);
+
+            refl /= rho;
+
+            valid = (sign(wo.z) == sign(wi.z)) && (sign(dot(wo,wg)) == sign(dot(wi,wg)));
+            if (valid) bouncetype = realReflectmask;
+        }
+        else if (sample_refract && refract_ > 0.0f)
+        {
+            wo = T;
+
+            // additional division by rho compared to eval function
+            vector ht = neta * wi + wo;
+            float cosMO = dot(wm,wo);
+            pdf = Dwi * abs(cosMO) / (dot(ht, ht) * rho);
+
+            // from here everything is the same in eval & sample functions
+            refl *= kt * realRefract / select_ratio;
+
+            // masking
+            refl = refl * smith_g(-wo, ax, ay);
+
+            // make this path monochrome if we have dispersion and the path
+            // isn't monochrome yet
+            int make_monochrome = do_dispersion && !ismono;
+            refl *= select(make_monochrome, monocolor, 1);
+            flags |= select(make_monochrome, PBR_BSDF_MONO, 0);
+
+            refl /= rho;
+
+            valid = kt > 0 && sign(wo.z) != sign(wi.z) && sign(dot(wo,wg)) != sign(dot(wi,wg));
+            if (valid) bouncetype = realRefractmask;
+        }
+
+        valid = valid && (bouncetype & bounces);
+        refl *= valid;
+        pdf  *= valid;
+        v     = valid * normalize(flipv * wo * to_world);
+
+    }
+}
+

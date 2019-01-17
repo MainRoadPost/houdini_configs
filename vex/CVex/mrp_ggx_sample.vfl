@@ -1,0 +1,129 @@
+#include <math.h>
+#include <pbr.h>
+#include <ggx_utils.h>
+#include <shading.h>
+
+cvex mrp_ggx_sample(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+    float sx = 0;           // Uniform random value between 0 and 1, correlated with sy in a 2D sampling pattern
+    float sy = 0;           // Uniform random value between 0 and 1, correlated with sx in a 2D sampling pattern
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+    export vector refl = 0;     // The reflectivity (albedo) of the bsdf, tinted by the color of the light in the sampled direction.
+                                // The luminance of this value should match refl from the evaluation function.
+                                // If the sampling distribution does not match the evaluation function exactly,
+                                // this value should be scaled by the ratio of the evaluation distribution to the sampling distribution.
+    export vector v = 0;        // Sampled light direction, from the surface to the light
+    export int bouncetype = 0;  // The specific component type selected by sampling
+    export float pdf = 0;       // The sampling pdf. The integral of this value over the sphere should be a constant 2*PI
+                                // note that this differs from the pdf produced by the evaluation function
+                                // by a factor of luminance(refl).
+    int bouncemasklabels = 0;
+    vector nN = 0;
+    vector tangent = 0;
+    float roughnessx = 0.5;
+    float roughnessy = 0.5;
+    vector fresnel0 = 1;
+    float index = 0.75;
+
+    int metallic = 0; // 0 - non metallic; 1 - artistic fresnel
+    vector reflectivity = 1;
+    vector edgetint = 1;
+
+    float top_layer_eta = 1.0;
+
+    float   maxroughin          = -1.0;
+    export  float maxroughout   = -1.0;
+)
+{
+    if (bounces & bouncemasklabels)
+    {
+        float eta = index;
+        vector nn = nN;
+        float NdotV = dot(nn,u);
+
+        float rx = roughnessx;
+        float ry = roughnessy;
+        if (maxroughin >= 0.0)
+        {
+            rx = max(rx, min(1,maxroughin));
+            ry = max(ry, min(1,maxroughin));
+            maxroughout = max(maxroughout,(rx + ry) * 0.5);
+        }
+
+        float minrough = .001;
+        float ax = max(minrough,rx);
+        float ay = max(minrough,ry);
+
+        // scale for roughness close to zero
+        float ax_corr = min(100,pow(1.0-(ax-rx)/minrough,-0.25));
+        float ay_corr = min(100,pow(1.0-(ay-ry)/minrough,-0.25));
+
+        float rho = 0.5*(ax*ay);
+
+        // Reject reverse oriented normals
+        if (NdotV < 0)
+        {
+            pdf = 0;
+            refl = 0;
+            return;
+        }
+
+        // Creating tangent space
+        vector xn = normalize(cross(nn, tangent));
+        vector yn = cross(nn, xn);
+        matrix3 to_world = set(xn, yn, nn);
+        matrix3 to_local = transpose(to_world);
+
+        // Sample works in tangent space, so we have to transform incident direction into it
+        vector wi=normalize(u*to_local);
+
+        // Returned wm is in tangent space
+        vector wm = sample_ggx(wi,ax,ay,sx,sy);
+        wm = normalize(wm/set(ax_corr,ay_corr,1));
+
+        // compute fresnel
+        float kr, kt;
+        vector R, T;
+        fresnel(-wi, wm, eta, kr, kt, R, T);
+        vector wo = R;
+
+        // Check if ray is going under the surface and terminate it
+        if (wo.z<0)
+        {
+            pdf = 0;
+            refl = 0;
+            return;
+        }
+
+        float cosMO = abs(dot(wm,wo));
+
+        float Gi = smith_g(wi, ax, ay);
+        float D = computeD(wm, ax, ay);
+        float Dwi = computeDwi(wi, wm, Gi, D);
+
+        vector Fs;
+        if(metallic==0){
+            Fs = select(eta==1, lerp(fresnel0, vector(1), schlick_f(cosMO)), kr);
+        }else{
+            Fs = fresnelcond_artistic({0,1,0}, set(0,-cosMO,0), reflectivity, edgetint);
+            refl = 1;
+        }
+
+        pdf = Dwi / (4.0 * cosMO * rho);
+        refl = Fs * smith_g(wo, ax, ay);
+        bouncetype = bouncemasklabels;
+        // Return from tangent space
+        v = normalize(wo * to_world);
+
+        if(top_layer_eta!=1.0)
+        { // Top layer fresnel masking
+            vector  _tmp;
+            float   _kr, _kt;
+
+            fresnel(-v, nN, top_layer_eta, _kr, _kt, _tmp, _tmp);
+            refl *= _kt;
+        }
+
+    }
+}
+

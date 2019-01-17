@@ -1,0 +1,144 @@
+#include <math.h>
+#include <pbr.h>
+#include <ggx_utils.h>
+#include <shading.h>
+#include "mrp_fresnel.h"
+
+float lookup_metallic_albedo(string albedo_lookup_metallic; float lookup_angle; float lookup_rough; float reflectivity; float e; float e16){
+    vector lookup = volumesamplev(albedo_lookup_metallic,"ggx_albedo",set(lookup_angle,lookup_rough,reflectivity));
+
+    return lookup.x + e*(-1.4165145016589196*lookup.x + 1.4220694604889546*lookup.y - 0.005554958830034988*lookup.z) +
+                    e16*( 0.4165145016589196*lookup.x - 1.4220694604889546*lookup.y + 1.005554958830035*lookup.z);
+}
+
+cvex mrp_ggx_eval(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+    vector v = 0;           // Incoming light direction, from the surface to the light
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+    int reverse = 0;        // Whether evaluating from the camera(0) or the light source(1)
+    export vector refl = 0; // The reflectivity (albedo) of the bsdf
+    export vector eval = 0; // The evaluated reflectance for the given directions
+    export float pdf = 0;   // The sampling pdf for the given directions.
+                            // The integral of this value over the sphere should be equal to luminance(refl)*2*PI.
+                            // For perfect importance sampling, pdf == luminance(eval).
+    int bouncemasklabels = 0;
+    vector nN = 0;
+    vector tangent = 0;
+    float roughnessx = 0.5;
+    float roughnessy = 0.5;
+    vector fresnel0 = 1;
+    float index = 0.75;
+    string albedo_lookup_schlick  = "ggx_schlick_albedo.vdb";
+    string albedo_lookup_fresnel  = "ggx_fresnel_albedo.vdb";
+    string albedo_lookup_metallic = "ggx_metallic_albedo.vdb";
+
+    int metallic = 0; // 0 - non metallic; 1 - artistic fresnel
+    vector reflectivity = 1;
+    vector edgetint = 1;
+
+    float top_layer_eta = 1.0;
+
+    float   maxroughness        = -1.0;
+)
+{
+    if (bounces & bouncemasklabels)
+    {
+        vector nu = select(reverse,v,u);
+        vector nv = select(reverse,u,v);
+        vector nn = nN;
+        // Creating tangent space
+        vector xn = normalize(cross(nn, tangent));
+        vector yn = cross(nn, xn);
+        matrix3 to_world = set(xn, yn, nn);
+        matrix3 to_local = transpose(to_world);
+
+        vector wi = normalize(nu * to_local);
+        vector wo = normalize(nv * to_local);
+
+        float eta = index;
+
+        // Reject reverse oriented normals
+        if (wi.z<0 || wo.z<0)
+        {
+            pdf = 0;
+            eval = 0;
+            return;
+        }
+        wi  = select(wi.z < 0,wi*{1,1,-1},wi);
+        eta = select(wi.z < 0,1.0/eta,eta);
+
+        vector wm = normalize(wi+wo);
+        float cosMO = abs(dot(wm,wo));
+
+        float minrough = .001;
+        float rx = roughnessx;
+        float ry = roughnessy;
+        if (maxroughness >= 0.0)
+        {
+            rx = max(rx, min(1,maxroughness));
+            ry = max(ry, min(1,maxroughness));
+        }
+        float ax = max(minrough, rx);
+        float ay = max(minrough, ry);
+
+        // scale for roughness close to zero
+        float ax_corr = min(100,pow(1.0-(ax-rx)/minrough,-0.25));
+        float ay_corr = min(100,pow(1.0-(ay-ry)/minrough,-0.25));
+        wm = normalize(wm*set(ax_corr,ay_corr,1));
+
+        float rho = 0.5*(ax*ay);
+
+        float Gi = smith_g(wi, ax, ay);
+        float D = computeD(wm, ax, ay);
+        float Dwi = computeDwi(wi, wm, Gi, D);
+
+        // TODO: Unfortunately I don't yet know how to make albedo for anisotropic variant
+        float lookup_rough = sqrt((ax+ay)*0.5);
+        lookup_rough = select(lookup_rough>1, 2.0-1.0/lookup_rough, lookup_rough);
+        float lookup_angle = abs(wi.z)*4;
+
+        vector Fs = 1;
+        if(metallic==0){
+            if(abs(eta-1.0)<0.0000001){
+                Fs = lerp(fresnel0, vector(1), schlick_f(cosMO));
+                // Black & white optimization
+                if(fresnel0.x == fresnel0.y && fresnel0.x == fresnel0.z){
+                    refl = volumesample(albedo_lookup_schlick,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.x));
+                }else{
+                    refl = set(
+                        volumesample(albedo_lookup_schlick,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.x)),
+                        volumesample(albedo_lookup_schlick,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.y)),
+                        volumesample(albedo_lookup_schlick,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.z)));
+                }
+            }else{
+                Fs = FresnelReflect(max(0,cosMO),eta);
+                float lookup_fresnel = select(eta>1,1.0+exp(-sqrt(eta-1.001)),1.0-sqrt(eta));
+                refl = volumesample(albedo_lookup_fresnel,"ggx_albedo",set(lookup_angle,lookup_rough,lookup_fresnel));
+            }
+        } else {
+            Fs = fresnelcond_artistic({0,1,0}, set(0,-cosMO,0), reflectivity, edgetint);
+
+            vector e2 = edgetint*edgetint; vector e4 = e2*e2; vector e8 = e4*e4; vector e16 = e8*e8;
+
+            refl = set(
+                lookup_metallic_albedo(albedo_lookup_metallic,lookup_angle,lookup_rough,reflectivity.x, edgetint.x, e16.x),
+                lookup_metallic_albedo(albedo_lookup_metallic,lookup_angle,lookup_rough,reflectivity.y, edgetint.y, e16.y),
+                lookup_metallic_albedo(albedo_lookup_metallic,lookup_angle,lookup_rough,reflectivity.z, edgetint.z, e16.z));
+        }
+
+        float lum_refl = luminance(refl);
+
+        pdf = Dwi / (4.0 * cosMO * rho)*lum_refl;
+        eval = pdf * Fs * smith_g(wo, ax, ay)/lum_refl;
+
+        if(top_layer_eta!=1.0)
+        {
+            vector  _tmp;
+            float   _kr, _kt;
+
+            fresnel(-nv, nN, top_layer_eta, _kr, _kt, _tmp, _tmp);
+            eval *= _kt;
+        }
+
+    }
+}
