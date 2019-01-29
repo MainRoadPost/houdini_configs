@@ -15,6 +15,8 @@ This package consists of the following shading models and materials:
 
 The most important difference with Houdini's built-in shading models is our models returns correct albedo value for it's parameters, instead of just 1.0 multiplied by color. This feature reduces noise significantly in some cases and allows us to use `Conserve Energy` VOP node to ensure we are not violating energy conservation without making our shaders too dark.
 
+![GGX Metallic](/examples/ggx_metallic.png?raw=true "GGX Metallic")
+
 ## Installation
 
 Just add this repo to `HOUDINI_PATH` environment variable before starting of Houdini.

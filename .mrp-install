@@ -18,4 +18,4 @@ MRP_REMOTE_BRANCH=$GIT_BRANCH
 MRP_INSTALL_PATH=$CG_TOOLS/houdini/public_configs/$GIT_BRANCH
 mkdir -p $MRP_INSTALL_PATH
 MRP_SOURCE_PATH=$(pwd)
-MRP_EXCLUDE_MASKS=".git* .mrp-install *.pyc backup *.ipr *.iws *.iml README.md"
+MRP_EXCLUDE_MASKS=".git* .mrp-install *.pyc backup *.ipr *.iws *.iml README.md examples"
