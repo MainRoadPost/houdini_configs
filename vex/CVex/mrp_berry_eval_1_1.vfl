@@ -1,0 +1,73 @@
+#include <math.h>
+#include <pbr.h>
+#include "mrp_berry.h"
+
+cvex mrp_berry_eval_1_1(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+
+    vector v = 0;           // Incoming light direction, from the surface to the light
+
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+
+    export vector refl = 0; // The reflectivity (albedo) of the bsdf
+
+    export vector eval = 0; // The evaluated reflectance for the given directions
+
+    export float pdf = 0;   // The sampling pdf for the given directions.
+                            // The integral of this value over the sphere should be equal to luminance(refl)*2*PI.
+                            // For perfect importance sampling, pdf == luminance(eval).
+    vector nN = 0;
+    float roughness = 0.5;
+    vector fresnel0 = 1;
+    string albedo_lookup  = "ggx_berry_albedo.vdb";
+
+    float   maxroughness        = -1.0;
+)
+{
+    if (bounces & PBR_GLOSSY_MASK)
+    {
+        float NdotL = dot(nN,v);
+        float NdotV = dot(nN,u);
+        if (NdotL < 0 || NdotV < 0)
+        {
+            pdf = 0;
+            eval = 0;
+            return;
+        }
+
+        vector H = normalize(u+v);
+        float NdotH = dot(nN,H);
+        float LdotH = dot(v,H);
+
+        float a = max(.0001, roughness, min(1,maxroughness));
+
+        vector Fs = 1;
+        if(fresnel0!=vector(1))
+            Fs = lerp(fresnel0, vector(1), SchlickFresnel(LdotH));
+
+        float Ds = Berry(NdotH, a);
+        float Gs = smithG_Berry_Full(v, u, nN, NdotL, NdotV, a);
+
+        // Looking up precomputed albedo
+        float lookup_rough = sqrt(a);
+        lookup_rough = select(lookup_rough>1, 2.0-1.0/lookup_rough, lookup_rough);
+        float lookup_angle = abs(NdotV)*4;
+
+        // Black & white optimization
+        if(fresnel0.x == fresnel0.y && fresnel0.x == fresnel0.z){
+            refl = volumesample(albedo_lookup,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.x));
+        }else{
+            refl = set(
+                volumesample(albedo_lookup,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.x)),
+                volumesample(albedo_lookup,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.y)),
+                volumesample(albedo_lookup,"ggx_albedo",set(lookup_angle,lookup_rough,fresnel0.z)));
+        }
+
+        float lum_refl = luminance(refl);
+
+        eval = Fs*Ds*Gs*0.25/NdotV * 2 * PI;          // BRDF*NdotL*2PI
+                                                      //NOTE: NdotL/NdotL were reduced
+        pdf  = Ds*NdotH*0.25/LdotH * 2 * PI*lum_refl; // BRDF*NdotL/(refl from sample)*2PI*lum_refl
+                                                      // NOTE: change of this value influence to sample function!
+    }
+}

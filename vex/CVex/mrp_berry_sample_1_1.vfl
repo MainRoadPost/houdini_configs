@@ -1,0 +1,92 @@
+#include <math.h>
+#include <pbr.h>
+#include "mrp_berry.h"
+
+cvex mrp_berry_sample_1_1(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+    float sx = 0;           // Uniform random value between 0 and 1, correlated with sy in a 2D sampling pattern
+    float sy = 0;           // Uniform random value between 0 and 1, correlated with sx in a 2D sampling pattern
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+
+    export vector refl = 0;     // The reflectivity (albedo) of the bsdf, tinted by the color of the light in the sampled direction.
+                                // The luminance of this value should match refl from the evaluation function.
+                                // If the sampling distribution does not match the evaluation function exactly,
+                                // this value should be scaled by the ratio of the evaluation distribution to the sampling distribution.
+
+    export vector v = 0;        // Sampled light direction, from the surface to the light
+    export int bouncetype = 0;  // The specific component type selected by sampling
+    export float pdf = 0;       // The sampling pdf. The integral of this value over the sphere should be a constant 2*PI
+                                // note that this differs from the pdf produced by the evaluation function
+                                // by a factor of luminance(refl).
+    vector nN = 0;
+    float roughness = 0.5;
+    vector fresnel0 = 1;
+
+    float   maxroughin          = -1.0;
+    export  float maxroughout   = -1.0;
+)
+{
+    if (bounces & PBR_GLOSSY_MASK)
+    {
+        float NdotV = dot(nN,u);
+        if (NdotV < 0)
+        {
+            pdf = 0;
+            return;
+        }
+        if(NdotV==0)
+            NdotV=1e-10;
+
+        float a=max(.0001, roughness, min(1,maxroughin));
+        maxroughout = max(maxroughout, a);
+        float NdotH;
+        if(a==1)
+            NdotH = sqrt(1.0-sy);
+        else
+            NdotH = sqrt((pow(a,2-2*sy)-1)/(a*a-1.0));
+
+        vector H = set(cos(sx*PI*2), sin(sx*PI*2), 0);
+        H *= sqrt(1.0-NdotH*NdotH);
+        H.z = NdotH;
+
+        // Transform H into the reference frame for nN
+        vector framex;
+        if(abs(dot(nN,u))!=1.0)
+            framex = normalize(cross(nN, u));
+        else {
+            framex = abs(dot(nN,{0,1,0})) != 1.0 ?
+                normalize(cross(nN, {0,1,0})) :
+                normalize(cross(nN, {0,0,1}));
+        }
+        vector framey = cross(nN, framex);
+
+        H = framex * H.x + framey * H.y + nN * H.z;
+
+        v = reflect(-u,H);
+
+        float NdotL = dot(nN,v);
+        if (NdotL < 0)
+        {
+            pdf = 0;
+            return;
+        }
+
+        float LdotH = dot(v,H);
+
+        vector Fs = 1;
+        if(fresnel0!=vector(1))
+            Fs = lerp(fresnel0, vector(1), SchlickFresnel(LdotH));
+
+        float Ds = Berry(NdotH, a);
+        float Gs = smithG_Berry_Full(v, u, nN, NdotL, NdotV, a);
+
+        pdf  = Ds*NdotH*0.25/LdotH * 2 * PI; // NOTE: Looks like have no effect!!
+
+        refl = Fs*Gs*LdotH/(NdotV*NdotH);    // Refl is BRDF*NdotL/(PDF in space of L)
+                                             // Luminance needs to match albedo
+
+
+        bouncetype = PBR_GLOSSY_MASK;
+    }
+}
+
