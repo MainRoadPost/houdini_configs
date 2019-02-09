@@ -18,6 +18,7 @@ cvex mrp_berry_sample_1_1(
     export float pdf = 0;       // The sampling pdf. The integral of this value over the sphere should be a constant 2*PI
                                 // note that this differs from the pdf produced by the evaluation function
                                 // by a factor of luminance(refl).
+    int bouncemasklabels = 0;
     vector nN = 0;
     float roughness = 0.5;
     vector fresnel0 = 1;
@@ -26,7 +27,7 @@ cvex mrp_berry_sample_1_1(
     export  float maxroughout   = -1.0;
 )
 {
-    if (bounces & PBR_GLOSSY_MASK)
+    if (bounces & bouncemasklabels)
     {
         float NdotV = dot(nN,u);
         if (NdotV < 0)
@@ -86,7 +87,7 @@ cvex mrp_berry_sample_1_1(
                                              // Luminance needs to match albedo
 
 
-        bouncetype = PBR_GLOSSY_MASK;
+        bouncetype = bouncemasklabels;
     }
 }
 

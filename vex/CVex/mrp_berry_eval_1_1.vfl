@@ -16,6 +16,7 @@ cvex mrp_berry_eval_1_1(
     export float pdf = 0;   // The sampling pdf for the given directions.
                             // The integral of this value over the sphere should be equal to luminance(refl)*2*PI.
                             // For perfect importance sampling, pdf == luminance(eval).
+    int bouncemasklabels = 0;
     vector nN = 0;
     float roughness = 0.5;
     vector fresnel0 = 1;
@@ -24,7 +25,7 @@ cvex mrp_berry_eval_1_1(
     float   maxroughness        = -1.0;
 )
 {
-    if (bounces & PBR_GLOSSY_MASK)
+    if (bounces & bouncemasklabels)
     {
         float NdotL = dot(nN,v);
         float NdotV = dot(nN,u);
