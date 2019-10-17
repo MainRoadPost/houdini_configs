@@ -1,0 +1,35 @@
+#include "mrp_cone_phase.h"
+#include <math.h>
+#include <pbr.h>
+
+cvex mrp_cone_phase_eval(
+    vector u = 0;           // Outgoing light direction, from the surface to the viewer
+
+    vector v = 0;           // Incoming light direction, from the surface to the light
+
+    int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
+
+    export vector refl = 1; // The reflectivity (albedo) of the bsdf
+
+    export vector eval = 1; // The evaluated reflectance for the given directions
+
+    export float pdf = 1;   // The sampling pdf for the given directions.
+                            // The integral of this value over the sphere should be equal to luminance(refl)*2*PI.
+                            // For perfect importance sampling, pdf == luminance(eval).
+    int bouncemasklabels = 0;
+    float angle = 0.1;
+    float delta = 0.05;
+)
+{
+    if (bounces & bouncemasklabels)
+    {
+        refl = 1;
+        float lum_refl = 1;
+
+        float cos_theta = -dot( u, v); // cos(theta)
+        float theta = acos(cos_theta);
+       
+        pdf = npdf(theta, angle, delta)*M_TWO_PI;
+        eval = pdf;
+    }
+}
