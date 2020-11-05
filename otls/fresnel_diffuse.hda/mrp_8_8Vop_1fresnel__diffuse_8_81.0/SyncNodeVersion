@@ -1,0 +1,6 @@
+node = kwargs['node']
+oldversion_str = kwargs['old_version']
+oldversion = int(oldversion_str) if oldversion_str != '' else 0
+
+if oldversion < 1:
+    node.parm('shadebackface').set(1)

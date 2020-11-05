@@ -1,0 +1,24 @@
+=Transparent Layer Comp=
+
+Composite one layer over another, using opacity of top layer as a mask.
+
+@parameters
+
+Comp Mode:
+    Defines which layer will be on top of another
+
+Pass Through:
+    All layer components except BSDF and opacity are taken from this layer
+
+@inputs
+
+A:
+    Layer to be composed
+
+B:
+    Layer to be composed
+
+@outputs
+
+layer:
+    Two layers composed together

@@ -1,0 +1,15 @@
+Operator:     mrp::skinshadercore::2.3
+Label:        MRP Skin Shader Core
+Path:         oplib:/mrp::Vop/skinshadercore::2.3?mrp::Vop/skinshadercore::2.3
+Icon:         VOP_skinshadercore
+Table:        Vop
+License:      
+Extra:        surface photon displace light shadow fog
+User:         
+Inputs:       0 to 17
+Outputs:      2048
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Aug 20 17:19:07 2020
+

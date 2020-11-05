@@ -1,0 +1,84 @@
+# Dialog script for mrp::transparent_layer_comp::1.0 automatically generated
+
+{
+    name	mrp::transparent_layer_comp::1.0
+    script	layermix
+    label	"MRP Transparent Layer Comp"
+
+    outercode {
+	"#include <shaderlayer.h>"
+    }
+
+    code {
+	"ShaderLayer $_A;"
+	"ShaderLayer $_B;"
+	""
+	"if(!$isconnected_A)"
+	"    init_layer($_A);"
+	"else"
+	"    $_A = $A;"
+	""
+	"if(!$isconnected_B)"
+	"    init_layer($_B);"
+	"else"
+	"    $_B = $B;"
+	""
+	"if($compmode==1){"
+	"    ShaderLayer tmp = $_A;"
+	"    $_A = $_B;"
+	"    $_B = tmp;"
+	"}"
+	"    "
+	"if($passthrough==0)"
+	"    $layer = $_B;"
+	"else"
+	"    $layer = $_A;"
+	""
+	"$layer.Of = 1-(1-$_A.Of)*(1-$_B.Of);"
+	"vector $OfInv = 1/$layer.Of;"
+	"$layer.F = ($_A.F*$_A.Of + $_B.F*$_B.Of*(1-$_A.Of))*$OfInv;"
+    }
+
+    input	struct_ShaderLayer	A	"Layer A"
+    input	struct_ShaderLayer	B	"Layer B"
+    input	int	compmode	"Comp Mode"
+    input	int	passthrough	"Pass Through"
+    output	struct_ShaderLayer	layer	"Resulting Layer"
+    inputflags	A	0
+    inputflags	B	0
+    inputflags	compmode	0
+    inputflags	passthrough	0
+    signature	"Default Inputs"	default	{ struct_ShaderLayer struct_ShaderLayer int int struct_ShaderLayer }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "compmode"
+        label   "Comp Mode"
+        type    ordinal
+        default { "0" }
+        menu {
+            "0" "A Over B"
+            "1" "B Over A"
+        }
+    }
+    parm {
+        name    "passthrough"
+        label   "Pass Through"
+        type    ordinal
+        default { "0" }
+        help    "All layer components, except BSDF and Opacity will be taken from that layer"
+        menu {
+            "0" "Bottom Layer"
+            "1" "Top Layer"
+        }
+    }
+}

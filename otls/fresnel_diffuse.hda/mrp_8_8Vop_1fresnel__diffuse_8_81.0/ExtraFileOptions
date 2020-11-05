@@ -1,0 +1,22 @@
+{
+	"SyncNodeVersion/Cursor":{
+		"type":"intarray",
+		"value":[1,1]
+	},
+	"SyncNodeVersion/IsExpr":{
+		"type":"bool",
+		"value":false
+	},
+	"SyncNodeVersion/IsPython":{
+		"type":"bool",
+		"value":true
+	},
+	"SyncNodeVersion/IsScript":{
+		"type":"bool",
+		"value":true
+	},
+	"SyncNodeVersion/Source":{
+		"type":"string",
+		"value":""
+	}
+}

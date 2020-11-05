@@ -1,0 +1,214 @@
+# Dialog script for mrp::grade::1.0 automatically generated
+
+{
+    name	mrp::grade::1.0
+    script	wGrade
+    label	Grade
+
+    outercode {
+	"#ifndef MRP_GRADE"
+	"#define MRP_GRADE"
+	"vector powVec(vector vec1; vector vec_p)"
+	"{"
+	"    float x1, y1, z1;"
+	"    float x2, y2, z2;"
+	"    float x3, y3, z3;"
+	""
+	"    assign( x1, y1, z1, vec1);"
+	"    assign( x2, y2, z2, vec_p);"
+	"    x3 = pow(x1, x2);"
+	"    y3 = pow(y1, y2);"
+	"    z3 = pow(z1, z2);"
+	"    return set(x3, y3, z3);"
+	"};"
+	""
+	"vector4 powVec(vector4 vec1; vector4 vec_p)"
+	"{"
+	"    float x1, y1, z1, w1;"
+	"    float x2, y2, z2, w2;"
+	"    float x3, y3, z3, w3;"
+	""
+	"    assign( x1, y1, z1, w1, vec1);"
+	"    assign( x2, y2, z2, w2, vec_p);"
+	"    x3 = pow(x1, x2);"
+	"    y3 = pow(y1, y2);"
+	"    z3 = pow(z1, z2);"
+	"    w3 = pow(w1, w2);"
+	"    return set(x3, y3, z3, w3);"
+	"};"
+	"#endif MRP_GRADE"
+    }
+
+    code {
+	"#if !strcmp($signature, \"rgba\")"
+	"vector4 $A, $B;"
+	"#else"
+	"vector $A, $B;"
+	"#endif"
+	"$A = $multiply * ($gain-$lift) / ($whitepoint - $blackpoint);"
+	"$B = $offset + $lift - $A * $blackpoint;"
+	"$out = powVec(($A*$input + $B), ({1,1,1}/$gamma));"
+    }
+
+    input	vector	input	input
+    input	vector	blackpoint	blackpoint
+    input	vector	whitepoint	whitepoint
+    input	vector	lift	lift
+    input	vector	gain	gain
+    input	vector	multiply	multiply
+    input	vector	offset	offset
+    input	vector	gamma	gamma
+    output	vector	out	out
+    inputflags	input	0
+    inputflags	blackpoint	0
+    inputflags	whitepoint	0
+    inputflags	lift	0
+    inputflags	gain	0
+    inputflags	multiply	0
+    inputflags	offset	0
+    inputflags	gamma	0
+    signature	RGB	default	{ vector vector vector vector vector vector vector vector vector }
+    signature	RGBA	rgba	{ vector4 vector4 vector4 vector4 vector4 vector4 vector4 vector4 vector4 }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0,0,0)
+    }
+    outputoverrides	rgba
+    {
+	___begin	auto
+			(0,0,0,0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "blackpoint"
+        label   "Black Point"
+        type    color
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "blackpoint_rgba"
+        label   "Black Point"
+        type    color4
+        size    4
+        default { "0" "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "whitepoint"
+        label   "White Point"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "whitepoint_rgba"
+        label   "White Point"
+        type    color4
+        size    4
+        default { "1" "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "lift"
+        label   "Lift"
+        type    color
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "lift_rgba"
+        label   "Lift"
+        type    color4
+        size    4
+        default { "0" "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "gain"
+        label   "Gain"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "gain_rgba"
+        label   "Gain"
+        type    color4
+        size    4
+        default { "1" "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "multiply"
+        label   "Multiply"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "multiply_rgba"
+        label   "Multiply"
+        type    color4
+        size    4
+        default { "1" "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "offset"
+        label   "Offset"
+        type    color
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "offset_rgba"
+        label   "Offset"
+        type    color4
+        size    4
+        default { "0" "0" "0" "0" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "gamma"
+        label   "Gamma"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+    parm {
+        name    "gamma_rgba"
+        label   "Gamma"
+        type    color4
+        size    4
+        default { "1" "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "colortype" "tmi" }
+    }
+}

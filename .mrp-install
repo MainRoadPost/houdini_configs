@@ -2,8 +2,8 @@
 #This is a config file, sourced by mrp-install.sh script
 
 #Returns current branch of git repo. Works only when PWD inside a repository
-function git.branch {
-  br=`git branch | grep "*"`
+function git.branch() {
+  br=$(git branch | grep "*")
   echo ${br/* /}
 }
 
@@ -17,5 +17,21 @@ MRP_REMOTE_BRANCH=$GIT_BRANCH
 
 MRP_INSTALL_PATH=$CG_TOOLS/houdini/public_configs/$GIT_BRANCH
 mkdir -p $MRP_INSTALL_PATH
-MRP_SOURCE_PATH=$(pwd)
-MRP_EXCLUDE_MASKS=".git* .mrp-install *.pyc backup *.ipr *.iws *.iml README.md examples"
+MRP_SOURCE_PATH=$(pwd)/_build
+MRP_EXCLUDE_MASKS=".git* .mrp-install *.pyc backup *.ipr *.iws *.iml README.md examples _build"
+
+# Pre-installation build
+
+EXCLUDE_ARGS=""
+for i in $MRP_EXCLUDE_MASKS; do
+  EXCLUDE_ARGS="$EXCLUDE_ARGS --exclude=$i"
+done
+
+echo "Copying everything except asset libraries to _build directory"
+/usr/bin/rsync -rclp --chmod=Dugo=rwx,Fugo=rX --del --delete-excluded --exclude=_build --exclude=otls $EXCLUDE_ARGS $(pwd)/ $(pwd)/_build
+
+echo "Collapsing asset libraries..."
+mkdir -p _build/otls
+for hda in otls/*.hda; do
+  hotl -l $hda _build/$hda
+done

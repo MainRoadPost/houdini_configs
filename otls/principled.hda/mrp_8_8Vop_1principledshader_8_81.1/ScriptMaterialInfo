@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scriptMaterialInfo>
+    <choiceNode type="collect">
+        <choiceNode type="leaf">
+            <choiceVopType>surface</choiceVopType>
+            <choiceData>
+                <entry key="SectionName" value="SurfaceVexCode"/>
+            </choiceData>
+        </choiceNode>
+        <choiceNode type="leaf">
+            <choiceVopType>displacement</choiceVopType>
+            <choiceData>
+                <entry key="SectionName" value="DisplacementVexCode"/>
+            </choiceData>
+        </choiceNode>
+    </choiceNode>
+    <extraParameters>
+        <parameters shaderType="surface">
+            <parameter name="layer" type="struct_ShaderLayer" default="{}" export="True"/>
+            <parameter name="export_basecolor" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="export_diffcolor" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="export_metallic" type="float" default="0" export="True"/>
+            <parameter name="export_reflecttint" type="float" default="0" export="True"/>
+            <parameter name="export_specrough" type="float" default="0" export="True"/>
+            <parameter name="export_aniso" type="float" default="0" export="True"/>
+            <parameter name="export_anisodir" type="float" default="0" export="True"/>
+            <parameter name="export_sss" type="float" default="0" export="True"/>
+            <parameter name="export_sssdist" type="float" default="0" export="True"/>
+            <parameter name="export_ssscolor" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="export_sheen" type="float" default="0" export="True"/>
+            <parameter name="export_sheentint" type="float" default="0" export="True"/>
+            <parameter name="export_coatrough" type="float" default="0" export="True"/>
+            <parameter name="export_coat" type="float" default="0" export="True"/>
+            <parameter name="export_emitcolor" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="export_emitint" type="float" default="0" export="True"/>
+            <parameter name="export_speccolor" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Oc" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Cv" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Th" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Ab" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Cu" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Vd" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Nt" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Ds" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Vdt" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="direct" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="indirect" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="Ce" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="direct_emission" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="all_emission" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="all" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="indirect_emission" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="direct_comp" type="vectora" default="{}" export="True"/>
+            <parameter name="indirect_comp" type="vectora" default="{}" export="True"/>
+            <parameter name="all_comp" type="vectora" default="{}" export="True"/>
+            <parameter name="direct_noshadow" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="direct_shadow" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="indirect_noshadow" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="indirect_shadow" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="level" type="float" default="0" export="True"/>
+            <parameter name="diffuselevel" type="float" default="0" export="True"/>
+            <parameter name="specularlevel" type="float" default="0" export="True"/>
+            <parameter name="volumelevel" type="float" default="0" export="True"/>
+            <parameter name="direct_samples" type="float" default="0" export="True"/>
+            <parameter name="indirect_samples" type="float" default="0" export="True"/>
+            <parameter name="nlights" type="float" default="0" export="True"/>
+            <parameter name="direct_noshadow_comp" type="vectora" default="{}" export="True"/>
+            <parameter name="indirect_noshadow_comp" type="vectora" default="{}" export="True"/>
+            <parameter name="nddispersion" type="float" default="0" export="True"/>
+            <parameter name="ndpriority" type="float" default="0" export="True"/>
+            <parameter name="ndior" type="float" default="0" export="True"/>
+            <parameter name="absorption" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="export_reflect" type="float" default="0" export="True"/>
+            <parameter name="albedo" type="vector" default="{ 0, 0, 0 }" export="True"/>
+        </parameters>
+        <parameters shaderType="displacement">
+            <parameter name="layer" type="struct_ShaderLayer" default="{}" export="True"/>
+            <parameter name="pre_disp_P" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="pre_disp_utan" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="pre_disp_vtan" type="vector" default="{ 0, 0, 0 }" export="True"/>
+            <parameter name="pre_disp_N" type="vector" default="{ 0, 0, 0 }" export="True"/>
+        </parameters>
+    </extraParameters>
+</scriptMaterialInfo>

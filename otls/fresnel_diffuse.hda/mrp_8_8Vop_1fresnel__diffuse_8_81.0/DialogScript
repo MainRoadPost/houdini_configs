@@ -1,0 +1,106 @@
+# Dialog script for mrp::fresnel_diffuse::1.0 automatically generated
+
+{
+    name	mrp::fresnel_diffuse::1.0
+    script	pbrspecular
+    label	"PBR Fresnel Diffuse"
+
+    outercode {
+	"#ifdef VOP_SHADING"
+	"#include <shaderlayer.h>"
+	"#endif"
+    }
+
+    code {
+	"#ifdef VOP_SHADING"
+	"vector $tnN = $isconnected_nN ? $nN : normalize(N);"
+	"vector $tnNg = dot($tnN, Ng) > 0 ? Ng : -Ng;"
+	"#else"
+	"vector $tnN = $isconnected_nN ? $nN : {0, 1, 0};"
+	"vector $tnNg = $tnN;"
+	"#endif"
+	""
+	"float $eta = 1.0/$ior;"
+	""
+	"if($frontface)"
+	"{"
+	"    $tnN = frontface($tnN, I);"
+	"    $tnNg = frontface($tnNg, I);"
+	"}"
+	""
+	"$f = 2.0*cvex_bsdf(\"fresneldiffuse_eval\", \"fresneldiffuse_sample\","
+	"               \"label\", $label,"
+	"               \"N\", $tnN,"
+	"               \"eta\", $eta"
+	"               );"
+	""
+	"$f *= $color;"
+	""
+	"#ifdef VOP_SHADING"
+	"init_layer($layer);"
+	"$layer.F = $f;"
+	"#endif"
+    }
+
+    input	string	label	"Component Label"
+    input	vector	color	Color
+    input	vector	nN	Normal
+    input	int	frontface	"Shade Both Sides As Front"
+    input	float	ior	"Index Of Refraction"
+    output	struct_ShaderLayer	layer	Layer
+    output	bsdf	f	BSDF
+    inputflags	label	0
+    inputflags	color	0
+    inputflags	nN	0
+    inputflags	frontface	0
+    inputflags	ior	0
+    signature	"Default Inputs"	default	{ string vector vector int float struct_ShaderLayer bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+	name	"label"
+	label	"Component Label"
+	type	string
+	default	{ "diffuse" }
+	menureplace	{
+	    "diffuse"	"Diffuse"
+	    "specular"	"Specular"
+	    "reflect"	"Reflect"
+	    "refract"	"Refract"
+	}
+	range	{ 0 1 }
+    }
+    parm {
+	name	"color"
+	label	"Color"
+	type	color
+	size	3
+	default	{ "1" "1" "1" }
+	range	{ 0 1 }
+    }
+    parm {
+	name	"frontface"
+	label	"Shade Both Sides As Front"
+	type	toggle
+	default	{ "1" }
+	range	{ 0 1 }
+    }
+    parm {
+	name	"ior"
+	label	"Index Of Refraction"
+	type	float
+	default	{ "1" }
+	range	{ 0! 2 }
+    }
+}

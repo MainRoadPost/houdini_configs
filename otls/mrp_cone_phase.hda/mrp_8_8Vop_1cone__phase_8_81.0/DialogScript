@@ -1,0 +1,72 @@
+# Dialog script for mrp::cone_phase::1.0 automatically generated
+
+{
+    name	mrp::cone_phase::1.0
+    script	mrp::cone_phase::1.0
+    label	"MRP Cone Phase"
+
+    code {
+	"float $_angle = radians($angle);"
+	"float $_delta = radians($delta);"
+	"float $_eps = $eps;"
+	"$f = cvex_bsdf(\"mrp_cone_phase_eval\", \"mrp_cone_phase_sample\","
+	"              \"label\", $label,"
+	"              \"bouncemasklabels\", bouncemask($label),"
+	"              \"angle\", $_angle,"
+	"              \"delta\", $_delta,"
+	"              \"eps\", $_eps);"
+    }
+
+    input	string	label	"Component Label"
+    input	float	angle	Angle
+    input	float	delta	Delta
+    input	float	eps	Eps
+    output	bsdf	f	f
+    inputflags	label	0
+    inputflags	angle	0
+    inputflags	delta	0
+    inputflags	eps	0
+    signature	"Default Inputs"	default	{ string float float float bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "label"
+        label   "Component Label"
+        type    string
+        default { "volume" }
+        range   { 0 1 }
+    }
+    parm {
+        name    "angle"
+        label   "Angle"
+        type    float
+        default { "10" }
+        range   { 0 180 }
+        parmtag { "script_callback_language" "python" }
+    }
+    parm {
+        name    "delta"
+        label   "Delta"
+        type    float
+        default { "5" }
+        range   { 0 180 }
+        parmtag { "script_callback_language" "python" }
+    }
+    parm {
+        name    "eps"
+        label   "Eps"
+        type    log
+        default { "0.0001" }
+        range   { 0 0.05 }
+        parmtag { "script_callback_language" "python" }
+    }
+}

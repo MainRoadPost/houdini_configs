@@ -1,0 +1,18 @@
+# Automatically generated script
+\set noalias = 1
+#
+#  Creation script for mrp::berry_specular::1.0 operator
+#
+
+if ( "$arg1" == "" ) then
+    echo This script is intended as a creation script
+    exit
+endif
+
+# Node $arg1 (mrp::Vop/berry_specular::1.0)
+opparm $arg1 label ( reflect ) roughness ( 0.10000000000000001 ) fresnel0 ( 0.5 0.5 0.5 )
+chlock $arg1 -*
+chautoscope $arg1 -*
+opcolor -c 0.80000001192092896 0.80000001192092896 0.80000001192092896 $arg1
+opexprlanguage -s hscript $arg1
+opuserdata -n '___Version___' -v '' $arg1

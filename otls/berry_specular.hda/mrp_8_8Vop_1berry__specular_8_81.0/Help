@@ -1,0 +1,73 @@
+=Berry Microfacet Specular Model=
+
+Beeing compared to GGX model, this one have a much longer tails.
+
+Do not forget to multiply resulting BSDF to value near 0.35 for metals to avoid too bright albedo.
+For dielectrics, if recommended values of Fresnel0 parameter are used, total albedo is already in plausible range.
+
+@parameters
+
+Roughness:
+    Roughness of a surface. Zero means "almost ideal" mirror, One is very rough surface.
+    Values more than one are allowed, but will have bad sampling and very dark due to large shadowing term
+
+Fresnel0:
+    Reflectance of a surface absolutely perpindicular to light (and viewer)
+
+== Roughness examples ==
+Mirror:
+    0.01
+Almost diffuse:
+    0.7
+
+== Fresnel0 values for most common materials ==
+
+Water:
+    0.02
+Plastic / Glass (Low):
+    0.03
+Plastic High:
+    0.05
+Glass (High) / Ruby :
+    0.08
+Diamond:
+    0.17
+Iron:
+    0.56, 0.57, 0.58
+Copper:
+    0.95, 0.64, 0.54
+Gold:
+    1.0, 0.71, 0.29
+Aluminium:
+    0.91, 0.92, 0.92
+Silver:
+    0.95, 0.93, 0.88
+
+Example values have been taken from paper "Background: Physics and Math of Shading", Siggraph 2013
+
+Based on papers:
+* "Microfacet Models for Refraction through Rough Surfaces" by Walter et.al, 2007
+* "Background: Physics and Math of Shading", Siggraph 2013
+
+@inputs
+
+nN:
+    A normalized normal.
+
+@outputs
+
+f:
+    The berry bsdf.
+
+@related
+
+    - [Node:vop/pbrspecular]
+    - [Node:vop/pbrdiffuse]
+    - [Node:vop/conserveenergy]
+
+
+~~~ Version history
+* Version mrp::berry_specular::1.1 (RELEASE) created by mike
+
+Albedo lookup implemented
+

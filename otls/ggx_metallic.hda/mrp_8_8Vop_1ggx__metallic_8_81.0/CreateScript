@@ -1,0 +1,18 @@
+# Automatically generated script
+\set noalias = 1
+#
+#  Creation script for mrp::ggx_metallic::1.0 operator
+#
+
+if ( "$arg1" == "" ) then
+    echo This script is intended as a creation script
+    exit
+endif
+
+# Node $arg1 (mrp::Vop/ggx_metallic::1.0)
+opparm $arg1 label ( reflect ) roughness ( 0.20000000000000001 ) aniso ( 0 ) aniso_angle ( 0 ) physparms ( off ) reflectivity ( 0.95652199999999998 0.72015300000000004 0.40354099999999998 ) edgetint ( 0.99851800000000002 0.97072000000000003 0.77651899999999996 ) eta ( 0.15557000000000001 0.52329000000000003 1.3319000000000001 ) kappa ( 3.6023999999999998 2.2713999999999999 1.8693 )
+chlock $arg1 -*
+chautoscope $arg1 -*
+opcolor -c 0.80000001192092896 0.80000001192092896 0.80000001192092896 $arg1
+opexprlanguage -s hscript $arg1
+opuserdata -n '___Version___' -v '' $arg1

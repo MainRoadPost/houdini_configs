@@ -1,0 +1,12 @@
+= MRP Rounded Edge =
+
+"""Only difference with original Rounded Edge node is two separate masks in output.
+It blends the normals between faces within specified radius."""
+
+[Include:/nodes/vop/roundededge]
+
+concave:
+    Gives 1 if the normals are changed for concave angles. 0 if normals are unchanged.
+
+convex:
+    Gives 1 if the normals are changed for convex angles. 0 if normals are unchanged.

@@ -1,0 +1,14 @@
+Operator:     mrp::cone_phase::1.0
+Label:        MRP Cone Phase
+Path:         oplib:/mrp::Vop/cone_phase::1.0?mrp::Vop/cone_phase::1.0
+Icon:         VOP_mrp-cone_phase-1.0
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 4
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Thu Oct 17 18:33:13 2019
+

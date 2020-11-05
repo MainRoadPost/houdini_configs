@@ -1,0 +1,80 @@
+# Dialog script for mrp::berry_specular::1.1 automatically generated
+
+{
+    name	mrp::berry_specular::1.1
+    script	pbrspecular
+    label	"MRP Berry Specular"
+
+    outercode {
+	" "
+    }
+
+    code {
+	"#ifdef VOP_SHADING"
+	"vector $tnN = $isconnected_nN ? $nN : normalize(N);"
+	"#else"
+	"vector $tnN = $isconnected_nN ? $nN : {0, 1, 0};"
+	"#endif"
+	""
+	"float $r = $roughness*$roughness;"
+	"vector $f0 = $fresnel0;"
+	""
+	"$f = cvex_bsdf(\"mrp_berry_eval_1_1\", \"mrp_berry_sample_1_1\","
+	"              \"label\", $label,"
+	"              \"bouncemasklabels\", bouncemask($label),"
+	"              \"nN\", $tnN,"
+	"              \"fresnel0\", $f0,"
+	"              \"roughness\", $r);"
+    }
+
+    input	string	label	"Component Label"
+    input	float	roughness	Roughness
+    input	vector	fresnel0	Fresnel0
+    input	vector	nN	Normal
+    output	bsdf	f	BSDF
+    inputflags	label	0
+    inputflags	roughness	0
+    inputflags	fresnel0	0
+    inputflags	nN	0
+    signature	"Default Inputs"	default	{ string float vector vector bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "label"
+        label   "Component Label"
+        type    string
+        default { "reflect" }
+        menureplace {
+            "diffuse"   "Diffuse"
+            "specular"  "Specular"
+            "reflect"   "Reflect"
+            "refract"   "Refract"
+        }
+        range   { 0 1 }
+    }
+    parm {
+        name    "roughness"
+        label   "Roughness"
+        type    float
+        default { "0.5" }
+        range   { 0 1 }
+    }
+    parm {
+        name    "fresnel0"
+        label   "Fresnel0"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        help    "Reflectance at zero Theta angle"
+        range   { 0 1 }
+    }
+}

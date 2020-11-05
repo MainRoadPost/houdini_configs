@@ -1,0 +1,3428 @@
+# Dialog script for mrp::principledshader::1.1 automatically generated
+
+{
+    name	mrp::principledshader::1.1
+    script	cg::principledshader::1.1
+    label	"MRP Principled Shader"
+
+    rendermask	"VMantra OGL"
+    shadertype	vopmaterial
+    input	vector	uv	"UV Coordinates"
+    input	vector	basecolor	"Base Color"
+    input	int	basecolor_usePointColor	"Use Point Color"
+    input	int	basecolor_usePackedColor	"Use Packed Color"
+    input	float	rough	Roughness
+    input	float	aniso	Anisotropy
+    input	float	anisodir	"Anisotropy Direction"
+    input	float	metallic	Metallic
+    input	float	reflect	Reflectivity
+    input	float	reflecttint	"Reflect Tint"
+    input	float	coat	Coat
+    input	float	coatrough	"Coat Roughness"
+    input	float	sss	Subsurface
+    input	float	sssdist	"Subsurface Distance"
+    input	vector	ssscolor	"Subsurface Color"
+    input	float	sheen	Sheen
+    input	float	sheentint	"Sheen Tint"
+    input	vector	emitcolor	"Emission Color"
+    input	float	emitint	"Emission Intensity"
+    input	int	emitillum	"Emission Illuminates Objects"
+    input	int	basecolor_useTexture	"Use Texture"
+    input	string	basecolor_texture	Texture
+    input	float	basecolor_textureIntensity	"Tint Intensity"
+    input	string	basecolor_textureWrap	Wrap
+    input	string	basecolor_textureColorSpace	"Source Color Space"
+    input	int	metallic_useTexture	"Use Texture"
+    input	string	metallic_texture	Texture
+    input	int	metallic_monoChannel	Channel
+    input	string	metallic_textureWrap	Wrap
+    input	string	metallic_textureColorSpace	"Source Color Space"
+    input	int	reflect_useTexture	"Use Texture"
+    input	string	reflect_texture	Texture
+    input	int	reflect_monoChannel	Channel
+    input	string	reflect_textureWrap	Wrap
+    input	string	reflect_textureColorSpace	"Source Color Space"
+    input	int	reflecttint_useTexture	"Use Texture"
+    input	string	reflecttint_texture	Texture
+    input	int	reflecttint_monoChannel	Channel
+    input	string	reflecttint_textureWrap	Wrap
+    input	string	reflecttint_textureColorSpace	"Source Color Space"
+    input	int	rough_useTexture	"Use Texture"
+    input	string	rough_texture	Texture
+    input	int	rough_monoChannel	Channel
+    input	string	rough_textureWrap	Wrap
+    input	string	rough_textureColorSpace	"Source Color Space"
+    input	int	aniso_useTexture	"Use Texture"
+    input	string	aniso_texture	Texture
+    input	int	aniso_monoChannel	Channel
+    input	string	aniso_textureWrap	Wrap
+    input	string	aniso_textureColorSpace	"Source Color Space"
+    input	int	anisodir_useTexture	"Use Texture"
+    input	string	anisodir_texture	Texture
+    input	int	anisodir_monoChannel	Channel
+    input	string	anisodir_textureWrap	Wrap
+    input	string	anisodir_textureColorSpace	"Source Color Space"
+    input	string	anisodir_textureFilter	"Filter Type"
+    input	int	sss_useTexture	"Use Texture"
+    input	string	sss_texture	Texture
+    input	int	sss_monoChannel	Channel
+    input	string	sss_textureWrap	Wrap
+    input	string	sss_textureColorSpace	"Source Color Space"
+    input	int	sssdist_useTexture	"Use Texture"
+    input	string	sssdist_texture	Texture
+    input	int	sssdist_monoChannel	Channel
+    input	string	sssdist_textureWrap	Wrap
+    input	string	sssdist_textureColorSpace	"Source Color Space"
+    input	int	ssscolor_useTexture	"Use Texture"
+    input	string	ssscolor_texture	Texture
+    input	string	ssscolor_textureWrap	Wrap
+    input	string	ssscolor_textureColorSpace	"Source Color Space"
+    input	int	sheen_useTexture	"Use Texture"
+    input	string	sheen_texture	Texture
+    input	int	sheen_monoChannel	Channel
+    input	string	sheen_textureWrap	Wrap
+    input	string	sheen_textureColorSpace	"Source Color Space"
+    input	int	sheentint_useTexture	"Use Texture"
+    input	string	sheentint_texture	Map
+    input	int	sheentint_monoChannel	Channel
+    input	string	sheentint_textureWrap	Wrap
+    input	string	sheentint_textureColorSpace	"Source Color Space"
+    input	int	coat_useTexture	"Use Texture"
+    input	string	coat_texture	Texture
+    input	int	coat_monoChannel	Channel
+    input	string	coat_textureWrap	Wrap
+    input	string	coat_textureColorSpace	"Source Color Space"
+    input	int	coatrough_useTexture	"Use Texture"
+    input	string	coatrough_texture	Texture
+    input	int	coatrough_monoChannel	Channel
+    input	string	coatrough_textureWrap	Wrap
+    input	string	coatrough_textureColorSpace	"Source Color Space"
+    input	int	emitcolor_useTexture	"Use Texture"
+    input	string	emitcolor_texture	Texture
+    input	float	emitcolor_textureIntensity	"Tint Intensity"
+    input	string	emitcolor_textureWrap	Wrap
+    input	string	emitcolor_textureColorSpace	"Source Color Space"
+    input	string	surface_textureFilter	Filter
+    input	float	surface_textureFilterWidth	"Filter Width"
+    input	int	baseBumpAndNormal_enable	Enable
+    input	string	baseBumpAndNormal_type	"Texture Type"
+    input	string	baseBump_colorSpace	"Texture Color Space"
+    input	float	baseBump_bumpScale	"Effect Scale"
+    input	string	baseBump_bumpTexture	"Texture Path"
+    input	string	baseBump_wrap	Wrap
+    input	string	baseBump_filter	Filter
+    input	float	baseBump_filterWidth	"Filter Width"
+    input	int	baseBump_channel	Channel
+    input	string	baseBump_imagePlane	"Image Plane"
+    input	string	baseNormal_colorspace	"Texture Color Space"
+    input	string	baseNormal_vectorSpace	"Vector Space"
+    input	float	baseNormal_scale	"Effect Scale"
+    input	string	baseNormal_texture	"Texture Path"
+    input	string	baseNormal_wrap	Wrap
+    input	string	baseNormal_filter	Filter
+    input	float	baseNormal_filterWidth	"Filter Width"
+    input	int	baseNormal_channel	Channel
+    input	string	baseNormal_imagePlane	"Image Plane"
+    input	int	baseNormal_space	"Normal Space"
+    input	int	baseNormal_flipX	"Flip X"
+    input	int	baseNormal_flipY	"Flip Y"
+    input	int	separateCoatNormals	"Separate Coat Normals"
+    input	int	coatBumpAndNormal_enable	Enable
+    input	string	coatBumpAndNormal_type	"Texture Type"
+    input	string	coatBump_colorSpace	"Texture Color Space"
+    input	float	coatBump_bumpScale	"Effect Scale"
+    input	string	coatBump_bumpTexture	"Texture Path"
+    input	string	coatBump_wrap	Wrap
+    input	string	coatBump_filter	Filter
+    input	float	coatBump_filterWidth	"Filter Width"
+    input	int	coatBump_channel	Channel
+    input	string	coatBump_imagePlane	"Image Plane"
+    input	string	coatNormal_colorspace	"Texture Color Space"
+    input	string	coatNormal_vectorSpace	"Vector Space"
+    input	float	coatNormal_scale	"Effect Scale"
+    input	string	coatNormal_texture	"Texture Path"
+    input	string	coatNormal_wrap	Wrap
+    input	string	coatNormal_filter	Filter
+    input	float	coatNormal_filterWidth	"Filter Width"
+    input	int	coatNormal_channel	Channel
+    input	string	coatNormal_imagePlane	"Image Plane"
+    input	int	coatNormal_space	"Normal Space"
+    input	int	coatNormal_flipX	"Flip X"
+    input	int	coatNormal_flipY	"Flip Y"
+    input	int	dispInput_enable	"Enable Input Displacement"
+    input	float	dispInput_max	"Maximum Displacement"
+    input	string	dispInput_vectorspace	"Vector Space"
+    input	int	dispTex_enable	"Enable Texture Displacement"
+    input	string	dispTex_type	"Texture Type"
+    input	string	dispTex_colorSpace	"Texture Color Space"
+    input	string	dispTex_vectorSpace	"Vector Space"
+    input	string	dispTex_channelOrder	"Channel Order"
+    input	float	dispTex_offset	Offset
+    input	float	dispTex_scale	"Effect Scale"
+    input	string	dispTex_texture	"Texture Path"
+    input	int	dispTex_channel	Channel
+    input	string	dispTex_wrap	Wrap
+    input	string	dispTex_filter	Filter
+    input	float	dispTex_filterWidth	"Filter Width"
+    input	int	dispNoise_enable	"Enable Noise Displacement"
+    input	string	dispNoise_type	"Noise Type"
+    input	vector	dispNoise_freq	Frequency
+    input	vector	dispNoise_offset	Offset
+    input	float	dispNoise_amp	Amplitude
+    input	float	dispNoise_rough	Roughness
+    input	float	dispNoise_atten	Attenuation
+    input	int	dispNoise_turb	Turbulence
+    input	string	difflabel	Diffuse
+    input	string	refllabel	Reflection
+    input	string	coatlabel	"Coat Reflection"
+    input	string	ssslabel	Subsurface
+    input	vector2	uvtrans	Translate
+    input	float	uvrot	Rotate
+    input	vector2	uvscale	Scale
+    input	vector	baseN	""
+    input	vector	coatN	""
+    input	float	disp	"Normal Displacement"
+    input	vector	vdisp	"Vector Displacement"
+    input	float	coatlightcull	"Coat Light Cull"
+    input	float	top_layer_ior	"Top Layer IOR"
+    output	surface	surface	surface
+    output	displacement	displacement	displacement
+    output	struct_ShaderLayer	layer	""
+    inputflags	uv	2
+    inputflags	basecolor	2
+    inputflags	basecolor_usePointColor	2
+    inputflags	basecolor_usePackedColor	2
+    inputflags	rough	2
+    inputflags	aniso	2
+    inputflags	anisodir	2
+    inputflags	metallic	2
+    inputflags	reflect	2
+    inputflags	reflecttint	2
+    inputflags	coat	2
+    inputflags	coatrough	2
+    inputflags	sss	2
+    inputflags	sssdist	2
+    inputflags	ssscolor	2
+    inputflags	sheen	2
+    inputflags	sheentint	2
+    inputflags	emitcolor	2
+    inputflags	emitint	2
+    inputflags	emitillum	2
+    inputflags	basecolor_useTexture	2
+    inputflags	basecolor_texture	2
+    inputflags	basecolor_textureIntensity	2
+    inputflags	basecolor_textureWrap	2
+    inputflags	basecolor_textureColorSpace	2
+    inputflags	metallic_useTexture	2
+    inputflags	metallic_texture	2
+    inputflags	metallic_monoChannel	2
+    inputflags	metallic_textureWrap	2
+    inputflags	metallic_textureColorSpace	2
+    inputflags	reflect_useTexture	2
+    inputflags	reflect_texture	2
+    inputflags	reflect_monoChannel	2
+    inputflags	reflect_textureWrap	2
+    inputflags	reflect_textureColorSpace	2
+    inputflags	reflecttint_useTexture	2
+    inputflags	reflecttint_texture	2
+    inputflags	reflecttint_monoChannel	2
+    inputflags	reflecttint_textureWrap	2
+    inputflags	reflecttint_textureColorSpace	2
+    inputflags	rough_useTexture	2
+    inputflags	rough_texture	2
+    inputflags	rough_monoChannel	2
+    inputflags	rough_textureWrap	2
+    inputflags	rough_textureColorSpace	2
+    inputflags	aniso_useTexture	2
+    inputflags	aniso_texture	2
+    inputflags	aniso_monoChannel	2
+    inputflags	aniso_textureWrap	2
+    inputflags	aniso_textureColorSpace	2
+    inputflags	anisodir_useTexture	2
+    inputflags	anisodir_texture	2
+    inputflags	anisodir_monoChannel	2
+    inputflags	anisodir_textureWrap	2
+    inputflags	anisodir_textureColorSpace	2
+    inputflags	anisodir_textureFilter	2
+    inputflags	sss_useTexture	2
+    inputflags	sss_texture	2
+    inputflags	sss_monoChannel	2
+    inputflags	sss_textureWrap	2
+    inputflags	sss_textureColorSpace	2
+    inputflags	sssdist_useTexture	2
+    inputflags	sssdist_texture	2
+    inputflags	sssdist_monoChannel	2
+    inputflags	sssdist_textureWrap	2
+    inputflags	sssdist_textureColorSpace	2
+    inputflags	ssscolor_useTexture	2
+    inputflags	ssscolor_texture	2
+    inputflags	ssscolor_textureWrap	2
+    inputflags	ssscolor_textureColorSpace	2
+    inputflags	sheen_useTexture	2
+    inputflags	sheen_texture	2
+    inputflags	sheen_monoChannel	2
+    inputflags	sheen_textureWrap	2
+    inputflags	sheen_textureColorSpace	2
+    inputflags	sheentint_useTexture	2
+    inputflags	sheentint_texture	2
+    inputflags	sheentint_monoChannel	2
+    inputflags	sheentint_textureWrap	2
+    inputflags	sheentint_textureColorSpace	2
+    inputflags	coat_useTexture	2
+    inputflags	coat_texture	2
+    inputflags	coat_monoChannel	2
+    inputflags	coat_textureWrap	2
+    inputflags	coat_textureColorSpace	2
+    inputflags	coatrough_useTexture	2
+    inputflags	coatrough_texture	2
+    inputflags	coatrough_monoChannel	2
+    inputflags	coatrough_textureWrap	2
+    inputflags	coatrough_textureColorSpace	2
+    inputflags	emitcolor_useTexture	2
+    inputflags	emitcolor_texture	2
+    inputflags	emitcolor_textureIntensity	2
+    inputflags	emitcolor_textureWrap	2
+    inputflags	emitcolor_textureColorSpace	2
+    inputflags	surface_textureFilter	2
+    inputflags	surface_textureFilterWidth	2
+    inputflags	baseBumpAndNormal_enable	2
+    inputflags	baseBumpAndNormal_type	2
+    inputflags	baseBump_colorSpace	2
+    inputflags	baseBump_bumpScale	2
+    inputflags	baseBump_bumpTexture	2
+    inputflags	baseBump_wrap	2
+    inputflags	baseBump_filter	2
+    inputflags	baseBump_filterWidth	2
+    inputflags	baseBump_channel	2
+    inputflags	baseBump_imagePlane	2
+    inputflags	baseNormal_colorspace	2
+    inputflags	baseNormal_vectorSpace	2
+    inputflags	baseNormal_scale	2
+    inputflags	baseNormal_texture	2
+    inputflags	baseNormal_wrap	2
+    inputflags	baseNormal_filter	2
+    inputflags	baseNormal_filterWidth	2
+    inputflags	baseNormal_channel	2
+    inputflags	baseNormal_imagePlane	2
+    inputflags	baseNormal_space	2
+    inputflags	baseNormal_flipX	2
+    inputflags	baseNormal_flipY	2
+    inputflags	separateCoatNormals	2
+    inputflags	coatBumpAndNormal_enable	2
+    inputflags	coatBumpAndNormal_type	2
+    inputflags	coatBump_colorSpace	2
+    inputflags	coatBump_bumpScale	2
+    inputflags	coatBump_bumpTexture	2
+    inputflags	coatBump_wrap	2
+    inputflags	coatBump_filter	2
+    inputflags	coatBump_filterWidth	2
+    inputflags	coatBump_channel	2
+    inputflags	coatBump_imagePlane	2
+    inputflags	coatNormal_colorspace	2
+    inputflags	coatNormal_vectorSpace	2
+    inputflags	coatNormal_scale	2
+    inputflags	coatNormal_texture	2
+    inputflags	coatNormal_wrap	2
+    inputflags	coatNormal_filter	2
+    inputflags	coatNormal_filterWidth	2
+    inputflags	coatNormal_channel	2
+    inputflags	coatNormal_imagePlane	2
+    inputflags	coatNormal_space	2
+    inputflags	coatNormal_flipX	2
+    inputflags	coatNormal_flipY	2
+    inputflags	dispInput_enable	2
+    inputflags	dispInput_max	2
+    inputflags	dispInput_vectorspace	2
+    inputflags	dispTex_enable	2
+    inputflags	dispTex_type	2
+    inputflags	dispTex_colorSpace	2
+    inputflags	dispTex_vectorSpace	2
+    inputflags	dispTex_channelOrder	2
+    inputflags	dispTex_offset	2
+    inputflags	dispTex_scale	2
+    inputflags	dispTex_texture	2
+    inputflags	dispTex_channel	2
+    inputflags	dispTex_wrap	2
+    inputflags	dispTex_filter	2
+    inputflags	dispTex_filterWidth	2
+    inputflags	dispNoise_enable	2
+    inputflags	dispNoise_type	2
+    inputflags	dispNoise_freq	2
+    inputflags	dispNoise_offset	2
+    inputflags	dispNoise_amp	2
+    inputflags	dispNoise_rough	2
+    inputflags	dispNoise_atten	2
+    inputflags	dispNoise_turb	2
+    inputflags	difflabel	2
+    inputflags	refllabel	2
+    inputflags	coatlabel	2
+    inputflags	ssslabel	2
+    inputflags	uvtrans	2
+    inputflags	uvrot	2
+    inputflags	uvscale	2
+    inputflags	baseN	2
+    inputflags	coatN	2
+    inputflags	disp	2
+    inputflags	vdisp	2
+    inputflags	coatlightcull	2
+    inputflags	top_layer_ior	2
+    outputflags	layer	2
+    signature	"Default Inputs"	default	{ vector vector int int float float float float float float float float float float vector float float vector float int int string float string string int string int string string int string int string string int string int string string int string int string string int string int string string int string int string string string int string int string string int string int string string int string string string int string int string string int string int string string int string int string string int string int string string int string float string string string float int string string float string string string float int string string string float string string string float int string int int int int int string string float string string string float int string string string float string string string float int string int int int int float string int string string string string float float string int string string float int string vector vector float float float int string string string string vector2 float vector2 vector vector float vector float float surface displacement struct_ShaderLayer }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "specmodel"
+        label   "OpenGL Specular Model"
+        type    string
+        invisible
+        default { "ggx" }
+        parmtag { "ogl_spec_model" "1" }
+    }
+    parm {
+        name    "coatspecmodel"
+        label   "OpenGL Coat Specular Model"
+        type    string
+        invisible
+        default { "ggx" }
+        parmtag { "ogl_coat_model" "1" }
+    }
+    parm {
+        name    "speccolor"
+        label   "OpenGL Specular Color"
+        type    color
+        invisible
+        size    3
+        default { [ "ch(\"basecolorr\")" hscript-expr ] [ "ch(\"basecolorg\")" hscript-expr ] [ "ch(\"basecolorb\")" hscript-expr ] }
+        range   { 0 1 }
+        parmtag { "ogl_spec" "1" }
+    }
+    parm {
+        name    "specular_tint"
+        label   "OpenGL Specular Tint"
+        type    float
+        invisible
+        default { [ "ch(\"metallic\")+(1-ch(\"metallic\"))*ch(\"reflecttint\")" hscript-expr ] }
+        range   { 0! 1! }
+        parmtag { "ogl_spectint" "1" }
+        parmtag { "units" "" }
+    }
+    group {
+        name    "diffuse_folder_15"
+        label   "Surface"
+
+        groupsimple {
+            name    "folder7"
+            label   "Basic"
+
+            parm {
+                name    "basecolor"
+                label   "Base Color"
+                type    color
+                size    3
+                default { "0.2" "0.2" "0.2" }
+                disablewhen "{ basecolor_useBaseColor == 0 } { diff_enable == 0 }"
+                range   { 0 1 }
+                parmtag { "ogl_diff" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_usePointColor"
+                label   "Use Point Color"
+                type    toggle
+                default { "on" }
+                disablewhen "{ diff_enable == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_usePackedColor"
+                label   "Use Packed Color"
+                type    toggle
+                default { "off" }
+                disablewhen "{ diff_enable == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder4"
+            label   "Specular"
+
+            parm {
+                name    "rough"
+                label   "Roughness"
+                type    float
+                default { "0.3" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "ogl_rough" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "aniso"
+                label   "Anisotropy"
+                type    float
+                default { "0" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "anisodir"
+                label   "Anisotropy Direction"
+                type    float
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            groupsimple {
+                name    "folder12"
+                label   "Reflection"
+
+                parm {
+                    name    "metallic"
+                    label   "Metallic"
+                    type    float
+                    default { "0" }
+                    hidewhen "{ useBaseColor == 0 }"
+                    range   { 0 1 }
+                    parmtag { "ogl_metallic" "1" }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "reflect"
+                    label   "Reflectivity"
+                    type    float
+                    default { "1" }
+                    hidewhen "{ useBaseColor == 0 }"
+                    range   { 0 1 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "reflecttint"
+                    label   "Reflect Tint"
+                    type    float
+                    default { "0" }
+                    hidewhen "{ useBaseColor == 0 }"
+                    range   { 0 1 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "coat"
+                    label   "Coat"
+                    type    float
+                    default { "0" }
+                    hidewhen "{ useBaseColor == 0 }"
+                    range   { 0 1 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "coatrough"
+                    label   "Coat Roughness"
+                    type    float
+                    default { "0" }
+                    hidewhen "{ useBaseColor == 0 }"
+                    range   { 0 1 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "coatlightcull"
+                    label   "Coat Light Cull"
+                    type    float
+                    default { "1" }
+                    range   { 0 1 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+                parm {
+                    name    "top_layer_ior"
+                    label   "Top Layer IOR"
+                    type    float
+                    default { "1" }
+                    help    "If index of refraction is 1, there is no top layer"
+                    range   { 0 2 }
+                    parmtag { "parmvop" "1" }
+                    parmtag { "shaderparmcontexts" "surface" }
+                }
+            }
+
+            groupsimple {
+                name    "folder13"
+                label   "Transparency"
+
+            }
+
+        }
+
+        groupsimple {
+            name    "folder8"
+            label   "Subsurface Scattering"
+
+            parm {
+                name    "sss"
+                label   "Subsurface"
+                type    float
+                default { "0" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sssdist"
+                label   "Subsurface Distance"
+                type    float
+                default { "0.1" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "ssscolor"
+                label   "Subsurface Color"
+                type    color
+                size    3
+                default { "1" "1" "1" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder11"
+            label   "Sheen"
+
+            parm {
+                name    "sheen"
+                label   "Sheen"
+                type    float
+                default { "0" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheentint"
+                label   "Sheen Tint"
+                type    float
+                default { "0" }
+                hidewhen "{ useBaseColor == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder9"
+            label   "Emission"
+
+            parm {
+                name    "emitcolor"
+                label   "Emission Color"
+                type    color
+                size    3
+                default { "0" "0" "0" }
+                range   { 0 1 }
+                parmtag { "ogl_emit" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitint"
+                label   "Emission Intensity"
+                type    float
+                default { "1" }
+                range   { 0 10 }
+                parmtag { "ogl_emit_intensity" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitillum"
+                label   "Emission Illuminates Objects"
+                type    toggle
+                default { "on" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+    }
+
+    group {
+        name    "diffuse_folder_15_1"
+        label   "Textures"
+
+        groupsimple {
+            name    "folder54"
+            label   "Base Color"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "basecolor_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ diff_enable == 0 }"
+                parmtag { "ogl_use_tex1" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ diff_enable == 0 }"
+                hidewhen "{ basecolor_useTexture == 0 }"
+                parmtag { "ogl_tex1" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_textureIntensity"
+                label   "Tint Intensity"
+                type    float
+                default { "1" }
+                disablewhen "{ diff_enable == 0 }"
+                hidewhen "{ basecolor_useTexture == 0 }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_textureWrap"
+                label   "Wrap"
+                type    string
+                default { "repeat" }
+                disablewhen "{ diff_enable == 0 }"
+                hidewhen "{ basecolor_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "basecolor_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "auto" }
+                disablewhen "{ diff_enable == 0 }"
+                hidewhen "{ basecolor_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder1"
+            label   "IOR"
+
+        }
+
+        groupsimple {
+            name    "folder227"
+            label   "Roughness"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "rough_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "ogl_use_roughmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "rough_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ rough_useTexture == 0 }"
+                parmtag { "ogl_roughmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "rough_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ rough_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "rough_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ rough_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "rough_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ rough_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder228"
+            label   "Anisotropy"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "aniso_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "aniso_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ aniso_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "aniso_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ aniso_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "aniso_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ aniso_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "aniso_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ aniso_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder229"
+            label   "Anisotropy Direction"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "anisodir_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "script_callback" "python -c 'hou.phm().toggle_anisodir_texture(hou.pwd())'" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "anisodir_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ anisodir_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "anisodir_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ anisodir_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "anisodir_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ anisodir_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "anisodir_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ anisodir_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "" }
+            }
+            parm {
+                name    "anisodir_textureFilter"
+                label   "Filter Type"
+                type    string
+                default { "point" }
+                hidewhen "{ anisodir_useTexture == 0 }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                    "point"     "Point (No Filter)"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder55"
+            label   "Metallic"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "metallic_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "ogl_use_metallicmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "metallic_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ metallic_useTexture == 0 }"
+                parmtag { "ogl_metallicmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "metallic_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ metallic_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "ogl_metallicmap_comp" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "metallic_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ metallic_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "metallic_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ metallic_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder16"
+            label   "Reflectivity"
+
+            parm {
+                name    "reflect_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflect_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflect_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflect_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflect_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflect_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflect_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflect_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ reflect_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder226"
+            label   "Reflect Tint"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "reflecttint_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflecttint_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflecttint_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflecttint_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflecttint_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflecttint_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ reflecttint_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "reflecttint_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ reflecttint_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder233"
+            label   "Coat"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "coat_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "ogl_use_coat_intensity_map" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coat_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coat_useTexture == 0 }"
+                parmtag { "ogl_coat_intensity_map" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coat_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coat_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "ogl_coat_intensity_comp" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coat_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coat_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coat_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ coat_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder234"
+            label   "Coat Roughness"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "coatrough_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "ogl_use_coat_roughness_map" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatrough_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coatrough_useTexture == 0 }"
+                parmtag { "ogl_coat_roughness_map" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatrough_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coatrough_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "ogl_coat_roughness_comp" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatrough_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ coatrough_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatrough_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ coatrough_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder2"
+            label   "Transparency"
+
+        }
+
+        groupsimple {
+            name    "folder5"
+            label   "Transmission Color"
+
+        }
+
+        groupsimple {
+            name    "folder5_1"
+            label   "At Distance"
+
+        }
+
+        groupsimple {
+            name    "folder5_2"
+            label   "Dispersion"
+
+        }
+
+        groupsimple {
+            name    "folder230"
+            label   "Subsurface"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "sss_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sss_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sss_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sss_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sss_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sss_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sss_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sss_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ sss_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder3"
+            label   "Subsurface Scattering Distance"
+
+            parm {
+                name    "sssdist_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sssdist_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sssdist_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sssdist_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sssdist_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sssdist_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sssdist_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sssdist_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ sssdist_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder3_1"
+            label   "Subsurface Color"
+
+            parm {
+                name    "ssscolor_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "ssscolor_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ ssscolor_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "ssscolor_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ ssscolor_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "ssscolor_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ ssscolor_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder231"
+            label   "Sheen"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "sheen_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheen_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheen_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheen_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheen_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheen_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheen_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheen_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ sheen_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder232"
+            label   "Sheen Tint"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "sheentint_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheentint_texture"
+                label   "Map"
+                type    image
+                default { "" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheentint_useTexture == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheentint_monoChannel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheentint_useTexture == 0 }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheentint_textureWrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ refl_enable == 0 } { refl_lights == 0 refl_objs == 0 }"
+                hidewhen "{ sheentint_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "sheentint_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ refl_enable == 0 }"
+                hidewhen "{ sheentint_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "diffuse_folder_14_3"
+            label   "Emission"
+
+            parm {
+                name    "emitcolor_useTexture"
+                label   "Use Texture"
+                type    toggle
+                default { "off" }
+                parmtag { "ogl_use_emissionmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitcolor_texture"
+                label   "Texture"
+                type    image
+                default { "" }
+                hidewhen "{ emitcolor_useTexture == 0 }"
+                parmtag { "ogl_emissionmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitcolor_textureIntensity"
+                label   "Tint Intensity"
+                type    float
+                default { "1" }
+                hidewhen "{ emitcolor_useTexture == 0 }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitcolor_textureWrap"
+                label   "Wrap"
+                type    string
+                default { "repeat" }
+                hidewhen "{ emitcolor_useTexture == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "emitcolor_textureColorSpace"
+                label   "Source Color Space"
+                type    string
+                default { "repeat" }
+                hidewhen "{ emitcolor_useTexture == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder14"
+            label   "Opacity"
+
+        }
+
+        groupsimple {
+            name    "folder235"
+            label   "Sampling"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "surface_textureFilter"
+                label   "Filter"
+                type    string
+                default { "catrom" }
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "surface_textureFilterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                range   { 0 5 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+    }
+
+    group {
+        name    "diffuse_folder_15_2"
+        label   "Bump & Normals"
+
+        group {
+            name    "shading_16"
+            label   "Base"
+
+            parm {
+                name    "baseBumpAndNormal_enable"
+                label   "Enable"
+                type    toggle
+                default { "off" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBumpAndNormal_type"
+                label   "Texture Type"
+                type    string
+                default { "normal" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                menu {
+                    "bump"      "Bump"
+                    "normal"    "Normal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_colorSpace"
+                label   "Texture Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_bumpScale"
+                label   "Effect Scale"
+                type    float
+                default { "0.05" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                range   { 0 0.5 }
+                parmtag { "ogl_bumpscale" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_bumpTexture"
+                label   "Texture Path"
+                type    image
+                default { "" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_wrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_filter"
+                label   "Filter"
+                type    string
+                joinnext
+                default { "gauss" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_filterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_channel"
+                label   "Channel"
+                type    integer
+                default { "0" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_imagePlane"
+                label   "Image Plane"
+                type    string
+                default { "" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != bump }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_colorspace"
+                label   "Texture Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_vectorSpace"
+                label   "Vector Space"
+                type    string
+                default { "uvtangent" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "uvtangent" "UV Tangent Space"
+                    "object"    "Object Space"
+                    "world"     "World Space"
+                }
+                parmtag { "ogl_normalmap_type" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_scale"
+                label   "Effect Scale"
+                type    float
+                default { "1" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_texture"
+                label   "Texture Path"
+                type    image
+                default { "" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                parmtag { "ogl_normalmap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_wrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_filter"
+                label   "Filter"
+                type    string
+                joinnext
+                default { "gauss" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_filterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_channel"
+                label   "Channel"
+                type    integer
+                default { "0" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_imagePlane"
+                label   "Image Plane"
+                type    string
+                default { "" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_space"
+                label   "Normal Space"
+                type    integer
+                default { "0" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                menu {
+                    "0" "0 to 1"
+                    "1" "-1 to 1"
+                }
+                range   { 0 10 }
+                parmtag { "ogl_normalbias" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_flipX"
+                label   "Flip X"
+                type    toggle
+                default { "off" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                parmtag { "ogl_normalflipx" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseNormal_flipY"
+                label   "Flip Y"
+                type    toggle
+                default { "off" }
+                disablewhen "{ baseBumpAndNormal_enable == 0 }"
+                hidewhen "{ baseBumpAndNormal_type != normal }"
+                parmtag { "ogl_normalflipy" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "baseBump_useTexture"
+                label   "OpenGL Use Bump Texture"
+                type    toggle
+                invisible
+                default { [ "ch(\"baseBumpAndNormal_enable\") && strcmp(chs(\"baseBumpAndNormal_type\"), \"bump\") == 0" hscript-expr ] }
+                parmtag { "ogl_use_bumpmap" "1" }
+            }
+            parm {
+                name    "baseNormal_useTexture"
+                label   "OpenGL Use Normal Texture"
+                type    toggle
+                invisible
+                default { [ "ch(\"baseBumpAndNormal_enable\") && strcmp(chs(\"baseBumpAndNormal_type\"), \"normal\") == 0" hscript-expr ] }
+                parmtag { "ogl_use_normalmap" "1" }
+            }
+        }
+
+        group {
+            name    "shading_16_1"
+            label   "Coat"
+
+            parm {
+                name    "separateCoatNormals"
+                label   "Separate Coat Normals"
+                type    toggle
+                default { "off" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBumpAndNormal_enable"
+                label   "Enable"
+                type    toggle
+                default { "on" }
+                disablewhen "{ separateCoatNormals == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBumpAndNormal_type"
+                label   "Texture Type"
+                type    string
+                default { "normal" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                menu {
+                    "bump"      "Bump"
+                    "normal"    "Normal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_colorSpace"
+                label   "Texture Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_bumpScale"
+                label   "Effect Scale"
+                type    float
+                default { "0.05" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                range   { 0 0.5 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_bumpTexture"
+                label   "Texture Path"
+                type    image
+                default { "" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_wrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_filter"
+                label   "Filter"
+                type    string
+                joinnext
+                default { "gauss" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_filterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_channel"
+                label   "Channel"
+                type    integer
+                default { "0" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatBump_imagePlane"
+                label   "Image Plane"
+                type    string
+                default { "" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != bump }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_colorspace"
+                label   "Texture Color Space"
+                type    string
+                default { "linear" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_vectorSpace"
+                label   "Vector Space"
+                type    string
+                default { "uvtangent" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "uvtangent" "UV Tangent Space"
+                    "object"    "Object Space"
+                    "world"     "World Space"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_scale"
+                label   "Effect Scale"
+                type    float
+                default { "1" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_texture"
+                label   "Texture Path"
+                type    image
+                default { "" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_wrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_filter"
+                label   "Filter"
+                type    string
+                joinnext
+                default { "gauss" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_filterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_channel"
+                label   "Channel"
+                type    integer
+                default { "0" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_imagePlane"
+                label   "Image Plane"
+                type    string
+                default { "" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_space"
+                label   "Normal Space"
+                type    integer
+                default { "0" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                menu {
+                    "0" "0 to 1"
+                    "1" "-1 to 1"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_flipX"
+                label   "Flip X"
+                type    toggle
+                default { "off" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatNormal_flipY"
+                label   "Flip Y"
+                type    toggle
+                default { "off" }
+                disablewhen "{ coatBumpAndNormal_enable == 0 } { separateCoatNormals == 0 }"
+                hidewhen "{ coatBumpAndNormal_type != normal }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+    }
+
+    group {
+        name    "diffuse_folder_15_3"
+        label   "Displacement"
+
+        parm {
+            name    "shop_disable_displace_shader"
+            label   "Disable Displace Shader"
+            type    toggle
+            invisible
+            default { [ "!ch(\"dispInput_enable\") && !ch(\"dispTex_enable\") && !ch(\"dispNoise_enable\")" hscript-expr ] }
+            help    "None"
+            parmtag { "spare_category" "Shaders" }
+        }
+        groupsimple {
+            name    "folder236"
+            label   "General"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "vm_displacebound"
+                label   "Displacement Bound"
+                type    float
+                default { [ "1.01*ch(\"dispInput_enable\")*ch(\"dispInput_max\") + ch(\"dispTex_enable\")*max(abs((1.0+ch(\"dispTex_offset\"))*ch(\"dispTex_scale\")), abs(ch(\"dispTex_offset\")*ch(\"dispTex_scale\"))) + ch(\"dispNoise_enable\")*abs(ch(\"dispNoise_amp\"))" hscript-expr ] }
+                disablewhen "{ enableDispMap == 0 enableNoise == 0 }"
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "" }
+            }
+            parm {
+                name    "vm_truedisplace"
+                label   "True Displacements"
+                type    toggle
+                default { [ "on" hscript-expr ] }
+                disablewhen "{ enableDispMap == 0 enableNoise == 0 }"
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "" }
+            }
+            parm {
+                name    "vm_bumpraydisplace"
+                label   "Add Bump To Ray Traced Displacements"
+                type    toggle
+                default { "1" }
+                help    "None"
+                disablewhen "{ vm_truedisplace == 0 }"
+                parmtag { "mantra_class" "object" }
+                parmtag { "mantra_name" "bumpraydisplace" }
+                parmtag { "spare_category" "Shading" }
+            }
+        }
+
+        groupsimple {
+            name    "folder10"
+            label   "Custom Input"
+
+            parm {
+                name    "dispInput_enable"
+                label   "Enable Input Displacement"
+                type    toggle
+                default { "off" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispInput_max"
+                label   "Maximum Displacement"
+                type    float
+                default { "1" }
+                hidewhen "{ dispInput_enable == 0 }"
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "" }
+            }
+            parm {
+                name    "dispInput_vectorspace"
+                label   "Vector Space"
+                type    string
+                default { "uvtangent" }
+                hidewhen "{ dispInput_enable == 0 }"
+                menu {
+                    "uvtangent" "UV Tangent Space"
+                    "object"    "Object Space"
+                    "world"     "World Space"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+        }
+
+        groupsimple {
+            name    "folder237"
+            label   "Texture"
+            hidewhentab "{ enableDispMap == 0 }"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "dispTex_enable"
+                label   "Enable Texture Displacement"
+                type    toggle
+                default { "off" }
+                parmtag { "ogl_use_displacemap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_type"
+                label   "Texture Type"
+                type    string
+                default { "disp" }
+                hidewhen "{ dispTex_enable == 0 }"
+                menu {
+                    "disp"          "Displacement Along Normal"
+                    "vectordisp"    "Vector Displacement"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_colorSpace"
+                label   "Texture Color Space"
+                type    string
+                default { "linear" }
+                hidewhen "{ dispTex_enable == 0 }"
+                menu {
+                    "auto"      "Automatic"
+                    "linear"    "Linear"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_vectorSpace"
+                label   "Vector Space"
+                type    string
+                default { "uvtangent" }
+                hidewhen "{ dispTex_enable == 0 } { dispTex_type != normal dispTex_type != vectordisp }"
+                menu {
+                    "uvtangent" "UV Tangent Space"
+                    "object"    "Object Space"
+                    "world"     "World Space"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_channelOrder"
+                label   "Channel Order"
+                type    string
+                default { "xyz" }
+                hidewhen "{ dispTex_enable == 0 } { dispTex_type != vectordisp }"
+                menu {
+                    "xyz"   "XYZ"
+                    "xzy"   "XZY"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_offset"
+                label   "Offset"
+                type    float
+                default { "-0.5" }
+                hidewhen "{ dispTex_enable == 0 } { dispTex_type != bump dispTex_type != disp }"
+                range   { -1 0 }
+                parmtag { "ogl_displaceoffset" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_scale"
+                label   "Effect Scale"
+                type    float
+                default { "0.05" }
+                hidewhen "{ dispTex_enable == 0 }"
+                range   { 0 1 }
+                parmtag { "ogl_displacescale" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_texture"
+                label   "Texture Path"
+                type    image
+                default { "" }
+                hidewhen "{ dispTex_enable == 0 }"
+                parmtag { "ogl_displacemap" "1" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_channel"
+                label   "Channel"
+                type    integer
+                joinnext
+                default { "0" }
+                hidewhen "{ dispTex_enable == 0 } { dispTex_type != bump dispTex_type != disp }"
+                menu {
+                    "0" "Luminance"
+                    "1" "Red"
+                    "2" "Green"
+                    "3" "Blue"
+                }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_wrap"
+                label   "Wrap"
+                type    string
+                joinnext
+                default { "repeat" }
+                hidewhen "{ dispTex_enable == 0 }"
+                menu {
+                    "repeat"    "Repeat"
+                    "streak"    "Streak"
+                    "decal"     "Decal"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_filter"
+                label   "Filter"
+                type    string
+                default { "gauss" }
+                hidewhen "{ dispTex_enable == 0 }"
+                menu {
+                    "box"       "Box"
+                    "gauss"     "Gaussian"
+                    "bartlett"  "Bartlett/Triangular"
+                    "sinc"      "Sinc Sharpening"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "catrom"    "Catmull-Rom"
+                    "mitchell"  "Mitchell"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispTex_filterWidth"
+                label   "Filter Width"
+                type    float
+                default { "1" }
+                hidewhen "{ dispTex_enable == 0 }"
+                range   { 0 2 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+        }
+
+        groupsimple {
+            name    "folder238"
+            label   "Noise"
+            hidewhentab "{ enableNoise == 0 }"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "dispNoise_enable"
+                label   "Enable Noise Displacement"
+                type    toggle
+                default { "off" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_type"
+                label   "Noise Type"
+                type    string
+                default { "xnoise" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                menu {
+                    "pnoise"    "Perlin Noise"
+                    "onoise"    "Original Perlin Noise"
+                    "xnoise"    "Simplex Noise"
+                    "snoise"    "Sparse Convolution Noise"
+                    "anoise"    "Alligator Noise"
+                }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_freq"
+                label   "Frequency"
+                type    float
+                size    3
+                default { "10" "10" "10" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_offset"
+                label   "Offset"
+                type    float
+                size    3
+                default { "0" "0" "0" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_amp"
+                label   "Amplitude"
+                type    float
+                default { "1" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { -1 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_rough"
+                label   "Roughness"
+                type    float
+                default { "0.5" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_atten"
+                label   "Attenuation"
+                type    float
+                default { "1" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+            parm {
+                name    "dispNoise_turb"
+                label   "Turbulence"
+                type    integer
+                default { "5" }
+                disablewhen "{ enableNoise == 0 }"
+                hidewhen "{ dispNoise_enable == 0 }"
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "displace" }
+            }
+        }
+
+    }
+
+    group {
+        name    "diffuse_folder_15_4"
+        label   "Settings"
+
+        groupsimple {
+            name    "folder239"
+            label   "Component Labels"
+            grouptag { "group_type" "simple" }
+
+            parm {
+                name    "difflabel"
+                label   "Diffuse"
+                type    string
+                default { "diffuse" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "refllabel"
+                label   "Reflection"
+                type    string
+                default { "reflect" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "coatlabel"
+                label   "Coat Reflection"
+                type    string
+                default { "coat" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+            parm {
+                name    "ssslabel"
+                label   "Subsurface"
+                type    string
+                default { "sss" }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface" }
+            }
+        }
+
+        groupsimple {
+            name    "folder0"
+            label   "UV"
+
+            parm {
+                name    "uvtrans"
+                label   "Translate"
+                type    float
+                size    2
+                default { "0" "0" }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface displace" }
+            }
+            parm {
+                name    "uvrot"
+                label   "Rotate"
+                type    float
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface displace" }
+            }
+            parm {
+                name    "uvscale"
+                label   "Scale"
+                type    float
+                size    2
+                default { "1" "1" }
+                range   { 0 10 }
+                parmtag { "parmvop" "1" }
+                parmtag { "shaderparmcontexts" "surface displace" }
+            }
+        }
+
+    }
+
+    parm {
+        name    "Cd"
+        label   "Attribute Color"
+        type    color
+        invisible
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Alpha"
+        label   "Attribute Alpha"
+        type    float
+        invisible
+        default { "1" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "layer"
+        label   "layer"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface displace" }
+    }
+    parm {
+        name    "disp"
+        label   "Normal Displacement"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "vdisp"
+        label   "Vector Displacement"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "Dt"
+        label   "Dt"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "baseN"
+        label   "baseN"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "coatN"
+        label   "coatN"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Oc"
+        label   "Oc"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Cv"
+        label   "Cv"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Th"
+        label   "Th"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Ab"
+        label   "Ab"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Cu"
+        label   "Cu"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Vd"
+        label   "Vd"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Nt"
+        label   "Nt"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Ds"
+        label   "Ds"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "pre_disp_P"
+        label   "pre_disp_P"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "pre_disp_utan"
+        label   "pre_disp_utan"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "pre_disp_vtan"
+        label   "pre_disp_vtan"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "pre_disp_N"
+        label   "pre_disp_N"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "displace" }
+    }
+    parm {
+        name    "Vdt"
+        label   "Vdt"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct"
+        label   "direct"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect"
+        label   "indirect"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Ce"
+        label   "Ce"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_emission"
+        label   "direct_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all_emission"
+        label   "all_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all"
+        label   "all"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_emission"
+        label   "indirect_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_comp"
+        label   "direct_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_comp"
+        label   "indirect_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all_comp"
+        label   "all_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_noshadow"
+        label   "direct_noshadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_shadow"
+        label   "direct_shadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_noshadow"
+        label   "indirect_noshadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_shadow"
+        label   "indirect_shadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "level"
+        label   "level"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "diffuselevel"
+        label   "diffuselevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "specularlevel"
+        label   "specularlevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "volumelevel"
+        label   "volumelevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_samples"
+        label   "direct_samples"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_samples"
+        label   "indirect_samples"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "nlights"
+        label   "nlights"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_noshadow_comp"
+        label   "direct_noshadow_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_noshadow_comp"
+        label   "indirect_noshadow_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "nddispersion"
+        label   "nddispersion"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "ndpriority"
+        label   "ndpriority"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "ndior"
+        label   "ndior"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "absorption"
+        label   "absorption"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+}

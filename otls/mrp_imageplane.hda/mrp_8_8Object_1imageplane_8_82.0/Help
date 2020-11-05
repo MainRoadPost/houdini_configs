@@ -1,0 +1,106 @@
+
+
+#type: node
+#context: sop
+#icon: MISC/digital_asset
+#internal: cg::fg_imageplane::1.5
+
+= FG Image Plane =
+
+This asset is useful for display of FG image planes, BG image planes, adding reference cards and render masks both in viewport and in render.
+
+In order to work the asset should be parented to camera.
+
+== Using FG Image Plane == (includeme)
+
+    # Click the [Icon:MISC/digital_asset]FG Image Plane tool on the __Some Tab Name__ tab.
+
+@parameters
+
+== Paramters ==
+    Asset parameters
+
+    Texture Map:
+        Path to image still or image sequence to be displayed on an image plane.
+
+    Use Alpha Mask For Matte:
+        Use a separate images for alpha mask.
+
+    Matte Texture:
+        Path to custom alpha mask still or sequence.
+
+    Frame Offset:
+        Amount of frame the Image sequence should be offset. Works if the Texture Map path has 'offset' parameter in expression.
+
+    Distance From Camera:
+        Distance from camera. Adjust the expression if you want to use fg at custom distance (as BG image plane or other reason)
+
+    Ogl Alpha:
+        Transparency of the image plane in viewport.
+
+    Picture Aspect:
+        Aspect of the image, default expression calculates it from camera.
+
+    Apply Screen Window Size:
+        If toggled camera window size affects image plane to make image plane fit zoomed camera frame.
+
+    Apply Window X/Y:
+        If toggled camera window offset affects image plane to make image plane follow the offset of camera frame.
+
+    Extra Translate:
+        Useful if image plane is used as a ref card. You can add extra offset to image plane with this param.
+
+    Extra Scale:
+        Useful if image plane is used as a ref card. You can add extra scale to image plane with this param.
+
+    Rotate:
+        Useful if image plane is used as a ref card. You can add extra rotation to image plane with this param.
+
+    Left Crop:
+        Crops the image plane from the left side
+
+    Right Crop:
+        Crops the image plane from the left side
+
+    Bottom Crop:
+        Crops the image plane from the bottom
+
+    Top Crop:
+        Crops the image plane from the top
+
+    Render Visibility:
+        Render visibility flag. Default is primary, this make Image plane visible onlu in camera, not affecting reflactions, shadows or any other secondary lighting effect.
+
+    Ogl Hq Lighting:
+        If switching HQ Lighting in viewport causes errors in display of the image plane, toggling this checkbox may fix it.
+
+== Subnet ==
+    Enter a folder Description
+
+    Display Only Through Camera:
+        Turning this on can be usefull when there are many cameras with fg image planes attached in the scene. If toggled image plane will be only visible when it's camera is active, Maya-style. Switching it on may cause an error of UI alsways switching back to scene viewport.
+
+~~~ Version history
+
+* Version cg::fg_imageplane::1.3 (DEVELOPMENT) created by aapalikov
+
+add alpha mask for matte
+
+* Version cg::fg_imageplane::1.3 (RELEASE) created by aapalikov
+
+add crop alpha mask for render
+
+* Version cg::fg_imageplane::1.4 (DEVELOPMENT) created by dkirillyak
+
+будет добавлена реакция fg image на оверскан камеры
+
+* Version cg::fg_imageplane::1.4 (RELEASE) created 2019-06-07 16:45:39 by aapalikov
+
+correct (invert) opacity
+* Version cg::fg_imageplane::1.5 (RELEASE) created 2020-07-02 20:42:39 by lipilin
+
+Prep for adding to studio houdini configs
+* Version mrp::imageplane::2.0 (RELEASE) created 2020-08-20 16:51:49 by Alexey Selivanov
+
+version update
+

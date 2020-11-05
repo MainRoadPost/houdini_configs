@@ -1,0 +1,15 @@
+Operator:     mrp::fresnel_diffuse::1.0
+Label:        MRP Fresnel Diffuse
+Path:         oplib:/mrp::Vop/fresnel_diffuse::1.0?mrp::Vop/fresnel_diffuse::1.0
+Icon:         VOP_pbrnonmetallic
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 5
+Outputs:      2
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Fri Jan 18 16:31:16 2019
+

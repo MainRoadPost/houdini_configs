@@ -1,0 +1,5813 @@
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY"
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename=".OPfallbacks"
+Content-Type: application/external-reference
+
+.OPfallbacks
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename=".OPdummydefs"
+Content-Type: application/external-reference
+
+.OPdummydefs
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="node_type"
+Content-Type: text/plain
+
+Object
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.init"
+Content-Type: text/plain
+
+type = mrp::imageplane::1.5
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.def"
+Content-Type: text/plain
+
+objflags objflags =  origin off
+pretransform UT_DMatrix4 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1
+comment ""
+position -2.47218 1.20025
+connectornextid 0
+flags =  lock off model off template off footprint off xray off bypass off display on render off highlight off unload off savedata off compress on colordefault on exposed on selectable on
+outputsNamed3
+{
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l19.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.inp"
+Content-Type: text/plain
+
+1
+0 0 6 2 0 __NO_OWNER_NETWORK_BOX__ "FROMOUTPUT"
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.init"
+Content-Type: text/plain
+
+type = geo
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.def"
+Content-Type: text/plain
+
+objflags objflags =  origin off
+pretransform UT_DMatrix4 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1
+comment ""
+position -1.11759e-08 4.97035
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display on render off highlight off unload off savedata off compress on colordefault off exposed on selectable off
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	(0) "" 1 "input1"
+}
+inputs
+{
+0 	(0) 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author eserysheva@l39.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.spareparmdef"
+Content-Type: text/plain
+
+    group {
+        name    "stdswitcher5"
+        label   "Transform"
+
+        parm {
+            name    "keeppos"
+            baseparm
+            label   "Keep Position When Parenting"
+            export  none
+        }
+        parm {
+            name    "childcomp"
+            baseparm
+            label   "Child Compensation"
+            export  none
+        }
+        parm {
+            name    "pre_xform"
+            baseparm
+            label   "Modify Pre-Transform"
+            export  none
+        }
+        parm {
+            name    "xOrd"
+            baseparm
+            label   "Transform Order"
+            joinnext
+            export  none
+        }
+        parm {
+            name    "rOrd"
+            baseparm
+            label   "Rotate Order"
+            nolabel
+            export  none
+        }
+        parm {
+            name    "t"
+            baseparm
+            label   "Translate"
+            export  all
+        }
+        parm {
+            name    "r"
+            baseparm
+            label   "Rotate"
+            export  all
+        }
+        parm {
+            name    "s"
+            baseparm
+            label   "Scale"
+            export  none
+        }
+        parm {
+            name    "p"
+            baseparm
+            label   "Pivot Translate"
+            export  none
+        }
+        parm {
+            name    "scale"
+            baseparm
+            label   "Uniform Scale"
+            export  none
+        }
+        parm {
+            name    "lookatpath"
+            baseparm
+            label   "Look At"
+            export  none
+        }
+        parm {
+            name    "lookupobjpath"
+            baseparm
+            label   "Look Up Object"
+            export  none
+        }
+        parm {
+            name    "lookup"
+            baseparm
+            label   "Look At Up Vector"
+            export  none
+        }
+        parm {
+            name    "pathobjpath"
+            baseparm
+            label   "Path Object"
+            export  none
+        }
+        parm {
+            name    "roll"
+            baseparm
+            label   "Roll"
+            export  none
+        }
+        parm {
+            name    "pos"
+            baseparm
+            label   "Position"
+            export  none
+        }
+        parm {
+            name    "uparmtype"
+            baseparm
+            label   "Parameterization"
+            export  none
+        }
+        parm {
+            name    "pathorient"
+            baseparm
+            label   "Orient Along Path"
+            export  none
+        }
+        parm {
+            name    "up"
+            baseparm
+            label   "Orient Up Vector"
+            export  none
+        }
+        parm {
+            name    "bank"
+            baseparm
+            label   "Auto-Bank factor"
+            export  none
+        }
+    }
+
+    group {
+        name    "stdswitcher5_1"
+        label   "Material"
+
+        parm {
+            name    "shop_materialpath"
+            baseparm
+            label   "Material"
+            joinnext
+            export  none
+        }
+        parm {
+            name    "shop_materialopts"
+            baseparm
+            label   "Options"
+            export  none
+        }
+    }
+
+    group {
+        name    "stdswitcher5_2"
+        label   "Render"
+
+        parm {
+            name    "tdisplay"
+            baseparm
+            label   "Display"
+            joinnext
+            export  none
+        }
+        parm {
+            name    "display"
+            baseparm
+            label   "Display"
+            export  none
+        }
+        parm {
+            name    "viewportlod"
+            label   "Display As"
+            type    ordinal
+            default { "full" }
+            help    "Choose how the object's geometry should be rendered in the viewport"
+            menu {
+                "full"      "Full Geometry"
+                "points"    "Point Cloud"
+                "box"       "Bounding Box"
+                "centroid"  "Centroid"
+                "hidden"    "Hidden"
+                "subd"      "Subdivision Surface / Curves"
+            }
+            range   { 0 1 }
+            parmtag { "spare_category" "Render" }
+        }
+        parm {
+            name    "vm_rendervisibility"
+            label   "Render Visibility"
+            type    string
+            default { "*" }
+            menureplace {
+                "*"                             "Visible to all"
+                "primary"                       "Visible only to primary rays"
+                "primary|shadow"                "Visible only to primary and shadow rays"
+                "-primary"                      "Invisible to primary rays (Phantom)"
+                "-diffuse"                      "Invisible to diffuse rays"
+                "-diffuse&-reflect&-refract"    "Invisible to secondary rays"
+                ""                              "Invisible (Unrenderable)"
+            }
+            range   { 0 1 }
+            parmtag { "spare_category" "Render" }
+        }
+        parm {
+            name    "vm_rendersubd"
+            label   "Render Polygons As Subdivision (Mantra)"
+            type    toggle
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "spare_category" "Geometry" }
+        }
+        parm {
+            name    "vm_subdstyle"
+            label   "Subdivision Style"
+            type    string
+            default { "mantra_catclark" }
+            hidewhen "{ vm_rendersubd == 0 }"
+            menu {
+                "mantra_catclark"   "Mantra Catmull-Clark"
+                "osd_catclark"      "OpenSubdiv Catmull-Clark"
+            }
+            range   { 0 1 }
+            parmtag { "spare_category" "Geometry" }
+        }
+        parm {
+            name    "vm_subdgroup"
+            label   "Subdivision Group"
+            type    string
+            default { "" }
+            hidewhen "{ vm_rendersubd == 0 }"
+            range   { 0 1 }
+            parmtag { "spare_category" "Geometry" }
+        }
+        group {
+            name    "folder0"
+            label   "Shading"
+
+            parm {
+                name    "categories"
+                label   "Categories"
+                type    string
+                default { "" }
+                help    "A list of tags which can be used to select the object"
+                range   { 0 1 }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "reflectmask"
+                label   "Reflection Mask"
+                type    oplist
+                default { "*" }
+                help    "Objects that will be reflected on this object."
+                range   { 0 1 }
+                parmtag { "opexpand" "1" }
+                parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }
+                parmtag { "oprelative" "/obj" }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "refractmask"
+                label   "Refraction Mask"
+                type    oplist
+                default { "*" }
+                help    "Objects that will be refracted on this object."
+                range   { 0 1 }
+                parmtag { "opexpand" "1" }
+                parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }
+                parmtag { "oprelative" "/obj" }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "lightmask"
+                label   "Light Mask"
+                type    oplist
+                default { "*" }
+                help    "Lights that illuminate this object."
+                range   { 0 1 }
+                parmtag { "opexpand" "1" }
+                parmtag { "opfilter" "!!OBJ/LIGHT!!" }
+                parmtag { "oprelative" "/obj" }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "vm_volumefilter"
+                label   "Volume Filter"
+                type    string
+                default { "box" }
+                menu {
+                    "box"       "Box Filter"
+                    "gaussian"  "Gaussian"
+                    "bartlett"  "Bartlett (triangle)"
+                    "catrom"    "Catmull-Rom"
+                    "hanning"   "Hanning"
+                    "blackman"  "Blackman"
+                    "sinc"      "Sinc (sharpening)"
+                }
+                range   { 0 1 }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "vm_volumefilterwidth"
+                label   "Volume Filter Width"
+                type    float
+                default { "1" }
+                range   { 0.001 5 }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "vm_matte"
+                label   "Matte shading"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Shading" }
+            }
+            parm {
+                name    "vm_rayshade"
+                label   "Raytrace Shading"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Shading" }
+            }
+        }
+
+        group {
+            name    "folder0_1"
+            label   "Sampling"
+
+            parm {
+                name    "geo_velocityblur"
+                label   "Geometry Velocity Blur"
+                type    toggle
+                default { "0" }
+                disablewhen "{ allowmotionblur == 0 }"
+                range   { 0 1 }
+                parmtag { "spare_category" "Sampling" }
+            }
+        }
+
+        group {
+            name    "folder0_2"
+            label   "Dicing"
+
+            parm {
+                name    "vm_shadingquality"
+                label   "Shading Quality"
+                type    float
+                default { "1" }
+                range   { 0 10 }
+                parmtag { "spare_category" "Dicing" }
+            }
+            parm {
+                name    "vm_flatness"
+                label   "Dicing Flatness"
+                type    float
+                default { "0.05" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Dicing" }
+            }
+            parm {
+                name    "vm_raypredice"
+                label   "Ray Predicing"
+                type    integer
+                default { "0" }
+                menu {
+                    "0" "Disable Predicing"
+                    "1" "Full Predicing"
+                    "2" "Precompute Bounds"
+                }
+                range   { 0 10 }
+                parmtag { "spare_category" "Dicing" }
+            }
+            parm {
+                name    "vm_curvesurface"
+                label   "Shade Curves As Surfaces"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Dicing" }
+            }
+        }
+
+        group {
+            name    "folder0_3"
+            label   "Geometry"
+
+            parm {
+                name    "vm_rmbackface"
+                label   "Backface Removal"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "shop_geometrypath"
+                label   "Procedural Shader"
+                type    oppath
+                default { "" }
+                range   { 0 1 }
+                parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }
+                parmtag { "oprelative" "." }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_forcegeometry"
+                label   "Force Procedural Geometry Output"
+                type    toggle
+                default { "1" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_rendersubdcurves"
+                label   "Render Polygon Curves As Subdivision (Mantra)"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_renderpoints"
+                label   "Render As Points (Mantra)"
+                type    integer
+                default { "2" }
+                menu {
+                    "0" "No Point Rendering"
+                    "1" "Render Only Points"
+                    "2" "Render Unconnected Points"
+                }
+                range   { 0 10 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_renderpointsas"
+                label   "Render Points As (Mantra)"
+                type    integer
+                default { "0" }
+                disablewhen "{ vm_renderpoints == 0 }"
+                menu {
+                    "0" "Spheres"
+                    "1" "Circles"
+                }
+                range   { 0 10 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_usenforpoints"
+                label   "Use N For Point Rendering"
+                type    toggle
+                default { "0" }
+                disablewhen "{ vm_renderpoints == 0 }"
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_pointscale"
+                label   "Point Scale"
+                type    float
+                default { "1" }
+                disablewhen "{ vm_renderpoints == 0 }"
+                range   { 0! 10 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_pscalediameter"
+                label   "Treat Point Scale as Diameter Instead of Radius"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_metavolume"
+                label   "Metaballs as Volume"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_coving"
+                label   "Coving"
+                type    integer
+                default { "1" }
+                menu {
+                    "0" "Disable Coving"
+                    "1" "Coving for displacement/sub-d"
+                    "2" "Coving for all primitives"
+                }
+                range   { 0 10 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_materialoverride"
+                label   "Material Override"
+                type    string
+                default { "compact" }
+                menu {
+                    "none"      "Disabled"
+                    "full"      "Evaluate for Each Primitve/Point"
+                    "compact"   "Evaluate Once"
+                }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_computeN"
+                label   "Automatically Compute Normals"
+                type    toggle
+                default { "1" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+            parm {
+                name    "vm_overridedetail"
+                label   "Ignore Geometry Attribute Shaders"
+                type    toggle
+                default { "0" }
+                range   { 0 1 }
+                parmtag { "spare_category" "Geometry" }
+            }
+        }
+
+    }
+
+    group {
+        name    "stdswitcher5_3"
+        label   "Misc"
+
+        parm {
+            name    "use_dcolor"
+            baseparm
+            label   "Set Wireframe Color"
+            export  none
+        }
+        parm {
+            name    "dcolor"
+            baseparm
+            label   "Wireframe Color"
+            export  none
+        }
+        parm {
+            name    "picking"
+            baseparm
+            label   "Viewport Selecting Enabled"
+            export  none
+        }
+        parm {
+            name    "pickscript"
+            baseparm
+            label   "Select Script"
+            export  none
+        }
+        parm {
+            name    "caching"
+            baseparm
+            label   "Cache Object Transform"
+            export  none
+        }
+        parm {
+            name    "vport_shadeopen"
+            baseparm
+            label   "Shade Open Curves In Viewport"
+            export  none
+        }
+        parm {
+            name    "vport_displayassubdiv"
+            baseparm
+            label   "Display as Subdivision in Viewport"
+            invisible
+            export  none
+        }
+        parm {
+            name    "vport_onionskin"
+            baseparm
+            label   "Onion Skinning"
+            export  none
+        }
+    }
+
+    parm {
+        name    "constraints_on"
+        baseparm
+        label   "Enable Constraints"
+        export  none
+    }
+    parm {
+        name    "constraints_path"
+        baseparm
+        label   "Constraints"
+        export  none
+    }
+    parm {
+        name    "pr"
+        baseparm
+        label   "Pivot Rotate"
+        export  none
+    }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.chn"
+Content-Type: text/plain
+
+{
+    channel scale {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 4.166666666666667
+      segment { length = 0 value = 1 1 expr = ch(\"../distance\") }
+    }
+    channel vm_rendervisibility {
+      lefttype = extend
+      righttype = extend
+      defaultString = \"primary\"
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = chs(\"../vm_rendervisibility\") }
+    }
+    channel display {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 4.416666666666667
+      segment { options = {	 autoslope  ai ao }
+
+	 length = 0 value = 1 1 accel = 0.33333333333333331 0.33333333333333331 expr = "import toolutils
+
+sv = toolutils.sceneViewer()
+vpt = sv.curViewport()
+cam = vpt.camera()
+if len(hou.node(\"..\").inputs())>0 and cam == hou.node(\"..\").inputs()[0]:
+    return 1
+else:
+    return 0"
+	 language = python }
+    }
+    channel tdisplay {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 4.166666666666667
+      segment { length = 0 value = 1 1 expr = ch(\"../onlyThroughCamera\") }
+    }
+    channel rz {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../extrar\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+stdswitcher	[ 0	locks=0 ]	(	0	0	0	)
+xOrd	[ 0	locks=0 ]	(	"srt"	)
+rOrd	[ 0	locks=0 ]	(	"xyz"	)
+t	[ 0	locks=0 ]	(	0	0	0	)
+r	[ 8	locks=0 ]	(	0	0	[ rz	0 ] 	)
+s	[ 0	locks=0 ]	(	1	1	1	)
+p	[ 0	locks=0 ]	(	0	0	0	)
+pr	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 0	locks=0 ]	(	[ scale	0 ] 	)
+pre_xform	[ 0	locks=0 ]	(	0	)
+keeppos	[ 0	locks=0 ]	(	"off"	)
+childcomp	[ 0	locks=0 ]	(	"off"	)
+constraints_on	[ 0	locks=0 ]	(	"off"	)
+constraints_path	[ 0	locks=0 ]	(	""	)
+lookatpath	[ 0	locks=0 ]	(	""	)
+lookupobjpath	[ 0	locks=0 ]	(	""	)
+lookup	[ 0	locks=0 ]	(	on	)
+pathobjpath	[ 0	locks=0 ]	(	""	)
+roll	[ 0	locks=0 ]	(	0	)
+pos	[ 0	locks=0 ]	(	0	)
+uparmtype	[ 0	locks=0 ]	(	"arc"	)
+pathorient	[ 0	locks=0 ]	(	1	)
+up	[ 0	locks=0 ]	(	0	1	0	)
+bank	[ 0	locks=0 ]	(	0	)
+shop_materialpath	[ 0	locks=0 ]	(	""	)
+shop_materialopts	[ 0	locks=0 ]	(	0	)
+tdisplay	[ 8	locks=0 ]	(	[ tdisplay	0 ] 	)
+display	[ 0	locks=0	autoscope=1 ]	(	[ display	1 ] 	)
+use_dcolor	[ 0	locks=0 ]	(	"off"	)
+dcolor	[ 0	locks=0 ]	(	1	1	1	)
+picking	[ 0	locks=0 ]	(	"off"	)
+pickscript	[ 0	locks=0 ]	(	""	)
+caching	[ 0	locks=0 ]	(	"off"	)
+vport_shadeopen	[ 0	locks=0 ]	(	"off"	)
+vport_displayassubdiv	[ 0	locks=0 ]	(	"off"	)
+vport_onionskin	[ 0	locks=0 ]	(	"off"	)
+stdswitcher5	[ 0	locks=0 ]	(	2	2	2	2	)
+viewportlod	[ 0	locks=0 ]	(	"full"	)
+vm_rendervisibility	[ 0	locks=0 ]	(	[ vm_rendervisibility	primary ] 	)
+vm_rendersubd	[ 0	locks=0 ]	(	"off"	)
+vm_subdstyle	[ 0	locks=0 ]	(	mantra_catclark	)
+vm_subdgroup	[ 0	locks=0 ]	(	""	)
+folder0	[ 0	locks=0 ]	(	0	0	0	0	)
+categories	[ 0	locks=0 ]	(	""	)
+reflectmask	[ 0	locks=0 ]	(	*	)
+refractmask	[ 0	locks=0 ]	(	*	)
+lightmask	[ 0	locks=0 ]	(	*	)
+vm_volumefilter	[ 0	locks=0 ]	(	box	)
+vm_volumefilterwidth	[ 0	locks=0 ]	(	1	)
+vm_matte	[ 0	locks=0 ]	(	"off"	)
+vm_rayshade	[ 0	locks=0 ]	(	"off"	)
+geo_velocityblur	[ 0	locks=0 ]	(	"off"	)
+vm_shadingquality	[ 0	locks=0 ]	(	1	)
+vm_flatness	[ 0	locks=0 ]	(	0.050000000000000003	)
+vm_raypredice	[ 0	locks=0 ]	(	0	)
+vm_curvesurface	[ 0	locks=0 ]	(	"off"	)
+vm_rmbackface	[ 0	locks=0 ]	(	"off"	)
+shop_geometrypath	[ 0	locks=0 ]	(	""	)
+vm_forcegeometry	[ 0	locks=0 ]	(	"on"	)
+vm_rendersubdcurves	[ 0	locks=0 ]	(	"off"	)
+vm_renderpoints	[ 0	locks=0 ]	(	2	)
+vm_renderpointsas	[ 0	locks=0 ]	(	0	)
+vm_usenforpoints	[ 0	locks=0 ]	(	"off"	)
+vm_pointscale	[ 0	locks=0 ]	(	1	)
+vm_pscalediameter	[ 0	locks=0 ]	(	"off"	)
+vm_metavolume	[ 0	locks=0 ]	(	"off"	)
+vm_coving	[ 0	locks=0 ]	(	1	)
+vm_materialoverride	[ 0	locks=0 ]	(	compact	)
+vm_computeN	[ 0	locks=0 ]	(	"on"	)
+vm_overridedetail	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.init"
+Content-Type: text/plain
+
+type = shopnet
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.def"
+Content-Type: text/plain
+
+comment ""
+position 3.87667 -12.8944
+connectornextid 0
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.init"
+Content-Type: text/plain
+
+type = vopsurface
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.def"
+Content-Type: text/plain
+
+comment ""
+position 8.24696 3.03526
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "Surface Shader"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.spareparmdef"
+Content-Type: text/plain
+
+    group {
+        name    "stdswitcher3"
+        label   "OGL"
+
+        parm {
+            name    "ogl_amb"
+            baseparm
+            label   "OGL Ambient"
+            export  none
+        }
+        parm {
+            name    "ogl_diff"
+            baseparm
+            label   "OGL Diffuse"
+            export  none
+        }
+        parm {
+            name    "ogl_spec"
+            baseparm
+            label   "OGL Specular"
+            export  none
+        }
+        parm {
+            name    "ogl_emit"
+            baseparm
+            label   "OGL Emission"
+            export  none
+        }
+        parm {
+            name    "ogl_rough"
+            baseparm
+            label   "OGL Roughness"
+            export  none
+        }
+        parm {
+            name    "ogl_alpha"
+            baseparm
+            label   "OGL Alpha"
+            export  none
+        }
+        parm {
+            name    "ogl_light"
+            baseparm
+            label   "OGL Use Lighting"
+            export  none
+        }
+        parm {
+            name    "ogl_cutout"
+            baseparm
+            label   "OGL Transparent Texture"
+            export  none
+        }
+        multiparm {
+            name    "ogl_numtex"
+            label    "OGL Texture Layers"
+            baseparm
+            default 0
+            parmtag { "multistartoffset" "1" }
+
+            parm {
+                name    "ogl_tex#"
+                baseparm
+                label   "Texture #"
+                export  none
+            }
+            parm {
+                name    "ogl_tex_min_filter#"
+                baseparm
+                label   "Minification Filter #"
+                export  none
+            }
+            parm {
+                name    "ogl_tex_mag_filter#"
+                baseparm
+                label   "Magnification Filter #"
+                export  none
+            }
+            parm {
+                name    "ogl_clamping_mode#"
+                baseparm
+                label   "Clamping #"
+                export  none
+            }
+        }
+
+    }
+
+    group {
+        name    "stdswitcher3_1"
+        label   "Compiler"
+
+        parm {
+            name    "vop_compiler"
+            baseparm
+            label   "Compiler"
+            export  none
+        }
+        parm {
+            name    "vop_forcecompile"
+            baseparm
+            label   "Force Compile"
+            export  none
+        }
+    }
+
+    parm {
+        name    "map"
+        label   "Texture Map"
+        type    image
+        default { "$JOB/render/$SHOT/fg/v002/per_0010_fg_wb_undistort_v002_acescg.$F4.exr" }
+        parmtag { "ogl_emissionmap" "1" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct"
+        label   "direct"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect"
+        label   "indirect"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "Ce"
+        label   "Ce"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_emission"
+        label   "direct_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all_emission"
+        label   "all_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all"
+        label   "all"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_emission"
+        label   "indirect_emission"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_comp"
+        label   "direct_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_comp"
+        label   "indirect_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "all_comp"
+        label   "all_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_noshadow"
+        label   "direct_noshadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_shadow"
+        label   "direct_shadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_noshadow"
+        label   "indirect_noshadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_shadow"
+        label   "indirect_shadow"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "level"
+        label   "level"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "diffuselevel"
+        label   "diffuselevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "specularlevel"
+        label   "specularlevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "volumelevel"
+        label   "volumelevel"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_samples"
+        label   "direct_samples"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_samples"
+        label   "indirect_samples"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "nlights"
+        label   "nlights"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "direct_noshadow_comp"
+        label   "direct_noshadow_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "indirect_noshadow_comp"
+        label   "indirect_noshadow_comp"
+        type    label
+        invisible
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "nddispersion"
+        label   "nddispersion"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "ndpriority"
+        label   "ndpriority"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "ndior"
+        label   "ndior"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "absorption"
+        label   "absorption"
+        type    float
+        invisible
+        size    3
+        default { "0" "0" "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.chn"
+Content-Type: text/plain
+
+{
+    channel map {
+      lefttype = extend
+      righttype = extend
+      defaultString = \"$JOB/render/0100/fg/v002/per_0100_fg_wb_undistort_v002_acescg.$F4.exr\"
+      flags = 0
+      start = 4
+      segment { length = 0 expr = chs(\"../../../map\") }
+    }
+    channel ogl_alpha {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = -25.041666666666668
+      segment { length = 0 value = 1 1 expr = ch(\"../../../ogl_alpha\") }
+    }
+    channel ogl_emitr {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_emitg {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_emitb {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambr {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambg {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambb {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffr {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffg {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffb {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+stdswitcher	[ 0	locks=0 ]	(	0	0	)
+ogl_amb	[ 0	locks=0 ]	(	[ ogl_ambr	1 ] 	[ ogl_ambg	1 ] 	[ ogl_ambb	1 ] 	)
+ogl_diff	[ 0	locks=0 ]	(	[ ogl_diffr	1 ] 	[ ogl_diffg	1 ] 	[ ogl_diffb	1 ] 	)
+ogl_spec	[ 0	locks=0 ]	(	0	0	0	)
+ogl_emit	[ 8	locks=0 ]	(	[ ogl_emitr	0 ] 	[ ogl_emitg	0 ] 	[ ogl_emitb	0 ] 	)
+ogl_rough	[ 0	locks=0 ]	(	0.10000000000000001	)
+ogl_alpha	[ 0	locks=0 ]	(	[ ogl_alpha	1 ] 	)
+ogl_light	[ 0	locks=0 ]	(	"on"	)
+ogl_cutout	[ 0	locks=0 ]	(	"on"	)
+ogl_numtex	[ 0	locks=0 ]	(	1	)
+vop_compiler	[ 0	locks=0 ]	(	"vcc -q $VOP_INCLUDEPATH -o $VOP_OBJECTFILE -e $VOP_ERRORFILE $VOP_SOURCEFILE"	)
+vop_forcecompile	[ 0	locks=0 ]	(	0	)
+stdswitcher3	[ 0	locks=0 ]	(	0	0	)
+map	[ 0	locks=0 ]	(	[ map	/cg/projects/cosmoball/episodes/tof/render/0095/fg_retimed/v001/tof_0095_l1_fg_retimed_v001_out_srgb.0001.png.rat ] 	)
+direct	[ 0	locks=0 ]	(	0	0	0	)
+indirect	[ 0	locks=0 ]	(	0	0	0	)
+Ce	[ 0	locks=0 ]	(	0	0	0	)
+direct_emission	[ 0	locks=0 ]	(	0	0	0	)
+all_emission	[ 0	locks=0 ]	(	0	0	0	)
+all	[ 0	locks=0 ]	(	0	0	0	)
+indirect_emission	[ 0	locks=0 ]	(	0	0	0	)
+direct_comp	[ 0	locks=0 ]	(	""	)
+indirect_comp	[ 0	locks=0 ]	(	""	)
+all_comp	[ 0	locks=0 ]	(	""	)
+direct_noshadow	[ 0	locks=0 ]	(	0	0	0	)
+direct_shadow	[ 0	locks=0 ]	(	0	0	0	)
+indirect_noshadow	[ 0	locks=0 ]	(	0	0	0	)
+indirect_shadow	[ 0	locks=0 ]	(	0	0	0	)
+level	[ 0	locks=0 ]	(	0	)
+diffuselevel	[ 0	locks=0 ]	(	0	)
+specularlevel	[ 0	locks=0 ]	(	0	)
+volumelevel	[ 0	locks=0 ]	(	0	)
+direct_samples	[ 0	locks=0 ]	(	0	)
+indirect_samples	[ 0	locks=0 ]	(	0	)
+nlights	[ 0	locks=0 ]	(	0	)
+direct_noshadow_comp	[ 0	locks=0 ]	(	""	)
+indirect_noshadow_comp	[ 0	locks=0 ]	(	""	)
+nddispersion	[ 0	locks=0 ]	(	0	)
+ndpriority	[ 0	locks=0 ]	(	0	)
+ndior	[ 0	locks=0 ]	(	0	)
+absorption	[ 0	locks=0 ]	(	0	0	0	)
+ogl_tex1	[ 0	locks=0 ]	(	`chs(\"map\")`	)
+ogl_tex_min_filter1	[ 0	locks=0 ]	(	GL_LINEAR_MIPMAP_LINEAR	)
+ogl_tex_mag_filter1	[ 0	locks=0 ]	(	GL_LINEAR	)
+ogl_clamping_mode1	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/output1.init"
+Content-Type: text/plain
+
+type = output
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/output1.def"
+Content-Type: text/plain
+
+comment ""
+position 8.82353 1.15294
+connectornextid 6
+flags =  lock off model off template off footprint off xray off bypass off display on render on highlight off unload off savedata off compress on colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+5 "shader"
+}
+inputsNamed3
+{
+0 	computelighting1 4 1 "Cf"
+1 	computelighting1 5 1 "Of"
+2 	"" "" 1 "Af"
+3 	"" "" 1 "N"
+4 	computelighting1 6 1 "F"
+}
+inputs
+{
+0 	computelighting1 0 1
+1 	computelighting1 1 1
+2 	"" 0 1
+3 	"" 0 1
+4 	computelighting1 2 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/output1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+contexttype	[ 0	locks=0 ]	(	surface	)
+outputcodelast	[ 0	locks=0 ]	(	"on"	)
+parmorder	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/output1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/computelighting1.init"
+Content-Type: text/plain
+
+type = computelighting::2.0
+matchesdef = 1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/computelighting1.def"
+Content-Type: text/plain
+
+comment ""
+position 5.01848 1.7418
+connectornextid 7
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+4 "Cf"
+5 "out_Of"
+6 "out_F"
+}
+inputsNamed3
+{
+0 	"" "" 1 "layer"
+1 	"" "" 1 "F"
+2 	hvectovec1 2 1 "Of"
+3 	hvectovec1 1 1 "Ce"
+}
+inputs
+{
+0 	"" 0 1
+1 	"" 0 1
+2 	hvectovec1 1 1
+3 	hvectovec1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/computelighting1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+Of	[ 0	locks=0 ]	(	1	1	1	)
+Ce	[ 0	locks=0 ]	(	0	0	0	)
+description	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/computelighting1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/texture1.init"
+Content-Type: text/plain
+
+type = texture
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/texture1.def"
+Content-Type: text/plain
+
+comment ""
+position 0.55141 -0.470753
+connectornextid 20
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+19 "clr"
+}
+inputsNamed3
+{
+0 	map 0 1 "map"
+1 	"" "" 1 "udim"
+2 	uvcoords1 1 1 "s"
+3 	uvcoords1 2 1 "t"
+4 	"" "" 1 "ds"
+5 	"" "" 1 "dt"
+6 	"" "" 1 "srccolorspace"
+7 	"" "" 1 "wrap"
+8 	"" "" 1 "filter"
+9 	"" "" 1 "width"
+10 	"" "" 1 "blur"
+11 	"" "" 1 "pixelblur"
+12 	"" "" 1 "border"
+13 	"" "" 1 "extrapol"
+14 	"" "" 1 "interp"
+15 	"" "" 1 "defclr"
+16 	"" "" 1 "channel"
+17 	"" "" 1 "ptexface"
+18 	"" "" 1 "orient"
+}
+inputs
+{
+0 	map 0 1
+1 	"" 0 1
+2 	uvcoords1 1 1
+3 	uvcoords1 2 1
+4 	"" 0 1
+5 	"" 0 1
+6 	"" 0 1
+7 	"" 0 1
+8 	"" 0 1
+9 	"" 0 1
+10 	"" 0 1
+11 	"" 0 1
+12 	"" 0 1
+13 	"" 0 1
+14 	"" 0 1
+15 	"" 0 1
+16 	"" 0 1
+17 	"" 0 1
+18 	"" 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/texture1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	v4	)
+map	[ 0	locks=0 ]	(	Mandril.pic	)
+udim	[ 0	locks=0 ]	(	"off"	)
+srccolorspace	[ 0	locks=0 ]	(	auto	)
+wrap	[ 0	locks=0 ]	(	repeat	)
+filter	[ 0	locks=0 ]	(	box	)
+width	[ 0	locks=0 ]	(	1	)
+blur	[ 0	locks=0 ]	(	0	)
+pixelblur	[ 0	locks=0 ]	(	0	)
+border	[ 0	locks=0 ]	(	0	0	0	1	)
+extrapol	[ 0	locks=0 ]	(	"on"	)
+interp	[ 0	locks=0 ]	(	"off"	)
+defclr	[ 0	locks=0 ]	(	0	0	0	0	)
+channel	[ 0	locks=0 ]	(	""	)
+ptexface	[ 0	locks=0 ]	(	0	)
+orient	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/texture1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/map.init"
+Content-Type: text/plain
+
+type = parameter
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/map.def"
+Content-Type: text/plain
+
+comment ""
+position -0.135764 0.729447
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed off lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "map"
+1 "bound_map"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 1 1 0.4 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/map.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+parmscope	[ 0	locks=0 ]	(	shaderparm	)
+parmaccess	[ 0	locks=0 ]	(	""	)
+parmname	[ 0	locks=0 ]	(	map	)
+parmprefix	[ 0	locks=0 ]	(	""	)
+parmpostfix	[ 0	locks=0 ]	(	""	)
+parmlabel	[ 0	locks=0 ]	(	"Texture Map"	)
+showlabel	[ 0	locks=0 ]	(	"on"	)
+parmtype	[ 0	locks=0 ]	(	"image"	)
+parmtypename	[ 0	locks=0 ]	(	""	)
+floatdef	[ 0	locks=0 ]	(	0	)
+intdef	[ 0	locks=0 ]	(	0	)
+toggledef	[ 0	locks=0 ]	(	"off"	)
+angledef	[ 0	locks=0 ]	(	0	)
+logfloatdef	[ 0	locks=0 ]	(	0	)
+float2def	[ 0	locks=0 ]	(	0	0	)
+float3def	[ 0	locks=0 ]	(	0	0	0	)
+vectordef	[ 0	locks=0 ]	(	0	0	0	)
+normaldef	[ 0	locks=0 ]	(	0	0	0	)
+pointdef	[ 0	locks=0 ]	(	0	0	0	)
+directiondef	[ 0	locks=0 ]	(	1	0	0	)
+float4def	[ 0	locks=0 ]	(	0	0	0	0	)
+floatm2def	[ 0	locks=0 ]	(	1	0	0	1	)
+float9def	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+float16def	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+stringdef	[ 0	locks=0 ]	(	""	)
+filedef	[ 0	locks=0 ]	(	""	)
+imagedef	[ 0	locks=0 ]	(	$JOB/render/$SHOT/fg/v002/per_0010_fg_wb_undistort_v002_acescg.$F4.exr	)
+geometrydef	[ 0	locks=0 ]	(	""	)
+colordef	[ 0	locks=0 ]	(	0	0	0	)
+color4def	[ 0	locks=0 ]	(	0	0	0	0	)
+bsdfdef	[ 0	locks=0 ]	(	""	)
+coshaderdef	[ 0	locks=0 ]	(	""	)
+floatadef	[ 0	locks=0 ]	(	)
+intadef	[ 0	locks=0 ]	(	)
+vector2adef	[ 0	locks=0 ]	(	)
+vectoradef	[ 0	locks=0 ]	(	)
+pointadef	[ 0	locks=0 ]	(	)
+normaladef	[ 0	locks=0 ]	(	)
+coloradef	[ 0	locks=0 ]	(	)
+floatm2adef	[ 0	locks=0 ]	(	)
+float4adef	[ 0	locks=0 ]	(	)
+float9adef	[ 0	locks=0 ]	(	)
+float16adef	[ 0	locks=0 ]	(	)
+stringadef	[ 0	locks=0 ]	(	)
+coshaderadef	[ 0	locks=0 ]	(	""	)
+structdef	[ 0	locks=0 ]	(	""	)
+rangeflt	[ 0	locks=0 ]	(	0	1	)
+rangeint	[ 0	locks=0 ]	(	0	10	)
+stringtype	[ 0	locks=0 ]	(	off	)
+opfilter	[ 0	locks=0 ]	(	!!OBJ/LIGHT!!	)
+parmcomment	[ 0	locks=0 ]	(	""	)
+separator1	[ 0	locks=0 ]	(	)
+useasparmdefiner	[ 0	locks=0 ]	(	"off"	)
+useownexportcontext	[ 0	locks=0 ]	(	"off"	)
+parmuniform	[ 0	locks=0 ]	(	"on"	)
+usebound	[ 0	locks=0 ]	(	"off"	)
+hasconnector	[ 0	locks=0 ]	(	"on"	)
+exportparm	[ 0	locks=0 ]	(	"off"	)
+exportcontext	[ 0	locks=0 ]	(	surface	)
+providemenu	[ 0	locks=0 ]	(	"off"	)
+menuchoices	[ 0	locks=0 ]	(	""	)
+menuscript	[ 0	locks=0 ]	(	""	)
+menuscriptlanguage	[ 0	locks=0 ]	(	"hscript"	)
+separator2	[ 0	locks=0 ]	(	)
+invisible	[ 0	locks=0 ]	(	"off"	)
+joinnext	[ 0	locks=0 ]	(	"off"	)
+disablewhen	[ 0	locks=0 ]	(	""	)
+hidewhen	[ 0	locks=0 ]	(	""	)
+callback	[ 0	locks=0 ]	(	""	)
+tags	[ 0	locks=0 ]	(	key_value_dict:{\"ogl_emissionmap\":\"1\"}	)
+help	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/map.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/uvcoords1.init"
+Content-Type: text/plain
+
+type = uvcoords
+matchesdef = 1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/uvcoords1.def"
+Content-Type: text/plain
+
+comment ""
+position -1.98343 1.5918
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "uv"
+1 "s"
+2 "t"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/uvcoords1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/uvcoords1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/hvectovec1.init"
+Content-Type: text/plain
+
+type = hvectovec
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/hvectovec1.def"
+Content-Type: text/plain
+
+comment ""
+position 2.67001 1.4418
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "vec"
+2 "fval4"
+}
+inputsNamed3
+{
+0 	texture1 19 1 "hvec"
+}
+inputs
+{
+0 	texture1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/hvectovec1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+hvec	[ 0	locks=0 ]	(	0	0	0	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1/hvectovec1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.init"
+Content-Type: text/plain
+
+type = vopsurface
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.def"
+Content-Type: text/plain
+
+comment ""
+position 8.24696 1.57644
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display on render on highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "Surface Shader"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.spareparmdef"
+Content-Type: text/plain
+
+    group {
+        name    "stdswitcher3"
+        label   "OGL"
+
+        parm {
+            name    "ogl_amb"
+            baseparm
+            label   "OGL Ambient"
+            export  none
+        }
+        parm {
+            name    "ogl_diff"
+            baseparm
+            label   "OGL Diffuse"
+            export  none
+        }
+        parm {
+            name    "ogl_spec"
+            baseparm
+            label   "OGL Specular"
+            export  none
+        }
+        parm {
+            name    "ogl_emit"
+            baseparm
+            label   "OGL Emission"
+            export  none
+        }
+        parm {
+            name    "ogl_rough"
+            baseparm
+            label   "OGL Roughness"
+            export  none
+        }
+        parm {
+            name    "ogl_alpha"
+            baseparm
+            label   "OGL Alpha"
+            export  none
+        }
+        parm {
+            name    "ogl_light"
+            baseparm
+            label   "OGL Use Lighting"
+            export  none
+        }
+        parm {
+            name    "ogl_cutout"
+            baseparm
+            label   "OGL Transparent Texture"
+            export  none
+        }
+        multiparm {
+            name    "ogl_numtex"
+            label    "OGL Texture Layers"
+            baseparm
+            default 0
+            parmtag { "multistartoffset" "1" }
+
+            parm {
+                name    "ogl_tex#"
+                baseparm
+                label   "Texture #"
+                export  none
+            }
+            parm {
+                name    "ogl_tex_min_filter#"
+                baseparm
+                label   "Minification Filter #"
+                export  none
+            }
+            parm {
+                name    "ogl_tex_mag_filter#"
+                baseparm
+                label   "Magnification Filter #"
+                export  none
+            }
+            parm {
+                name    "ogl_clamping_mode#"
+                baseparm
+                label   "Clamping #"
+                export  none
+            }
+        }
+
+    }
+
+    group {
+        name    "stdswitcher3_1"
+        label   "Compiler"
+
+        parm {
+            name    "vop_compiler"
+            baseparm
+            label   "Compiler"
+            export  none
+        }
+        parm {
+            name    "vop_forcecompile"
+            baseparm
+            label   "Force Compile"
+            export  none
+        }
+    }
+
+    parm {
+        name    "texture"
+        label   "texture"
+        type    image
+        default { "" }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+    parm {
+        name    "check"
+        label   "check"
+        type    integer
+        default { "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+        parmtag { "shaderparmcontexts" "surface" }
+    }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.chn"
+Content-Type: text/plain
+
+{
+    channel ogl_alpha {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = -25.041666666666668
+      segment { length = 0 value = 1 1 expr = ch(\"../../../ogl_alpha\") }
+    }
+    channel ogl_emitr {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_emitg {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_emitb {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambr {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambg {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_ambb {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffr {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffg {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel ogl_diffb {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = 1-ch(\"../../../ogl_hq\") }
+    }
+    channel check {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../../res\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+stdswitcher	[ 0	locks=0 ]	(	0	0	)
+ogl_amb	[ 0	locks=0 ]	(	[ ogl_ambr	1 ] 	[ ogl_ambg	1 ] 	[ ogl_ambb	1 ] 	)
+ogl_diff	[ 0	locks=0 ]	(	[ ogl_diffr	1 ] 	[ ogl_diffg	1 ] 	[ ogl_diffb	1 ] 	)
+ogl_spec	[ 0	locks=0 ]	(	0	0	0	)
+ogl_emit	[ 8	locks=0 ]	(	[ ogl_emitr	0 ] 	[ ogl_emitg	0 ] 	[ ogl_emitb	0 ] 	)
+ogl_rough	[ 0	locks=0 ]	(	0.10000000000000001	)
+ogl_alpha	[ 0	locks=0 ]	(	[ ogl_alpha	1 ] 	)
+ogl_light	[ 0	locks=0 ]	(	"on"	)
+ogl_cutout	[ 0	locks=0 ]	(	"on"	)
+ogl_numtex	[ 0	locks=0 ]	(	1	)
+vop_compiler	[ 0	locks=0 ]	(	"vcc -q $VOP_INCLUDEPATH -o $VOP_OBJECTFILE -e $VOP_ERRORFILE $VOP_SOURCEFILE"	)
+vop_forcecompile	[ 0	locks=0 ]	(	0	)
+stdswitcher3	[ 0	locks=0 ]	(	0	0	)
+texture	[ 8	locks=0 ]	(	`chs(\"../../../mattemap\")`	)
+check	[ 0	locks=0 ]	(	[ check	1 ] 	)
+ogl_tex1	[ 0	locks=0 ]	(	`chs(\"../vopsurface1/map\")`	)
+ogl_tex_min_filter1	[ 0	locks=0 ]	(	GL_LINEAR_MIPMAP_LINEAR	)
+ogl_tex_mag_filter1	[ 0	locks=0 ]	(	GL_LINEAR	)
+ogl_clamping_mode1	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/output1.init"
+Content-Type: text/plain
+
+type = output
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/output1.def"
+Content-Type: text/plain
+
+comment ""
+position 25.6678 3.60051
+connectornextid 6
+flags =  lock off model off template off footprint off xray off bypass off display on render on highlight off unload off savedata off compress on colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+5 "shader"
+}
+inputsNamed3
+{
+0 	const1 0 1 "Cf"
+1 	twoway2 3 1 "Of"
+2 	twoway1 3 1 "Af"
+3 	"" "" 1 "N"
+4 	"" "" 1 "F"
+}
+inputs
+{
+0 	const1 0 1
+1 	twoway2 0 1
+2 	twoway1 0 1
+3 	"" 0 1
+4 	"" 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/output1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+contexttype	[ 0	locks=0 ]	(	surface	)
+outputcodelast	[ 0	locks=0 ]	(	"on"	)
+parmorder	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/output1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/texture1.init"
+Content-Type: text/plain
+
+type = texture
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/texture1.def"
+Content-Type: text/plain
+
+comment ""
+position -5.45731 1.30433
+connectornextid 20
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+19 "clr"
+}
+inputsNamed3
+{
+0 	parm2 0 1 "map"
+1 	"" "" 1 "udim"
+2 	uvcoords1 1 1 "s"
+3 	uvcoords1 2 1 "t"
+4 	"" "" 1 "ds"
+5 	"" "" 1 "dt"
+6 	"" "" 1 "srccolorspace"
+7 	"" "" 1 "wrap"
+8 	"" "" 1 "filter"
+9 	"" "" 1 "width"
+10 	"" "" 1 "blur"
+11 	"" "" 1 "pixelblur"
+12 	"" "" 1 "border"
+13 	"" "" 1 "extrapol"
+14 	"" "" 1 "interp"
+15 	"" "" 1 "defclr"
+16 	"" "" 1 "channel"
+17 	"" "" 1 "ptexface"
+18 	"" "" 1 "orient"
+}
+inputs
+{
+0 	parm2 0 1
+1 	"" 0 1
+2 	uvcoords1 1 1
+3 	uvcoords1 2 1
+4 	"" 0 1
+5 	"" 0 1
+6 	"" 0 1
+7 	"" 0 1
+8 	"" 0 1
+9 	"" 0 1
+10 	"" 0 1
+11 	"" 0 1
+12 	"" 0 1
+13 	"" 0 1
+14 	"" 0 1
+15 	"" 0 1
+16 	"" 0 1
+17 	"" 0 1
+18 	"" 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/texture1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	v4	)
+map	[ 0	locks=0 ]	(	Mandril.pic	)
+udim	[ 0	locks=0 ]	(	"off"	)
+srccolorspace	[ 0	locks=0 ]	(	auto	)
+wrap	[ 0	locks=0 ]	(	streak	)
+filter	[ 0	locks=0 ]	(	box	)
+width	[ 0	locks=0 ]	(	1	)
+blur	[ 0	locks=0 ]	(	0	)
+pixelblur	[ 0	locks=0 ]	(	0	)
+border	[ 0	locks=0 ]	(	0	0	0	1	)
+extrapol	[ 0	locks=0 ]	(	"on"	)
+interp	[ 0	locks=0 ]	(	"off"	)
+defclr	[ 0	locks=0 ]	(	0	0	0	0	)
+channel	[ 0	locks=0 ]	(	""	)
+ptexface	[ 0	locks=0 ]	(	0	)
+orient	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/texture1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/uvcoords1.init"
+Content-Type: text/plain
+
+type = uvcoords
+matchesdef = 1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/uvcoords1.def"
+Content-Type: text/plain
+
+comment ""
+position -9.38826 2.6777
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "uv"
+1 "s"
+2 "t"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/uvcoords1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/uvcoords1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec1.init"
+Content-Type: text/plain
+
+type = hvectovec
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec1.def"
+Content-Type: text/plain
+
+comment ""
+position 0.710644 1.30433
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "vec"
+2 "fval4"
+}
+inputsNamed3
+{
+0 	texture1 19 1 "hvec"
+}
+inputs
+{
+0 	texture1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+hvec	[ 0	locks=0 ]	(	0	0	0	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare1.init"
+Content-Type: text/plain
+
+type = compare
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare1.def"
+Content-Type: text/plain
+
+comment ""
+position 9.34564 10.074
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "bool"
+}
+inputsNamed3
+{
+0 	twoway3 3 1 "input1"
+}
+inputs
+{
+0 	twoway3 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+cmp	[ 0	locks=0 ]	(	lt	)
+input2	[ 0	locks=0 ]	(	0.999	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/inttofloat1.init"
+Content-Type: text/plain
+
+type = inttofloat
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/inttofloat1.def"
+Content-Type: text/plain
+
+comment ""
+position 12.4143 5.3839
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "fval"
+}
+inputsNamed3
+{
+0 	compare1 1 1 "ival"
+}
+inputs
+{
+0 	compare1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/inttofloat1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+ival	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/inttofloat1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/complement2.init"
+Content-Type: text/plain
+
+type = complement
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/complement2.def"
+Content-Type: text/plain
+
+comment ""
+position 17.5699 1.93238
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "complem"
+}
+inputsNamed3
+{
+0 	twoway1 3 1 "val"
+}
+inputs
+{
+0 	twoway1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/complement2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	default	)
+val	[ 0	locks=0 ]	(	1	)
+val_i	[ 0	locks=0 ]	(	1	)
+val_u	[ 0	locks=0 ]	(	1	1	)
+val_v	[ 0	locks=0 ]	(	1	1	1	)
+val_p	[ 0	locks=0 ]	(	1	1	1	)
+val_n	[ 0	locks=0 ]	(	1	1	1	)
+val_c	[ 0	locks=0 ]	(	1	1	1	)
+val_v4	[ 0	locks=0 ]	(	1	1	1	1	)
+val_uf	[ 0	locks=0 ]	(	1	)
+val_uv	[ 0	locks=0 ]	(	1	1	1	)
+val_up	[ 0	locks=0 ]	(	1	1	1	)
+val_un	[ 0	locks=0 ]	(	1	1	1	)
+val_uc	[ 0	locks=0 ]	(	1	1	1	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/complement2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/complement2.outputinfos"
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+
+TnVtSW5mb3MgMQpWYWx1ZXNCaW5hcnkgMQpCZWdpbkluZm8KT3V0cHV0TmFtZSBjb21wbGVtCkRlYnVnQ29ycklucHV0TmFtZSBfX2RlZmF1bHRfXwpCeXBhc3NDb3JySW5wdXROYW1lIF9fZGVmYXVsdF9fCk5vcm1hbE1vZGU=
+IDAKQnlwYXNzTW9kZSAxClVzZURlZmF1bHRWYWx1ZSAxCkVuZEluZm8KAAAAAAAAAAA=
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const1.init"
+Content-Type: text/plain
+
+type = constant
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const1.def"
+Content-Type: text/plain
+
+comment ""
+position 21.7257 4.56981
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "Value"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0 0 0 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+consttype	[ 0	locks=0 ]	(	"color"	)
+floatdef	[ 0	locks=0 ]	(	1	)
+intdef	[ 0	locks=0 ]	(	0	)
+toggledef	[ 0	locks=0 ]	(	"off"	)
+angledef	[ 0	locks=0 ]	(	0	)
+logfloatdef	[ 0	locks=0 ]	(	0	)
+float2def	[ 0	locks=0 ]	(	0	0	)
+float3def	[ 0	locks=0 ]	(	0	0	0	)
+vectordef	[ 0	locks=0 ]	(	0	0	0	)
+normaldef	[ 0	locks=0 ]	(	0	0	0	)
+pointdef	[ 0	locks=0 ]	(	0	0	0	)
+directiondef	[ 0	locks=0 ]	(	1	0	0	)
+float4def	[ 0	locks=0 ]	(	0	0	0	0	)
+floatm2def	[ 0	locks=0 ]	(	1	0	0	1	)
+float9def	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+float16def	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+stringdef	[ 0	locks=0 ]	(	""	)
+filedef	[ 0	locks=0 ]	(	""	)
+imagedef	[ 0	locks=0 ]	(	""	)
+geometrydef	[ 0	locks=0 ]	(	""	)
+colordef	[ 0	locks=0 ]	(	0	0	0	)
+color4def	[ 0	locks=0 ]	(	0	0	0	0	)
+bsdfdef	[ 0	locks=0 ]	(	""	)
+coshaderdef	[ 0	locks=0 ]	(	""	)
+floatadef	[ 0	locks=0 ]	(	)
+intadef	[ 0	locks=0 ]	(	)
+vector2adef	[ 0	locks=0 ]	(	)
+vectoradef	[ 0	locks=0 ]	(	)
+pointadef	[ 0	locks=0 ]	(	)
+normaladef	[ 0	locks=0 ]	(	)
+coloradef	[ 0	locks=0 ]	(	)
+floatm2adef	[ 0	locks=0 ]	(	)
+float4adef	[ 0	locks=0 ]	(	)
+float9adef	[ 0	locks=0 ]	(	)
+float16adef	[ 0	locks=0 ]	(	)
+stringadef	[ 0	locks=0 ]	(	)
+coshaderadef	[ 0	locks=0 ]	(	""	)
+structdef	[ 0	locks=0 ]	(	""	)
+parmuniform	[ 0	locks=0 ]	(	"on"	)
+constname	[ 0	locks=0 ]	(	Value	)
+constlabel	[ 0	locks=0 ]	(	Constant	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare2.init"
+Content-Type: text/plain
+
+type = compare
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare2.def"
+Content-Type: text/plain
+
+comment ""
+position 1.30519 -3.74126
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "bool"
+}
+inputsNamed3
+{
+0 	(__dot3) "" 1 "input1"
+}
+inputs
+{
+0 	(__dot3) 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+cmp	[ 0	locks=0 ]	(	neq	)
+input2	[ 0	locks=0 ]	(	0	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway1.init"
+Content-Type: text/plain
+
+type = twoway
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway1.def"
+Content-Type: text/plain
+
+comment ""
+position 14.6698 3.15371
+connectornextid 4
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+3 "result"
+}
+inputsNamed3
+{
+0 	compare2 1 1 "condition"
+1 	inttofloat1 1 1 "input1"
+2 	const2 0 1 "input2"
+}
+inputs
+{
+0 	compare2 0 1
+1 	inttofloat1 0 1
+2 	const2 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	default	)
+condtype	[ 0	locks=0 ]	(	0	)
+input2	[ 0	locks=0 ]	(	0	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+input2_u	[ 0	locks=0 ]	(	0	0	)
+input2_v	[ 0	locks=0 ]	(	0	0	0	)
+input2_p	[ 0	locks=0 ]	(	0	0	0	)
+input2_n	[ 0	locks=0 ]	(	0	0	0	)
+input2_c	[ 0	locks=0 ]	(	1	1	1	)
+input2_v4	[ 0	locks=0 ]	(	0	0	0	0	)
+input2_m2	[ 0	locks=0 ]	(	1	0	0	1	)
+input2_m3	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+input2_m	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+input2_uf	[ 0	locks=0 ]	(	0	)
+input2_uv	[ 0	locks=0 ]	(	0	0	0	)
+input2_up	[ 0	locks=0 ]	(	0	0	0	)
+input2_un	[ 0	locks=0 ]	(	0	0	0	)
+input2_uc	[ 0	locks=0 ]	(	0	0	0	)
+input2_um	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway2.init"
+Content-Type: text/plain
+
+type = twoway
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway2.def"
+Content-Type: text/plain
+
+comment ""
+position 21.2767 0.866008
+connectornextid 4
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+3 "result"
+}
+inputsNamed3
+{
+0 	compare2 1 1 "condition"
+1 	complement2 1 1 "input1"
+2 	(__dot2) "" 1 "input2"
+}
+inputs
+{
+0 	compare2 0 1
+1 	complement2 0 1
+2 	(__dot2) 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	default	)
+condtype	[ 0	locks=0 ]	(	0	)
+input2	[ 0	locks=0 ]	(	0	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+input2_u	[ 0	locks=0 ]	(	0	0	)
+input2_v	[ 0	locks=0 ]	(	0	0	0	)
+input2_p	[ 0	locks=0 ]	(	0	0	0	)
+input2_n	[ 0	locks=0 ]	(	0	0	0	)
+input2_c	[ 0	locks=0 ]	(	1	1	1	)
+input2_v4	[ 0	locks=0 ]	(	0	0	0	0	)
+input2_m2	[ 0	locks=0 ]	(	1	0	0	1	)
+input2_m3	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+input2_m	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+input2_uf	[ 0	locks=0 ]	(	0	)
+input2_uv	[ 0	locks=0 ]	(	0	0	0	)
+input2_up	[ 0	locks=0 ]	(	0	0	0	)
+input2_un	[ 0	locks=0 ]	(	0	0	0	)
+input2_uc	[ 0	locks=0 ]	(	0	0	0	)
+input2_um	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const2.init"
+Content-Type: text/plain
+
+type = constant
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const2.def"
+Content-Type: text/plain
+
+comment ""
+position 6.43855 2.85371
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "Value"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0 0 0 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+consttype	[ 0	locks=0 ]	(	"float"	)
+floatdef	[ 0	locks=0 ]	(	0	)
+intdef	[ 0	locks=0 ]	(	0	)
+toggledef	[ 0	locks=0 ]	(	"off"	)
+angledef	[ 0	locks=0 ]	(	0	)
+logfloatdef	[ 0	locks=0 ]	(	0	)
+float2def	[ 0	locks=0 ]	(	0	0	)
+float3def	[ 0	locks=0 ]	(	0	0	0	)
+vectordef	[ 0	locks=0 ]	(	0	0	0	)
+normaldef	[ 0	locks=0 ]	(	0	0	0	)
+pointdef	[ 0	locks=0 ]	(	0	0	0	)
+directiondef	[ 0	locks=0 ]	(	1	0	0	)
+float4def	[ 0	locks=0 ]	(	0	0	0	0	)
+floatm2def	[ 0	locks=0 ]	(	1	0	0	1	)
+float9def	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+float16def	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+stringdef	[ 0	locks=0 ]	(	""	)
+filedef	[ 0	locks=0 ]	(	""	)
+imagedef	[ 0	locks=0 ]	(	""	)
+geometrydef	[ 0	locks=0 ]	(	""	)
+colordef	[ 0	locks=0 ]	(	0	0	0	)
+color4def	[ 0	locks=0 ]	(	0	0	0	0	)
+bsdfdef	[ 0	locks=0 ]	(	""	)
+coshaderdef	[ 0	locks=0 ]	(	""	)
+floatadef	[ 0	locks=0 ]	(	)
+intadef	[ 0	locks=0 ]	(	)
+vector2adef	[ 0	locks=0 ]	(	)
+vectoradef	[ 0	locks=0 ]	(	)
+pointadef	[ 0	locks=0 ]	(	)
+normaladef	[ 0	locks=0 ]	(	)
+coloradef	[ 0	locks=0 ]	(	)
+floatm2adef	[ 0	locks=0 ]	(	)
+float4adef	[ 0	locks=0 ]	(	)
+float9adef	[ 0	locks=0 ]	(	)
+float16adef	[ 0	locks=0 ]	(	)
+stringadef	[ 0	locks=0 ]	(	)
+coshaderadef	[ 0	locks=0 ]	(	""	)
+structdef	[ 0	locks=0 ]	(	""	)
+parmuniform	[ 0	locks=0 ]	(	"on"	)
+constname	[ 0	locks=0 ]	(	Value	)
+constlabel	[ 0	locks=0 ]	(	Constant	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/const2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare3.init"
+Content-Type: text/plain
+
+type = compare
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare3.def"
+Content-Type: text/plain
+
+comment ""
+position 2.93458 7.42915
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+2 "bool"
+}
+inputsNamed3
+{
+0 	luminance1 1 1 "input1"
+1 	hvectovec1 2 1 "input2"
+}
+inputs
+{
+0 	luminance1 0 1
+1 	hvectovec1 1 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare3.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+cmp	[ 0	locks=0 ]	(	gt	)
+input2	[ 0	locks=0 ]	(	0	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/compare3.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/luminance1.init"
+Content-Type: text/plain
+
+type = luminance
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/luminance1.def"
+Content-Type: text/plain
+
+comment ""
+position -0.809167 7.42915
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "lum"
+}
+inputsNamed3
+{
+0 	hvectovec2 1 1 "rgb"
+}
+inputs
+{
+0 	hvectovec2 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/luminance1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+rgb	[ 0	locks=0 ]	(	0	0	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/luminance1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec2.init"
+Content-Type: text/plain
+
+type = hvectovec
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec2.def"
+Content-Type: text/plain
+
+comment ""
+position -3.25817 7.42915
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+1 "vec"
+}
+inputsNamed3
+{
+0 	texture1 19 1 "hvec"
+}
+inputs
+{
+0 	texture1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+hvec	[ 0	locks=0 ]	(	0	0	0	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/hvectovec2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/clamp1.init"
+Content-Type: text/plain
+
+type = clamp
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/clamp1.def"
+Content-Type: text/plain
+
+comment ""
+position 2.93458 10.395
+connectornextid 4
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+3 "clamp"
+}
+inputsNamed3
+{
+0 	luminance1 1 1 "val"
+1 	"" "" 1 "min"
+2 	"" "" 1 "max"
+}
+inputs
+{
+0 	luminance1 0 1
+1 	"" 0 1
+2 	"" 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/clamp1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	default	)
+min	[ 0	locks=0 ]	(	0	)
+max	[ 0	locks=0 ]	(	1	)
+min_i	[ 0	locks=0 ]	(	0	)
+max_i	[ 0	locks=0 ]	(	1	)
+min_u	[ 0	locks=0 ]	(	0	0	)
+max_u	[ 0	locks=0 ]	(	1	1	)
+min_v	[ 0	locks=0 ]	(	0	0	0	)
+max_v	[ 0	locks=0 ]	(	1	1	1	)
+min_p	[ 0	locks=0 ]	(	0	0	0	)
+max_p	[ 0	locks=0 ]	(	1	1	1	)
+min_n	[ 0	locks=0 ]	(	0	0	0	)
+max_n	[ 0	locks=0 ]	(	1	1	1	)
+min_c	[ 0	locks=0 ]	(	0	0	0	)
+max_c	[ 0	locks=0 ]	(	1	1	1	)
+min_v4	[ 0	locks=0 ]	(	0	0	0	0	)
+max_v4	[ 0	locks=0 ]	(	1	1	1	1	)
+min_uf	[ 0	locks=0 ]	(	0	)
+max_uf	[ 0	locks=0 ]	(	1	)
+min_uv	[ 0	locks=0 ]	(	0	0	0	)
+max_uv	[ 0	locks=0 ]	(	1	1	1	)
+min_up	[ 0	locks=0 ]	(	0	0	0	)
+max_up	[ 0	locks=0 ]	(	1	1	1	)
+min_un	[ 0	locks=0 ]	(	0	0	0	)
+max_un	[ 0	locks=0 ]	(	1	1	1	)
+min_uc	[ 0	locks=0 ]	(	0	0	0	)
+max_uc	[ 0	locks=0 ]	(	1	1	1	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/clamp1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway3.init"
+Content-Type: text/plain
+
+type = twoway
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway3.def"
+Content-Type: text/plain
+
+comment ""
+position 7.36878 10.074
+connectornextid 4
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+3 "result"
+}
+inputsNamed3
+{
+0 	compare3 2 1 "condition"
+1 	clamp1 3 1 "input1"
+2 	hvectovec1 2 1 "input2"
+}
+inputs
+{
+0 	compare3 0 1
+1 	clamp1 0 1
+2 	hvectovec1 1 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway3.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+signature	[ 0	locks=0 ]	(	default	)
+condtype	[ 0	locks=0 ]	(	0	)
+input2	[ 0	locks=0 ]	(	0	)
+input2_i	[ 0	locks=0 ]	(	0	)
+input2_s	[ 0	locks=0 ]	(	""	)
+input2_u	[ 0	locks=0 ]	(	0	0	)
+input2_v	[ 0	locks=0 ]	(	0	0	0	)
+input2_p	[ 0	locks=0 ]	(	0	0	0	)
+input2_n	[ 0	locks=0 ]	(	0	0	0	)
+input2_c	[ 0	locks=0 ]	(	1	1	1	)
+input2_v4	[ 0	locks=0 ]	(	0	0	0	0	)
+input2_m2	[ 0	locks=0 ]	(	1	0	0	1	)
+input2_m3	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+input2_m	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+input2_uf	[ 0	locks=0 ]	(	0	)
+input2_uv	[ 0	locks=0 ]	(	0	0	0	)
+input2_up	[ 0	locks=0 ]	(	0	0	0	)
+input2_un	[ 0	locks=0 ]	(	0	0	0	)
+input2_uc	[ 0	locks=0 ]	(	0	0	0	)
+input2_um	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/twoway3.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":""
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm2.init"
+Content-Type: text/plain
+
+type = parameter
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm2.def"
+Content-Type: text/plain
+
+comment ""
+position -15.6396 1.30433
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "texture"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 1 1 0.4 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+parmscope	[ 0	locks=0 ]	(	shaderparm	)
+parmaccess	[ 0	locks=0 ]	(	""	)
+parmname	[ 0	locks=0 ]	(	texture	)
+parmprefix	[ 0	locks=0 ]	(	""	)
+parmpostfix	[ 0	locks=0 ]	(	""	)
+parmlabel	[ 0	locks=0 ]	(	""	)
+showlabel	[ 0	locks=0 ]	(	"on"	)
+parmtype	[ 0	locks=0 ]	(	"image"	)
+parmtypename	[ 0	locks=0 ]	(	""	)
+floatdef	[ 0	locks=0 ]	(	0	)
+intdef	[ 0	locks=0 ]	(	0	)
+toggledef	[ 0	locks=0 ]	(	"off"	)
+angledef	[ 0	locks=0 ]	(	0	)
+logfloatdef	[ 0	locks=0 ]	(	0	)
+float2def	[ 0	locks=0 ]	(	0	0	)
+float3def	[ 0	locks=0 ]	(	0	0	0	)
+vectordef	[ 0	locks=0 ]	(	0	0	0	)
+normaldef	[ 0	locks=0 ]	(	0	0	0	)
+pointdef	[ 0	locks=0 ]	(	0	0	0	)
+directiondef	[ 0	locks=0 ]	(	1	0	0	)
+float4def	[ 0	locks=0 ]	(	0	0	0	0	)
+floatm2def	[ 0	locks=0 ]	(	1	0	0	1	)
+float9def	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+float16def	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+stringdef	[ 0	locks=0 ]	(	""	)
+filedef	[ 0	locks=0 ]	(	""	)
+imagedef	[ 0	locks=0 ]	(	""	)
+geometrydef	[ 0	locks=0 ]	(	""	)
+colordef	[ 0	locks=0 ]	(	0	0	0	)
+color4def	[ 0	locks=0 ]	(	0	0	0	0	)
+bsdfdef	[ 0	locks=0 ]	(	""	)
+coshaderdef	[ 0	locks=0 ]	(	""	)
+floatadef	[ 0	locks=0 ]	(	)
+intadef	[ 0	locks=0 ]	(	)
+vector2adef	[ 0	locks=0 ]	(	)
+vectoradef	[ 0	locks=0 ]	(	)
+pointadef	[ 0	locks=0 ]	(	)
+normaladef	[ 0	locks=0 ]	(	)
+coloradef	[ 0	locks=0 ]	(	)
+floatm2adef	[ 0	locks=0 ]	(	)
+float4adef	[ 0	locks=0 ]	(	)
+float9adef	[ 0	locks=0 ]	(	)
+float16adef	[ 0	locks=0 ]	(	)
+stringadef	[ 0	locks=0 ]	(	)
+coshaderadef	[ 0	locks=0 ]	(	""	)
+structdef	[ 0	locks=0 ]	(	""	)
+rangeflt	[ 0	locks=0 ]	(	0	1	)
+rangeint	[ 0	locks=0 ]	(	0	10	)
+stringtype	[ 0	locks=0 ]	(	off	)
+opfilter	[ 0	locks=0 ]	(	!!OBJ/LIGHT!!	)
+parmcomment	[ 0	locks=0 ]	(	""	)
+separator1	[ 0	locks=0 ]	(	)
+useasparmdefiner	[ 0	locks=0 ]	(	"off"	)
+useownexportcontext	[ 0	locks=0 ]	(	"off"	)
+parmuniform	[ 0	locks=0 ]	(	"on"	)
+usebound	[ 0	locks=0 ]	(	"off"	)
+hasconnector	[ 0	locks=0 ]	(	"on"	)
+exportparm	[ 0	locks=0 ]	(	"off"	)
+exportcontext	[ 0	locks=0 ]	(	surface	)
+providemenu	[ 0	locks=0 ]	(	"off"	)
+menuchoices	[ 0	locks=0 ]	(	""	)
+menuscript	[ 0	locks=0 ]	(	""	)
+menuscriptlanguage	[ 0	locks=0 ]	(	"hscript"	)
+separator2	[ 0	locks=0 ]	(	)
+invisible	[ 0	locks=0 ]	(	"off"	)
+joinnext	[ 0	locks=0 ]	(	"off"	)
+disablewhen	[ 0	locks=0 ]	(	""	)
+hidewhen	[ 0	locks=0 ]	(	""	)
+callback	[ 0	locks=0 ]	(	""	)
+tags	[ 0	locks=0 ]	(	""	)
+help	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm3.init"
+Content-Type: text/plain
+
+type = parameter
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm3.def"
+Content-Type: text/plain
+
+comment ""
+position -12.117 -3.74126
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
+outputsNamed3
+{
+0 "check"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 1 1 0.4 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm3.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+parmscope	[ 0	locks=0 ]	(	shaderparm	)
+parmaccess	[ 0	locks=0 ]	(	""	)
+parmname	[ 0	locks=0 ]	(	check	)
+parmprefix	[ 0	locks=0 ]	(	""	)
+parmpostfix	[ 0	locks=0 ]	(	""	)
+parmlabel	[ 0	locks=0 ]	(	""	)
+showlabel	[ 0	locks=0 ]	(	"on"	)
+parmtype	[ 0	locks=0 ]	(	"int"	)
+parmtypename	[ 0	locks=0 ]	(	""	)
+floatdef	[ 0	locks=0 ]	(	0	)
+intdef	[ 0	locks=0 ]	(	0	)
+toggledef	[ 0	locks=0 ]	(	"off"	)
+angledef	[ 0	locks=0 ]	(	0	)
+logfloatdef	[ 0	locks=0 ]	(	0	)
+float2def	[ 0	locks=0 ]	(	0	0	)
+float3def	[ 0	locks=0 ]	(	0	0	0	)
+vectordef	[ 0	locks=0 ]	(	0	0	0	)
+normaldef	[ 0	locks=0 ]	(	0	0	0	)
+pointdef	[ 0	locks=0 ]	(	0	0	0	)
+directiondef	[ 0	locks=0 ]	(	1	0	0	)
+float4def	[ 0	locks=0 ]	(	0	0	0	0	)
+floatm2def	[ 0	locks=0 ]	(	1	0	0	1	)
+float9def	[ 0	locks=0 ]	(	1	0	0	0	1	0	0	0	1	)
+float16def	[ 0	locks=0 ]	(	1	0	0	0	0	1	0	0	0	0	1	0	0	0	0	1	)
+stringdef	[ 0	locks=0 ]	(	""	)
+filedef	[ 0	locks=0 ]	(	""	)
+imagedef	[ 0	locks=0 ]	(	""	)
+geometrydef	[ 0	locks=0 ]	(	""	)
+colordef	[ 0	locks=0 ]	(	0	0	0	)
+color4def	[ 0	locks=0 ]	(	0	0	0	0	)
+bsdfdef	[ 0	locks=0 ]	(	""	)
+coshaderdef	[ 0	locks=0 ]	(	""	)
+floatadef	[ 0	locks=0 ]	(	)
+intadef	[ 0	locks=0 ]	(	)
+vector2adef	[ 0	locks=0 ]	(	)
+vectoradef	[ 0	locks=0 ]	(	)
+pointadef	[ 0	locks=0 ]	(	)
+normaladef	[ 0	locks=0 ]	(	)
+coloradef	[ 0	locks=0 ]	(	)
+floatm2adef	[ 0	locks=0 ]	(	)
+float4adef	[ 0	locks=0 ]	(	)
+float9adef	[ 0	locks=0 ]	(	)
+float16adef	[ 0	locks=0 ]	(	)
+stringadef	[ 0	locks=0 ]	(	)
+coshaderadef	[ 0	locks=0 ]	(	""	)
+structdef	[ 0	locks=0 ]	(	""	)
+rangeflt	[ 0	locks=0 ]	(	0	1	)
+rangeint	[ 0	locks=0 ]	(	0	10	)
+stringtype	[ 0	locks=0 ]	(	off	)
+opfilter	[ 0	locks=0 ]	(	!!OBJ/LIGHT!!	)
+parmcomment	[ 0	locks=0 ]	(	""	)
+separator1	[ 0	locks=0 ]	(	)
+useasparmdefiner	[ 0	locks=0 ]	(	"off"	)
+useownexportcontext	[ 0	locks=0 ]	(	"off"	)
+parmuniform	[ 0	locks=0 ]	(	"on"	)
+usebound	[ 0	locks=0 ]	(	"off"	)
+hasconnector	[ 0	locks=0 ]	(	"on"	)
+exportparm	[ 0	locks=0 ]	(	"off"	)
+exportcontext	[ 0	locks=0 ]	(	surface	)
+providemenu	[ 0	locks=0 ]	(	"off"	)
+menuchoices	[ 0	locks=0 ]	(	""	)
+menuscript	[ 0	locks=0 ]	(	""	)
+menuscriptlanguage	[ 0	locks=0 ]	(	"hscript"	)
+separator2	[ 0	locks=0 ]	(	)
+invisible	[ 0	locks=0 ]	(	"off"	)
+joinnext	[ 0	locks=0 ]	(	"off"	)
+disablewhen	[ 0	locks=0 ]	(	""	)
+hidewhen	[ 0	locks=0 ]	(	""	)
+callback	[ 0	locks=0 ]	(	""	)
+tags	[ 0	locks=0 ]	(	""	)
+help	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/parm3.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/grid1.init"
+Content-Type: text/plain
+
+type = grid
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/grid1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.43382 7.86872
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+}
+inputs
+{
+}
+stat
+{
+  create -1
+  modify -1
+  author eserysheva@l39.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/grid1.chn"
+Content-Type: text/plain
+
+{
+    channel sizey {
+      lefttype = extend
+      righttype = extend
+      default = 0.52767175572519087
+      flags = 0
+      start = 3.75
+      segment { length = 0 value = 0.52767175572519087 0.52767175572519087 expr = 1/ch(\"../../aspect\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/grid1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+type	[ 0	locks=0 ]	(	"poly"	)
+surftype	[ 0	locks=0 ]	(	"quads"	)
+orient	[ 0	locks=0 ]	(	"xy"	)
+size	[ 8	locks=0 ]	(	1	[ sizey	0 ] 	)
+t	[ 0	locks=0 ]	(	0	0	0	)
+r	[ 0	locks=0 ]	(	0	0	0	)
+rows	[ 0	locks=0 ]	(	2	)
+cols	[ 0	locks=0 ]	(	2	)
+orderu	[ 0	locks=0 ]	(	4	)
+orderv	[ 0	locks=0 ]	(	4	)
+interpu	[ 0	locks=0 ]	(	"on"	)
+interpv	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/grid1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.order"
+Content-Type: text/plain
+
+6
+output1
+computelighting1
+texture1
+map
+uvcoords1
+hvectovec1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/vopsurface1.net"
+Content-Type: text/plain
+
+1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/__dot2.networkdotinit"
+Content-Type: text/plain
+
+{
+	"version":1,
+	"posx":11.7587274614064583,
+	"posy":0.395680253911945445,
+	"pinned":false,
+	"color":"FROMOUTPUT",
+	"input":"const2 0 1"
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte/__dot3.networkdotinit"
+Content-Type: text/plain
+
+{
+	"version":1,
+	"posx":-5.64709607849574091,
+	"posy":-3.85625990007091879,
+	"pinned":false,
+	"color":"FROMOUTPUT",
+	"input":"parm3 0 1"
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.order"
+Content-Type: text/plain
+
+19
+output1
+texture1
+uvcoords1
+hvectovec1
+compare1
+inttofloat1
+complement2
+const1
+compare2
+twoway1
+twoway2
+const2
+compare3
+luminance1
+hvectovec2
+clamp1
+twoway3
+parm2
+parm3
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1/matte.net"
+Content-Type: text/plain
+
+1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.order"
+Content-Type: text/plain
+
+2
+vopsurface1
+matte
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/shopnet1.net"
+Content-Type: text/plain
+
+1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material1.init"
+Content-Type: text/plain
+
+type = material
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -2.63109 -14.4356
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display on render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	crop_right 1 1 "input1"
+}
+inputs
+{
+0 	crop_right 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+style	[ 0	locks=0 ]	(	primitive	)
+uselabels	[ 0	locks=0 ]	(	"uselabels"	)
+createstylesheets	[ 0	locks=0 ]	(	"off"	)
+fullpath	[ 0	locks=0 ]	(	"on"	)
+num_materials	[ 0	locks=0 ]	(	1	)
+group1	[ 0	locks=0 ]	(	""	)
+shop_materialpath1	[ 0	locks=0 ]	(	../shopnet1/vopsurface1	)
+localvar1	[ 0	locks=0 ]	(	"off"	)
+mergeoverride1	[ 0	locks=0 ]	(	"off"	)
+num_local1	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse1.init"
+Content-Type: text/plain
+
+type = reverse
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.31765 -2.33517
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+1 	extra_transform 1 1 "input1"
+}
+inputs
+{
+0 	extra_transform 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author mike@l50.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+vtxsort	[ 0	locks=0 ]	(	"reverseu"	)
+vtxuoff	[ 0	locks=0 ]	(	0	)
+vtxvoff	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/uvtexture1.init"
+Content-Type: text/plain
+
+type = texture
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/uvtexture1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -4.52598
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+1 	reverse1 0 1 "input1"
+}
+inputs
+{
+0 	reverse1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author mike@l50.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/uvtexture1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+uvattrib	[ 0	locks=0 ]	(	uv	)
+group	[ 0	locks=0 ]	(	""	)
+type	[ 0	locks=0 ]	(	"texture"	)
+axis	[ 0	locks=0 ]	(	"z"	)
+campath	[ 0	locks=0 ]	(	""	)
+coord	[ 0	locks=0 ]	(	"vertex"	)
+s	[ 0	locks=0 ]	(	1	1	1	)
+offset	[ 0	locks=0 ]	(	0	0	0	)
+angle	[ 0	locks=0 ]	(	0	)
+fixseams	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/uvtexture1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/transform1.init"
+Content-Type: text/plain
+
+type = xform
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/transform1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -3.23123 2.67865
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+1 	switch3 1 1 "input1"
+}
+inputs
+{
+0 	switch3 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author mike@l50.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/transform1.chn"
+Content-Type: text/plain
+
+{
+    channel scale {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 4.166666666666667
+      segment { length = 0 value = 1 1 expr = ch(strcat(opinputpath(\"../..\",0),\"/aperture\"))*ch(strcat(opinputpath(\"../..\",0),\"/winsizex\"))/ch(strcat(opinputpath(\"../..\",0),\"/focal\")) }
+    }
+    channel sx {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 3.75
+      segment { length = 0 value = 1 1 expr = 1/ch(opinputpath(\"../..\",0)+\"/winsizex\") }
+    }
+    channel sy {
+      lefttype = extend
+      righttype = extend
+      default = 0.65146599999999999
+      flags = 0
+      start = 3.75
+      segment { length = 0.91666666666666696 value = 1 0.65146599999999999 accel = 0 0.30555555555555564 expr = 1/ch(opinputpath(\"../..\",0)+\"/winsizey\") }
+      segment { length = 0 value = 0.65146599999999999 1 accel = 0.33333333333333331 0 expr = 1/ch(opinputpath(\"../..\",0)+\"/winsizey\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/transform1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+grouptype	[ 0	locks=0 ]	(	"guess"	)
+xOrd	[ 0	locks=0 ]	(	"srt"	)
+rOrd	[ 0	locks=0 ]	(	"xyz"	)
+t	[ 0	locks=0 ]	(	0	0	-1	)
+r	[ 0	locks=0 ]	(	0	0	0	)
+s	[ 8	locks=0 ]	(	[ sx	0 ] 	[ sy	0 ] 	1	)
+shear	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 0	locks=0 ]	(	[ scale	0 ] 	)
+parmgroup_pivotxform	[ 0	locks=0 ]	(	0	)
+p	[ 8	locks=0 ]	(	0	0	0	)
+pr	[ 0	locks=0 ]	(	0	0	0	)
+parmgroup_prexform	[ 0	locks=0 ]	(	0	)
+prexform_xOrd	[ 0	locks=0 ]	(	"srt"	)
+prexform_rOrd	[ 0	locks=0 ]	(	"xyz"	)
+prexform_t	[ 0	locks=0 ]	(	0	0	0	)
+prexform_r	[ 0	locks=0 ]	(	0	0	0	)
+prexform_s	[ 0	locks=0 ]	(	1	1	1	)
+prexform_shear	[ 0	locks=0 ]	(	0	0	0	)
+movecentroid	[ 0	locks=0 ]	(	0	)
+attribs	[ 0	locks=0 ]	(	*	)
+updatenmls	[ 0	locks=0 ]	(	"off"	)
+updateaffectednmls	[ 0	locks=0 ]	(	"on"	)
+vlength	[ 0	locks=0 ]	(	"on"	)
+invertxform	[ 0	locks=0 ]	(	"off"	)
+addattrib	[ 0	locks=0 ]	(	"off"	)
+outputattrib	[ 0	locks=0 ]	(	xform	)
+outputmerge	[ 0	locks=0 ]	(	"post"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/transform1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch1.init"
+Content-Type: text/plain
+
+type = switch
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.31765 0.812733
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	transform1 0 1 "input1"
+2 	stretch_fg_to_full_screen_windos_size 0 1 "input2"
+}
+inputs
+{
+0 	transform1 0 1
+1 	stretch_fg_to_full_screen_windos_size 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 1 0.7 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch1.chn"
+Content-Type: text/plain
+
+{
+    channel input {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 3.75
+      segment { length = 0 value = 1 1 expr = ch(\"../../applywinsize\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+input	[ 8	locks=0 ]	(	[ input	0 ] 	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/stretch_fg_to_full_screen_windos_size.init"
+Content-Type: text/plain
+
+type = xform
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/stretch_fg_to_full_screen_windos_size.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.44644 2.67865
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+1 	switch3 1 1 "input1"
+}
+inputs
+{
+0 	switch3 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author mike@l50.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/stretch_fg_to_full_screen_windos_size.chn"
+Content-Type: text/plain
+
+{
+    channel scale {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      start = 4.166666666666667
+      segment { length = 0 value = 1 1 expr = ch(strcat(opinputpath(\"../..\",0),\"/aperture\"))*ch(strcat(opinputpath(\"../..\",0),\"/winsizex\"))/ch(strcat(opinputpath(\"../..\",0),\"/focal\")) }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/stretch_fg_to_full_screen_windos_size.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+grouptype	[ 0	locks=0 ]	(	"guess"	)
+xOrd	[ 0	locks=0 ]	(	"srt"	)
+rOrd	[ 0	locks=0 ]	(	"xyz"	)
+t	[ 0	locks=0 ]	(	0	0	-1	)
+r	[ 0	locks=0 ]	(	0	0	0	)
+s	[ 8	locks=0 ]	(	1	1	1	)
+shear	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 0	locks=0 ]	(	[ scale	1.3917464274836155 ] 	)
+parmgroup_pivotxform	[ 0	locks=0 ]	(	0	)
+p	[ 0	locks=0 ]	(	0	0	0	)
+pr	[ 0	locks=0 ]	(	0	0	0	)
+parmgroup_prexform	[ 0	locks=0 ]	(	0	)
+prexform_xOrd	[ 0	locks=0 ]	(	"srt"	)
+prexform_rOrd	[ 0	locks=0 ]	(	"xyz"	)
+prexform_t	[ 0	locks=0 ]	(	0	0	0	)
+prexform_r	[ 0	locks=0 ]	(	0	0	0	)
+prexform_s	[ 0	locks=0 ]	(	1	1	1	)
+prexform_shear	[ 0	locks=0 ]	(	0	0	0	)
+movecentroid	[ 0	locks=0 ]	(	0	)
+attribs	[ 0	locks=0 ]	(	*	)
+updatenmls	[ 0	locks=0 ]	(	"off"	)
+updateaffectednmls	[ 0	locks=0 ]	(	"on"	)
+vlength	[ 0	locks=0 ]	(	"on"	)
+invertxform	[ 0	locks=0 ]	(	"off"	)
+addattrib	[ 0	locks=0 ]	(	"off"	)
+outputattrib	[ 0	locks=0 ]	(	xform	)
+outputmerge	[ 0	locks=0 ]	(	"post"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/stretch_fg_to_full_screen_windos_size.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch3.init"
+Content-Type: text/plain
+
+type = switch
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch3.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.31765 4.65663
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	grid1 0 1 "input1"
+2 	apply_window_screen_offset 0 1 "input2"
+}
+inputs
+{
+0 	grid1 0 1
+1 	apply_window_screen_offset 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 1 0.7 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch3.chn"
+Content-Type: text/plain
+
+{
+    channel input {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = ch(\"../../applywinxy\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch3.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+input	[ 8	locks=0 ]	(	[ input	0 ] 	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch3.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/apply_window_screen_offset.init"
+Content-Type: text/plain
+
+type = xform
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/apply_window_screen_offset.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.44644 6.33125
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+0 "output1"
+}
+inputsNamed3
+{
+1 	grid1 0 1 "input1"
+}
+inputs
+{
+0 	grid1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author mike@l50.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/apply_window_screen_offset.chn"
+Content-Type: text/plain
+
+{
+    channel tx {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = ch(opinputpath(\"../..\",0)+\"/winx\")/ch(opinputpath(\"../..\",0)+\"/winsizex\") }
+    }
+    channel ty {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = ch(opinputpath(\"../..\",0)+\"/winy\")/ch(\"../../aspect\")/ch(opinputpath(\"../..\",0)+\"/winsizey\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/apply_window_screen_offset.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+grouptype	[ 0	locks=0 ]	(	"guess"	)
+xOrd	[ 0	locks=0 ]	(	"srt"	)
+rOrd	[ 0	locks=0 ]	(	"xyz"	)
+t	[ 8	locks=0 ]	(	[ tx	0 ] 	[ ty	0 ] 	0	)
+r	[ 0	locks=0 ]	(	0	0	0	)
+s	[ 8	locks=0 ]	(	1	1	1	)
+shear	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 8	locks=0 ]	(	1	)
+parmgroup_pivotxform	[ 0	locks=0 ]	(	0	)
+p	[ 0	locks=0 ]	(	0	0	0	)
+pr	[ 0	locks=0 ]	(	0	0	0	)
+parmgroup_prexform	[ 0	locks=0 ]	(	0	)
+prexform_xOrd	[ 0	locks=0 ]	(	"srt"	)
+prexform_rOrd	[ 0	locks=0 ]	(	"xyz"	)
+prexform_t	[ 0	locks=0 ]	(	0	0	0	)
+prexform_r	[ 0	locks=0 ]	(	0	0	0	)
+prexform_s	[ 0	locks=0 ]	(	1	1	1	)
+prexform_shear	[ 0	locks=0 ]	(	0	0	0	)
+movecentroid	[ 0	locks=0 ]	(	0	)
+attribs	[ 0	locks=0 ]	(	*	)
+updatenmls	[ 0	locks=0 ]	(	"off"	)
+updateaffectednmls	[ 0	locks=0 ]	(	"on"	)
+vlength	[ 0	locks=0 ]	(	"on"	)
+invertxform	[ 0	locks=0 ]	(	"off"	)
+addattrib	[ 0	locks=0 ]	(	"off"	)
+outputattrib	[ 0	locks=0 ]	(	xform	)
+outputmerge	[ 0	locks=0 ]	(	"post"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/apply_window_screen_offset.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/extra_transform.init"
+Content-Type: text/plain
+
+type = xform
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/extra_transform.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.31765 -1.31754
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	switch1 1 1 "input1"
+}
+inputs
+{
+0 	switch1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/extra_transform.chn"
+Content-Type: text/plain
+
+{
+    channel tx {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = ch(\"../../extratx\") }
+    }
+    channel ty {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      start = 3.75
+      segment { length = 0 expr = ch(\"../../extraty\") }
+    }
+    channel sx {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = ch(\"../../extrasx\") }
+    }
+    channel sy {
+      lefttype = extend
+      righttype = extend
+      default = 1
+      flags = 0
+      segment { length = 0 value = 1 1 expr = ch(\"../../extrasy\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/extra_transform.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+grouptype	[ 0	locks=0 ]	(	"guess"	)
+xOrd	[ 0	locks=0 ]	(	"srt"	)
+rOrd	[ 0	locks=0 ]	(	"xyz"	)
+t	[ 0	locks=0 ]	(	[ tx	0 ] 	[ ty	0 ] 	0	)
+r	[ 0	locks=0 ]	(	0	0	0	)
+s	[ 8	locks=0 ]	(	[ sx	1 ] 	[ sy	1 ] 	1	)
+shear	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 0	locks=0 ]	(	1	)
+parmgroup_pivotxform	[ 0	locks=0 ]	(	0	)
+p	[ 0	locks=0 ]	(	0	0	0	)
+pr	[ 0	locks=0 ]	(	0	0	0	)
+parmgroup_prexform	[ 0	locks=0 ]	(	0	)
+prexform_xOrd	[ 0	locks=0 ]	(	"srt"	)
+prexform_rOrd	[ 0	locks=0 ]	(	"xyz"	)
+prexform_t	[ 0	locks=0 ]	(	0	0	0	)
+prexform_r	[ 0	locks=0 ]	(	0	0	0	)
+prexform_s	[ 0	locks=0 ]	(	1	1	1	)
+prexform_shear	[ 0	locks=0 ]	(	0	0	0	)
+movecentroid	[ 0	locks=0 ]	(	0	)
+attribs	[ 0	locks=0 ]	(	*	)
+updatenmls	[ 0	locks=0 ]	(	"off"	)
+updateaffectednmls	[ 0	locks=0 ]	(	"on"	)
+vlength	[ 0	locks=0 ]	(	"on"	)
+invertxform	[ 0	locks=0 ]	(	"off"	)
+addattrib	[ 0	locks=0 ]	(	"off"	)
+outputattrib	[ 0	locks=0 ]	(	xform	)
+outputmerge	[ 0	locks=0 ]	(	"post"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/extra_transform.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribcreate1.init"
+Content-Type: text/plain
+
+type = attribcreate::2.0
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribcreate1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32641 -5.52598
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	uvtexture1 0 1 "input1"
+}
+inputs
+{
+0 	uvtexture1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribcreate1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+grouptype	[ 0	locks=0 ]	(	"guess"	)
+encodenames	[ 0	locks=0 ]	(	"off"	)
+numattr	[ 0	locks=0 ]	(	1	)
+enable1	[ 0	locks=0 ]	(	"on"	)
+name1	[ 0	locks=0 ]	(	gl_lit	)
+existing1	[ 0	locks=0 ]	(	"better"	)
+createvarmap1	[ 0	locks=0 ]	(	"off"	)
+varname1	[ 0	locks=0 ]	(	""	)
+class1	[ 0	locks=0 ]	(	"detail"	)
+savetoinfo1	[ 0	locks=0 ]	(	"off"	)
+type1	[ 0	locks=0 ]	(	"int"	)
+typeinfo1	[ 0	locks=0 ]	(	"guess"	)
+precision1	[ 0	locks=0 ]	(	"32"	)
+size1	[ 0	locks=0 ]	(	1	)
+default1v	[ 0	locks=0 ]	(	0	0	0	0	)
+writevalues1	[ 0	locks=0 ]	(	"on"	)
+uselocal1	[ 0	locks=0 ]	(	"on"	)
+value1v	[ 0	locks=0 ]	(	0	0	0	0	)
+string1	[ 0	locks=0 ]	(	""	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribcreate1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_bottom.init"
+Content-Type: text/plain
+
+type = clip
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_bottom.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -7.72138
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	PRECORP 1 1 "input1"
+}
+inputs
+{
+0 	PRECORP 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_bottom.chn"
+Content-Type: text/plain
+
+{
+    channel originy {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_YMIN)" }
+    }
+    channel dist {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_YSIZE)*ch(\"../../cropb\")" }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_bottom.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+clipop	[ 0	locks=0 ]	(	"above"	)
+origin	[ 8	locks=0 ]	(	0	[ originy	0 ] 	0	)
+dist	[ 8	locks=0 ]	(	[ dist	0 ] 	)
+dir	[ 8	locks=0 ]	(	0	1	0	)
+newg	[ 0	locks=0 ]	(	"off"	)
+above	[ 0	locks=0 ]	(	above_plane	)
+below	[ 0	locks=0 ]	(	below_plane	)
+clippts	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_bottom.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_top.init"
+Content-Type: text/plain
+
+type = clip
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_top.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -8.52439
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	crop_bottom 1 1 "input1"
+}
+inputs
+{
+0 	crop_bottom 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_top.chn"
+Content-Type: text/plain
+
+{
+    channel originy {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_YMAX)" }
+    }
+    channel dist {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 value = 0.32856400000000002 0.32856400000000002 expr = "bbox(\"../PRECORP\", D_YSIZE)*(1-ch(\"../../cropt\"))" }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_top.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+clipop	[ 0	locks=0 ]	(	"above"	)
+origin	[ 8	locks=0 ]	(	0	[ originy	0 ] 	0	)
+dist	[ 8	locks=0 ]	(	[ dist	0 ] 	)
+dir	[ 8	locks=0 ]	(	0	-1	0	)
+newg	[ 0	locks=0 ]	(	"off"	)
+above	[ 0	locks=0 ]	(	above_plane	)
+below	[ 0	locks=0 ]	(	below_plane	)
+clippts	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_top.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_left.init"
+Content-Type: text/plain
+
+type = clip
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_left.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -9.47777
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	crop_top 1 1 "input1"
+}
+inputs
+{
+0 	crop_top 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_left.chn"
+Content-Type: text/plain
+
+{
+    channel dist {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_XSIZE)*ch(\"../../cropl\")" }
+    }
+    channel originx {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_XMIN)" }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_left.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+clipop	[ 0	locks=0 ]	(	"above"	)
+origin	[ 8	locks=0 ]	(	[ originx	-4.9999999122583502e-15 ] 	0	0	)
+dist	[ 8	locks=0 ]	(	[ dist	0 ] 	)
+dir	[ 8	locks=0 ]	(	1	0	0	)
+newg	[ 0	locks=0 ]	(	"off"	)
+above	[ 0	locks=0 ]	(	above_plane	)
+below	[ 0	locks=0 ]	(	below_plane	)
+clippts	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_left.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_right.init"
+Content-Type: text/plain
+
+type = clip
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_right.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -10.4758
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	crop_left 1 1 "input1"
+}
+inputs
+{
+0 	crop_left 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_right.chn"
+Content-Type: text/plain
+
+{
+    channel dist {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 value = 0.32856400000000002 0.32856400000000002 expr = "bbox(\"../PRECORP\", D_XSIZE)*(1-ch(\"../../cropr\"))" }
+    }
+    channel originx {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = "bbox(\"../PRECORP\", D_XMAX)" }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_right.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+clipop	[ 0	locks=0 ]	(	"above"	)
+origin	[ 8	locks=0 ]	(	[ originx	4.9999999122583502e-15 ] 	0	0	)
+dist	[ 8	locks=0 ]	(	[ dist	0 ] 	)
+dir	[ 8	locks=0 ]	(	-1	0	0	)
+newg	[ 0	locks=0 ]	(	"off"	)
+above	[ 0	locks=0 ]	(	above_plane	)
+below	[ 0	locks=0 ]	(	below_plane	)
+clippts	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/crop_right.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/PRECORP.init"
+Content-Type: text/plain
+
+type = null
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/PRECORP.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.32296 -6.62868
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	attribcreate1 1 1 "input1"
+}
+inputs
+{
+0 	attribcreate1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author lipilin@l44.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.6 0.7 0.77 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/PRECORP.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+copyinput	[ 0	locks=0 ]	(	"on"	)
+cacheinput	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/PRECORP.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material2.init"
+Content-Type: text/plain
+
+type = material
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material2.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.568695 -16.1492
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	reverse2 1 1 "input1"
+}
+inputs
+{
+0 	reverse2 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author dkozlova@l08.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+style	[ 0	locks=0 ]	(	primitive	)
+uselabels	[ 0	locks=0 ]	(	"uselabels"	)
+createstylesheets	[ 0	locks=0 ]	(	"off"	)
+fullpath	[ 0	locks=0 ]	(	"on"	)
+num_materials	[ 0	locks=0 ]	(	1	)
+group1	[ 0	locks=0 ]	(	""	)
+shop_materialpath1	[ 0	locks=0 ]	(	../shopnet1/matte	)
+localvar1	[ 0	locks=0 ]	(	"off"	)
+mergeoverride1	[ 0	locks=0 ]	(	"off"	)
+num_local1	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/material2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch4.init"
+Content-Type: text/plain
+
+type = switch
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch4.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.27703 -18.2101
+connectornextid 3
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+2 "output1"
+}
+inputsNamed3
+{
+0 	material1 1 1 "input1"
+1 	material2 1 1 "input2"
+}
+inputs
+{
+0 	material1 0 1
+1 	material2 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 1 0.7 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch4.chn"
+Content-Type: text/plain
+
+{
+    channel input {
+      lefttype = extend
+      righttype = extend
+      flags = 0
+      segment { length = 0 expr = ch(\"../../use_alpha\") }
+    }
+  }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch4.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+input	[ 0	locks=0 ]	(	[ input	1 ] 	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/switch4.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/out.init"
+Content-Type: text/plain
+
+type = null
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/out.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position -1.27703 -19.6267
+connectornextid 1
+flags =  lock off model off template off footprint off xray off bypass off display off render on highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+}
+inputsNamed3
+{
+0 	switch4 2 1 "input1"
+}
+inputs
+{
+0 	switch4 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.6 0.7 0.77 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/out.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+copyinput	[ 0	locks=0 ]	(	"on"	)
+cacheinput	[ 0	locks=0 ]	(	"off"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/out.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/polyextrude1.init"
+Content-Type: text/plain
+
+type = polyextrude::2.0
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/polyextrude1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.498881 -12.8944
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	attribpromote1 1 1 "input1"
+}
+inputs
+{
+0 	attribpromote1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/polyextrude1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+splittype	[ 0	locks=0 ]	(	"components"	)
+usesplitgroup	[ 0	locks=0 ]	(	"off"	)
+splitgroup	[ 0	locks=0 ]	(	""	)
+extrusionmode	[ 0	locks=0 ]	(	"primnormal"	)
+ptnormalsrc	[ 0	locks=0 ]	(	"precompute"	)
+ptnormalattrib	[ 0	locks=0 ]	(	N	)
+dist	[ 0	locks=0 ]	(	0	)
+inset	[ 0	locks=0 ]	(	-0.20000000000000001	)
+twist	[ 0	locks=0 ]	(	0	)
+divs	[ 0	locks=0 ]	(	1	)
+spinetype	[ 0	locks=0 ]	(	"straight"	)
+stdswitcher	[ 0	locks=0 ]	(	0	0	0	)
+xformsection	[ 0	locks=0 ]	(	0	)
+xformfront	[ 0	locks=0 ]	(	"off"	)
+xformspace	[ 0	locks=0 ]	(	"local"	)
+rst	[ 0	locks=0 ]	(	"srt"	)
+xyz	[ 0	locks=0 ]	(	"xyz"	)
+translate	[ 0	locks=0 ]	(	0	0	0	)
+rotate	[ 0	locks=0 ]	(	0	0	0	)
+scale	[ 0	locks=0 ]	(	1	1	1	)
+shear	[ 0	locks=0 ]	(	0	0	0	)
+pivotxformsection	[ 0	locks=0 ]	(	0	)
+pivot	[ 0	locks=0 ]	(	0	0	0	)
+pivotrotate	[ 0	locks=0 ]	(	0	0	0	)
+prexformsection	[ 0	locks=0 ]	(	0	)
+prexform_rst	[ 0	locks=0 ]	(	"srt"	)
+prexform_xyz	[ 0	locks=0 ]	(	"xyz"	)
+prexform_translate	[ 0	locks=0 ]	(	0	0	0	)
+prexform_rotate	[ 0	locks=0 ]	(	0	0	0	)
+prexform_scale	[ 0	locks=0 ]	(	1	1	1	)
+prexform_shear	[ 0	locks=0 ]	(	0	0	0	)
+outputsection	[ 0	locks=0 ]	(	0	)
+outputfront	[ 0	locks=0 ]	(	"off"	)
+outputfrontgrp	[ 0	locks=0 ]	(	"on"	)
+frontgrp	[ 0	locks=0 ]	(	extrudeFront	)
+outputback	[ 0	locks=0 ]	(	"on"	)
+outputbackgrp	[ 0	locks=0 ]	(	"off"	)
+backgrp	[ 0	locks=0 ]	(	extrudeBack	)
+outputside	[ 0	locks=0 ]	(	"on"	)
+outputsidegrp	[ 0	locks=0 ]	(	"on"	)
+sidegrp	[ 0	locks=0 ]	(	extrudeSide	)
+outputfrontseamgrp	[ 0	locks=0 ]	(	"off"	)
+frontseamgrp	[ 0	locks=0 ]	(	extrudeFrontSeam	)
+outputbackseamgrp	[ 0	locks=0 ]	(	"off"	)
+backseamgrp	[ 0	locks=0 ]	(	extrudeBackSeam	)
+preservegroups	[ 0	locks=0 ]	(	"on"	)
+insettingsection	[ 0	locks=0 ]	(	0	)
+limitinset	[ 0	locks=0 ]	(	"on"	)
+commonlimit	[ 0	locks=0 ]	(	"on"	)
+normalsection	[ 0	locks=0 ]	(	0	)
+addvertexnomrals	[ 0	locks=0 ]	(	"off"	)
+cuspangle	[ 0	locks=0 ]	(	60	)
+cuspfront	[ 0	locks=0 ]	(	"on"	)
+cuspback	[ 0	locks=0 ]	(	"on"	)
+uvssection	[ 0	locks=0 ]	(	0	)
+genuvs	[ 0	locks=0 ]	(	"on"	)
+uvstyle	[ 0	locks=0 ]	(	"proprtional"	)
+uvscaling	[ 0	locks=0 ]	(	"matchuv"	)
+shapecontrolsection	[ 0	locks=0 ]	(	0	)
+frontmagnitude	[ 0	locks=0 ]	(	1	)
+backmagnitude	[ 0	locks=0 ]	(	1	)
+frontstiffness	[ 0	locks=0 ]	(	0	)
+backstiffness	[ 0	locks=0 ]	(	0	)
+interpolation	[ 0	locks=0 ]	(	"rotatingframe"	)
+spacing	[ 0	locks=0 ]	(	"arclengthuniform"	)
+externalspinesection	[ 0	locks=0 ]	(	0	)
+reversespinedirection	[ 0	locks=0 ]	(	"off"	)
+axialrotation	[ 0	locks=0 ]	(	0	)
+frontblend	[ 0	locks=0 ]	(	0.10000000000000001	)
+backblend	[ 0	locks=0 ]	(	0.10000000000000001	)
+thicknesssection	[ 0	locks=0 ]	(	0	)
+thicknessscale	[ 0	locks=0 ]	(	1	)
+usethicknessattrib	[ 0	locks=0 ]	(	"on"	)
+thicknessattrib	[ 0	locks=0 ]	(	thickness	)
+usethicknessramp	[ 0	locks=0 ]	(	"on"	)
+thicknessramp	[ 0	locks=0 ]	(	2	)
+twistsection	[ 0	locks=0 ]	(	0	)
+usetwistattrib	[ 0	locks=0 ]	(	"on"	)
+twistattrib	[ 0	locks=0 ]	(	twist	)
+usetwistramp	[ 0	locks=0 ]	(	"on"	)
+twistramp	[ 0	locks=0 ]	(	2	)
+twistscale	[ 0	locks=0 ]	(	180	)
+localattribs	[ 0	locks=0 ]	(	0	)
+uselocalzscaleattrib	[ 0	locks=0 ]	(	"off"	)
+localzscaleattrib	[ 0	locks=0 ]	(	zscale	)
+uselocalinsetscaleattrib	[ 0	locks=0 ]	(	"off"	)
+localinsetscaleattrib	[ 0	locks=0 ]	(	insetscale	)
+uselocaltwistattrib	[ 0	locks=0 ]	(	"off"	)
+localtwistscaleattrib	[ 0	locks=0 ]	(	twistscale	)
+uselocaldivsattrib	[ 0	locks=0 ]	(	"off"	)
+locadivscaleattrib	[ 0	locks=0 ]	(	divsscale	)
+localframeattribs	[ 0	locks=0 ]	(	0	)
+uselocalxattrib	[ 0	locks=0 ]	(	"off"	)
+localxattrib	[ 0	locks=0 ]	(	localx	)
+uselocalzattirb	[ 0	locks=0 ]	(	"off"	)
+localzattirb	[ 0	locks=0 ]	(	localz	)
+uselocalctrattrib	[ 0	locks=0 ]	(	"off"	)
+localctrattrib	[ 0	locks=0 ]	(	localctr	)
+thicknessramp1pos	[ 0	locks=0 ]	(	0	)
+thicknessramp1value	[ 0	locks=0 ]	(	1	)
+thicknessramp1interp	[ 0	locks=0 ]	(	"catmull-rom"	)
+thicknessramp2pos	[ 0	locks=0 ]	(	1	)
+thicknessramp2value	[ 0	locks=0 ]	(	1	)
+thicknessramp2interp	[ 0	locks=0 ]	(	"catmull-rom"	)
+twistramp1pos	[ 0	locks=0 ]	(	0	)
+twistramp1value	[ 0	locks=0 ]	(	0.5	)
+twistramp1interp	[ 0	locks=0 ]	(	"catmull-rom"	)
+twistramp2pos	[ 0	locks=0 ]	(	1	)
+twistramp2value	[ 0	locks=0 ]	(	0.5	)
+twistramp2interp	[ 0	locks=0 ]	(	"catmull-rom"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/polyextrude1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse2.init"
+Content-Type: text/plain
+
+type = reverse
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse2.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.498881 -13.961
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	polyextrude1 1 1 "input1"
+}
+inputs
+{
+0 	polyextrude1 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse2.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+group	[ 0	locks=0 ]	(	""	)
+vtxsort	[ 0	locks=0 ]	(	"reverseu"	)
+vtxuoff	[ 0	locks=0 ]	(	0	)
+vtxvoff	[ 0	locks=0 ]	(	0	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/reverse2.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribpromote1.init"
+Content-Type: text/plain
+
+type = attribpromote
+matchesdef = 0
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribpromote1.def"
+Content-Type: text/plain
+
+sopflags sopflags = 
+comment ""
+position 0.3114 -11.961
+connectornextid 2
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on
+outputsNamed3
+{
+1 "output1"
+}
+inputsNamed3
+{
+0 	crop_right 1 1 "input1"
+}
+inputs
+{
+0 	crop_right 0 1
+}
+stat
+{
+  create -1
+  modify -1
+  author aapalikov@l68.mrpost.lan
+  access 0777
+}
+color UT_Color RGB 0.8 0.8 0.8 
+delscript ""
+exprlanguage hscript
+end
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribpromote1.parm"
+Content-Type: text/plain
+
+{
+version 0.8
+inname	[ 0	locks=0 ]	(	uv	)
+inclass	[ 0	locks=0 ]	(	"vertex"	)
+outclass	[ 0	locks=0 ]	(	"point"	)
+usepieceattrib	[ 0	locks=0 ]	(	"off"	)
+pieceattrib	[ 0	locks=0 ]	(	name	)
+method	[ 0	locks=0 ]	(	"mean"	)
+useoutname	[ 0	locks=0 ]	(	"off"	)
+outname	[ 0	locks=0 ]	(	""	)
+deletein	[ 0	locks=0 ]	(	"on"	)
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid/attribpromote1.userdata"
+Content-Type: text/plain
+
+{
+	"___Version___":{
+		"type":"string",
+		"value":"___EXTERNAL___"
+	}
+}
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.order"
+Content-Type: text/plain
+
+23
+grid1
+shopnet1
+material1
+reverse1
+uvtexture1
+transform1
+switch1
+stretch_fg_to_full_screen_windos_size
+switch3
+apply_window_screen_offset
+extra_transform
+attribcreate1
+crop_bottom
+crop_top
+crop_left
+crop_right
+PRECORP
+material2
+switch4
+out
+polyextrude1
+reverse2
+attribpromote1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot/grid.net"
+Content-Type: text/plain
+
+1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.net"
+Content-Type: text/plain
+
+1
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY--

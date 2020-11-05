@@ -1,0 +1,33 @@
+=MRP Hair Normal=
+
+Calculated normal for curve. This node is a copy of it's version from SideFX, except the following:
+with Do Rounding turned on, in original version normals were generated only for a part of a tube
+(+-45 degrees from direction to the viewer). In this node surface will be more correct, without cutted edges
+(+-90 degrees from direction to the viewer).
+
+@inputs
+
+nI:
+    The incident direction ray used in the calculation of the curve normal.
+
+nT:
+    This is the vector tangent to the curve (hair).
+
+ss:
+    This is the u texture coordinate attached the curve (hair) primitive.
+
+
+@parameters
+
+bow:
+    This is the Do Rounding toggle. If on, it causes the curve to have an interpolated normal.
+
+
+@outputs
+
+hairNn:
+    A normal vector for use with hair lighting models.
+
+@related
+
+    - [Node:vop/hairnormal]

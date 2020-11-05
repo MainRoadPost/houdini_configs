@@ -1,0 +1,377 @@
+# Dialog script for cg::fg_imageplane::1.1 automatically generated
+
+{
+    name	cg::fg_imageplane::1.1
+    script	cg::fg_imageplane::1.0
+    label	"FG Image Plane"
+
+    help {
+	""
+    }
+
+    inputlabel	1	"Sub-Network Input #1"
+    inputlabel	2	"Sub-Network Input #2"
+    inputlabel	3	"Sub-Network Input #3"
+    inputlabel	4	"Sub-Network Input #4"
+
+    group {
+        name    "stdswitcher3"
+        label   "Transform"
+        invisibletab
+
+        parm {
+            name    "keeppos"
+            baseparm
+            label   "Keep Position When Parenting"
+            export  none
+        }
+        parm {
+            name    "childcomp"
+            baseparm
+            label   "Child Compensation"
+            export  none
+        }
+        parm {
+            name    "pre_xform"
+            baseparm
+            label   "Pre-transform"
+            export  none
+        }
+        parm {
+            name    "xOrd"
+            baseparm
+            label   "Transform Order"
+            joinnext
+            export  none
+        }
+        parm {
+            name    "rOrd"
+            baseparm
+            label   "Rotate Order"
+            nolabel
+            export  none
+        }
+        parm {
+            name    "t"
+            baseparm
+            label   "Translate"
+            export  none
+        }
+        parm {
+            name    "r"
+            baseparm
+            label   "Rotate"
+            export  none
+        }
+        parm {
+            name    "s"
+            baseparm
+            label   "Scale"
+            export  none
+        }
+        parm {
+            name    "p"
+            baseparm
+            label   "Pivot"
+            export  none
+        }
+        parm {
+            name    "scale"
+            baseparm
+            label   "Uniform Scale"
+            export  none
+        }
+        parm {
+            name    "lookatpath"
+            baseparm
+            label   "Look At"
+            export  none
+        }
+        parm {
+            name    "lookupobjpath"
+            baseparm
+            label   "Look Up Object"
+            export  none
+        }
+        parm {
+            name    "lookup"
+            baseparm
+            label   "Look At Up Vector"
+            export  none
+        }
+        parm {
+            name    "pathobjpath"
+            baseparm
+            label   "Path Object"
+            export  none
+        }
+        parm {
+            name    "roll"
+            baseparm
+            label   "Roll"
+            export  none
+        }
+        parm {
+            name    "pos"
+            baseparm
+            label   "Position"
+            export  none
+        }
+        parm {
+            name    "uparmtype"
+            baseparm
+            label   "Parameterization"
+            export  none
+        }
+        parm {
+            name    "pathorient"
+            baseparm
+            label   "Orient Along Path"
+            export  none
+        }
+        parm {
+            name    "up"
+            baseparm
+            label   "Orient Up Vector"
+            export  none
+        }
+        parm {
+            name    "bank"
+            baseparm
+            label   "Auto-Bank factor"
+            export  none
+        }
+    }
+
+    group {
+        name    "stdswitcher3_1"
+        label   "Paramters"
+
+        parm {
+            name    "map"
+            label   "Texture Map"
+            type    image
+            default { "$JOB/render/$SHOT/fg/$VER/wb_undistort_acescg.$F4.exr" }
+            range   { 0 1 }
+            parmtag { "autoscope" "0000000000000000" }
+            parmtag { "parmvop" "1" }
+            parmtag { "shaderparmcontexts" "surface" }
+        }
+        parm {
+            name    "distance"
+            label   "Distance from camera"
+            type    float
+            default { "ch(strcat(opinputpath(\".\",0),\"/near\"))*1.001" }
+            range   { 0 10 }
+        }
+        parm {
+            name    "ogl_alpha"
+            label   "OGL Alpha"
+            type    float
+            default { "1" }
+            range   { 0 10 }
+            parmtag { "autoscope" "0000000000000000" }
+        }
+        parm {
+            name    "aspect"
+            label   "Picture Aspect"
+            type    float
+            default { "ch(strcat(opinputpath(\".\",0),\"/resx\"))/ch(strcat(opinputpath(\".\",0),\"/resy\"))" }
+            range   { 0 10 }
+        }
+        parm {
+            name    "applywinsize"
+            label   "Apply Screen Window Size"
+            type    toggle
+            default { "0" }
+        }
+        parm {
+            name    "applywinxy"
+            label   "Apply Window X/Y"
+            type    toggle
+            default { "0" }
+        }
+        parm {
+            name    "extrat"
+            label   "Extra Translate"
+            type    vector2
+            size    2
+            default { "0" "0" }
+            range   { -1 1 }
+            parmtag { "autoscope" "0000000000000000" }
+        }
+        parm {
+            name    "extras"
+            label   "Extra Scale"
+            type    vector2
+            size    2
+            default { "1" "1" }
+            range   { -1 1 }
+        }
+        parm {
+            name    "cropl"
+            label   "Left Crop"
+            type    float
+            default { "0" }
+            range   { 0! 1! }
+        }
+        parm {
+            name    "cropr"
+            label   "Right Crop"
+            type    float
+            default { "1" }
+            range   { 0! 1! }
+        }
+        parm {
+            name    "cropb"
+            label   "Bottom Crop"
+            type    float
+            default { "0" }
+            range   { 0! 1! }
+        }
+        parm {
+            name    "cropt"
+            label   "Top Crop"
+            type    float
+            default { "1" }
+            range   { 0! 1! }
+        }
+        parm {
+            name    "vm_rendervisibility"
+            label   "Render Visibility"
+            type    string
+            default { "primary" }
+            menureplace {
+                "*"                             "Visible to all"
+                "primary"                       "Visible only to primary rays"
+                "primary|shadow"                "Visible only to primary and shadow rays"
+                "-primary"                      "Invisible to primary rays (Phantom)"
+                "-diffuse"                      "Invisible to diffuse rays"
+                "-diffuse&-reflect&-refract"    "Invisible to secondary rays"
+                ""                              "Invisible (Unrenderable)"
+            }
+            range   { 0 1 }
+            parmtag { "autoscope" "0000000000000000" }
+            parmtag { "spare_category" "Render" }
+        }
+        parm {
+            name    "ogl_hq"
+            label   "OGL HQ Lighting"
+            type    toggle
+            default { "0" }
+        }
+    }
+
+    group {
+        name    "stdswitcher3_2"
+        label   "Subnet"
+
+        parm {
+            name    "label1"
+            baseparm
+            label   "Input #1 Label"
+            invisible
+            export  dialog
+        }
+        parm {
+            name    "label2"
+            baseparm
+            label   "Input #2 Label"
+            invisible
+            export  dialog
+        }
+        parm {
+            name    "label3"
+            baseparm
+            label   "Input #3 Label"
+            invisible
+            export  dialog
+        }
+        parm {
+            name    "label4"
+            baseparm
+            label   "Input #4 Label"
+            invisible
+            export  dialog
+        }
+        parm {
+            name    "tdisplay"
+            baseparm
+            label   "Display"
+            joinnext
+            export  all
+        }
+        parm {
+            name    "display"
+            baseparm
+            label   "Display"
+            export  all
+        }
+        parm {
+            name    "outputobj"
+            baseparm
+            label   "Output Transform"
+            export  all
+        }
+        parm {
+            name    "visibleobjects"
+            baseparm
+            label   "Visible Children"
+            export  none
+        }
+        parm {
+            name    "picking"
+            baseparm
+            label   "Viewport Selecting Enabled"
+            export  none
+        }
+        parm {
+            name    "pickscript"
+            baseparm
+            label   "Select Script"
+            export  none
+        }
+        parm {
+            name    "caching"
+            baseparm
+            label   "Cache Object Transform"
+            export  none
+        }
+        parm {
+            name    "use_dcolor"
+            baseparm
+            label   "Set Wireframe Color"
+            invisible
+            export  none
+        }
+        parm {
+            name    "dcolor"
+            baseparm
+            label   "Wireframe Color"
+            invisible
+            export  none
+        }
+    }
+
+    parm {
+        name    "constraints_on"
+        baseparm
+        label   "Enable Constraints"
+        invisible
+        export  none
+    }
+    parm {
+        name    "constraints_path"
+        baseparm
+        label   "Constraints"
+        invisible
+        export  none
+    }
+    parm {
+        name    "pr"
+        baseparm
+        label   "Pivot Rotate"
+        invisible
+        export  none
+    }
+}

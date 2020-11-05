@@ -1,0 +1,15 @@
+Operator:     mrp::thin_dirty_glass::1.0
+Label:        MRP Thin Dirty Glass
+Path:         oplib:/mrp::Vop/thin_dirty_glass::1.0?mrp::Vop/thin_dirty_glass::1.0
+Icon:         VOP_mrp-thin_dirty_glass-1.0
+Table:        Vop
+License:      
+Extra:        fog surface
+User:         
+Inputs:       0 to 8
+Outputs:      2048
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Wed Mar 13 11:36:06 2019
+

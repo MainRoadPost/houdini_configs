@@ -1,0 +1,15 @@
+Operator:     mrp::ggx_glass::1.0
+Label:        MRP GGX Glass
+Path:         oplib:/mrp::Vop/ggx_glass::1.0?mrp::Vop/ggx_glass::1.0
+Icon:         VOP_refract
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 14
+Outputs:      2
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Thu Jan 31 19:19:17 2019
+

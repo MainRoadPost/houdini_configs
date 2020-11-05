@@ -1,0 +1,15 @@
+Operator:     mrp::roundededge::1.1
+Label:        MRP Rounded Edge
+Path:         oplib:/mrp::Vop/roundededge::1.1?mrp::Vop/roundededge::1.1
+Icon:         VOP_roundededge
+Table:        Vop
+License:      
+Extra:        surface
+User:         
+Inputs:       0 to 6
+Outputs:      4
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Wed Mar  6 15:16:26 2019
+

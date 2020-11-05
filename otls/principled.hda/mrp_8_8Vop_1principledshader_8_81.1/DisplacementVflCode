@@ -1,0 +1,5601 @@
+#line 1 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+#line 15 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+_Pragma("opname principledshader1");
+_Pragma("oplabel \"Local Vop Code\"");
+_Pragma("opmininputs 0");
+_Pragma("opmaxinputs 0");
+_Pragma("label	dispTex_type	\"Texture Type\"");
+_Pragma("hidewhen	dispTex_type	{ dispTex_enable 0 }");
+_Pragma("choice	dispTex_type	\"disp\"	\"Displacement Along Normal\"");
+_Pragma("choice	dispTex_type	\"vectordisp\"	\"Vector Displacement\"");
+_Pragma("label	dispTex_colorSpace	\"Texture Color Space\"");
+_Pragma("hidewhen	dispTex_colorSpace	{ dispTex_enable 0 }");
+_Pragma("choice	dispTex_colorSpace	\"auto\"	\"Automatic\"");
+_Pragma("choice	dispTex_colorSpace	\"linear\"	\"Linear\"");
+_Pragma("label	dispTex_vectorSpace	\"Vector Space\"");
+_Pragma("hidewhen	dispTex_vectorSpace	{ dispTex_enable 0 } { dispTex_type != normal dispTex_type != vectordisp }");
+_Pragma("choice	dispTex_vectorSpace	\"uvtangent\"	\"UV Tangent Space\"");
+_Pragma("choice	dispTex_vectorSpace	\"object\"	\"Object Space\"");
+_Pragma("choice	dispTex_vectorSpace	\"world\"	\"World Space\"");
+_Pragma("label	dispTex_offset	Offset");
+_Pragma("range	dispTex_offset	-1	0");
+_Pragma("hidewhen	dispTex_offset	{ dispTex_enable 0 } { dispTex_type != bump dispTex_type != disp }");
+_Pragma("label	dispTex_scale	\"Effect Scale\"");
+_Pragma("range	dispTex_scale	0	1");
+_Pragma("hidewhen	dispTex_scale	{ dispTex_enable 0 }");
+_Pragma("label	dispTex_texture	\"Texture Path\"");
+_Pragma("hint	dispTex_texture	image");
+_Pragma("hidewhen	dispTex_texture	{ dispTex_enable 0 }");
+_Pragma("label	dispTex_wrap	Wrap");
+_Pragma("hint	dispTex_wrap	joinnext");
+_Pragma("hidewhen	dispTex_wrap	{ dispTex_enable 0 }");
+_Pragma("choice	dispTex_wrap	\"repeat\"	\"Repeat\"");
+_Pragma("choice	dispTex_wrap	\"streak\"	\"Streak\"");
+_Pragma("choice	dispTex_wrap	\"decal\"	\"Decal\"");
+_Pragma("label	dispTex_filter	Filter");
+_Pragma("hidewhen	dispTex_filter	{ dispTex_enable 0 }");
+_Pragma("choice	dispTex_filter	\"box\"	\"Box\"");
+_Pragma("choice	dispTex_filter	\"gauss\"	\"Gaussian\"");
+_Pragma("choice	dispTex_filter	\"bartlett\"	\"Bartlett/Triangular\"");
+_Pragma("choice	dispTex_filter	\"sinc\"	\"Sinc Sharpening\"");
+_Pragma("choice	dispTex_filter	\"hanning\"	\"Hanning\"");
+_Pragma("choice	dispTex_filter	\"blackman\"	\"Blackman\"");
+_Pragma("choice	dispTex_filter	\"catrom\"	\"Catmull-Rom\"");
+_Pragma("choice	dispTex_filter	\"mitchell\"	\"Mitchell\"");
+_Pragma("label	dispTex_filterWidth	\"Filter Width\"");
+_Pragma("range	dispTex_filterWidth	0	2");
+_Pragma("hidewhen	dispTex_filterWidth	{ dispTex_enable 0 }");
+_Pragma("label	dispTex_channel	Channel");
+_Pragma("hint	dispTex_channel	joinnext");
+_Pragma("range	dispTex_channel	0	10");
+_Pragma("hidewhen	dispTex_channel	{ dispTex_enable 0 } { dispTex_type != bump dispTex_type != disp }");
+_Pragma("choice	dispTex_channel	\"0\"	\"Luminance\"");
+_Pragma("choice	dispTex_channel	\"1\"	\"Red\"");
+_Pragma("choice	dispTex_channel	\"2\"	\"Green\"");
+_Pragma("choice	dispTex_channel	\"3\"	\"Blue\"");
+_Pragma("label	uv	\"UV Coordinates\"");
+_Pragma("hint	uv	hidden");
+_Pragma("hint	uv	vector");
+_Pragma("label	dispNoise_type	\"Noise Type\"");
+_Pragma("disablewhen	dispNoise_type	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_type	{ dispNoise_enable 0 }");
+_Pragma("choice	dispNoise_type	\"pnoise\"	\"Perlin Noise\"");
+_Pragma("choice	dispNoise_type	\"onoise\"	\"Original Perlin Noise\"");
+_Pragma("choice	dispNoise_type	\"xnoise\"	\"Simplex Noise\"");
+_Pragma("choice	dispNoise_type	\"snoise\"	\"Sparse Convolution Noise\"");
+_Pragma("choice	dispNoise_type	\"anoise\"	\"Alligator Noise\"");
+_Pragma("label	dispNoise_freq	Frequency");
+_Pragma("disablewhen	dispNoise_freq	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_freq	{ dispNoise_enable 0 }");
+_Pragma("label	dispNoise_offset	Offset");
+_Pragma("disablewhen	dispNoise_offset	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_offset	{ dispNoise_enable 0 }");
+_Pragma("label	dispNoise_amp	Amplitude");
+_Pragma("range	dispNoise_amp	-1	1");
+_Pragma("disablewhen	dispNoise_amp	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_amp	{ dispNoise_enable 0 }");
+_Pragma("label	dispNoise_rough	Roughness");
+_Pragma("range	dispNoise_rough	0	1");
+_Pragma("disablewhen	dispNoise_rough	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_rough	{ dispNoise_enable 0 }");
+_Pragma("label	dispNoise_atten	Attenuation");
+_Pragma("range	dispNoise_atten	0	1");
+_Pragma("disablewhen	dispNoise_atten	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_atten	{ dispNoise_enable 0 }");
+_Pragma("label	dispNoise_turb	Turbulence");
+_Pragma("range	dispNoise_turb	0	10");
+_Pragma("disablewhen	dispNoise_turb	{ enableNoise == 0 }");
+_Pragma("hidewhen	dispNoise_turb	{ dispNoise_enable 0 }");
+_Pragma("label	rest	\"Rest Position\"");
+_Pragma("hint	rest	hidden");
+_Pragma("label	dispTex_enable	\"Enable Texture Displacement\"");
+_Pragma("hint	dispTex_enable	toggle");
+_Pragma("label	dispNoise_enable	\"Enable Noise Displacement\"");
+_Pragma("hint	dispNoise_enable	toggle");
+_Pragma("label	uvtrans	Translate");
+_Pragma("label	uvrot	Rotate");
+_Pragma("range	uvrot	0	1");
+_Pragma("label	uvscale	Scale");
+_Pragma("label	layer	\"\"");
+_Pragma("hint	layer	invisible");
+_Pragma("label	pre_disp_P	\"\"");
+_Pragma("hint	pre_disp_P	invisible");
+_Pragma("label	pre_disp_utan	\"\"");
+_Pragma("hint	pre_disp_utan	invisible");
+_Pragma("label	pre_disp_vtan	\"\"");
+_Pragma("hint	pre_disp_vtan	invisible");
+_Pragma("label	pre_disp_N	\"\"");
+_Pragma("hint	pre_disp_N	invisible");
+_Pragma("label	dispInput_enable	\"Enable Input Displacement\"");
+_Pragma("hint	dispInput_enable	toggle");
+_Pragma("label	disp	\"Normal Displacement\"");
+_Pragma("hint	disp	invisible");
+_Pragma("range	disp	0	1");
+_Pragma("label	vdisp	\"Vector Displacement\"");
+_Pragma("hint	vdisp	invisible");
+_Pragma("label	dispTex_channelOrder	\"Channel Order\"");
+_Pragma("hidewhen	dispTex_channelOrder	{ dispTex_enable 0 } { dispTex_type != vectordisp }");
+_Pragma("choice	dispTex_channelOrder	\"xyz\"	\"XYZ\"");
+_Pragma("choice	dispTex_channelOrder	\"xzy\"	\"XZY\"");
+_Pragma("label	dispInput_vectorspace	\"Vector Space\"");
+_Pragma("hidewhen	dispInput_vectorspace	{ dispInput_enable == 0 }");
+_Pragma("choice	dispInput_vectorspace	\"uvtangent\"	\"UV Tangent Space\"");
+_Pragma("choice	dispInput_vectorspace	\"object\"	\"Object Space\"");
+_Pragma("choice	dispInput_vectorspace	\"world\"	\"World Space\"");
+
+
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+#line 22 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+struct ShaderExports
+{
+    string	names_f[];
+    float	values_f[];
+    string	names_v[];
+    vector	values_v[];
+    string	names_v4[];
+    vector4	values_v4[];
+}
+
+struct ShaderLayer
+{
+    bsdf	    F;
+    vector	    Of;
+    vector	    Ce;
+    vector	    P;
+    vector	    N;
+    float	    layeralpha;
+    float	    thickness;
+    vector	    absorption;
+    float	    masks[];
+    ShaderExports   exports;
+}
+
+void init_layerexports(export ShaderExports exports)
+{
+    exports.names_f = {};
+    exports.values_f = {};
+    exports.names_v = {};
+    exports.values_v = {};
+    exports.names_v4 = {};
+    exports.values_v4 = {};
+}
+
+void init_layer(export ShaderLayer layer)
+{
+    layer.F = bsdf();
+    layer.Of = {1,1,1};
+    layer.Ce = {0,0,0};
+    layer.P = P;
+    layer.N = normalize(N);
+    layer.layeralpha = 1.0;
+    layer.masks = {};
+    init_layerexports(layer.exports);
+}
+#line 135 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+void comp_export_arrays_aoverb(const string names_a[]; const float vals_a[]; const float Aa; const string names_b[]; const float vals_b[]; const float Ba; string out_names[]; float out_values[]) { float val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a+(1-Aa)*Ba*val_b); } } void comp_export_arrays_ainsideb(const string names_a[]; const float vals_a[]; const float Aa; const string names_b[]; const float vals_b[]; const float Ba; string out_names[]; float out_values[]) { float val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba); } } void comp_export_arrays_aoutsideb(const string names_a[]; const float vals_a[]; const float Aa; const string names_b[]; const float vals_b[]; const float Ba; string out_names[]; float out_values[]) { float val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba)); } } void comp_export_arrays_aatopb(const string names_a[]; const float vals_a[]; const float Aa; const string names_b[]; const float vals_b[]; const float Ba; string out_names[]; float out_values[]) { float val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba + Ba*val_b*(1-Aa)); } } void comp_export_arrays_axorb(const string names_a[]; const float vals_a[]; const float Aa; const string names_b[]; const float vals_b[]; const float Ba; string out_names[]; float out_values[]) { float val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba) + Ba*val_b*(1-Aa)); } }
+void comp_export_arrays_aoverb(const string names_a[]; const vector vals_a[]; const float Aa; const string names_b[]; const vector vals_b[]; const float Ba; string out_names[]; vector out_values[]) { vector val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a+(1-Aa)*Ba*val_b); } } void comp_export_arrays_ainsideb(const string names_a[]; const vector vals_a[]; const float Aa; const string names_b[]; const vector vals_b[]; const float Ba; string out_names[]; vector out_values[]) { vector val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba); } } void comp_export_arrays_aoutsideb(const string names_a[]; const vector vals_a[]; const float Aa; const string names_b[]; const vector vals_b[]; const float Ba; string out_names[]; vector out_values[]) { vector val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba)); } } void comp_export_arrays_aatopb(const string names_a[]; const vector vals_a[]; const float Aa; const string names_b[]; const vector vals_b[]; const float Ba; string out_names[]; vector out_values[]) { vector val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba + Ba*val_b*(1-Aa)); } } void comp_export_arrays_axorb(const string names_a[]; const vector vals_a[]; const float Aa; const string names_b[]; const vector vals_b[]; const float Ba; string out_names[]; vector out_values[]) { vector val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba) + Ba*val_b*(1-Aa)); } }
+void comp_export_arrays_aoverb(const string names_a[]; const vector4 vals_a[]; const float Aa; const string names_b[]; const vector4 vals_b[]; const float Ba; string out_names[]; vector4 out_values[]) { vector4 val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a+(1-Aa)*Ba*val_b); } } void comp_export_arrays_ainsideb(const string names_a[]; const vector4 vals_a[]; const float Aa; const string names_b[]; const vector4 vals_b[]; const float Ba; string out_names[]; vector4 out_values[]) { vector4 val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba); } } void comp_export_arrays_aoutsideb(const string names_a[]; const vector4 vals_a[]; const float Aa; const string names_b[]; const vector4 vals_b[]; const float Ba; string out_names[]; vector4 out_values[]) { vector4 val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba)); } } void comp_export_arrays_aatopb(const string names_a[]; const vector4 vals_a[]; const float Aa; const string names_b[]; const vector4 vals_b[]; const float Ba; string out_names[]; vector4 out_values[]) { vector4 val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*Ba + Ba*val_b*(1-Aa)); } } void comp_export_arrays_axorb(const string names_a[]; const vector4 vals_a[]; const float Aa; const string names_b[]; const vector4 vals_b[]; const float Ba; string out_names[]; vector4 out_values[]) { vector4 val_a, val_b; int done_in_b[]; foreach(int index_a; string name_a; names_a) { int index_b = index_a; if (names_b[index_b] != name_a) index_b = find(names_b, name_a); int found = index_b >= 0; val_b = select(found, vals_b[index_b], 0.0); append(out_names, name_a); append(out_values, Aa*vals_a[index_a]+(1-Aa)*Ba*val_b); done_in_b[index_b] = found; } foreach(int index_b; string name_b; names_b) { if(done_in_b[index_b]) continue; val_a = 0.0; val_b = vals_b[index_b]; append(out_names, name_b); append(out_values, Aa*val_a*(1-Ba) + Ba*val_b*(1-Aa)); } }
+#line 160 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+void composite_exports_aoverb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba; ShaderLayer out) { out.exports.names_f = {}; out.exports.values_f = {}; out.exports.names_v = {}; out.exports.values_v = {}; out.exports.names_v4 = {}; out.exports.values_v4 = {}; comp_export_arrays_aoverb(A.exports.names_f, A.exports.values_f, Aa, B.exports.names_f, B.exports.values_f, Ba, out.exports.names_f, out.exports.values_f); comp_export_arrays_aoverb(A.exports.names_v, A.exports.values_v, Aa, B.exports.names_v, B.exports.values_v, Ba, out.exports.names_v, out.exports.values_v); comp_export_arrays_aoverb(A.exports.names_v4, A.exports.values_v4, Aa, B.exports.names_v4, B.exports.values_v4, Ba, out.exports.names_v4, out.exports.values_v4); }
+void composite_exports_ainsideb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba; ShaderLayer out) { out.exports.names_f = {}; out.exports.values_f = {}; out.exports.names_v = {}; out.exports.values_v = {}; out.exports.names_v4 = {}; out.exports.values_v4 = {}; comp_export_arrays_ainsideb(A.exports.names_f, A.exports.values_f, Aa, B.exports.names_f, B.exports.values_f, Ba, out.exports.names_f, out.exports.values_f); comp_export_arrays_ainsideb(A.exports.names_v, A.exports.values_v, Aa, B.exports.names_v, B.exports.values_v, Ba, out.exports.names_v, out.exports.values_v); comp_export_arrays_ainsideb(A.exports.names_v4, A.exports.values_v4, Aa, B.exports.names_v4, B.exports.values_v4, Ba, out.exports.names_v4, out.exports.values_v4); }
+void composite_exports_aoutsideb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba; ShaderLayer out) { out.exports.names_f = {}; out.exports.values_f = {}; out.exports.names_v = {}; out.exports.values_v = {}; out.exports.names_v4 = {}; out.exports.values_v4 = {}; comp_export_arrays_aoutsideb(A.exports.names_f, A.exports.values_f, Aa, B.exports.names_f, B.exports.values_f, Ba, out.exports.names_f, out.exports.values_f); comp_export_arrays_aoutsideb(A.exports.names_v, A.exports.values_v, Aa, B.exports.names_v, B.exports.values_v, Ba, out.exports.names_v, out.exports.values_v); comp_export_arrays_aoutsideb(A.exports.names_v4, A.exports.values_v4, Aa, B.exports.names_v4, B.exports.values_v4, Ba, out.exports.names_v4, out.exports.values_v4); }
+void composite_exports_aatopb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba; ShaderLayer out) { out.exports.names_f = {}; out.exports.values_f = {}; out.exports.names_v = {}; out.exports.values_v = {}; out.exports.names_v4 = {}; out.exports.values_v4 = {}; comp_export_arrays_aatopb(A.exports.names_f, A.exports.values_f, Aa, B.exports.names_f, B.exports.values_f, Ba, out.exports.names_f, out.exports.values_f); comp_export_arrays_aatopb(A.exports.names_v, A.exports.values_v, Aa, B.exports.names_v, B.exports.values_v, Ba, out.exports.names_v, out.exports.values_v); comp_export_arrays_aatopb(A.exports.names_v4, A.exports.values_v4, Aa, B.exports.names_v4, B.exports.values_v4, Ba, out.exports.names_v4, out.exports.values_v4); }
+void composite_exports_axorb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba; ShaderLayer out) { out.exports.names_f = {}; out.exports.values_f = {}; out.exports.names_v = {}; out.exports.values_v = {}; out.exports.names_v4 = {}; out.exports.values_v4 = {}; comp_export_arrays_axorb(A.exports.names_f, A.exports.values_f, Aa, B.exports.names_f, B.exports.values_f, Ba, out.exports.names_f, out.exports.values_f); comp_export_arrays_axorb(A.exports.names_v, A.exports.values_v, Aa, B.exports.names_v, B.exports.values_v, Ba, out.exports.names_v, out.exports.values_v); comp_export_arrays_axorb(A.exports.names_v4, A.exports.values_v4, Aa, B.exports.names_v4, B.exports.values_v4, Ba, out.exports.names_v4, out.exports.values_v4); }
+#line 200 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+ShaderLayer composite_aoverb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba) { ShaderLayer C; C.masks = {}; C.F = Aa*A.F+(1-Aa)*Ba*B.F; C.Of = Aa*A.Of+(1-Aa)*Ba*B.Of; C.Ce = Aa*A.Ce+(1-Aa)*Ba*B.Ce; C.P = Aa*A.P+(1-Aa)*Ba*B.P; C.N = normalize(Aa*A.N+(1-Aa)*Ba*B.N); C.layeralpha = Aa+(1-Aa)*Ba; composite_exports_aoverb(A, Aa, B, Ba, C); int nummasks_a = len(A.masks); int nummasks_b = len(B.masks); int maxmasks = max(nummasks_a, nummasks_b); for(int i=0; i<maxmasks; i++) { float mask_a = select(i<nummasks_a, A.masks[i], 0.0); float mask_b = select(i<nummasks_b, B.masks[i], 0.0); C.masks[i] = Aa*mask_a+(1-Aa)*Ba*mask_b; } return C; } ShaderLayer composite_aoverb(const ShaderLayer A; const ShaderLayer B) { return composite_aoverb(A, A.layeralpha, B, B.layeralpha); }
+ShaderLayer composite_ainsideb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba) { ShaderLayer C; C.masks = {}; C.F = Aa*A.F*Ba; C.Of = Aa*A.Of*Ba; C.Ce = Aa*A.Ce*Ba; C.P = Aa*A.P*Ba; C.N = normalize(Aa*A.N*Ba); C.layeralpha = Aa*Ba; composite_exports_ainsideb(A, Aa, B, Ba, C); int nummasks_a = len(A.masks); int nummasks_b = len(B.masks); int maxmasks = max(nummasks_a, nummasks_b); for(int i=0; i<maxmasks; i++) { float mask_a = select(i<nummasks_a, A.masks[i], 0.0); float mask_b = select(i<nummasks_b, B.masks[i], 0.0); C.masks[i] = Aa*mask_a*Ba; } return C; } ShaderLayer composite_ainsideb(const ShaderLayer A; const ShaderLayer B) { return composite_ainsideb(A, A.layeralpha, B, B.layeralpha); }
+ShaderLayer composite_aoutsideb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba) { ShaderLayer C; C.masks = {}; C.F = Aa*A.F*(1-Ba); C.Of = Aa*A.Of*(1-Ba); C.Ce = Aa*A.Ce*(1-Ba); C.P = Aa*A.P*(1-Ba); C.N = normalize(Aa*A.N*(1-Ba)); C.layeralpha = Aa*(1-Ba); composite_exports_aoutsideb(A, Aa, B, Ba, C); int nummasks_a = len(A.masks); int nummasks_b = len(B.masks); int maxmasks = max(nummasks_a, nummasks_b); for(int i=0; i<maxmasks; i++) { float mask_a = select(i<nummasks_a, A.masks[i], 0.0); float mask_b = select(i<nummasks_b, B.masks[i], 0.0); C.masks[i] = Aa*mask_a*(1-Ba); } return C; } ShaderLayer composite_aoutsideb(const ShaderLayer A; const ShaderLayer B) { return composite_aoutsideb(A, A.layeralpha, B, B.layeralpha); }
+ShaderLayer composite_aatopb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba) { ShaderLayer C; C.masks = {}; C.F = Aa*A.F*Ba + Ba*B.F*(1-Aa); C.Of = Aa*A.Of*Ba + Ba*B.Of*(1-Aa); C.Ce = Aa*A.Ce*Ba + Ba*B.Ce*(1-Aa); C.P = Aa*A.P*Ba + Ba*B.P*(1-Aa); C.N = normalize(Aa*A.N*Ba + Ba*B.N*(1-Aa)); C.layeralpha = Ba; composite_exports_aatopb(A, Aa, B, Ba, C); int nummasks_a = len(A.masks); int nummasks_b = len(B.masks); int maxmasks = max(nummasks_a, nummasks_b); for(int i=0; i<maxmasks; i++) { float mask_a = select(i<nummasks_a, A.masks[i], 0.0); float mask_b = select(i<nummasks_b, B.masks[i], 0.0); C.masks[i] = Aa*mask_a*Ba + Ba*mask_b*(1-Aa); } return C; } ShaderLayer composite_aatopb(const ShaderLayer A; const ShaderLayer B) { return composite_aatopb(A, A.layeralpha, B, B.layeralpha); }
+ShaderLayer composite_axorb(const ShaderLayer A; const float Aa; const ShaderLayer B; const float Ba) { ShaderLayer C; C.masks = {}; C.F = Aa*A.F*(1-Ba) + Ba*B.F*(1-Aa); C.Of = Aa*A.Of*(1-Ba) + Ba*B.Of*(1-Aa); C.Ce = Aa*A.Ce*(1-Ba) + Ba*B.Ce*(1-Aa); C.P = Aa*A.P*(1-Ba) + Ba*B.P*(1-Aa); C.N = normalize(Aa*A.N*(1-Ba) + Ba*B.N*(1-Aa)); C.layeralpha = Aa+Ba-2*(Aa*Ba); composite_exports_axorb(A, Aa, B, Ba, C); int nummasks_a = len(A.masks); int nummasks_b = len(B.masks); int maxmasks = max(nummasks_a, nummasks_b); for(int i=0; i<maxmasks; i++) { float mask_a = select(i<nummasks_a, A.masks[i], 0.0); float mask_b = select(i<nummasks_b, B.masks[i], 0.0); C.masks[i] = Aa*mask_a*(1-Ba) + Ba*mask_b*(1-Aa); } return C; } ShaderLayer composite_axorb(const ShaderLayer A; const ShaderLayer B) { return composite_axorb(A, A.layeralpha, B, B.layeralpha); }
+#line 216 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+void set_layer_export(ShaderLayer layer; string name; float value) { int index = find(layer.exports.names_f, name); if(index < 0) index = len(layer.exports.names_f); layer.exports.names_f[index] = name; layer.exports.values_f[index] = value; }
+void set_layer_export(ShaderLayer layer; string name; vector value) { int index = find(layer.exports.names_v, name); if(index < 0) index = len(layer.exports.names_v); layer.exports.names_v[index] = name; layer.exports.values_v[index] = value; }
+void set_layer_export(ShaderLayer layer; string name; vector4 value) { int index = find(layer.exports.names_v4, name); if(index < 0) index = len(layer.exports.names_v4); layer.exports.names_v4[index] = name; layer.exports.values_v4[index] = value; }
+#line 142 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 144 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_snippet2(int dispInput_any; int index; int dispInput_enable; int bound_disp; int bound_vdisp)
+{
+    index = 0;
+
+    dispInput_any = dispInput_enable && (bound_disp || bound_vdisp);
+
+    if(dispInput_any)
+    {
+        if (bound_disp && bound_vdisp)
+            index = 3;
+        else if (bound_vdisp)
+            index = 2;
+        else
+            index = 1;
+    }
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 165 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_snippet1(int index; int dispInput_enable; int dispTex_enable; int dispNoise_enable)
+{
+    index = 0;
+
+    if (dispInput_enable && !dispTex_enable && !dispNoise_enable)
+        index = 1;
+    else if (!dispInput_enable && dispTex_enable && !dispNoise_enable)
+        index = 2;
+    else if (!dispInput_enable && !dispTex_enable && dispNoise_enable)
+        index = 3;
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 181 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 45 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shading.h"
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 22 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shading.h"
+#line 36 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shading.h"
+vector
+shading_computeEnvAngleScale(vector dir; vector axis; float anglescale)
+{
+    vector	ndir;
+
+    if (anglescale != 1)
+    {
+	float	zangle = acos(dir.z);
+	vector	raxis;
+	matrix3	rmat;
+
+	raxis = normalize(cross(axis, dir));
+	if (anglescale > 0)
+	{
+	    zangle /= anglescale;
+	    zangle = clamp(zangle, 0.0, 3.1415926);
+	}
+	else
+	    zangle = 3.1415926;
+
+	rmat = ident();
+	rotate(rmat, zangle, raxis);
+
+	ndir = axis * rmat;
+    }
+    else
+	ndir = dir;
+
+    return ndir;
+}
+
+
+vector fresnelcond_nmin(vector r)
+{
+    return (1-r)/(1+r);
+}
+
+vector fresnelcond_nmax(vector r)
+{
+    return (1+sqrt(r))/(1-sqrt(r));
+}
+
+vector fresnelcond_eta(vector r, g)
+{
+    return fresnelcond_nmin(r)*g + (1-g)*fresnelcond_nmax(r);
+}
+
+vector fresnelcond_kappa2(vector r, n)
+{
+    vector nr = (n+1)*(n+1)*r-(n-1)*(n-1);
+    return nr/(1-r);
+}
+
+vector fresnelcond_reflectivity(vector n, k)
+{
+    return ((n-1)*(n-1)+k*k)/((n+1)*(n+1)+k*k);
+}
+
+vector fresnelcond_edgetint(vector n, r)
+{
+    return (fresnelcond_nmax(r)-n)/(fresnelcond_nmax(r)-fresnelcond_nmin(r));
+}
+
+
+vector fresnelcond_artistic(vector nI, nN, r, g)
+{
+    float dotNI = clamp(dot(nN, -nI), 0, 0.999);
+
+    vector n = fresnelcond_eta(r, g);
+    vector k2 = fresnelcond_kappa2(r, n);
+
+    vector rs_num = n*n + k2 - 2*n*dotNI + dotNI*dotNI;
+    vector rs_den = n*n + k2 + 2*n*dotNI + dotNI*dotNI;
+    vector rs = rs_num/rs_den;
+
+    vector rp_num = (n*n + k2)*dotNI*dotNI - 2*n*dotNI + 1;
+    vector rp_den = (n*n + k2)*dotNI*dotNI + 2*n*dotNI + 1;
+    vector rp = rp_num/rp_den;
+
+    return 0.5*(rs+rp);
+}
+
+
+
+
+vector fresnelcond_physical(vector nI, nN, eta, kappa)
+{
+    float dotNI = clamp(dot(nN, -nI), 0, 0.999);
+
+    vector tmp = (eta*eta + kappa*kappa) * dotNI*dotNI;
+    vector Rparl2 = (tmp - (2.0f * eta * dotNI) + 1) /
+                    (tmp + (2.0f * eta * dotNI) + 1);
+    vector tmp_f = eta*eta + kappa*kappa;
+    vector Rperp2 = (tmp_f - (2.0f * eta * dotNI) + dotNI*dotNI) /
+                    (tmp_f + (2.0f * eta * dotNI) + dotNI*dotNI);
+    return 0.5 * (Rparl2 + Rperp2);
+}
+
+void thinfresnel(const vector nI, nN; const float eta; export float kr, kt)
+{
+    float kr1, kt1;
+    vector R1, T1;
+    fresnel(nI, nN, eta, kr1, kt1, R1, T1);
+
+    float kr2, kt2;
+    vector R2, T2;
+    fresnel(T1, nN, eta, kr2, kt2);
+
+    float tmp = 1.0/(1 - kr2*kr2);
+    kr = kr1 + (kt1*kr2*kt2) * tmp;
+    kt = kt1*kt2*tmp;
+}
+
+void thinfresnel(const vector nI, nN; const float eta; export float kr, kt; export vector R, T)
+{
+    thinfresnel(nI, nN, eta, kr, kt);
+
+    R = reflect(nI, nN);
+    T = nI;
+}
+
+
+float
+dirtmask_dome(vector P;
+	 vector nN;
+	 int inSID;
+	 int	samples;
+	 float  maxdist;
+	 vector biasdir;
+	 float  bias;
+	 string scope)
+{
+    int hit, found;
+    float dist;
+    vector localdir, dir, hitP, hitN;
+
+    vector u = normalize(set(nN.z, nN.z, -nN.x-nN.y));
+    vector v = normalize(cross(nN, u));
+    matrix3 space = set(u, v, nN);
+
+    float _maxdist;
+    vector _biasdir = biasdir;
+    _biasdir = ntransform("space:world", "space:current", _biasdir);
+    _biasdir = normalize(select(bias >= 0, -_biasdir, _biasdir));
+    float _bias = abs(bias);
+
+    int hits = 0;
+    vector2 sample;
+
+    float raybias;
+    found = renderstate("renderer:raybias", raybias);
+    raybias = select(found, raybias, 1e-3);
+
+    string rengine;
+    renderstate("renderer:renderengine", rengine);
+    int israytrace = rengine == "raytrace" || rengine == "pbrraytrace";
+    int sid = israytrace ? inSID : newsampler();
+
+    for(int i=0; i<samples; i++)
+    {
+	if (israytrace)
+	    nextsample(sid, sample.x, sample.y, "mode", "nextpixel");
+	else
+	    nextsample(sid, sample.x, sample.y, "mode", "qstrat");
+
+	float phi = 2.0*3.1415926*sample.x;
+	float theta = asin(sqrt(sample.y));
+
+	localdir.x = cos(theta) * sin(phi);
+	localdir.y = cos(theta) * cos(phi);
+	localdir.z = sin(theta);
+	dir = localdir * space;
+
+	float dotbias = dot(dir, _biasdir);
+	float dotNB = dot(nN, _biasdir);
+	_biasdir = _biasdir - clamp(dotNB, -1, 0) * nN;
+	dir += _bias * clamp(dotbias, 0, 1) * _biasdir;
+	dir *= fit(dotbias, -2, 1, 1.0/(1.0+_bias), 1);
+
+	vector testNg = select(dot(nN, Ng) > 0.0, Ng, -Ng);
+	if (dot(dir, testNg) < 1e-5)
+		continue;
+
+	dist = rayhittest(P, maxdist * dir, hitP, hitN, raybias, "scope", scope);
+	hit = dist >= 0.0;
+
+	hits += hit;
+    }
+
+    return (float)hits/samples;
+}
+
+float
+dirtmask_fan(vector P;
+	 vector nN;
+	 int inSID;
+	 float  sensitivity;
+	 int	samples;
+	 float  maxdist;
+	 vector biasdir;
+	 float  bias;
+	 string scope)
+ {
+    int hit, found;
+    float dist;
+    vector localdir, dir, hitP, hitN;
+
+    vector u = normalize(set(nN.z, nN.z, -nN.x-nN.y));
+    vector v = normalize(cross(nN, u));
+    matrix3 space = set(u, v, nN);
+
+    float max_dirt = 0.0;
+
+    vector2 sample;
+    float _maxdist;
+    vector _biasdir = normalize(select(bias >= 0, -biasdir, biasdir));
+    _biasdir = ntransform("space:world", "space:current", _biasdir);
+    float _bias = abs(bias);
+
+    float raybias;
+    found = renderstate("renderer:raybias", raybias);
+    raybias = select(found, raybias, 1e-3);
+
+    string rengine;
+    renderstate("renderer:renderengine", rengine);
+    int israytrace = rengine == "raytrace" || rengine == "pbrraytrace";
+    int sid = israytrace ? inSID : newsampler();
+
+    for(int i=0; i<samples; i++)
+    {
+	if (israytrace)
+	    nextsample(sid, sample.x, sample.y, "mode", "nextpixel");
+	else
+	    nextsample(sid, sample.x, sample.y, "mode", "qstrat");
+
+	float phi = 2.0 * 3.1415926 * sample.x;
+	float theta = 0.5*3.1415926*sensitivity;
+
+	localdir.x = cos(phi);
+	localdir.y = sin(phi);
+	localdir.z = 0;
+
+	dir = localdir * space;
+
+	float dotNB = dot(nN, _biasdir);
+	_biasdir = _biasdir - dotNB * nN;
+	float dotbias = dot(dir, normalize(_biasdir));
+	dir += _bias * clamp(dotbias, 0, 1) * _biasdir;
+	dir *= fit(dotbias, -2, 1, 1.0/(1.0+_bias), 1);
+
+	float len = length(dir);
+	dir *= sin(theta);
+	dir += fit01(sin(theta), 1, len) * cos(theta) * nN;
+
+	dist = rayhittest(P, maxdist * dir, hitP, hitN, raybias, "scope", scope);
+
+	hit = dist >= 0.0;
+
+	float dirt = clamp(1.0 - dist / (maxdist * length(dir)), 0, 1);
+	max_dirt = select(hit, max(dirt, max_dirt), max_dirt);
+    }
+
+    return max_dirt;
+}
+#line 46 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 97 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+float
+vop_grandom(float u0, u1; float sigma)
+{
+
+
+
+    return cos(u0 * (3.1415926*2)) * sqrt(-2 * log(u1)) * sigma;
+}
+float
+vop_grandom(int seed; float sigma)
+{
+    float	u0 = random(seed);
+    float	u1 = random(seed*3929 + 48311);
+    return vop_grandom(u0, u1, sigma);
+}
+
+float
+vop_gnrandom(float sigma)
+{
+    float	u0 = nrandom();
+    float	u1 = nrandom();
+    return vop_grandom(u0, u1, sigma);
+}
+
+vector
+vop_grandom(int seed; float sigma)
+{
+
+
+    float	x = float(vop_grandom(seed, sigma));
+    float	y = float(vop_grandom(seed*17 + 97, sigma));
+    float	z = float(vop_grandom(seed*29 + 383, sigma));
+    return set(x, y, z);
+}
+
+vector
+vop_gnrandom(float sigma)
+{
+
+
+    float	x = float(vop_gnrandom(sigma));
+    float	y = float(vop_gnrandom(sigma));
+    float	z = float(vop_gnrandom(sigma));
+    return set(x, y, z);
+}
+
+void
+vop_bindST(float news, ss; int isSConnected;
+	   float newt, tt; int isTConnected)
+{
+
+
+
+
+
+
+
+    news = isSConnected ? ss : s;
+    newt = isTConnected ? tt : t;
+
+
+
+
+}
+
+void
+vop_bindS(float news, ss; int isSConnected)
+{
+
+
+
+
+
+    news = isSConnected ? ss : s;
+
+
+
+}
+
+void
+vop_bindU(export float newu; const float u; int isUVConnected)
+{
+
+
+
+
+
+    newu = isUVConnected ? u : s;
+
+
+
+}
+
+void
+vop_bindUV(export vector2 newuv; const vector2 uv; int isUVConnected)
+{
+
+
+
+
+
+    newuv = isUVConnected ? uv : set(s, t);
+
+
+
+}
+
+void
+vop_bindUV(export vector newuv; const vector uv; int isUVConnected)
+{
+
+
+
+
+
+    newuv = isUVConnected ? uv : set(s, t, 0);
+
+
+
+}
+
+
+
+
+float
+vop_bias(float base, bias)
+{
+    float val;
+    if (base <= 0)
+	val = 0;
+    else if (base >= 1)
+	val = 1;
+    else
+	val = bias / (((1.0 / base) - 2) * (1 - bias) + 1);
+    return val;
+}
+
+float
+vop_gain(float base, gain)
+{
+    float	val;
+    if (base < 0.5)
+	val = vop_bias(2*base, gain)*.5;
+    else
+	val = 1-vop_bias(2*(1-base), gain)*.5;
+    return val;
+}
+
+vector
+vop_colorLinearTransform(vector C;
+                         string fromSpace;)
+{
+    vector Ct = C;
+
+    if (fromSpace == "srgb")
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (C[i] <= 0.04045) Ct[i] = C[i] / 12.92;
+            else Ct[i] = pow((C[i] + 0.055) / 1.055, 2.4);
+        }
+    }
+
+    else if (fromSpace == "linear")
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (C[i] <= 0.0031308) Ct[i] = C[i] * 12.92;
+            else Ct[i] = 1.055 * pow(C[i], 1.0/2.4) - 0.055;
+        }
+    }
+
+    return Ct;
+}
+
+vector
+vop_colormix(vector c1, c2; float bias; int adjust)
+{
+    vector	clr;
+    if (adjust == 3)
+	clr = cspline(bias, c1, c1, c2, c2);
+    else if (adjust == 2)
+	clr = lerp(c1, c2, float(smooth(0, 1, bias)));
+    else if (adjust == 1)
+	clr = lerp(c1, c2, float(clamp(bias, 0, 1)));
+    else
+	clr = lerp(c1, c2, bias);
+    return clr;
+}
+
+void
+vop_composite(string operation;
+	      vector C; float Ca;
+	      vector A; float Aa;
+	      vector B; float Ba;
+	     )
+{
+    if (operation == "AoverB")
+    {
+	C  = A  + (1-Aa)*B;
+	Ca = Aa + (1-Aa)*Ba;
+    }
+    else if (operation == "AinsideB")
+    {
+	C  = A*Ba;
+	Ca = Aa*Ba;
+    }
+    else if (operation == "AoutsideB")
+    {
+	C  = A*(1-Ba);
+	Ca = Aa*(1-Ba);
+    }
+    else if (operation == "AatopB")
+    {
+	C  = A*Ba + B*(1-Aa);
+	Ca = Ba;
+    }
+    else if (operation == "AxorB")
+    {
+	C  = A*(1-Ba) + B*(1-Aa);
+	Ca = Aa + Ba - 2*(Aa*Ba);
+    }
+    else if (operation == "A")
+    {
+	C  = A;
+	Ca = Aa;
+    }
+    else if (operation == "B")
+    {
+	C  = B;
+	Ca = Ba;
+    }
+    else if (operation == "clear")
+    {
+	C = 0;
+	Ca = 0;
+    }
+}
+
+float
+vop_ptlined(vector P1, P2, Q)
+{
+    return ptlined(P1, P2, Q);
+}
+
+
+float
+vop_FilterWidth(float x)
+{
+
+    float du = Du(x);
+    float dv = Dv(x);
+    return max(sqrt(du*du + dv*dv), 1e-6);
+
+
+
+
+}
+
+
+
+float
+vop_FilterAngle(vector dir)
+{
+    vector	du, dv;
+    vector	a, b, c, d;
+    vector	ac, bd;
+    float	angle;
+
+    du = 0.5*Du(dir);
+    dv = 0.5*Dv(dir);
+
+    a = dir-du-dv;
+    b = dir+du-dv;
+    c = dir+du+dv;
+    d = dir-du+dv;
+
+    ac = cross(a, c) / sqrt(length2(a)*length2(c));
+    bd = cross(b, d) / sqrt(length2(b)*length2(d));
+    angle = 0.5 * length(cross(ac, bd));
+
+    return acos(1 - (0.5 / 3.1415926) * angle);
+}
+
+float
+vop_Pulse(float edge0, edge1, x, fwidth; string filter)
+{
+    float	x0, x1;
+
+    x0 = x  - fwidth*.5;
+    x1 = x0 + fwidth;
+    return max(0, (min(x1, edge1)-max(x0, edge0))/fwidth);
+}
+
+float
+vop_FilteredSin(float x, fwidth)
+{
+    float	x0, x1;
+
+    x0 = x - fwidth * .5;
+    x1 = x + fwidth;
+    return (-0.7071067)*lerp((cos(x1)-cos(x0))/fwidth, 0, clamp(fwidth*(1.0/8.0), 0, 1));;
+}
+
+float
+vop_FilteredSinD(float x)
+{
+    return vop_FilteredSin(x, vop_FilterWidth(x));
+}
+
+float
+vop_FilteredCos(float x, fwidth)
+{
+    float	x0, x1;
+
+    x0 = x - fwidth * .5;
+    x1 = x + fwidth;
+    return 0.7071067*lerp((sin(x1)-sin(x0))/fwidth, 0, clamp(fwidth*(1.0/8.0), 0, 1));;
+}
+
+float
+vop_FilteredCosD(float x)
+{
+    return vop_FilteredCos(x, vop_FilterWidth(x));
+}
+
+float
+vop_PulseD(float edge0, edge1, x; string filter)
+{
+    return vop_Pulse(edge0, edge1, x, vop_FilterWidth(x), filter);
+}
+
+float
+vop_PulseTrain(float edge0, x, fwidth)
+{
+    float	x0, x1;
+
+    x0 = x  - fwidth*.5;
+    x1 = x0 + fwidth;
+    x0 = edge0*floor(x0) + min(edge0, frac(x0));
+    x1 = edge0*floor(x1) + min(edge0, frac(x1));
+    return lerp((x1-x0)/fwidth, edge0, clamp(fwidth*(1.0/8.0), 0, 1));;
+}
+
+float
+vop_PulseTrainD(float edge0, x)
+{
+    return vop_PulseTrain(edge0, x, vop_FilterWidth(x));
+}
+
+float
+vop_RampTrain(float x, fwidth)
+{
+    float	x0, x1, f;
+    x0 = x - fwidth*.5;
+    x1 = x0 + fwidth;
+    f = frac(x0); x0 = float(floor(x0)) + f*f;
+    f = frac(x1); x1 = float(floor(x1)) + f*f;
+    return .5*lerp((x1-x0)/fwidth, .5, clamp(fwidth*(1.0/8.0), 0, 1));;
+}
+
+float
+vop_RampTrainD(float x)
+{
+    return vop_RampTrain(x, vop_FilterWidth(x));
+}
+
+float
+vop_IntegrateTent(float x)
+{
+    float	f;
+    f = frac(x);
+    if (f > .5) f = f*(2 - f) - .5;
+    else	f = f*f;
+    return .5*floor(x) + f;
+}
+
+float
+vop_TentTrain(float x, fwidth)
+{
+    float	x0, x1;
+    x0 = x - fwidth*.5;
+    x1 = x0 + fwidth;
+    x0 = vop_IntegrateTent(x0);
+    x1 = vop_IntegrateTent(x1);
+    return lerp((x1-x0)/fwidth, .5, clamp(fwidth*(1.0/8.0), 0, 1));;
+}
+
+float
+vop_TentTrainD(float x)
+{
+    return vop_RampTrain(x, vop_FilterWidth(x));
+}
+
+float
+vop_DotStamp(float px, py, fwidth; string filter)
+{
+    float	d;
+    d = px*px + py*py;
+    return filterstep(1,d-fwidth,d+fwidth,"filter",filter);
+}
+
+float
+vop_BumpStamp(float px, py, fwidth; string filter)
+{
+    float d  = px*px + py*py;
+    return 1-smooth(0.0, 1.0, d);
+}
+
+float
+vop_RoundCosStamp(float px, py, fwidth; float hexness, sides, power;
+		    string filter)
+{
+    float	ss, tt;
+    float	x0, x1;
+
+    ss = atan(py, px);
+    tt = px*px + py*py + hexness*pow(abs(1-cos(ss*(sides))), power);
+    x0 = tt - fwidth*.5;
+    x1 = x0 + fwidth;
+    return filterstep(1,x0,x1,"filter",filter);
+}
+
+float
+vop_RoundSinStamp(float px, py, fwidth; float hexness, sides, power;
+		    string filter)
+{
+    float	ss, tt;
+    float	x0, x1;
+
+    ss = atan(py, px) - 3.1415926;
+    tt = px*px + py*py + hexness*pow(abs(1-sin(ss*(sides))), power);
+    x0 = tt - fwidth*.5;
+    x1 = x0 + fwidth;
+    return filterstep(1,x0,x1,"filter",filter);
+}
+
+
+float
+vop_RingStamp(float px, py, iradius, oradius, fwidth; string filter)
+{
+    float	d;
+    d = px*px + py*py;
+    return vop_Pulse(iradius, oradius, d, fwidth, filter);
+}
+
+float
+vop_BoxStamp(float px, py, fu, fv; string filter)
+{
+    float	dx;
+    dx  = vop_Pulse(-1, 1, px, fu, filter);
+    dx *= vop_Pulse(-1, 1, py, fv, filter);
+    return dx;
+}
+#line 563 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+int
+vop_TileGen(float u, v; float fx, fy, ox, oy, stagger, jitter)
+{
+    int		row;
+
+    v = v*fy - oy;
+    row = floor(v);
+    u = u*fx - ox - stagger*row + jitter*random(row);
+    return floor(u) + row*1984;
+}
+
+int
+vop_HexTileGen(float u, v; float fx, fy, ox, oy)
+{
+    float	left, right;
+    int		row, col;
+
+    v   = v*fy - oy;
+    row = floor(v);
+    v  = frac(v);
+
+    u = u*fx + ox;
+    if (row & 1)
+	u += .5;
+
+    col = floor(u);
+    u = frac(u);
+
+    if (v > .5)
+    {
+	right = v - .5;
+	left  = 1.5 - v;
+	if (u > left)
+	{
+	    if (!(row & 1)) col++;
+	    row++;
+	    v -= 1;
+	    u = fit(u, left, 1, 0, .5);
+	}
+	else if (u < right)
+	{
+	    if (row & 1) col--;
+	    row++;
+	    v -= 1;
+	    u = fit(u, 0, right, 0.5, 1);
+	}
+	else u = fit(u, right, left, 0, 1);
+    }
+    v = (v*2+1)/3;
+    return row * 938 + col;
+}
+#line 628 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+float
+vop_aaCell2D(float ss, tt, jx, jy, bwidth, bsoft, centerx, centery;
+		float f1, f2; int seed)
+{
+    float	p2x, p2y, x0;
+    float	blur;
+    vector	vp1, vp2;
+
+    vnoise(ss, tt, jx, jy, seed, f1, f2, centerx, centery, p2x, p2y);
+
+    vp1 = set(centerx, centery, 0);
+    vp2 = set(p2x, p2y, 0);
+    x0 = (f2-f1)*(f1+f2) / max(distance(vp1, vp2), 1e-6);
+
+    blur = max(vop_FilterWidth(ss), vop_FilterWidth(tt)) * (1 + bsoft);
+
+    return filterstep(bwidth,x0-blur,x0+blur,"filter","gauss");
+}
+
+
+
+
+
+
+
+
+float
+vop_StampPattern(int   layers;
+		 float dotsize;
+		 float dj;
+		 float softness;
+		 float px, jx;
+		 float py, jy;
+		 float aux, jaux;
+		 string spottype;
+		 string filter;
+		 float	floatseed;
+	 )
+{
+    float	fwidth;
+    float	lrandom;
+    float	cx, cy, loff, dsize;
+    float	fx, fy;
+    float	djx, djy;
+    float	du, dv;
+    float	result;
+    float	irad, idot;
+    vector	pp;
+    int		i;
+
+    du = vop_FilterWidth(px) * softness;
+    dv = vop_FilterWidth(py) * softness;
+    fwidth = max(du, dv);
+    result = 0;
+    loff = 0;
+    for (i = 0; i < layers; i++, loff += .5)
+    {
+	lrandom = random(i);
+	pp = set(floor(px+loff), floor(py+loff),
+		    1000.0*lrandom+500) + {.5, .5, .5};
+	floatseed = random(pp);
+
+	pp = vector(random(pp)) - .5;
+	dsize = dotsize * (1-dj*floatseed);
+	idot = 1/dsize;
+
+	djy  = idot*(1 - dsize);
+	djx  = (2*clamp(jx, 0, 1)) * djy;
+	djy *= (2*clamp(jy, 0, 1));
+
+	cx = pp.x * djx;
+	cy = pp.y * djy;
+	fx = cx - 2*(frac(px+loff) - .5)*idot;
+	fy = cy - 2*(frac(py+loff) - .5)*idot;
+
+	if (spottype == "ring")
+	{
+	    irad = 1-clamp(aux + (pp.z - .5)*jaux, 0, 1);
+	    result = vop_RingStamp(fx, fy, irad, 1, fwidth, filter);
+	}
+	else if (spottype == "box")
+	{
+	    result = vop_BoxStamp(fx, fy, du, dv, filter);
+	}
+	else if (spottype == "hex")
+	{
+	    result = 1-vop_RoundCosStamp(fx, fy, fwidth, aux, 6, jaux, filter);
+	}
+	else if (spottype == "star")
+	{
+	    result = 1-vop_RoundSinStamp(fx, fy, fwidth, aux, 5, jaux, filter);
+	}
+	else if (spottype == "bump")
+	{
+	    result = vop_BumpStamp(fx, fy, fwidth, filter);
+	}
+	else
+	{
+	    result = 1-vop_DotStamp(fx, fy, fwidth, filter);
+	}
+    }
+    floatseed = (floatseed - 0.5)*32000;
+    return result;
+}
+
+float
+vop_RipplePattern(float x, y, decay, toff)
+{
+    float	d;
+
+    d = sqrt(x*x + y*y);
+    return sin(d-toff) * exp(d*(-decay));
+}
+#line 768 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+vector
+vop_FlowNoiseGradVV(vector pos; float flow; float delta)
+{
+    vector	result;
+
+    result.x = flownoise(set(pos.x+delta,pos.y,pos.z), flow)
+	     - flownoise(set(pos.x-delta,pos.y,pos.z), flow);
+
+    result.y = flownoise(set(pos.x,pos.y+delta,pos.z), flow)
+	     - flownoise(set(pos.x,pos.y-delta,pos.z), flow);
+
+    result.z = flownoise(set(pos.x,pos.y,pos.z+delta), flow)
+	     - flownoise(set(pos.x,pos.y,pos.z-delta), flow);
+
+    result /= delta * 2;
+
+    return result;
+}
+
+vector4
+vop_FlowNoiseGradPP(vector4 pos; float flow; float delta)
+{
+    vector4	result;
+
+    result.x = flownoise(set(pos.x+delta,pos.y,pos.z,pos.w), flow)
+	     - flownoise(set(pos.x-delta,pos.y,pos.z,pos.w), flow);
+
+    result.y = flownoise(set(pos.x,pos.y+delta,pos.z,pos.w), flow)
+	     - flownoise(set(pos.x,pos.y-delta,pos.z,pos.w), flow);
+
+    result.z = flownoise(set(pos.x,pos.y,pos.z+delta,pos.w), flow)
+	     - flownoise(set(pos.x,pos.y,pos.z-delta,pos.w), flow);
+
+    result.w = flownoise(set(pos.x,pos.y,pos.z,pos.w+delta), flow)
+	     - flownoise(set(pos.x,pos.y,pos.z,pos.w-delta), flow);
+
+    result /= delta * 2;
+
+    return result;
+}
+
+vector
+vop_FlowNoiseGrad3V(vector pos; float flow; float delta)
+{
+    matrix3	result;
+    vector	final;
+    vector	dx, dy, dz;
+
+    dx = flownoise(set(pos.x+delta,pos.y,pos.z), flow)
+	 - flownoise(set(pos.x-delta,pos.y,pos.z), flow);
+
+    dy = flownoise(set(pos.x,pos.y+delta,pos.z), flow)
+	 - flownoise(set(pos.x,pos.y-delta,pos.z), flow);
+
+    dz = flownoise(set(pos.x,pos.y,pos.z+delta), flow)
+	 - flownoise(set(pos.x,pos.y,pos.z-delta), flow);
+
+    result = set(dx.x, dx.y, dx.z,
+	       dy.x, dy.y, dy.z,
+	       dz.x, dz.y, dz.z);
+
+    result /= delta * 2;
+
+
+
+
+    final = 0.577735;
+    final *= result;
+
+    return final;
+}
+
+vector4
+vop_FlowNoiseGrad4P(vector4 pos; float flow; float delta)
+{
+    matrix	result;
+    vector4	final;
+    vector	dx, dy, dz, dw;
+
+    dx = flownoise(set(pos.x+delta,pos.y,pos.z,pos.w), flow)
+	 - flownoise(set(pos.x-delta,pos.y,pos.z,pos.w), flow);
+
+    dy = flownoise(set(pos.x,pos.y+delta,pos.z,pos.w), flow)
+	 - flownoise(set(pos.x,pos.y-delta,pos.z,pos.w), flow);
+
+    dz = flownoise(set(pos.x,pos.y,pos.z+delta,pos.w), flow)
+	 - flownoise(set(pos.x,pos.y,pos.z-delta,pos.w), flow);
+
+    dw = flownoise(set(pos.x,pos.y,pos.z,pos.w+delta), flow)
+	 - flownoise(set(pos.x,pos.y,pos.z,pos.w-delta), flow);
+
+    result = set(dx.x, dx.y, dx.z, 0,
+	       dy.x, dy.y, dy.z, 0,
+	       dz.x, dz.y, dz.z, 0,
+	       dw.x, dw.y, dw.z, 0);
+
+    result /= delta * 2;
+
+
+
+
+    final = 0.5;
+    final *= result;
+
+    return final;
+}
+
+float
+vop_fbmlength_float(float val)
+{
+    return val;
+}
+
+float
+vop_fbmlength_vector(vector val)
+{
+    return length(val);
+}
+
+float
+vop_fbmlength_vector4(vector4 val)
+{
+    return length(val);
+}
+#line 920 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+float
+vop_fbmNoiseFF(float pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = vop_FilterWidth(pos);
+    float	nval, pp = pos;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(float (xnoise(pp)) - 0.5); } else { nval += amp *(float (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(float (xnoise(pp)) - 0.5); } else { nval += blend*(float (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+float
+vop_fbmNoiseFV(vector pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = sqrt(area(pos));
+    vector	pp = pos;
+    float	nval;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(float (xnoise(pp)) - 0.5); } else { nval += amp *(float (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(float (xnoise(pp)) - 0.5); } else { nval += blend*(float (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+float
+vop_fbmNoiseFP(vector4 pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = sqrt(area((vector)pos));
+    vector4	pp = pos;
+    float	nval;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(float (xnoise(pp)) - 0.5); } else { nval += amp *(float (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(float (xnoise(pp)) - 0.5); } else { nval += blend*(float (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+vector
+vop_fbmNoiseVF(float pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = vop_FilterWidth(pos);
+    float	pp = pos;
+    vector	nval;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(vector (xnoise(pp)) - 0.5); } else { nval += amp *(vector (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(vector (xnoise(pp)) - 0.5); } else { nval += blend*(vector (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+vector
+vop_fbmNoiseVV(vector pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = sqrt(area(pos));
+    vector	pp = pos;
+    vector	nval;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(vector (xnoise(pp)) - 0.5); } else { nval += amp *(vector (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(vector (xnoise(pp)) - 0.5); } else { nval += blend*(vector (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+vector
+vop_fbmNoiseVP(vector4 pos; float rough; int maxoctaves; string noisetype)
+{
+    float	blur = sqrt(area((vector)pos));
+    vector4	pp = pos;
+    vector	nval;
+    float amp, scale, plimit, blend; int octaves; plimit = 2*blur; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { if (noisetype == "xnoise") { nval += amp *(vector (xnoise(pp)) - 0.5); } else { nval += amp *(vector (noise(pp)) - 0.5); } amp *= rough; scale *= 0.5; pp *= 2; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); if (noisetype == "xnoise") { nval += blend*(vector (xnoise(pp)) - 0.5); } else { nval += blend*(vector (noise(pp)) - 0.5); } }
+    return nval;
+}
+
+
+
+float
+vop_fbmFlowNoiseFV(vector pos; float rough; int maxoctaves; float flow, flowrate, advect)
+{
+    float	blur = sqrt(area(pos));
+    vector	pp = pos;
+    float	nval;
+    float amp, scale, plimit, blend, M, flowv; int octaves; float namount; plimit = 2*blur; M = advect; flowv = flow; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { namount = amp * (float(flownoise(pp, flowv)) - 0.5); nval += namount; amp *= rough; flowv *= flowrate; scale *= 0.5; if (M != 0.0) { pp -= M * vop_fbmlength_float(namount) * vop_FlowNoiseGradVV (pp, flow, 0.01); } pp *= 2; M *= advect; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); nval += blend*(float(flownoise(pp, flowv)) - 0.5); }
+    return nval;
+}
+
+float
+vop_fbmFlowNoiseFP(vector4 pos; float rough; int maxoctaves; float flow, flowrate, advect)
+{
+    float	blur = sqrt(area((vector)pos));
+    vector4	pp = pos;
+    float	nval;
+    float amp, scale, plimit, blend, M, flowv; int octaves; float namount; plimit = 2*blur; M = advect; flowv = flow; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { namount = amp * (float(flownoise(pp, flowv)) - 0.5); nval += namount; amp *= rough; flowv *= flowrate; scale *= 0.5; if (M != 0.0) { pp -= M * vop_fbmlength_float(namount) * vop_FlowNoiseGradPP (pp, flow, 0.01); } pp *= 2; M *= advect; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); nval += blend*(float(flownoise(pp, flowv)) - 0.5); }
+    return nval;
+}
+
+vector
+vop_fbmFlowNoiseVV(vector pos; float rough; int maxoctaves; float flow, flowrate, advect)
+{
+    float	blur = sqrt(area(pos));
+    vector	pp = pos;
+    vector	nval;
+    float amp, scale, plimit, blend, M, flowv; int octaves; vector namount; plimit = 2*blur; M = advect; flowv = flow; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { namount = amp * (vector(flownoise(pp, flowv)) - 0.5); nval += namount; amp *= rough; flowv *= flowrate; scale *= 0.5; if (M != 0.0) { pp -= M * vop_fbmlength_vector(namount) * vop_FlowNoiseGrad3V (pp, flow, 0.01); } pp *= 2; M *= advect; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); nval += blend*(vector(flownoise(pp, flowv)) - 0.5); }
+    return nval;
+}
+
+vector
+vop_fbmFlowNoiseVP(vector4 pos; float rough; int maxoctaves; float flow, flowrate, advect)
+{
+    float	blur = sqrt(area((vector)pos));
+    vector4	pp = pos;
+    vector	nval;
+    float amp, scale, plimit, blend, M, flowv; int octaves; vector namount; plimit = 2*blur; M = advect; flowv = flow; nval = 0; octaves = 0; scale = 1; amp = 1; while (scale > plimit && octaves < maxoctaves) { namount = amp * (vector(flownoise(pp, flowv)) - 0.5); nval += namount; amp *= rough; flowv *= flowrate; scale *= 0.5; if (M != 0.0) { pp -= M * vop_fbmlength_vector(namount) * vop_FlowNoiseGrad4P (pp, flow, 0.01); } pp *= 2; M *= advect; octaves++; } if (scale > blur) { blend = amp * clamp(scale/blur - 1, 0, 1); nval += blend*(vector(flownoise(pp, flowv)) - 0.5); }
+    return nval;
+}
+#line 1036 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+float
+vop_dampenFbmFF(float pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    float pp = pos * freq + offset;
+    float fw = vop_FilterWidth(pp);
+    float aa = vop_FilterWidth(pos);
+    float plimit = fw/lacun;
+    float scale = 1;
+    int   octave = 0;
+    float fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); while (scale > aa) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); pp *= lacun; scale *= lacun; }
+    fbm = amp * fit(fbm, -1.25, 1.25, 0, 1);
+    return fbm;
+}
+
+float
+vop_dampenFbmFV(vector pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    vector pp = pos * freq + offset;
+    float  fw = sqrt(area(pp));
+    float  aa = sqrt(area(pos));
+    float  plimit = fw/lacun;
+    float  scale = 1;
+    int    octave = 0;
+    float  fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); while (scale > aa) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); pp *= lacun; scale *= lacun; }
+    fbm = amp * fit(fbm, -1.25, 1.25, 0, 1);
+    return fbm;
+}
+
+float
+vop_dampenFbmFP(vector4 pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    vector4 pp = pos * freq + offset;
+    float   fw = sqrt(area((vector)pp));
+    float   aa = sqrt(area((vector)pos));
+    float   plimit = fw/lacun;
+    float   scale = 1;
+    int     octave = 0;
+    float   fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); while (scale > aa) { fbm += scale * fit(noise(pp),0.3,0.7,-1.0,1.0); pp *= lacun; scale *= lacun; }
+    fbm = amp * fit(fbm, -1.25, 1.25, 0, 1);
+    return fbm;
+}
+#line 1096 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+vector
+vop_dampenFbmVF(float pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    float  pp = pos * freq + offset;
+    float  fw = vop_FilterWidth(pp);
+    float  aa = vop_FilterWidth(pos);
+    float  plimit = fw/lacun;
+    float  scale = 1;
+    int    octave = 0;
+    vector fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); while (scale > aa) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); pp *= lacun; scale *= lacun; }
+    fbm = amp * vector(fit(fbm,{-1.25,-1.25,-1.25},{1.25,1.25,1.25},{0,0,0},{1,1,1}));
+    return fbm;
+}
+
+vector
+vop_dampenFbmVV(vector pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    vector pp = pos * freq + offset;
+    float  fw = sqrt(area(pp));
+    float  aa = sqrt(area(pos));
+    float  plimit = fw/lacun;
+    float  scale = 1;
+    int    octave = 0;
+    vector fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); while (scale > aa) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); pp *= lacun; scale *= lacun; }
+    fbm = amp * vector(fit(fbm,{-1.25,-1.25,-1.25},{1.25,1.25,1.25},{0,0,0},{1,1,1}));
+    return fbm;
+}
+
+vector
+vop_dampenFbmVP(vector4 pos, freq, offset; float lacun, amp; int maxoctaves)
+{
+    vector4	pp = pos * freq + offset;
+    float fw = sqrt(area((vector)pp));
+    float aa = sqrt(area((vector)pos));
+    float plimit = fw/lacun;
+    float scale = 1;
+    int   octave = 0;
+    vector	fbm = 0;
+    while (scale > plimit && octave < maxoctaves) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); scale *= lacun; pp /= lacun; octave ++; } scale *= lacun; fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); while (scale > aa) { fbm += scale * vector(fit(vector(noise(pp)),{0.3,0.3,0.3},{0.7,0.7,0.7},{-1.0,-1.0,-1.0},{1.0,1.0,1.0})); pp *= lacun; scale *= lacun; }
+    fbm = amp * vector(fit(fbm,{-1.25,-1.25,-1.25},{1.25,1.25,1.25},{0,0,0},{1,1,1}));
+    return fbm;
+}
+#line 1167 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+float
+vop_perlinNoiseVF(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    float nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((float(noise(pp))) + 0); nval = (float(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_perlinNoiseVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(noise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_perlinNoiseVP(vector4 pos; int turb; float amp, rough, atten)
+{
+    vector4 pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(noise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+float
+vop_correctperlinNoiseVF(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    float nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 0.5 * scale * ((float(noise(pp))) + -.5); nval = (float(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_correctperlinNoiseVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 0.5 * scale * ((vector(noise(pp))) + -.5); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_correctperlinNoiseVP(vector4 pos; int turb; float amp, rough, atten)
+{
+    vector4 pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 0.5 * scale * ((vector(noise(pp))) + -.5); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+float
+vop_simplexNoiseVF(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    float nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += .5 * scale * ((float(xnoise(pp))) + -.5); nval = (float(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_simplexNoiseVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += .5 * scale * ((vector(xnoise(pp))) + -.5); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_simplexNoiseVP(vector4 pos; int turb; float amp, rough, atten)
+{
+    vector4 pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += .5 * scale * ((vector(xnoise(pp))) + -.5); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_simplexCurlNoiseVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlxnoise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_simplexCurlNoise2DVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlxnoise2d(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_simplexCurlNoiseVP(vector4 pos; int turb; float amp, rough, atten)
+{
+    vector4 pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlxnoise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_perlinCurlNoiseVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlnoise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_perlinCurlNoise2DVV(vector pos; int turb; float amp, rough, atten)
+{
+    vector pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlnoise2d(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+
+vector
+vop_perlinCurlNoiseVP(vector4 pos; int turb; float amp, rough, atten)
+{
+    vector4 pp = pos;
+    vector nval;
+    float scale = amp; int i; nval = 0; for (i = 0; i < turb; i++, pp *= 2.0, scale *= rough) nval += 1 * scale * ((vector(curlnoise(pp))) + 0); nval = (vector(pow(nval, atten)));
+    return nval;
+}
+#line 1364 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+vector
+vop_curlNoiseVV(vector pos, freq, offset, nml;
+		string type, geo;
+		int turb, bounce;
+	    	float amp, rough, atten, distance, radius, h)
+{
+    vector val = {0,0,0};
+
+    if (type == "exact_pnoise")
+    {
+	return vop_perlinCurlNoiseVV(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+    else if (type == "exact_xnoise")
+    {
+	return vop_simplexCurlNoiseVV(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+
+
+    vector xDiff = pos;		xDiff.x += h;
+    vector yDiff = pos;		yDiff.y += h;
+    vector zDiff = pos;		zDiff.z += h;
+
+
+    vector noisevec, xDiffNoise, yDiffNoise, zDiffNoise;
+    if( type == "onoise" )
+    {
+	noisevec = onoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = onoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = onoise(yDiff*freq - offset, turb, rough, atten) * amp;
+	zDiffNoise = onoise(zDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if( type == "snoise" )
+    {
+	noisevec = snoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = snoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = snoise(yDiff*freq - offset, turb, rough, atten) * amp;
+	zDiffNoise = snoise(zDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if( type == "anoise" )
+    {
+	noisevec = anoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = anoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = anoise(yDiff*freq - offset, turb, rough, atten) * amp;
+	zDiffNoise = anoise(zDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if (type == "xnoise" )
+    {
+	noisevec = vop_simplexNoiseVV(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_simplexNoiseVV(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_simplexNoiseVV(yDiff*freq - offset, turb, amp, rough, atten);
+	zDiffNoise = vop_simplexNoiseVV(zDiff*freq - offset, turb, amp, rough, atten);
+    }
+    else
+    {
+	noisevec = vop_perlinNoiseVV(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_perlinNoiseVV(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_perlinNoiseVV(yDiff*freq - offset, turb, amp, rough, atten);
+	zDiffNoise = vop_perlinNoiseVV(zDiff*freq - offset, turb, amp, rough, atten);
+    }
+
+
+    float dist, r, d; vector norm = normalize(nml); if( geo != "" ) { dist = volumesample(geo, 0, (vector)pos); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)pos) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; noisevec = (r * noisevec) + ((1-r) * dot(norm, noisevec) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)xDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)xDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; xDiffNoise = (r * xDiffNoise) + ((1-r) * dot(norm, xDiffNoise) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)yDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)yDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; yDiffNoise = (r * yDiffNoise) + ((1-r) * dot(norm, yDiffNoise) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)zDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)zDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; zDiffNoise = (r * zDiffNoise) + ((1-r) * dot(norm, zDiffNoise) * norm);; float dzdy = (yDiffNoise.z - noisevec.z); float dydz = (zDiffNoise.y - noisevec.y); float dxdz = (zDiffNoise.x - noisevec.x); float dzdx = (xDiffNoise.z - noisevec.z); float dydx = (xDiffNoise.y - noisevec.y); float dxdy = (yDiffNoise.x - noisevec.x); val.x = (dzdy - dydz)/h; val.y = (dxdz - dzdx)/h; val.z = (dydx - dxdy)/h; if( bounce ) { vector vn; if( geo != "" ) { dist = volumesample(geo, 0, (vector)pos); if( dist < 0 ) { norm = normalize( volumegradient(geo, 0, (vector)pos) ); d = dot(norm, val); if( d < 0 ) { vn = d * norm; val = val - 2*vn; } } } else if( distance < 0 ) { d = dot(norm, val); if( d < 0 ) { vn = d * nml; val = val - 2*vn; } } }
+
+    return val;
+}
+
+vector
+vop_curlNoiseVP(vector4 pos, freq, offset;
+		vector nml;
+		string type; string geo;
+		int turb, bounce;
+		float amp, rough, atten, distance, radius, h)
+{
+    vector val = {0,0,0};
+
+    if (type == "exact_pnoise")
+    {
+	return vop_perlinCurlNoiseVP(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+    else if (type == "exact_xnoise")
+    {
+	return vop_simplexCurlNoiseVP(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+
+
+    vector4 xDiff = pos;	xDiff.x += h;
+    vector4 yDiff = pos;	yDiff.y += h;
+    vector4 zDiff = pos;	zDiff.z += h;
+
+    vector noisevec, xDiffNoise, yDiffNoise, zDiffNoise;
+
+
+    if (type == "xnoise")
+    {
+	noisevec = vop_simplexNoiseVP(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_simplexNoiseVP(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_simplexNoiseVP(yDiff*freq - offset, turb, amp, rough, atten);
+	zDiffNoise = vop_simplexNoiseVP(zDiff*freq - offset, turb, amp, rough, atten);
+    }
+    else
+    {
+	noisevec = vop_perlinNoiseVP(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_perlinNoiseVP(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_perlinNoiseVP(yDiff*freq - offset, turb, amp, rough, atten);
+	zDiffNoise = vop_perlinNoiseVP(zDiff*freq - offset, turb, amp, rough, atten);
+    }
+
+
+    float dist, r, d; vector norm = normalize(nml); if( geo != "" ) { dist = volumesample(geo, 0, (vector)pos); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)pos) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; noisevec = (r * noisevec) + ((1-r) * dot(norm, noisevec) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)xDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)xDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; xDiffNoise = (r * xDiffNoise) + ((1-r) * dot(norm, xDiffNoise) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)yDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)yDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; yDiffNoise = (r * yDiffNoise) + ((1-r) * dot(norm, yDiffNoise) * norm);; if( geo != "" ) { dist = volumesample(geo, 0, (vector)zDiff); r = abs( clamp(dist/radius, -1, 1) ); norm = normalize( volumegradient(geo, 0, (vector)zDiff) ); if( dist < 0 ) { norm = -norm; } } else { r = abs( clamp(distance/radius, -1, 1) ); } r = ( 15.0*r - 10.0*r*r*r + 3*r*r*r*r*r ) / 8.0; zDiffNoise = (r * zDiffNoise) + ((1-r) * dot(norm, zDiffNoise) * norm);; float dzdy = (yDiffNoise.z - noisevec.z); float dydz = (zDiffNoise.y - noisevec.y); float dxdz = (zDiffNoise.x - noisevec.x); float dzdx = (xDiffNoise.z - noisevec.z); float dydx = (xDiffNoise.y - noisevec.y); float dxdy = (yDiffNoise.x - noisevec.x); val.x = (dzdy - dydz)/h; val.y = (dxdz - dzdx)/h; val.z = (dydx - dxdy)/h; if( bounce ) { vector vn; if( geo != "" ) { dist = volumesample(geo, 0, (vector)pos); if( dist < 0 ) { norm = normalize( volumegradient(geo, 0, (vector)pos) ); d = dot(norm, val); if( d < 0 ) { vn = d * norm; val = val - 2*vn; } } } else if( distance < 0 ) { d = dot(norm, val); if( d < 0 ) { vn = d * nml; val = val - 2*vn; } } }
+
+    return val;
+}
+
+vector
+vop_curlNoise2DVV(vector pos, freq, offset;
+		    string type, geo;
+		    int turb;
+		    float amp, rough, atten, distance, radius, h)
+{
+    vector val = {0,0,0};
+
+    if (type == "exact_pnoise")
+    {
+	return vop_perlinCurlNoise2DVV(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+    else if (type == "exact_xnoise")
+    {
+	return vop_simplexCurlNoise2DVV(pos*freq-offset, turb, amp, rough*2, atten);
+    }
+
+
+    vector xDiff = pos;		xDiff.x += h;
+    vector yDiff = pos;		yDiff.y += h;
+
+
+    float noise, xDiffNoise, yDiffNoise;
+    if( type == "onoise" )
+    {
+	noise = onoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = onoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = onoise(yDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if( type == "snoise" )
+    {
+	noise = snoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = snoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = snoise(yDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if( type == "anoise" )
+    {
+	noise = anoise(pos*freq - offset, turb, rough, atten) * amp;
+	xDiffNoise = anoise(xDiff*freq - offset, turb, rough, atten) * amp;
+	yDiffNoise = anoise(yDiff*freq - offset, turb, rough, atten) * amp;
+    }
+    else if (type == "xnoise")
+    {
+	noise = vop_simplexNoiseVF(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_simplexNoiseVF(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_simplexNoiseVF(yDiff*freq - offset, turb, amp, rough, atten);
+    }
+    else
+    {
+	noise = vop_perlinNoiseVF(pos*freq - offset, turb, amp, rough, atten);
+	xDiffNoise = vop_perlinNoiseVF(xDiff*freq - offset, turb, amp, rough, atten);
+	yDiffNoise = vop_perlinNoiseVF(yDiff*freq - offset, turb, amp, rough, atten);
+    }
+
+
+    float r;
+    if( geo != "" )
+    {
+	float dist = volumesample(geo, 0, pos);
+	r = clamp(dist/radius, -1, 1);
+    }
+    else
+    {
+	r = clamp(distance/radius, -1, 1);
+    }
+    r = ( 15.0 * r - 10.0 * r*r*r + 3.0 * r*r*r*r*r ) / 8.0;
+    noise = noise * r;
+    xDiffNoise = xDiffNoise * r;
+    yDiffNoise = yDiffNoise * r;
+
+
+    val.x = (yDiffNoise - noise) / h;
+    val.y = (noise - xDiffNoise) / h;
+
+    return val;
+}
+
+void
+vop_displaceAlongNormal(vector pp, nn; float amount, scale, sshear, tshear;
+			    int	 for_poly, obj_space, bump_only;
+			    vector dP, dN)
+{
+
+    if (obj_space)
+    {
+	float	nscale = length(nn);
+	dN = normalize(ntransform("space:object", nn)) * nscale;
+	dP = ptransform("space:object", pp);
+    }
+    else
+    {
+	dN = nn;
+	dP = pp;
+    }
+
+    dP += (scale * amount)*dN;
+    dP += (sshear * amount) * normalize(Du(dP));
+    dP += (tshear * amount) * normalize(Dv(dP));
+
+    if (obj_space)
+    {
+	dP = ptransform("space:object", "space:current", dP);
+    }
+
+    if (for_poly)
+	 dN = computenormal(dP, nn, Ng);
+    else dN = computenormal(dP);
+
+
+
+
+
+
+    if (bump_only)
+    {
+	dP =  pp;
+    }
+}
+
+
+
+
+
+void
+vop_displaceAlongVector(vector pp, vec; string space; int mode;
+                        float amount, scale, sshear, tshear;
+			            vector dP, dN)
+{
+    dP = pp;
+    dN = normalize(N);
+
+
+    vector ng = Ng;
+    vector oP = pp;
+    vector oN = vec;
+    if (space != "space:current" ) {
+
+        oP = ptransform(space, pp);
+        ng = ntransform(space, Ng);
+
+        if ( mode == 0 )
+            oN = amount * normalize(ntransform(space, 2*vec-1));
+        else if ( mode == 1 )
+            oN = ntransform(space, vec);
+        else if ( mode == 2 )
+            oN = amount * normalize(ntransform(space, N));
+    }
+    else {
+        if ( mode == 0 )
+            oN = amount * normalize(2*vec-1);
+        else if ( mode == 1 )
+            oN = vec;
+        else if ( mode == 2 )
+            oN = amount * normalize(N);
+    }
+
+
+    oP += scale * oN;
+	oN = computenormal(oP, oN, ng);
+
+
+
+    if (space != "space:current" ) {
+        dP = ptransform(space,"space:current", oP);
+        dN = normalize(ntransform(space,"space:current", oN));
+    }
+    else {
+        dP = oP;
+        dN = normalize(oN);
+    }
+}
+
+
+vector
+vop_setcomp(vector in; float fval; int part)
+{
+    vector out = in;
+    setcomp(out, fval, part);
+    return out;
+}
+
+matrix
+vop_setmatcomp(matrix in; float fval; int row, col)
+{
+    matrix out = in;
+    setcomp(out, fval, row, col);
+    return out;
+}
+#line 1675 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+matrix vop_translate(matrix in; vector t) { matrix out = in; translate(out, t); return out; }
+matrix vop_translate(matrix in; vector4 t) { matrix out = in; translate(out, t); return out; }
+#line 1688 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+matrix vop_rotate(matrix in; float angle; vector axis) { matrix out = in; rotate(out, angle, axis); return out; }
+matrix3 vop_rotate(matrix3 in; float angle; vector axis) { matrix3 out = in; rotate(out, angle, axis); return out; }
+#line 1702 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+matrix vop_scale(matrix in; vector s) { matrix out = in; scale(out, s); return out; }
+matrix3 vop_scale(matrix3 in; vector s) { matrix3 out = in; scale(out, s); return out; }
+
+
+vector
+vop_frompolar(float u, v; float radius)
+{
+    float	sv = sin(v);
+    return set(sv*cos(u), sv*sin(u), cos(v))*radius;
+}
+
+vector
+vop_topolarXYZ(float x, y, z)
+{
+    float r = sqrt(x*x+y*y+z*z);
+    return set(
+	    atan(y, x) % (2* 3.1415926),
+	    acos(z/r),
+	    r);
+}
+
+vector
+vop_topolar(vector v)
+{
+    return vop_topolarXYZ(v.x, v.y, v.z);
+}
+
+
+void
+vop_computeTangents(string tstyle;
+		    vector nn, uv;
+		    vector in_utan, in_vtan;
+		    vector out_utan, out_vtan)
+{
+    if (tstyle == "geo")
+    {
+	out_utan = normalize(dPds);
+	out_vtan = normalize(dPdt);
+    }
+    else if (tstyle == "world")
+    {
+	out_vtan = cross(set(0, 0, 1), nn);
+	out_vtan = length2(out_vtan) < 1e-6 ? set(1, 0, 0) : normalize(out_vtan);
+	out_utan = normalize(cross(nn, out_vtan));
+    }
+    else if (tstyle == "object")
+    {
+	out_vtan = cross(ow_vspace(set(0, 0, 1)), nn);
+	out_vtan = length2(out_vtan) < 1e-6 ? set(1, 0, 0) : normalize(out_vtan);
+	out_utan = normalize(cross(nn, out_vtan));
+    }
+    else if (tstyle == "uv")
+    {
+	out_utan = normalize((dPds * Dv(uv.y)) - (dPdt * Du(uv.y)));
+	out_vtan = normalize(cross(nn, out_utan));
+	out_utan = normalize(cross(nn, out_vtan));
+    }
+    else
+    {
+	out_utan = in_utan;
+	out_vtan = in_vtan;
+    }
+}
+
+void
+vop_computeTangentsOld(vector out_tanu, out_tanv;
+		       vector nn, uv;
+		       vector in_tanu, in_tanv;
+		       int tstyle)
+{
+    string	s_tstyle;
+    if (tstyle == 0)
+	s_tstyle = "world";
+    else if (tstyle == 1)
+	s_tstyle = "object";
+    else if (tstyle == 2)
+    s_tstyle = "uv";
+    else
+	s_tstyle = "inputs";
+    vop_computeTangents(s_tstyle,
+	    nn, uv, in_tanu, in_tanv, out_tanu, out_tanv);
+}
+
+vector
+vop_anisotropic_eval(vector ll; vector nn; vector V;
+		vector uv; vector in_tanu; vector in_tanv;
+		float urough, vrough; int model; int tstyle)
+{
+    vector    H;
+    vector    clr;
+    vector    tanU, tanV;
+    float     rz, cos_r, cos_i;
+
+    float     nml_term;
+    float     uval, vval, nval;
+    float     exponent;
+
+    cos_r = dot(nn, V);
+    clr = 0;
+    if (cos_r > 0.0)
+    {
+	vop_computeTangentsOld(tanU, tanV, nn, uv, in_tanu, in_tanv, tstyle);
+
+	cos_i = dot(ll, nn);
+	if (cos_i > 0.0)
+	{
+	    H = normalize(V + ll);
+	    uval = dot(tanU, H);
+	    vval = dot(tanV, H);
+	    nval = dot(nn, H);
+
+	    rz = 0;
+	    if (nval > 0)
+	    {
+		if (model == 0)
+		{
+
+		    nml_term = 4.0 * 3.1415926 * urough*vrough;
+		    uval /= urough;
+		    vval /= vrough;
+		    rz = cos_i*exp(-2.*(uval*uval + vval*vval) /
+			    (1.0 + nval));
+		    rz /= nml_term * sqrt(cos_i*cos_r);
+		}
+		else
+		{
+
+		    exponent = uval*uval/urough + vval*vval/vrough;
+		    exponent /= 1.0 - nval*nval;
+
+		    rz = pow(nval, exponent) / (4.0 * dot(V, H));
+		}
+	    }
+	    clr = rz;
+	}
+    }
+    return clr;
+}
+
+
+
+vector
+vop_anisotropic(vector nn; vector V; vector uv; float urough, vrough;
+		int model, tstyle)
+{
+    vector	ll;
+    vector	lclr;
+    vector	tanu = 0;
+    vector	tanv = 0;
+
+    lclr = 0;
+    tanu = 0;
+    tanv = 0;
+
+
+    illuminance (P, nn, 3.1415926/2, bouncemask("reflect"), "lightexport", "")
+    {
+	shadow(Cl);
+	ll = normalize(L);
+	lclr = vop_anisotropic_eval(
+		ll, nn, V, uv, tanu, tanv, urough, vrough, model, tstyle);
+	lclr *= Cl;
+    }
+    return lclr;
+}
+
+vector
+vop_sheen(vector nn, ii; float eta, rough; int facefwd)
+{
+    vector	R, T;
+    float	Kr, Kt, sheen;
+	vector	nf = nn;
+	if (facefwd) nf = normalize(frontface(nn, ii));
+    vector	illum = 0;
+
+    fresnel(ii, nn, eta, Kr, Kt, R, T);
+    Kr = smooth(0.0, 0.5, Kr);
+    illuminance (P, nn, 3.1415926/2, bouncemask("reflect"), "lightexport", "")
+    {
+	vector nL = normalize(L);
+	shadow(Cl);
+	sheen = specularBRDF(nL, nf, -ii, rough);
+	illum += Cl * dot(nL, nf) * (sheen + 0.2);
+    }
+    return Kr * illum;
+}
+
+
+
+bsdf
+vop_sheen_bsdf(vector nn, ii; float eta, rough; int facefwd)
+{
+    float	Kr, Kt;
+    vector	R, T;
+	vector	nf = nn;
+	if (facefwd) nf = normalize(frontface(nn, ii));
+	bsdf    f;
+
+    fresnel(ii, nn, eta, Kr, Kt, R, T);
+    Kr = smooth(0.0, 0.5, Kr);
+    f = Kr * ((bsdf(diffuse(nf)) * 0.2) +
+	       bsdf(diffuse(nf)) * matchvex_specular(nf, 1.0/rough));
+    return f;
+}
+
+float
+vop_specular_eval(string lmodel; vector ll, nf, ii, uv, tanu, tanv;
+	     float urough, vrough, sharp; int tstyle)
+{
+    float	seval = 0;
+
+    if (lmodel == "phong")
+    {
+	seval = phongBRDF(ll, nf, -ii, 1.0/urough);
+    }
+    else if (lmodel == "blinn")
+    {
+	seval = blinnBRDF(ll, nf, -ii, urough);
+    }
+    else if (lmodel == "glossy")
+    {
+	float	w = sharp/2.0;
+
+	seval = specularBRDF(ll, nf, -ii, urough);
+	if (w > 0)
+	    seval = smooth(w, 1-w, seval);
+    }
+    else if (lmodel == "anisotropic")
+    {
+	seval = (float)vop_anisotropic_eval(ll, nf, -ii,
+		uv, tanu, tanv, urough, vrough, 0, tstyle);
+    }
+    else if (lmodel == "spec" ||
+	     lmodel == "specular")
+    {
+	seval = specularBRDF(ll, nf, -ii, urough);
+    }
+    return seval;
+}
+
+
+
+vector
+vop_specular(string lmodel; vector nf, ii, uv;
+	     float urough, vrough, sharp; int tstyle)
+{
+    vector	clr, ll;
+    vector	tanu, tanv;
+
+    tanu = 0;
+    tanv = 0;
+
+    clr = 0;
+    illuminance(P, nf, 3.1415926/2, bouncemask("reflect"), "lightexport", "")
+    {
+	shadow(Cl);
+	ll = normalize(L);
+	clr += Cl * vop_specular_eval(lmodel, ll, nf, ii, uv, tanu, tanv,
+		urough, vrough, sharp, tstyle);
+    }
+
+    return clr;
+}
+
+
+
+bsdf
+vop_specular_bsdf(string lmodel; vector nf, ii, uv, tanu, tanv;
+	     float urough, vrough, sharp; int tstyle)
+{
+    bsdf	f;
+
+    if (lmodel == "phong")
+    {
+	f = bsdf(phong(nf, 1.0/urough));
+    }
+    else if (lmodel == "blinn")
+    {
+	f = matchvex_blinn(nf, 1.0/urough);
+    }
+    else if (lmodel == "glossy")
+    {
+	f = matchvex_specular(nf, 1.0/urough);
+    }
+    else if (lmodel == "anisotropic")
+    {
+	bsdf	aniso_bsdf;
+	vector	tanU;
+	vector	tanV;
+
+	vop_computeTangentsOld(tanU, tanV, nf, uv, tanu, tanv, tstyle);
+	aniso_bsdf = ashikhmin(nf, 2.0/(urough*urough), 2.0/(vrough*vrough),
+			       normalize(tanU), normalize(tanV));
+	f = (1.0 / (2.0 * 3.1415926 * urough * vrough)) * aniso_bsdf;
+    }
+    else
+    {
+	f = matchvex_specular(nf, 1.0/urough);
+    }
+    return f;
+}
+
+float
+vop_diffuse_eval(string dmodel; vector ll, nf, ii; float rough)
+{
+    float	deval = 0;
+    if (dmodel == "isotropic")
+    {
+	deval = 1;
+    }
+    else if (dmodel == "oren")
+    {
+	deval = diffuseBRDF(ll, nf, -ii, rough);
+    }
+    else if (dmodel == "diffuse")
+    {
+	deval = diffuseBRDF(ll, nf);
+    }
+    return deval;
+}
+
+bsdf
+vop_diffuse_bsdf(string dmodel; vector nf, ii; float rough)
+{
+    bsdf	f;
+
+    if (dmodel == "isotropic")
+    {
+	f = isotropic();
+    }
+    else if (dmodel == "oren")
+    {
+	f = bsdf(diffuse(nf, rough));
+    }
+    else
+    {
+	f = bsdf(diffuse(nf));
+    }
+    return f;
+}
+
+
+
+vector
+vop_lighting(string lmodel;
+	     vector nf, ii, uv, amb, diff, spec;
+	     float urough, vrough; int tstyle)
+{
+    vector	clr;
+
+    if (lmodel == "constant")
+    {
+	clr = diff;
+    }
+    else if (lmodel == "headlight")
+    {
+	clr = diff * clamp(dot(nf, -ii), 0, 1);
+    }
+    else
+    {
+	float	angle;
+
+	clr = amb * ambient();
+
+	if (lmodel == "isotropic")
+	    angle = 3.1415926;
+	else
+	    angle = 3.1415926/2;
+
+	illuminance(P, nf, angle, (bouncemask("diffuse")|bouncemask("reflect")), "lightexport", "")
+	{
+	    vector ll = normalize(L);
+	    vector lclr = 0;
+
+	    if (diff != {0,0,0})
+	    {
+		float	deval;
+		if (lmodel == "isotropic" ||
+		    lmodel == "oren")
+		    deval = vop_diffuse_eval(lmodel, ll, nf, ii, urough);
+		else
+		    deval = vop_diffuse_eval("diffuse", ll, nf, ii, urough);
+
+		lclr += deval * diff;
+	    }
+	    if (lmodel != "isotropic" &&
+		lmodel != "oren" &&
+		spec != {0,0,0})
+	    {
+		vector	tanu = 0;
+		vector	tanv = 0;
+
+		float seval = vop_specular_eval(lmodel, ll, nf, ii,
+			uv, tanu, tanv, urough, vrough, 0, tstyle);
+
+		lclr += seval * spec;
+	    }
+
+	    if (lclr != 0)
+	    {
+		shadow(Cl);
+		clr += lclr * Cl;
+	    }
+	}
+    }
+    return clr;
+}
+
+
+
+bsdf
+vop_lighting_bsdf(string lmodel;
+	     vector nf, ii, uv, amb, diff, spec;
+	     float urough, vrough; int tstyle)
+{
+    bsdf	f;
+    vector	tanu = 0;
+    vector	tanv = 0;
+
+    if (lmodel == "constant")
+    {
+	f = bsdf();
+    }
+    else if (lmodel == "lambert" ||
+	     lmodel == "headlight" ||
+	     lmodel == "oren" ||
+	     lmodel == "isotropic")
+    {
+	f = diff * vop_diffuse_bsdf(lmodel, nf, ii, urough);
+    }
+    else
+    {
+	tanu = 0;
+	tanv = 0;
+	f = diff * bsdf(diffuse(nf));
+	f += spec * vop_specular_bsdf(lmodel, nf, ii,
+		uv, tanu, tanv, urough, vrough, 0, tstyle);
+    }
+    return f;
+}
+
+
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/singlescatter.h"
+#line 16 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/singlescatter.h"
+float
+phase(vector v1, v2; float g)
+{
+    float costheta = dot(-v1, v2);
+	float g2 = g*g;
+    return (1.0 - g2) / pow(1.0 + g2 - 2.*g*costheta, 1.5);
+}
+
+
+
+
+
+
+
+
+float
+singleScatter(vector in, out, nn; float g, albedo, depth)
+{
+    float win = abs(dot(in, nn));
+    float won = abs(dot(out, nn));
+    float offset = phase(out, in, g);
+
+    float scatter = albedo * offset/(win + won);
+    scatter *= 1.0 - exp(-(1.0/win + 1.0/won) * depth);
+
+    return scatter;
+}
+
+vector
+efresnel(vector ii, nn; float eta; float Kr, Kt;)
+{
+    vector R, T;
+    fresnel(ii, nn, eta, Kr, Kt, R, T);
+    Kr = smooth(0.0, 0.5, Kr);
+    Kt = 1.0 - Kr;
+    return normalize(T);
+}
+#line 2147 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/pcscatter.h"
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shading.h"
+#line 14 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/pcscatter.h"
+
+float vop_hgphase(float g; vector Wi, Wo) {
+   float g2=g*g;
+        return (1. - g2) / pow(1. + g2 - (2.*g*dot(-Wi,Wo)), 1.5);
+}
+
+float vop_hgphaseN(float g; vector Wi, Wo) {
+   float g2=g*g;
+   float num = g>0 ? -1.+g : 1.+g;
+        return pow(num*num,1.5) / pow(1.+g2-(2.*g*dot(-Wi,Wo)),1.5);
+}
+
+float vop_ssBounceAtten(vector No,Ni,Li) {
+   return 1.0 - ((1.0-dot(No,Ni))* (1.0-dot(No,Li)) / 2.0);
+}
+
+float vop_cdfSingle(float y) {
+   float yy = clamp(y,0.0,1.0);
+   return y<=0. ? 0. : (y>=1. ? 1. : yy*(2.0 + (yy-2.0)*yy*yy));
+}
+
+
+void vop_pcIllum (int handle; string att) {
+   vector p, n;
+   vector illum;
+   int status;
+   while (pcunshaded(handle, att)) {
+      pcimport(handle, "P", p); p = ow_space(p);
+      pcimport(handle, "N", n); n = normalize(ow_nspace(n));
+      illum = 0;
+      illuminance(p, n, 3.1415926/2, bouncemask("diffuse"), "lightexport", "") {
+         shadow(Cl);
+         illum += Cl * diffuseBRDF(normalize(L), n);
+      }
+      status = pcexport(handle, att, illum);
+   }
+}
+
+
+
+
+void vop_pcIrrad (int handle; string att) {
+   vector p, n;
+   vector irrad;
+   int status;
+   while (pcunshaded(handle, att)) {
+      pcimport(handle, "P", p); p = ow_space(p);
+      pcimport(handle, "N", n); n = normalize(ow_nspace(n));
+      irrad = irradiance(p,n);
+      status = pcexport(handle, att, irrad);
+   }
+}
+
+
+float vop_icdfSingle(float x) {
+   float rslt = 0.;
+   if(x>=1.) {
+      rslt = 1.;
+   } else if(x>0.) {
+      float a = pow(9. - (9.*x) + (1.73205080756887729353 *
+                  sqrt(11.-(6.*x)-(21.*x*x)+(16.*x*x*x))), 0.333333333333333);
+      float A = (2.*1.587401051968199*(1.-x)) / (1.442249570307408*a);
+      float B = (1.259921049894873*a) / 2.080083823051904;
+      float C = sqrt(1.0 + A + B);
+      rslt = 0.5 * ( 1.0 + sqrt(2.0 - A - B + (2.0/C)) - C );
+   }
+   return rslt;
+}
+
+
+
+vector vop_ssIntegMulti (
+   string pcmap;
+   vector Rdo;
+   float sd;
+   float bounce;
+   int t_rgb;
+   vector pcP;
+   vector pcN;
+   )
+{
+   vector Xi,Ni;
+   vector Xo = pcP;
+   vector No = normalize(pcN);
+   vector ld = Rdo*sd;
+   float ld1 = max(ld);
+   int handle = pcopen(pcmap, "P", Xo, ld1, (int)1e9);
+   vop_pcIllum(handle,"illum");
+   float r,ptarea;
+   vector ssm=0, ptillum=0;
+   while (pciterate(handle)) {
+      pcimport(handle, "P", Xi);
+      pcimport(handle, "N", Ni);
+      pcimport(handle, "point.distance", r);
+      pcimport(handle, "ptarea", ptarea);
+      pcimport(handle, "illum", ptillum);
+      Ni = normalize(Ni);
+      vector Li = (Xo-Xi)/ld1;
+      float kb = vop_ssBounceAtten(No,Ni,Li);
+      kb = lerp(1.0,kb,bounce);
+      if(kb>0.0 ) {
+         if(t_rgb)
+         {
+            int wave;
+            for(wave=0;wave<3;wave++) {
+               setcomp( ssm,
+                        getcomp(ssm,wave) +
+                           kb * getcomp(ptillum,wave) * ptarea *
+                           (1-smooth(0,getcomp(ld,wave),r)),
+                        wave
+                      );
+            }
+         }
+         else
+            ssm += kb * ptillum * ptarea * (1-smooth(0,ld1,r));
+      }
+   }
+   pcclose(handle);
+   if(!t_rgb) ssm*=Rdo;
+   float norm = 3.0*ld1*ld1*3.1415926 / 10.0;
+   return ssm / norm;
+}
+
+
+vector vop_ssIntegSingle (
+   vector Rd;
+   float sd;
+   float g;
+   float eta;
+   int samples;
+   float tbias;
+   int t_rgb;
+   vector PP;
+   vector NN;
+   vector II;
+   )
+{
+   float Kro, Kto, Kri, Kti;
+   vector Xi, Wi, Ni;
+   int samp;
+   vector Psamp;
+   float phase,WiNi,AWiNi,spi,spo,ksss;
+   string oname = getobjectname();
+   vector Xo = PP;
+   vector No = normalize(NN);
+   vector Wo = -normalize(II);
+   vector lu = Rd*sd;
+   float lu1 = max(lu);
+   float ieta = 1.0 / eta;
+   float ieta2 = ieta * ieta;
+   vector To = normalize(refract(-Wo,No,ieta));
+   vector Wpo = -To;
+   float gg = clamp(g,-0.998,.998);
+   if(eta!=1.0) { fresnel(Wpo,-No,ieta,Kro,Kto); }
+      else Kto = 1.0;
+   vector scatt = 0;
+   vector realsamples = 0;
+   float hitD = rayhittest(Xo,To*1e6,tbias,"scope",oname);
+   float spoMax = hitD<0. ? lu1 : min(hitD,lu1);
+   float terr = tbias;
+   float sinc = (1.0-2.0*terr)/(float)(samples);
+   float ss = terr;
+   float ssbase= ss;
+   if(t_rgb) {
+      vector maxadj = set(
+            vop_cdfSingle(clamp(spoMax/lu.x,0.,1.)),
+            vop_cdfSingle(clamp(spoMax/lu.y,0.,1.)),
+            vop_cdfSingle(clamp(spoMax/lu.z,0.,1.))
+         );
+      int wave;
+      for(wave=0;wave<3;wave++)
+      {
+         ss=ssbase=terr;
+         float luk = getcomp(lu,wave);
+         for(samp=0; samp<samples; samp++)
+         {
+            ss = ssbase+sinc*nrandom();
+            spo = spoMax*vop_icdfSingle(ss*getcomp(maxadj,wave));
+            ssbase+=sinc;
+            Psamp = Xo + (To * spo);
+            illuminance(Psamp, No, 3.1415926, bouncemask("diffuse"), "lightexport", "")
+            {
+               Wi = normalize(L);
+               hitD = rayhittest(Psamp,L,Xi,Ni,0.,"scope",oname);
+               if(hitD>0.) {
+                  setcomp(realsamples,getcomp(realsamples,wave)+1,wave);
+                  Ni = normalize(Ni);
+                  WiNi = dot(Wi,Ni);
+                  AWiNi = abs(WiNi);
+                  spi = distance(Psamp,Xi) * AWiNi /
+                              sqrt(1.0 - ieta2 * (1.0 - AWiNi*AWiNi));
+		  if(spi <= luk && WiNi>0.) {
+		      if(eta!=1.0) { fresnel(-Wi,Ni,ieta,Kri,Kti); }
+		      else Kti = 1.0;
+		      float f = Kti * Kto;
+		      phase = vop_hgphaseN(gg,Wi,Wpo);
+		      ksss = f * phase * (1-smooth(0,luk,spi));
+		      setcomp(scatt,getcomp(scatt,wave) +
+			      getcomp(Cl,wave)*WiNi*ksss,
+			      wave);
+                  }
+               }
+            }
+         }
+      }
+   } else {
+      ss=ssbase=terr;
+      float icdfmax = vop_cdfSingle(clamp(spoMax/lu1,0.,1.));
+      for(samp=0; samp<samples; samp++)
+      {
+         ss = ssbase+nrandom()*sinc;
+         spo = spoMax*vop_icdfSingle(ss*icdfmax);
+         ssbase += sinc;
+         Psamp = Xo + (To * spo);
+         illuminance(Psamp, No, 3.1415926, bouncemask("diffuse"), "lightexport", "")
+         {
+            Wi = normalize(L);
+            hitD = rayhittest(Psamp,L,Xi,Ni,0.,"scope",oname);
+            if(hitD>0.) {
+               realsamples += 1;
+               Ni = normalize(Ni);
+               WiNi = dot(Wi,Ni);
+               AWiNi = abs(WiNi);
+               spi = distance(Psamp,Xi) * AWiNi /
+                           sqrt(1.0 - ieta2 * (1.0 - AWiNi*AWiNi));
+               if(spi <= lu1 && WiNi>0.) {
+                  if(eta!=1.0) { fresnel(-Wi,Ni,ieta,Kri,Kti); }
+                     else Kti = 1.0;
+                  float f = Kti * Kto;
+                     phase = vop_hgphaseN(gg,Wi,Wpo);
+                     ksss = f * phase * (1-smooth(0,lu1,spi));
+                  scatt+= Cl * Rd * WiNi * ksss;
+               }
+            }
+         }
+      }
+   }
+      return 2.0 * scatt / realsamples;
+}
+#line 2148 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+
+vector
+vop_hairspec(vector nn, V, T; float exp;)
+{
+
+
+
+
+    float NdotI = dot(nn, V);
+    vector illum = 0;
+
+    illuminance (P, nn, 3.1415926/2, bouncemask("reflect"), "lightexport", "")
+    {
+	vector nL = normalize(L);
+	float NdotL = dot(nn, nL);
+
+	float Kajiya = cos(abs(acos(dot(T,nL)) - acos(dot(-T,V))));
+
+	shadow(Cl);
+	illum += Cl * NdotL * NdotI * pow(Kajiya, 1.0/exp);
+    }
+    return illum;
+}
+
+vector
+vop_simpleSSS(vector nn, ii; float  eta, depth; int facefwd)
+{
+#line 2186 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+    vector	illum = 0;
+    float	Kr, fKr = 1;
+    float	Kt = 1;
+    float	fKt = 1;
+    vector	rayin = efresnel(ii, nn, eta, Kr, Kt);
+	vector	nf = nn;
+	if (facefwd) nf = normalize(frontface(nn, ii));
+
+    illuminance (P, nn, 3.1415926/2, bouncemask("diffuse"), "lightexport", "")
+    {
+	vector nL = normalize(L);
+	vector rayout = efresnel(-nL, nn, eta, fKr, fKt);
+
+	shadow(Cl);
+	illum += Cl * dot(nL, nf) * Kt * fKt *
+			    (singleScatter(rayin, rayout, nf, .8, .8, depth) +
+			     singleScatter(rayin, rayout, nf, .3, .5, depth) +
+			     singleScatter(rayin, rayout, nf, 0., .4, depth));
+    }
+    return illum;
+}
+
+
+
+bsdf
+vop_SSS_bsdf(vector nn, ii; float  eta, depth; int facefwd)
+{
+    float	Kr = 1;
+    float	Kt = 1;
+	vector  R, T;
+	vector	nf = nn;
+	if (facefwd) nf = normalize(frontface(nn, ii));
+	bsdf    f;
+
+    fresnel(ii, nn, eta, Kr, Kt, R, T);
+	Kr = smooth(0, 0.5, Kr);
+	Kt = 1 - Kr;
+
+
+	f = Kt * bsdf(diffuse(nf));
+    return f;
+}
+
+
+
+vector
+vop_multiSSS(vector Pin, Nin, Rd; float sd, bounce;
+			 string pcmap; int nfp, t_rgb;)
+{
+   vector Xo = wo_space(Pin);
+   vector No = normalize(wo_nspace(Nin));
+   vector mapP, mapN, ssm;
+   int xxx;
+   string ch_ssm = "ssM";
+   int handle = pcopen(pcmap, "P", Xo, "N", No, 1e37, nfp);
+   while (pcunshaded(handle, ch_ssm)) {
+      pcimport(handle, "P", mapP);
+      pcimport(handle, "N", mapN);
+      ssm = vop_ssIntegMulti(pcmap, Rd, sd, bounce,t_rgb, mapP, mapN);
+      xxx = pcexport(handle, ch_ssm, ssm);
+   }
+   vector bssrdf = vector(pcfilter(handle, ch_ssm));
+   pcclose(handle);
+   return bssrdf;
+}
+
+vector
+vop_singleSSS(vector Pin, Nin, Iin, Rd; float sd, g, eta, tbias;
+                string pcmap; int nfp, samples, t_rgb;)
+{
+   vector bssrdf;
+   if(pcmap != "")
+   {
+      vector Xo = wo_space(Pin);
+      vector No = normalize(wo_nspace(Nin));
+      vector eye = Pin-Iin;
+      vector mapP, mapN, ssm;
+      int xxx;
+      int handle = pcopen(pcmap, "P", Xo, "N", No, 1e37, nfp);
+      string ch_ssm = "ssS";
+      while (pcunshaded(handle, ch_ssm)) {
+         pcimport(handle, "P", mapP);
+         pcimport(handle, "N", mapN);
+         ssm = vop_ssIntegSingle (Rd,sd, g,eta,samples,tbias,t_rgb,
+                              ow_space(mapP),ow_nspace(mapN),mapP-eye);
+         xxx = pcexport(handle, ch_ssm, ssm);
+      }
+      bssrdf = vector(pcfilter(handle, ch_ssm));
+      pcclose(handle);
+   }
+   else
+   {
+      bssrdf = vop_ssIntegSingle(Rd,sd,g,eta,samples,tbias,t_rgb,Pin,Nin,Iin);
+   }
+   return bssrdf;
+}
+
+
+vector
+vop_trace_environment(string envmap, envobj; vector raydir, bg;)
+{
+    vector val = 0;
+    if (envmap == "")
+    {
+	val = bg;
+    }
+    else
+    {
+	vector	dir = vtransform("space:current", envobj, raydir);
+	val = environment(envmap, dir, dir, dir, dir, "lerp", 1);
+    }
+    return val;
+}
+
+
+vector
+vop_trace(vector Nf, nN, PP, dir, atten, bg; string envmap;
+	float bias, angle, thresh, jitter, density; string style;
+	int samples; float nhit; string envobj;)
+{
+    nhit = 0;
+    vector sum = 0;
+    vector raydir = 0;
+    float  atten_interp, dist;
+    vector hitCf, hitOf, hitP;
+
+    gather( PP, dir,
+	    "Cf", hitCf,
+	    "Of", hitOf,
+	    "P",  hitP,
+	    "ray:direction", raydir,
+	    "samples", samples,
+	    "bias", bias,
+	    "angle", angle,
+	    "raystyle", style,
+	    "rayweight", thresh,
+	    "samplebase", jitter,
+	    "variancevar", "Cf")
+    {
+
+        atten_interp = 1;
+        if ((dot(Nf, nN) > 0) && (dot(Nf, raydir) < 0) && (density > 0))
+        {
+            dist = length(hitP-PP);
+            atten_interp = exp(-dist*density);
+        }
+        sum += lerp(atten, hitCf, atten_interp);
+
+        if (max(hitOf) < 1)
+        {
+            sum += (set(1,1,1) - hitOf) *
+                    vop_trace_environment(envmap, envobj, raydir, bg);
+        }
+
+        nhit += 1;
+    }
+    else
+    {
+
+        sum += vop_trace_environment(envmap, envobj, raydir, bg);
+        nhit += 1;
+    }
+    return sum;
+}
+
+
+float
+vop_weave(float ss, tt, sfreq, tfreq, width)
+{
+	float weave = 0;
+	if ( sfreq > 0 && tfreq > 0 && width > 0)
+	{
+
+		float vv = tt * 0.5;
+		float uu = (ss+vv) * sfreq;
+		vv = (ss-vv) * tfreq;
+		if (((int(floor(uu)) & 1) == 0) ) vv += 0.5;
+
+
+		float warppulse = sqrt(abs(sin(uu * 3.1415926)));
+		warppulse = smooth(1-width, 1, warppulse);
+
+		float weftpulse = sqrt(abs(sin(vv * 3.1415926)));
+		weftpulse = smooth(1-width, 1, weftpulse);
+
+
+		float weft = lerp(0, 1, warppulse);
+		weft = lerp(weft, 0, 1-warppulse);
+
+		weft = lerp(0, weft, weftpulse);
+		weft = lerp(weft, 0, 1-weftpulse);
+
+
+		float warp = lerp(0, 1, weftpulse);
+		warp = lerp(warp, 0, 1-weftpulse);
+
+		warp = lerp(0, warp, warppulse);
+		warp = lerp(warp, 0, 1-warppulse);
+
+		weave = ((((int(floor(uu)) & 1) == 1) && ((int(floor(vv)) & 1) == 0)) ||
+						(((int(floor(uu)) & 1) == 0) && ((int(floor(vv)) & 1) == 1))) ?
+										weft : warp;
+	}
+	return weave;
+}
+
+vector
+vop_toUnitNormal(vector Ni;)
+{
+    return Ni * 0.5 + 0.5;
+}
+
+vector
+vop_fromUnitNormal(vector Ni;)
+{
+    return Ni * 2.0 - 1.0;
+}
+
+vector
+vop_tangentNormal(vector Ni;
+                  vector nn;
+                  vector utan;
+                  vector vtan;
+                  int onspace;
+                  int flipX;
+                  int flipY;
+                  float heightScale;)
+{
+    vector Nn   = normalize(nn);
+    vector Nin  = lerp(Nn, Ni, heightScale);
+
+    vector No;
+    No.x = dot(Nin, utan);
+    No.y = dot(Nin, vtan);
+    No.z = dot(Nin, nn);
+    No = normalize(No);
+
+    if (flipX) { No.x = -No.x; }
+    if (flipY) { No.y = -No.y; }
+
+    if (onspace == 0) { No = vop_toUnitNormal(No); }
+
+    return No;
+}
+
+vector
+vop_tangentNormalRemap(vector Ni;
+                       vector nn;
+                       vector utan;
+                       vector vtan;
+                       int inspace;
+                       int flipX;
+                       int flipY;
+                       float heightScale;)
+{
+    vector Nn   = normalize(nn);
+    vector Vs	= normalize(utan);
+    vector Vt	= normalize(vtan);
+    vector Nin  = Ni;
+
+    if (inspace == 0) { Nin = vop_fromUnitNormal(Nin); }
+
+    if (flipX) { Nin.x = -Nin.x; }
+    if (flipY) { Nin.y = -Nin.y; }
+
+    matrix M;
+    setcomp(M, Vs.x, 0, 0);
+    setcomp(M, Vs.y, 0, 1);
+    setcomp(M, Vs.z, 0, 2);
+    setcomp(M, 0,    0, 3);
+    setcomp(M, Vt.x, 1, 0);
+    setcomp(M, Vt.y, 1, 1);
+    setcomp(M, Vt.z, 1, 2);
+    setcomp(M, 0,    1, 3);
+    setcomp(M, Nn.x, 2, 0);
+    setcomp(M, Nn.y, 2, 1);
+    setcomp(M, Nn.z, 2, 2);
+    setcomp(M, 0,    2, 3);
+    setcomp(M, 0,    3, 0);
+    setcomp(M, 0,    3, 1);
+    setcomp(M, 0,    3, 2);
+    setcomp(M, 1,    3, 3);
+
+    vector No = normalize(ntransform(Nin, M));
+
+    No = lerp(Nn, No, heightScale);
+
+    return No;
+}
+
+vector
+vop_bumpToNormalMap(string map;
+                    int onspace;
+                    int flipX;
+                    int flipY;
+                    float heightScale;
+                    vector uv;)
+{
+    int xres = 0;
+    teximport(map, "texture:xres", xres);
+    int yres = 0;
+    teximport(map, "texture:yres", yres);
+    float dx = 1.0 / max(xres, yres);
+
+    vector v00 = texture(map, uv.x-dx, uv.y-dx);
+    vector v01 = texture(map, uv.x-dx, uv.y   );
+    vector v02 = texture(map, uv.x-dx, uv.y+dx);
+    vector v10 = texture(map, uv.x,    uv.y-dx);
+    vector v12 = texture(map, uv.x,    uv.y+dx);
+    vector v20 = texture(map, uv.x+dx, uv.y-dx);
+    vector v21 = texture(map, uv.x+dx, uv.y   );
+    vector v22 = texture(map, uv.x+dx, uv.y+dx);
+
+    float f00 = luminance(v00);
+    float f01 = luminance(v01);
+    float f02 = luminance(v02);
+    float f10 = luminance(v10);
+    float f12 = luminance(v12);
+    float f20 = luminance(v20);
+    float f21 = luminance(v21);
+    float f22 = luminance(v22);
+
+    vector No;
+    No.x = f20 + 2*f21 + f22 -f00 - 2*f01 - f02;
+    No.y = f02 + 2*f12 + f22 -f00 - 2*f10 - f20;
+    No.z = 1.0 / heightScale;
+    if (flipX) { No.x = -No.x; }
+    if (flipY) { No.y = -No.y; }
+    No = normalize(No);
+
+    if (onspace == 0) { No = vop_toUnitNormal(No); }
+
+    return No;
+}
+
+
+void
+vop_curvature(vector p;
+              vector n;
+              int mode;
+              int space;
+              int smooth;
+              float tolerance;
+              float convexscale;
+              float convexbias;
+              float concavescale;
+              float concavebias;
+              float biasmap;
+              float Ko;)
+{
+    float xa = area(P);
+
+    vector dPdu, dPdv;
+    getderiv(p, "P", 0, s, t, dPdu, dPdv, "smooth", smooth);
+    dPdu /= xa;
+    dPdv /= xa;
+
+    vector dNdu, dNdv;
+    getderiv(n, "N", 0, s, t, dNdu, dNdv, "smooth", smooth);
+    dNdu /= xa;
+    dNdv /= xa;
+
+    float a00 = dot(dPdu, dPdu);
+    float a01 = dot(dPdu, dPdv);
+    float a11 = dot(dPdv, dPdv);
+
+    float b00 = -dot(dNdu, dPdu);
+    float b01 = -(dot(dNdu, dPdv) + dot(dNdv, dPdu)) / 2;
+    float b11 = -dot(dNdv, dPdv);
+
+    float a = a00*a11 - a01*a01;
+    float b = b00*b11 - b01*b01;
+    float aa = max(abs(a), tolerance) * sign(a);
+
+    float cn00 = a11 / aa;
+    float cn01 = -a01 / aa;
+    float cn11 = a00 / aa;
+
+    float K = b / aa;
+    float H = ((cn00*b00 + cn11*b11) / 2) + (cn01*b01);
+
+    float Q = H*H - 4*K;
+    float QQ = max(Q, 0);
+    float SQ = sqrt(QQ);
+
+    float p0 = (H + SQ) / 2;
+    float p1 = (H - SQ) / 2;
+
+    Ko = 0;
+
+    if (mode == 0)
+    {
+        Ko = K;
+    }
+    else if (mode == 1)
+    {
+        Ko = -H;
+    }
+
+    float biasr = clamp(biasmap, 0, 1) - 0.5;
+    if (Ko >  0) { Ko *= convexscale;  Ko =  vop_bias( Ko, clamp(convexbias  + biasr, 0, 1)); }
+    if (Ko <= 0) { Ko *= concavescale; Ko = -vop_bias(-Ko, clamp(concavebias + biasr, 0, 1)); }
+
+    if (space == 0)
+    {
+        Ko = fit(Ko, -1, 1, 0, 1);
+    }
+}
+#line 182 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+#line 184 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 186 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 187 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 189 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 190 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 192 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 193 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 195 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_displace4_swizzle(string order; vector vec)
+{
+    if(order == "xzy")
+        vec = swizzle(vec, 0, 2, 1);
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 205 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+#line 207 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 209 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 211 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 212 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 214 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 216 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 217 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 219 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_displace3_swizzle(string order; vector vec)
+{
+    if(order == "xzy")
+        vec = swizzle(vec, 0, 2, 1);
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 229 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voptype.h"
+#line 231 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 232 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+void
+uvxform(vector xformuvw;
+	 vector uvw;
+        int uvwIsConnected;
+	 int trs;
+	 int xyz;
+	 vector trans;
+	 vector rot;
+	 vector scale;
+	 vector pivot;
+	 )
+{
+    if( uvwIsConnected != 0)
+	xformuvw = uvw;
+    else
+	xformuvw = set(s, t, 0);
+    xformuvw *= invert(maketransform(trs,xyz,trans,rot,scale,pivot));
+}
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 253 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_displacetexture4_strlen1_snippet1(string str; int resultcharacter)
+{
+    resultcharacter = strlen(str);
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 262 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_displacetexture4_displace2_swizzle(string order; vector vec)
+{
+    if(order == "xzy")
+        vec = swizzle(vec, 0, 2, 1);
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 272 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 274 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/math.h"
+#line 276 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+void
+_mat_materialbuilder1_principledshader1_displace1_swizzle(string order; vector vec)
+{
+    if(order == "xzy")
+        vec = swizzle(vec, 0, 2, 1);
+
+}
+
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/voplib.h"
+#line 286 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+
+
+#line 1 "/cgsoft/sesi/hfs16.5.691/houdini/vex/include/shaderlayer.h"
+#line 288 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+displace
+mat_materialbuilder1_principledshader1(string dispTex_type = "disp";
+	string dispTex_colorSpace = "linear";
+	string dispTex_vectorSpace = "uvtangent";
+	float dispTex_offset = -0.5;
+	float dispTex_scale = 0.050000000000000003;
+	string dispTex_texture = "";
+	string dispTex_wrap = "repeat";
+	string dispTex_filter = "gauss";
+	float dispTex_filterWidth = 1;
+	int dispTex_channel = 0;
+	vector uv = {0, 0, 0};
+	string dispNoise_type = "xnoise";
+	vector dispNoise_freq = { 10, 10, 10 };
+	vector dispNoise_offset = { 0, 0, 0 };
+	float dispNoise_amp = 1;
+	float dispNoise_rough = 0.5;
+	float dispNoise_atten = 1;
+	int dispNoise_turb = 5;
+	vector rest = { 0, 0, 0 };
+	int dispTex_enable = 0;
+	int dispNoise_enable = 0;
+	vector2 uvtrans = { 0, 0 };
+	float uvrot = 0;
+	vector2 uvscale = { 1, 1 };
+	export ShaderLayer layer = {};
+	export vector pre_disp_P = { 0, 0, 0 };
+	export vector pre_disp_utan = { 0, 0, 0 };
+	export vector pre_disp_vtan = { 0, 0, 0 };
+	export vector pre_disp_N = { 0, 0, 0 };
+	int dispInput_enable = 0;
+	float disp = 0;
+	vector vdisp = { 0, 0, 0 };
+	string dispTex_channelOrder = "xyz";
+	string dispInput_vectorspace = "uvtangent")
+{
+    int	bound_disp;
+    int	bound_vdisp;
+    int	index;
+    int	dispInput_any;
+    int	index1;
+    int	outdispInput_any;
+    int	outindex;
+    int	outdispInput_enable;
+    int	outbound_disp;
+    int	outbound_vdisp;
+    int	outindex1;
+    int	outdispInput_enable1;
+    int	outdispTex_enable;
+    int	outdispNoise_enable;
+    vector	input1;
+    vector	output1;
+    int	bool1;
+    int	bool2;
+    int	scaled;
+    int	bool3;
+    int	scaled1;
+    int	sum;
+    vector	result;
+    vector	result1;
+    vector	nvec;
+    float	lum;
+    float	fval1;
+    float	fval2;
+    float	fval3;
+    float	result2;
+    float	sum1;
+    vector	dispP;
+    vector	dispN;
+    vector	product;
+    string	outorder;
+    vector	outvec;
+    vector	uv1;
+    int	bound_uv;
+    vector	result3;
+    int	bool4;
+    int	bool5;
+    int	connected;
+    vector	result4;
+    vector	nvec1;
+    vector4	quat;
+    string	tstyle;
+    vector	in_utan;
+    vector	in_vtan;
+    vector	nml;
+    vector	uv2;
+    int	bound_uv1;
+    vector	result5;
+    vector	uv3;
+    vector	utan;
+    vector	vtan;
+    vector	result6;
+    vector	result7;
+    vector	result8;
+    vector	result9;
+    float	fval11;
+    float	fval21;
+    float	fval31;
+    float	fval12;
+    float	fval22;
+    float	fval32;
+    float	fval13;
+    float	fval23;
+    float	fval33;
+    matrix3	matx;
+    matrix	xform;
+    matrix3	m3;
+    matrix3	result10;
+    matrix	xform1;
+    matrix3	m31;
+    matrix3	result11;
+    vector	product1;
+    vector	sum2;
+    vector	result12;
+    vector	dispP1;
+    vector	dispN1;
+    vector	Ns;
+    vector	Nf;
+    vector	product2;
+    vector	nvec2;
+    float	dotprod;
+    float	trig;
+    vector	crossprod;
+    vector	nvec3;
+    vector4	quat1;
+    vector4	blend;
+    vector	result13;
+    vector	newN;
+    vector	result14;
+    vector	Value;
+    vector	diff;
+    vector	result15;
+    float	Value1;
+    float	product3;
+    float	len;
+    float	result16;
+    int	bool6;
+    int	bool7;
+    int	scaled2;
+    int	bool8;
+    int	scaled3;
+    int	sum3;
+    vector	result17;
+    vector	result18;
+    vector	nvec4;
+    float	lum1;
+    float	fval14;
+    float	fval24;
+    float	fval34;
+    float	result19;
+    float	sum4;
+    vector	dispP2;
+    vector	dispN2;
+    vector	product4;
+    string	outorder1;
+    vector	outvec1;
+    vector	uv4;
+    int	bound_uv2;
+    vector	result20;
+    int	bool9;
+    int	bool10;
+    int	connected1;
+    vector	result21;
+    vector	nvec5;
+    vector4	quat2;
+    string	tstyle1;
+    vector	in_utan1;
+    vector	in_vtan1;
+    vector	nml1;
+    vector	uv5;
+    int	bound_uv3;
+    vector	result22;
+    vector	uv6;
+    vector	utan1;
+    vector	vtan1;
+    vector	result23;
+    vector	result24;
+    vector	result25;
+    vector	result26;
+    float	fval15;
+    float	fval25;
+    float	fval35;
+    float	fval16;
+    float	fval26;
+    float	fval36;
+    float	fval17;
+    float	fval27;
+    float	fval37;
+    matrix3	matx1;
+    matrix	xform2;
+    matrix3	m32;
+    matrix3	result27;
+    matrix	xform3;
+    matrix3	m33;
+    matrix3	result28;
+    vector	product5;
+    vector	sum5;
+    vector	result29;
+    vector	dispP3;
+    vector	dispN3;
+    vector	Ns1;
+    vector	Nf1;
+    vector	product6;
+    vector	nvec6;
+    float	dotprod1;
+    float	trig1;
+    vector	crossprod1;
+    vector	nvec7;
+    vector4	quat3;
+    vector4	blend1;
+    vector	result30;
+    vector	newN1;
+    vector	result31;
+    vector	Value2;
+    vector	diff1;
+    vector	result32;
+    float	Value3;
+    float	product7;
+    float	len1;
+    float	result33;
+    vector	sum6;
+    vector	result34;
+    int	bool11;
+    vector	uv8;
+    int	bound_uv4;
+    vector	uv9;
+    vector	result35;
+    vector	result36;
+    float	fval18;
+    float	fval28;
+    float	fval38;
+    vector	output11;
+    vector	vec;
+    vector	output12;
+    vector	xformuvw;
+    vector	uv10;
+    int	bound_uv5;
+    vector	result37;
+    float	fval19;
+    float	fval29;
+    float	fval39;
+    vector	clr;
+    int	Value4;
+    string	outstr;
+    int	outresultcharacter;
+    int	bool12;
+    float	product8;
+    int	bool13;
+    int	bool14;
+    int	scaled4;
+    int	bool15;
+    int	scaled5;
+    int	sum7;
+    vector	result38;
+    vector	result39;
+    vector	nvec8;
+    float	lum2;
+    float	fval110;
+    float	fval210;
+    float	fval310;
+    float	result40;
+    float	sum8;
+    vector	dispP4;
+    vector	dispN4;
+    vector	product9;
+    string	outorder2;
+    vector	outvec2;
+    vector	uv11;
+    int	bound_uv6;
+    vector	result41;
+    int	bool16;
+    int	bool17;
+    int	connected2;
+    vector	result42;
+    vector	nvec9;
+    vector4	quat4;
+    string	tstyle2;
+    vector	in_utan2;
+    vector	in_vtan2;
+    vector	nml2;
+    vector	uv12;
+    int	bound_uv7;
+    vector	result43;
+    vector	uv13;
+    vector	utan2;
+    vector	vtan2;
+    vector	result44;
+    vector	result45;
+    vector	result46;
+    vector	result47;
+    float	fval111;
+    float	fval211;
+    float	fval311;
+    float	fval112;
+    float	fval212;
+    float	fval312;
+    float	fval113;
+    float	fval213;
+    float	fval313;
+    matrix3	matx2;
+    matrix	xform4;
+    matrix3	m34;
+    matrix3	result48;
+    matrix	xform5;
+    matrix3	m35;
+    matrix3	result49;
+    vector	product10;
+    vector	sum9;
+    vector	result50;
+    vector	dispP5;
+    vector	dispN5;
+    vector	Ns2;
+    vector	Nf2;
+    vector	product11;
+    vector	nvec10;
+    float	dotprod2;
+    float	trig2;
+    vector	crossprod2;
+    vector	nvec11;
+    vector4	quat5;
+    vector4	blend2;
+    vector	result51;
+    vector	newN2;
+    vector	result52;
+    vector	Value5;
+    vector	diff2;
+    vector	result53;
+    float	Value6;
+    float	product12;
+    float	len2;
+    float	result54;
+    vector	result55;
+    vector	result56;
+    vector	to;
+    vector	rest1;
+    int	bound_rest1;
+    float	noise;
+    vector	output13;
+    int	bool18;
+    int	bool19;
+    int	scaled6;
+    int	bool20;
+    int	scaled7;
+    int	sum10;
+    vector	result57;
+    vector	result58;
+    vector	nvec12;
+    float	lum3;
+    float	fval114;
+    float	fval214;
+    float	fval314;
+    float	result59;
+    float	sum11;
+    vector	dispP6;
+    vector	dispN6;
+    vector	product13;
+    string	outorder3;
+    vector	outvec3;
+    vector	uv14;
+    int	bound_uv8;
+    vector	result60;
+    int	bool21;
+    int	bool22;
+    int	connected3;
+    vector	result61;
+    vector	nvec13;
+    vector4	quat6;
+    string	tstyle3;
+    vector	in_utan3;
+    vector	in_vtan3;
+    vector	nml3;
+    vector	uv15;
+    int	bound_uv9;
+    vector	result62;
+    vector	uv16;
+    vector	utan3;
+    vector	vtan3;
+    vector	result63;
+    vector	result64;
+    vector	result65;
+    vector	result66;
+    float	fval115;
+    float	fval215;
+    float	fval315;
+    float	fval116;
+    float	fval216;
+    float	fval316;
+    float	fval117;
+    float	fval217;
+    float	fval317;
+    matrix3	matx3;
+    matrix	xform6;
+    matrix3	m36;
+    matrix3	result67;
+    matrix	xform7;
+    matrix3	m37;
+    matrix3	result68;
+    vector	product14;
+    vector	sum12;
+    vector	result69;
+    vector	dispP7;
+    vector	dispN7;
+    vector	Ns3;
+    vector	Nf3;
+    vector	product15;
+    vector	nvec14;
+    float	dotprod3;
+    float	trig3;
+    vector	crossprod3;
+    vector	nvec15;
+    vector4	quat7;
+    vector4	blend3;
+    vector	result70;
+    vector	newN3;
+    vector	result71;
+    vector	Value7;
+    vector	diff3;
+    vector	result72;
+    float	Value8;
+    float	product16;
+    float	len3;
+    float	result73;
+    vector	result74;
+    vector	sum13;
+    vector	sum14;
+    vector	result75;
+    vector	newN4;
+    vector	newN5;
+    vector	result76;
+    vector	result77;
+    ShaderLayer	layer1;
+    vector	export_uv;
+    vector	nvec16;
+    int	connected4;
+    vector	result78;
+    vector	nvec17;
+    vector4	quat8;
+    string	tstyle4;
+    vector	in_utan4;
+    vector	in_vtan4;
+    vector	nml4;
+    vector	uv17;
+    int	bound_uv10;
+    vector	result79;
+    vector	uv18;
+    vector	utan4;
+    vector	vtan4;
+    vector	result80;
+    vector	result81;
+    vector	result82;
+    vector	result83;
+
+
+    index = 0;
+
+
+    dispInput_any = 0;
+
+
+    index1 = 0;
+
+
+    bound_disp = isbound("disp");
+
+
+    bound_vdisp = isbound("vdisp");
+
+
+    outdispInput_any = dispInput_any;
+    outindex = index1;
+    outdispInput_enable = dispInput_enable;
+    outbound_disp = bound_disp;
+    outbound_vdisp = bound_vdisp;
+
+    _mat_materialbuilder1_principledshader1_snippet2(outdispInput_any, outindex, outdispInput_enable, outbound_disp, outbound_vdisp);
+
+
+    outindex1 = index;
+    outdispInput_enable1 = outdispInput_any;
+    outdispTex_enable = dispTex_enable;
+    outdispNoise_enable = dispNoise_enable;
+
+    _mat_materialbuilder1_principledshader1_snippet1(outindex1, outdispInput_enable1, outdispTex_enable, outdispNoise_enable);
+
+
+    input1 = { 0, 0, 0 };
+
+
+    output1 = set(disp,disp,disp);
+
+
+    vector	_P = vector();
+    vector	_N = vector();
+    vector	_uv = vector();
+    vector	_value = output1;
+    string	_type = "disp";
+    string	_vectorspace = "uvtangent";
+    string	_channelorder = "xyz";
+    float	_offset = 0;
+    float	_scale = 1;
+    int	_channel = 1;
+    int	_normalspace = 0;
+    int	_normalflipx = 0;
+    int	_normalflipy = 0;
+    vector	outP = vector();
+    vector	outN = vector();
+    vector	doffset = vector();
+    float	ddist = 0.0;
+    {
+
+
+        bool1 = (_type == "normal");
+
+
+        bool2 = (_type == "disp");
+
+
+        scaled = (bool2 + 0) * 2 + 0;
+
+
+        bool3 = (_type == "vectordisp");
+
+
+        scaled1 = (bool3 + 0) * 3 + 0;
+
+
+        sum = bool1 + scaled + scaled1;
+
+
+        result = 0 != 0 ? _P : P;
+
+
+
+
+
+
+
+
+        result1 = 0 != 0 ? _N : N;
+
+
+        nvec = normalize(result1);
+
+
+        lum = luminance(_value);
+
+
+        assign(fval1,fval2,fval3, _value);
+
+
+        if( _channel == 0 )
+            result2 = lum;
+        else if( _channel == 1 )
+            result2 = fval1;
+        else if( _channel == 2 )
+            result2 = fval2;
+        else
+            result2 = fval3;
+
+
+        sum1 = result2 + _offset;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result : P,
+        			 (1 != 0) ? nvec : normalize(N),
+        			 sum1, _scale, 0, 0,
+        			 1, 0, 0, dispP, dispN);
+
+
+
+
+
+        product = _value * _scale;
+
+
+        outorder = _channelorder;
+        outvec = product;
+
+        _mat_materialbuilder1_principledshader1_displace4_swizzle(outorder, outvec);
+
+
+        bound_uv = isbound("uv");
+        if( bound_uv ) {
+            uv1 = uv;
+        } else {
+            uv1 = set(s, t, .5);
+        }
+
+
+        result3 = 0 != 0 ? _uv : uv1;
+
+
+        vector	_result = result3;
+        vector	_nvec = nvec;
+        string	__vectorspace = _vectorspace;
+        matrix3	result_2 = matrix3();
+        {
+
+
+            bool4 = (__vectorspace == "world");
+
+
+            bool5 = (__vectorspace == "object");
+
+
+            string	_tstyle = "uv";
+            vector	_uv1 = _result;
+            vector	_N1 = _nvec;
+            vector	_utan = vector();
+            vector	_vtan = vector();
+            float	_angle = 0.0;
+            {
+
+
+                connected = 0 ? 1 : 0;
+
+
+                result4 = 1 != 0 ? _N1 : N;
+
+
+                nvec1 = normalize(result4);
+
+
+                quat = quaternion(_angle, nvec1);
+
+
+                tstyle = _tstyle;
+
+
+                in_utan = _utan;
+
+
+                in_vtan = _vtan;
+
+
+                nml = nvec1;
+
+
+                bound_uv1 = isbound("uv");
+                if( bound_uv1 ) {
+                    uv2 = uv;
+                } else {
+                    uv2 = set(s, t, .5);
+                }
+
+
+                result5 = 1 != 0 ? _uv1 : uv2;
+
+
+                uv3 = result5;
+
+
+                vop_computeTangents(tstyle, nml, uv3, in_utan, in_vtan, utan, vtan);
+
+
+                result6 = qrotate(quat, utan);
+#line 955 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result7 = (0 != 0 ? (connected != 0 ? utan : result6)
+                                              : (connected != 0 ? result6 : utan));
+
+
+
+
+                result8 = qrotate(quat, vtan);
+#line 973 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result9 = (0 != 0 ? (connected != 0 ? vtan : result8)
+                                              : (connected != 0 ? result8 : vtan));
+
+
+
+
+                _utan = result7;
+                _vtan = result9;
+            }
+
+
+            assign(fval11,fval21,fval31, _utan);
+
+
+            assign(fval12,fval22,fval32, _vtan);
+
+
+            assign(fval13,fval23,fval33, _nvec);
+
+
+            matx = set(fval11, fval21, fval31,
+                        fval12, fval22, fval32,
+                        fval13, fval23, fval33);
+
+
+            xform = getspace("space:object", "space:current");
+
+
+            m3 = (matrix3)xform;
+
+
+            if( bool5 == 0 )
+                result10 = matx;
+            else
+                result10 = m3;
+
+
+            xform1 = getspace("space:world", "space:current");
+
+
+            m31 = (matrix3)xform1;
+
+
+            if( bool4 == 0 )
+                result11 = result10;
+            else
+                result11 = m31;
+
+
+            result_2 = result11;
+        }
+
+
+        product1 = outvec * result_2;
+
+
+        sum2 = result + product1;
+
+
+
+
+
+        if( sum == 0 )
+            result12 = result;
+        else if( sum == 1 )
+            result12 = result;
+        else if( sum == 2 )
+            result12 = dispP;
+        else
+            result12 = sum2;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result : P,
+        			 (1 != 0) ? nvec : normalize(N),
+        			 sum1, _scale, 0, 0,
+        			 1, 0, 1, dispP1, dispN1);
+
+
+
+
+
+        Ns = _value;
+        if (_normalspace == 0) { Ns = vop_fromUnitNormal(Ns); }
+
+
+        Nf = Ns;
+        if (_normalflipx) { Nf.x = -Nf.x; }
+        if (_normalflipy) { Nf.y = -Nf.y; }
+
+
+
+        product2 = Nf * result_2;
+
+
+        nvec2 = normalize(product2);
+
+
+        dotprod = dot(nvec2, nvec);
+
+
+        trig = acos(1*dotprod - 0);
+
+
+        crossprod = cross(nvec, nvec2);
+
+
+        nvec3 = normalize(crossprod);
+
+
+        quat1 = quaternion(trig, nvec3);
+
+
+        blend = slerp({ 0, 0, 0, 1 }, quat1, _scale);
+
+
+        result13 = qrotate(blend, nvec);
+
+
+
+
+
+
+
+
+        vector myP  = 1  ? sum2  : P;
+        vector myN  = 0  ? vector()  : N;
+        vector myNg = 0 ? vector() : Ng;
+        newN = computenormal(myP, myN, myNg, "extrapolate", 0,
+                             "smooth", 1);
+
+
+
+
+
+        if( sum == 0 )
+            result14 = dispN1;
+        else if( sum == 1 )
+            result14 = result13;
+        else if( sum == 2 )
+            result14 = dispN;
+        else
+            result14 = newN;
+
+
+        Value = { 0, 0, 0 };
+
+
+        diff = dispP - result;
+
+
+        if( sum == 0 )
+            result15 = Value;
+        else if( sum == 1 )
+            result15 = Value;
+        else if( sum == 2 )
+            result15 = diff;
+        else
+            result15 = product1;
+
+
+        Value1 = 0;
+
+
+        product3 = sum1 * _scale;
+
+
+        len = length(product1);
+
+
+        if( sum == 0 )
+            result16 = Value1;
+        else if( sum == 1 )
+            result16 = Value1;
+        else if( sum == 2 )
+            result16 = product3;
+        else
+            result16 = len;
+
+
+        outP = result12;
+        outN = result14;
+        doffset = result15;
+        ddist = result16;
+    }
+
+
+    vector	_P1 = vector();
+    vector	_N2 = vector();
+    vector	_uv2 = vector();
+    vector	_value1 = vdisp;
+    string	_type1 = "vectordisp";
+    string	_vectorspace1 = dispInput_vectorspace;
+    string	_channelorder1 = "xyz";
+    float	_offset1 = 0;
+    float	_scale1 = 1;
+    int	_channel1 = 0;
+    int	_normalspace1 = 0;
+    int	_normalflipx1 = 0;
+    int	_normalflipy1 = 0;
+    vector	outP1 = vector();
+    vector	outN1 = vector();
+    vector	doffset1 = vector();
+    float	ddist1 = 0.0;
+    {
+
+
+        bool6 = (_type1 == "normal");
+
+
+        bool7 = (_type1 == "disp");
+
+
+        scaled2 = (bool7 + 0) * 2 + 0;
+
+
+        bool8 = (_type1 == "vectordisp");
+
+
+        scaled3 = (bool8 + 0) * 3 + 0;
+
+
+        sum3 = bool6 + scaled2 + scaled3;
+
+
+        result17 = 0 != 0 ? _P1 : P;
+
+
+
+
+
+
+
+
+        result18 = 0 != 0 ? _N2 : N;
+
+
+        nvec4 = normalize(result18);
+
+
+        lum1 = luminance(_value1);
+
+
+        assign(fval14,fval24,fval34, _value1);
+
+
+        if( _channel1 == 0 )
+            result19 = lum1;
+        else if( _channel1 == 1 )
+            result19 = fval14;
+        else if( _channel1 == 2 )
+            result19 = fval24;
+        else
+            result19 = fval34;
+
+
+        sum4 = result19 + _offset1;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result17 : P,
+        			 (1 != 0) ? nvec4 : normalize(N),
+        			 sum4, _scale1, 0, 0,
+        			 1, 0, 0, dispP2, dispN2);
+
+
+
+
+
+        product4 = _value1 * _scale1;
+
+
+        outorder1 = _channelorder1;
+        outvec1 = product4;
+
+        _mat_materialbuilder1_principledshader1_displace3_swizzle(outorder1, outvec1);
+
+
+        bound_uv2 = isbound("uv");
+        if( bound_uv2 ) {
+            uv4 = uv;
+        } else {
+            uv4 = set(s, t, .5);
+        }
+
+
+        result20 = 0 != 0 ? _uv2 : uv4;
+
+
+        vector	_result1 = result20;
+        vector	_nvec1 = nvec4;
+        string	__vectorspace1 = _vectorspace1;
+        matrix3	result_21 = matrix3();
+        {
+
+
+            bool9 = (__vectorspace1 == "world");
+
+
+            bool10 = (__vectorspace1 == "object");
+
+
+            string	_tstyle1 = "uv";
+            vector	_uv3 = _result1;
+            vector	_N3 = _nvec1;
+            vector	_utan1 = vector();
+            vector	_vtan1 = vector();
+            float	_angle1 = 0.0;
+            {
+
+
+                connected1 = 0 ? 1 : 0;
+
+
+                result21 = 1 != 0 ? _N3 : N;
+
+
+                nvec5 = normalize(result21);
+
+
+                quat2 = quaternion(_angle1, nvec5);
+
+
+                tstyle1 = _tstyle1;
+
+
+                in_utan1 = _utan1;
+
+
+                in_vtan1 = _vtan1;
+
+
+                nml1 = nvec5;
+
+
+                bound_uv3 = isbound("uv");
+                if( bound_uv3 ) {
+                    uv5 = uv;
+                } else {
+                    uv5 = set(s, t, .5);
+                }
+
+
+                result22 = 1 != 0 ? _uv3 : uv5;
+
+
+                uv6 = result22;
+
+
+                vop_computeTangents(tstyle1, nml1, uv6, in_utan1, in_vtan1, utan1, vtan1);
+
+
+                result23 = qrotate(quat2, utan1);
+#line 1335 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result24 = (0 != 0 ? (connected1 != 0 ? utan1 : result23)
+                                              : (connected1 != 0 ? result23 : utan1));
+
+
+
+
+                result25 = qrotate(quat2, vtan1);
+#line 1353 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result26 = (0 != 0 ? (connected1 != 0 ? vtan1 : result25)
+                                              : (connected1 != 0 ? result25 : vtan1));
+
+
+
+
+                _utan1 = result24;
+                _vtan1 = result26;
+            }
+
+
+            assign(fval15,fval25,fval35, _utan1);
+
+
+            assign(fval16,fval26,fval36, _vtan1);
+
+
+            assign(fval17,fval27,fval37, _nvec1);
+
+
+            matx1 = set(fval15, fval25, fval35,
+                        fval16, fval26, fval36,
+                        fval17, fval27, fval37);
+
+
+            xform2 = getspace("space:object", "space:current");
+
+
+            m32 = (matrix3)xform2;
+
+
+            if( bool10 == 0 )
+                result27 = matx1;
+            else
+                result27 = m32;
+
+
+            xform3 = getspace("space:world", "space:current");
+
+
+            m33 = (matrix3)xform3;
+
+
+            if( bool9 == 0 )
+                result28 = result27;
+            else
+                result28 = m33;
+
+
+            result_21 = result28;
+        }
+
+
+        product5 = outvec1 * result_21;
+
+
+        sum5 = result17 + product5;
+
+
+
+
+
+        if( sum3 == 0 )
+            result29 = result17;
+        else if( sum3 == 1 )
+            result29 = result17;
+        else if( sum3 == 2 )
+            result29 = dispP2;
+        else
+            result29 = sum5;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result17 : P,
+        			 (1 != 0) ? nvec4 : normalize(N),
+        			 sum4, _scale1, 0, 0,
+        			 1, 0, 1, dispP3, dispN3);
+
+
+
+
+
+        Ns1 = _value1;
+        if (_normalspace1 == 0) { Ns1 = vop_fromUnitNormal(Ns1); }
+
+
+        Nf1 = Ns1;
+        if (_normalflipx1) { Nf1.x = -Nf1.x; }
+        if (_normalflipy1) { Nf1.y = -Nf1.y; }
+
+
+
+        product6 = Nf1 * result_21;
+
+
+        nvec6 = normalize(product6);
+
+
+        dotprod1 = dot(nvec6, nvec4);
+
+
+        trig1 = acos(1*dotprod1 - 0);
+
+
+        crossprod1 = cross(nvec4, nvec6);
+
+
+        nvec7 = normalize(crossprod1);
+
+
+        quat3 = quaternion(trig1, nvec7);
+
+
+        blend1 = slerp({ 0, 0, 0, 1 }, quat3, _scale1);
+
+
+        result30 = qrotate(blend1, nvec4);
+
+
+
+
+
+
+
+
+        vector myP1  = 1  ? sum5  : P;
+        vector myN1  = 0  ? vector()  : N;
+        vector myNg1 = 0 ? vector() : Ng;
+        newN1 = computenormal(myP1, myN1, myNg1, "extrapolate", 0,
+                             "smooth", 1);
+
+
+
+
+
+        if( sum3 == 0 )
+            result31 = dispN3;
+        else if( sum3 == 1 )
+            result31 = result30;
+        else if( sum3 == 2 )
+            result31 = dispN2;
+        else
+            result31 = newN1;
+
+
+        Value2 = { 0, 0, 0 };
+
+
+        diff1 = dispP2 - result17;
+
+
+        if( sum3 == 0 )
+            result32 = Value2;
+        else if( sum3 == 1 )
+            result32 = Value2;
+        else if( sum3 == 2 )
+            result32 = diff1;
+        else
+            result32 = product5;
+
+
+        Value3 = 0;
+
+
+        product7 = sum4 * _scale1;
+
+
+        len1 = length(product5);
+
+
+        if( sum3 == 0 )
+            result33 = Value3;
+        else if( sum3 == 1 )
+            result33 = Value3;
+        else if( sum3 == 2 )
+            result33 = product7;
+        else
+            result33 = len1;
+
+
+        outP1 = result29;
+        outN1 = result31;
+        doffset1 = result32;
+        ddist1 = result33;
+    }
+
+
+    sum6 = doffset + doffset1;
+
+
+    if( outindex == 0 )
+        result34 = input1;
+    else if( outindex == 1 )
+        result34 = doffset;
+    else if( outindex == 2 )
+        result34 = doffset1;
+    else
+        result34 = sum6;
+
+
+    string	_mode = "uv";
+    vector	uv7 = vector();
+    float	u = 0.0;
+    float	v = 0.0;
+    float	w = 0.0;
+    {
+
+
+        bool11 = (_mode == "st");
+
+
+        bound_uv4 = isbound("uv");
+        if( bound_uv4 ) {
+            uv8 = uv;
+        } else {
+            uv8 = vector();
+        }
+
+
+
+        uv9 = set(s, t, 0);
+
+
+
+
+
+        if( bound_uv4 == 0 )
+            result35 = uv9;
+        else
+            result35 = uv8;
+
+
+        if( bool11 == 0 )
+            result36 = result35;
+        else
+            result36 = uv9;
+
+
+        assign(fval18,fval28,fval38, result36);
+
+
+        uv7 = result36;
+        u = fval18;
+        v = fval28;
+        w = fval38;
+    }
+
+
+    output11 = uvtrans;
+
+
+    vec = set(0,0,uvrot);
+
+
+    output12 = uvscale;
+
+
+    uvxform(xformuvw, uv7, 1,
+    	   0, 0, output11, vec, output12, { 0, 0, 0 });
+
+
+    vector	_P2 = P;
+    vector	_N4 = N;
+    vector	_uv4 = xformuvw;
+    string	_type2 = dispTex_type;
+    string	_texcolorspace = dispTex_colorSpace;
+    string	_vectorspace2 = dispTex_vectorSpace;
+    string	_channelorder2 = dispTex_channelOrder;
+    float	_offset2 = dispTex_offset;
+    float	_scale2 = dispTex_scale;
+    string	_texture = dispTex_texture;
+    int	_udim = 1;
+    string	_texwrap = dispTex_wrap;
+    string	_texfilter = dispTex_filter;
+    float	_texfilterwidth = dispTex_filterWidth;
+    int	_texchannel = dispTex_channel;
+    string	_teximageplane = "";
+    int	_normalspace2 = 0;
+    int	_normalflipx2 = 0;
+    int	_normalflipy2 = 0;
+    vector	outP2 = vector();
+    vector	outN2 = vector();
+    vector	doffset2 = vector();
+    float	ddist2 = 0.0;
+    {
+
+
+        bound_uv5 = isbound("uv");
+        if( bound_uv5 ) {
+            uv10 = uv;
+        } else {
+            uv10 = set(s, t, .5);
+        }
+
+
+        result37 = 1 != 0 ? _uv4 : uv10;
+
+
+        assign(fval19,fval29,fval39, result37);
+
+
+        if (_texture != "") {
+
+            float myS = 1 ? fval19 : s;
+            float myT = 1 ? fval29 : t;
+            int fptex = 0 ? 0 : getptextureid();
+
+
+
+
+
+            string wrapmode = _texwrap;
+            if (0 & 0x01) { myS = 1 - myS; }
+            if (0 & 0x02) { myT = 1 - myT; }
+            if (0 & 0x04) { float x = myS; myS = myT; myT = x; }
+            string map_udim = _texture;
+            if (_udim) { map_udim = expand_udim(myS, myT, _texture); }
+            if (map_udim == '') { clr = set({ 0, 0, 0, 0 }); }
+            else {
+                if (map_udim != _texture) {
+                    myS %= 1.0; myT %= 1.0;
+                    wrapmode = 'streak';
+                }
+                if (0 != 0 && 0 != 0) {
+                    float tds = 0.0*0.5, tdt = 0.0*0.5;
+                    if (0 & 0x04) { float x = tds; tds = tdt; tdt = x; }
+                    clr = texture(map_udim,
+                             myS - tds, myT - tdt,
+                             myS + tds, myT - tdt,
+                             myS + tds, myT + tdt,
+                             myS - tds, myT + tdt,
+                            "wrap", wrapmode, "filter", _texfilter,
+                            "width", _texfilterwidth, "border", { 0, 0, 0, 1 },
+                            "extrapolate", 1, "lerp", 0,
+                            "channel", _teximageplane, "face", fptex,
+                            "blur", 0, "pixelblur", 0,
+                            "srccolorspace", _texcolorspace);
+                } else {
+                    clr = texture(map_udim, myS, myT, "wrap", wrapmode,
+                            "filter", _texfilter, "width", _texfilterwidth,
+                            "border", { 0, 0, 0, 1 }, "extrapolate", 1,
+                            "channel", _teximageplane, "face", fptex,
+                            "lerp", 0,
+                            "blur", 0, "pixelblur", 0,
+                            "srccolorspace", _texcolorspace);
+                }
+            }
+        } else {
+           clr = set({ 0, 0, 0, 0 });
+        }
+
+
+        string	_string = _texture;
+        int	length = 0;
+        {
+
+
+            Value4 = 0;
+
+
+            outstr = _string;
+            outresultcharacter = Value4;
+
+            _mat_materialbuilder1_principledshader1_displacetexture4_strlen1_snippet1(outstr, outresultcharacter);
+
+
+            length = outresultcharacter;
+        }
+
+
+        bool12 = (length > 0);
+
+
+        product8 = _scale2 * bool12;
+
+
+        vector	_P3 = _P2;
+        vector	_N5 = _N4;
+        vector	_uv5 = result37;
+        vector	_value2 = clr;
+        string	_type3 = _type2;
+        string	_vectorspace3 = _vectorspace2;
+        string	_channelorder3 = _channelorder2;
+        float	_offset3 = _offset2;
+        float	_scale3 = product8;
+        int	_channel2 = _texchannel;
+        int	_normalspace3 = _normalspace2;
+        int	_normalflipx3 = _normalflipx2;
+        int	_normalflipy3 = _normalflipy2;
+        vector	outP3 = vector();
+        vector	outN3 = vector();
+        vector	doffset3 = vector();
+        float	ddist3 = 0.0;
+        {
+
+
+            bool13 = (_type3 == "normal");
+
+
+            bool14 = (_type3 == "disp");
+
+
+            scaled4 = (bool14 + 0) * 2 + 0;
+
+
+            bool15 = (_type3 == "vectordisp");
+
+
+            scaled5 = (bool15 + 0) * 3 + 0;
+
+
+            sum7 = bool13 + scaled4 + scaled5;
+
+
+            result38 = 1 != 0 ? _P3 : P;
+
+
+
+
+
+
+
+
+            result39 = 1 != 0 ? _N5 : N;
+
+
+            nvec8 = normalize(result39);
+
+
+            lum2 = luminance(_value2);
+
+
+            assign(fval110,fval210,fval310, _value2);
+
+
+            if( _channel2 == 0 )
+                result40 = lum2;
+            else if( _channel2 == 1 )
+                result40 = fval110;
+            else if( _channel2 == 2 )
+                result40 = fval210;
+            else
+                result40 = fval310;
+
+
+            sum8 = result40 + _offset3;
+
+
+            vop_displaceAlongNormal((1 != 0) ? result38 : P,
+            			 (1 != 0) ? nvec8 : normalize(N),
+            			 sum8, _scale3, 0, 0,
+            			 1, 0, 0, dispP4, dispN4);
+
+
+
+
+
+            product9 = _value2 * _scale3;
+
+
+            outorder2 = _channelorder3;
+            outvec2 = product9;
+
+            _mat_materialbuilder1_principledshader1_displacetexture4_displace2_swizzle(outorder2, outvec2);
+
+
+            bound_uv6 = isbound("uv");
+            if( bound_uv6 ) {
+                uv11 = uv;
+            } else {
+                uv11 = set(s, t, .5);
+            }
+
+
+            result41 = 1 != 0 ? _uv5 : uv11;
+
+
+            vector	_result2 = result41;
+            vector	_nvec2 = nvec8;
+            string	__vectorspace2 = _vectorspace3;
+            matrix3	result_22 = matrix3();
+            {
+
+
+                bool16 = (__vectorspace2 == "world");
+
+
+                bool17 = (__vectorspace2 == "object");
+
+
+                string	_tstyle2 = "uv";
+                vector	_uv6 = _result2;
+                vector	_N6 = _nvec2;
+                vector	_utan2 = vector();
+                vector	_vtan2 = vector();
+                float	_angle2 = 0.0;
+                {
+
+
+                    connected2 = 0 ? 1 : 0;
+
+
+                    result42 = 1 != 0 ? _N6 : N;
+
+
+                    nvec9 = normalize(result42);
+
+
+                    quat4 = quaternion(_angle2, nvec9);
+
+
+                    tstyle2 = _tstyle2;
+
+
+                    in_utan2 = _utan2;
+
+
+                    in_vtan2 = _vtan2;
+
+
+                    nml2 = nvec9;
+
+
+                    bound_uv7 = isbound("uv");
+                    if( bound_uv7 ) {
+                        uv12 = uv;
+                    } else {
+                        uv12 = set(s, t, .5);
+                    }
+
+
+                    result43 = 1 != 0 ? _uv6 : uv12;
+
+
+                    uv13 = result43;
+
+
+                    vop_computeTangents(tstyle2, nml2, uv13, in_utan2, in_vtan2, utan2, vtan2);
+
+
+                    result44 = qrotate(quat4, utan2);
+#line 1904 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                        result45 = (0 != 0 ? (connected2 != 0 ? utan2 : result44)
+                                                  : (connected2 != 0 ? result44 : utan2));
+
+
+
+
+                    result46 = qrotate(quat4, vtan2);
+#line 1922 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                        result47 = (0 != 0 ? (connected2 != 0 ? vtan2 : result46)
+                                                  : (connected2 != 0 ? result46 : vtan2));
+
+
+
+
+                    _utan2 = result45;
+                    _vtan2 = result47;
+                }
+
+
+                assign(fval111,fval211,fval311, _utan2);
+
+
+                assign(fval112,fval212,fval312, _vtan2);
+
+
+                assign(fval113,fval213,fval313, _nvec2);
+
+
+                matx2 = set(fval111, fval211, fval311,
+                            fval112, fval212, fval312,
+                            fval113, fval213, fval313);
+
+
+                xform4 = getspace("space:object", "space:current");
+
+
+                m34 = (matrix3)xform4;
+
+
+                if( bool17 == 0 )
+                    result48 = matx2;
+                else
+                    result48 = m34;
+
+
+                xform5 = getspace("space:world", "space:current");
+
+
+                m35 = (matrix3)xform5;
+
+
+                if( bool16 == 0 )
+                    result49 = result48;
+                else
+                    result49 = m35;
+
+
+                result_22 = result49;
+            }
+
+
+            product10 = outvec2 * result_22;
+
+
+            sum9 = result38 + product10;
+
+
+
+
+
+            if( sum7 == 0 )
+                result50 = result38;
+            else if( sum7 == 1 )
+                result50 = result38;
+            else if( sum7 == 2 )
+                result50 = dispP4;
+            else
+                result50 = sum9;
+
+
+            vop_displaceAlongNormal((1 != 0) ? result38 : P,
+            			 (1 != 0) ? nvec8 : normalize(N),
+            			 sum8, _scale3, 0, 0,
+            			 1, 0, 1, dispP5, dispN5);
+
+
+
+
+
+            Ns2 = _value2;
+            if (_normalspace3 == 0) { Ns2 = vop_fromUnitNormal(Ns2); }
+
+
+            Nf2 = Ns2;
+            if (_normalflipx3) { Nf2.x = -Nf2.x; }
+            if (_normalflipy3) { Nf2.y = -Nf2.y; }
+
+
+
+            product11 = Nf2 * result_22;
+
+
+            nvec10 = normalize(product11);
+
+
+            dotprod2 = dot(nvec10, nvec8);
+
+
+            trig2 = acos(1*dotprod2 - 0);
+
+
+            crossprod2 = cross(nvec8, nvec10);
+
+
+            nvec11 = normalize(crossprod2);
+
+
+            quat5 = quaternion(trig2, nvec11);
+
+
+            blend2 = slerp({ 0, 0, 0, 1 }, quat5, _scale3);
+
+
+            result51 = qrotate(blend2, nvec8);
+
+
+
+
+
+
+
+
+            vector myP2  = 1  ? sum9  : P;
+            vector myN2  = 0  ? vector()  : N;
+            vector myNg2 = 0 ? vector() : Ng;
+            newN2 = computenormal(myP2, myN2, myNg2, "extrapolate", 0,
+                                 "smooth", 1);
+
+
+
+
+
+            if( sum7 == 0 )
+                result52 = dispN5;
+            else if( sum7 == 1 )
+                result52 = result51;
+            else if( sum7 == 2 )
+                result52 = dispN4;
+            else
+                result52 = newN2;
+
+
+            Value5 = { 0, 0, 0 };
+
+
+            diff2 = dispP4 - result38;
+
+
+            if( sum7 == 0 )
+                result53 = Value5;
+            else if( sum7 == 1 )
+                result53 = Value5;
+            else if( sum7 == 2 )
+                result53 = diff2;
+            else
+                result53 = product10;
+
+
+            Value6 = 0;
+
+
+            product12 = sum8 * _scale3;
+
+
+            len2 = length(product10);
+
+
+            if( sum7 == 0 )
+                result54 = Value6;
+            else if( sum7 == 1 )
+                result54 = Value6;
+            else if( sum7 == 2 )
+                result54 = product12;
+            else
+                result54 = len2;
+
+
+            outP3 = result50;
+            outN3 = result52;
+            doffset3 = result53;
+            ddist3 = result54;
+        }
+
+
+        outP2 = outP3;
+        outN2 = outN3;
+        doffset2 = doffset3;
+        ddist2 = ddist3;
+    }
+#line 2124 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+        result55 = (0 != 0 ? (dispTex_enable != 0 ? { 0, 0, 0 } : doffset2)
+                                  : (dispTex_enable != 0 ? doffset2 : { 0, 0, 0 }));
+
+
+
+
+    vector	_P4 = vector();
+    string	_space = "space:object";
+    vector	restP = vector();
+    int	bound_rest = 0;
+    {
+
+
+        result56 = 0 != 0 ? _P4 : P;
+
+
+        to = ptransform("space:current", _space, result56);
+
+
+        bound_rest1 = isbound("rest");
+        if( bound_rest1 ) {
+            rest1 = rest;
+        } else {
+            rest1 = to;
+        }
+
+
+        restP = rest1;
+        bound_rest = bound_rest1;
+    }
+
+
+    if (dispNoise_type == "onoise")
+    {
+        noise = onoise(restP*dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_rough, dispNoise_atten);
+        noise *= dispNoise_amp;
+    }
+    else if (dispNoise_type == "snoise")
+    {
+        noise = snoise(restP*dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_rough, dispNoise_atten);
+        noise *= dispNoise_amp;
+    }
+    else if (dispNoise_type == "anoise")
+    {
+        noise = anoise(restP*dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_rough, dispNoise_atten);
+        noise *= dispNoise_amp;
+    }
+    else if (dispNoise_type == "correctnoise")
+    {
+
+       noise = vop_correctperlinNoiseVF(restP * dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_amp, dispNoise_rough, dispNoise_atten);
+
+
+
+    }
+    else if (dispNoise_type == "xnoise")
+    {
+
+       noise = vop_simplexNoiseVF(restP * dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_amp, dispNoise_rough, dispNoise_atten);
+
+
+
+    }
+    else
+    {
+
+       noise = vop_perlinNoiseVF(restP * dispNoise_freq - dispNoise_offset, dispNoise_turb, dispNoise_amp, dispNoise_rough, dispNoise_atten);
+
+
+
+    }
+
+
+    output13 = set(noise,noise,noise);
+
+
+    vector	_P5 = P;
+    vector	_N7 = N;
+    vector	_uv7 = uv7;
+    vector	_value3 = output13;
+    string	_type4 = "disp";
+    string	_vectorspace4 = "uvtangent";
+    string	_channelorder4 = "xyz";
+    float	_offset4 = 0;
+    float	_scale4 = 1;
+    int	_channel3 = 0;
+    int	_normalspace4 = 0;
+    int	_normalflipx4 = 0;
+    int	_normalflipy4 = 0;
+    vector	outP4 = vector();
+    vector	outN4 = vector();
+    vector	doffset4 = vector();
+    float	ddist4 = 0.0;
+    {
+
+
+        bool18 = (_type4 == "normal");
+
+
+        bool19 = (_type4 == "disp");
+
+
+        scaled6 = (bool19 + 0) * 2 + 0;
+
+
+        bool20 = (_type4 == "vectordisp");
+
+
+        scaled7 = (bool20 + 0) * 3 + 0;
+
+
+        sum10 = bool18 + scaled6 + scaled7;
+
+
+        result57 = 1 != 0 ? _P5 : P;
+
+
+
+
+
+
+
+
+        result58 = 1 != 0 ? _N7 : N;
+
+
+        nvec12 = normalize(result58);
+
+
+        lum3 = luminance(_value3);
+
+
+        assign(fval114,fval214,fval314, _value3);
+
+
+        if( _channel3 == 0 )
+            result59 = lum3;
+        else if( _channel3 == 1 )
+            result59 = fval114;
+        else if( _channel3 == 2 )
+            result59 = fval214;
+        else
+            result59 = fval314;
+
+
+        sum11 = result59 + _offset4;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result57 : P,
+        			 (1 != 0) ? nvec12 : normalize(N),
+        			 sum11, _scale4, 0, 0,
+        			 1, 0, 0, dispP6, dispN6);
+
+
+
+
+
+        product13 = _value3 * _scale4;
+
+
+        outorder3 = _channelorder4;
+        outvec3 = product13;
+
+        _mat_materialbuilder1_principledshader1_displace1_swizzle(outorder3, outvec3);
+
+
+        bound_uv8 = isbound("uv");
+        if( bound_uv8 ) {
+            uv14 = uv;
+        } else {
+            uv14 = set(s, t, .5);
+        }
+
+
+        result60 = 1 != 0 ? _uv7 : uv14;
+
+
+        vector	_result3 = result60;
+        vector	_nvec3 = nvec12;
+        string	__vectorspace3 = _vectorspace4;
+        matrix3	result_23 = matrix3();
+        {
+
+
+            bool21 = (__vectorspace3 == "world");
+
+
+            bool22 = (__vectorspace3 == "object");
+
+
+            string	_tstyle3 = "uv";
+            vector	_uv8 = _result3;
+            vector	_N8 = _nvec3;
+            vector	_utan3 = vector();
+            vector	_vtan3 = vector();
+            float	_angle3 = 0.0;
+            {
+
+
+                connected3 = 0 ? 1 : 0;
+
+
+                result61 = 1 != 0 ? _N8 : N;
+
+
+                nvec13 = normalize(result61);
+
+
+                quat6 = quaternion(_angle3, nvec13);
+
+
+                tstyle3 = _tstyle3;
+
+
+                in_utan3 = _utan3;
+
+
+                in_vtan3 = _vtan3;
+
+
+                nml3 = nvec13;
+
+
+                bound_uv9 = isbound("uv");
+                if( bound_uv9 ) {
+                    uv15 = uv;
+                } else {
+                    uv15 = set(s, t, .5);
+                }
+
+
+                result62 = 1 != 0 ? _uv8 : uv15;
+
+
+                uv16 = result62;
+
+
+                vop_computeTangents(tstyle3, nml3, uv16, in_utan3, in_vtan3, utan3, vtan3);
+
+
+                result63 = qrotate(quat6, utan3);
+#line 2376 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result64 = (0 != 0 ? (connected3 != 0 ? utan3 : result63)
+                                              : (connected3 != 0 ? result63 : utan3));
+
+
+
+
+                result65 = qrotate(quat6, vtan3);
+#line 2394 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                    result66 = (0 != 0 ? (connected3 != 0 ? vtan3 : result65)
+                                              : (connected3 != 0 ? result65 : vtan3));
+
+
+
+
+                _utan3 = result64;
+                _vtan3 = result66;
+            }
+
+
+            assign(fval115,fval215,fval315, _utan3);
+
+
+            assign(fval116,fval216,fval316, _vtan3);
+
+
+            assign(fval117,fval217,fval317, _nvec3);
+
+
+            matx3 = set(fval115, fval215, fval315,
+                        fval116, fval216, fval316,
+                        fval117, fval217, fval317);
+
+
+            xform6 = getspace("space:object", "space:current");
+
+
+            m36 = (matrix3)xform6;
+
+
+            if( bool22 == 0 )
+                result67 = matx3;
+            else
+                result67 = m36;
+
+
+            xform7 = getspace("space:world", "space:current");
+
+
+            m37 = (matrix3)xform7;
+
+
+            if( bool21 == 0 )
+                result68 = result67;
+            else
+                result68 = m37;
+
+
+            result_23 = result68;
+        }
+
+
+        product14 = outvec3 * result_23;
+
+
+        sum12 = result57 + product14;
+
+
+
+
+
+        if( sum10 == 0 )
+            result69 = result57;
+        else if( sum10 == 1 )
+            result69 = result57;
+        else if( sum10 == 2 )
+            result69 = dispP6;
+        else
+            result69 = sum12;
+
+
+        vop_displaceAlongNormal((1 != 0) ? result57 : P,
+        			 (1 != 0) ? nvec12 : normalize(N),
+        			 sum11, _scale4, 0, 0,
+        			 1, 0, 1, dispP7, dispN7);
+
+
+
+
+
+        Ns3 = _value3;
+        if (_normalspace4 == 0) { Ns3 = vop_fromUnitNormal(Ns3); }
+
+
+        Nf3 = Ns3;
+        if (_normalflipx4) { Nf3.x = -Nf3.x; }
+        if (_normalflipy4) { Nf3.y = -Nf3.y; }
+
+
+
+        product15 = Nf3 * result_23;
+
+
+        nvec14 = normalize(product15);
+
+
+        dotprod3 = dot(nvec14, nvec12);
+
+
+        trig3 = acos(1*dotprod3 - 0);
+
+
+        crossprod3 = cross(nvec12, nvec14);
+
+
+        nvec15 = normalize(crossprod3);
+
+
+        quat7 = quaternion(trig3, nvec15);
+
+
+        blend3 = slerp({ 0, 0, 0, 1 }, quat7, _scale4);
+
+
+        result70 = qrotate(blend3, nvec12);
+
+
+
+
+
+
+
+
+        vector myP3  = 1  ? sum12  : P;
+        vector myN3  = 0  ? vector()  : N;
+        vector myNg3 = 0 ? vector() : Ng;
+        newN3 = computenormal(myP3, myN3, myNg3, "extrapolate", 0,
+                             "smooth", 1);
+
+
+
+
+
+        if( sum10 == 0 )
+            result71 = dispN7;
+        else if( sum10 == 1 )
+            result71 = result70;
+        else if( sum10 == 2 )
+            result71 = dispN6;
+        else
+            result71 = newN3;
+
+
+        Value7 = { 0, 0, 0 };
+
+
+        diff3 = dispP6 - result57;
+
+
+        if( sum10 == 0 )
+            result72 = Value7;
+        else if( sum10 == 1 )
+            result72 = Value7;
+        else if( sum10 == 2 )
+            result72 = diff3;
+        else
+            result72 = product14;
+
+
+        Value8 = 0;
+
+
+        product16 = sum11 * _scale4;
+
+
+        len3 = length(product14);
+
+
+        if( sum10 == 0 )
+            result73 = Value8;
+        else if( sum10 == 1 )
+            result73 = Value8;
+        else if( sum10 == 2 )
+            result73 = product16;
+        else
+            result73 = len3;
+
+
+        outP4 = result69;
+        outN4 = result71;
+        doffset4 = result72;
+        ddist4 = result73;
+    }
+#line 2589 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+        result74 = (0 != 0 ? (dispNoise_enable != 0 ? { 0, 0, 0 } : doffset4)
+                                  : (dispNoise_enable != 0 ? doffset4 : { 0, 0, 0 }));
+
+
+
+
+    sum13 = result34 + result55 + result74 + P;
+
+
+    sum14 = result34 + P;
+
+
+
+
+
+
+    if( outindex1 == 0 )
+        result75 = sum13;
+    else if( outindex1 == 1 )
+        result75 = sum14;
+    else if( outindex1 == 2 )
+        result75 = outP2;
+    else
+        result75 = outP4;
+
+
+    vector myP4  = 1  ? sum13  : P;
+    vector myN4  = 0  ? vector()  : N;
+    vector myNg4 = 0 ? vector() : Ng;
+    newN4 = computenormal(myP4, myN4, myNg4, "extrapolate", 0,
+                         "smooth", 1);
+
+
+    vector myP5  = 1  ? sum14  : P;
+    vector myN5  = 0  ? vector()  : N;
+    vector myNg5 = 0 ? vector() : Ng;
+    newN5 = computenormal(myP5, myN5, myNg5, "extrapolate", 0,
+                         "smooth", 1);
+
+
+    if( outindex == 0 )
+        result76 = N;
+    else if( outindex == 1 )
+        result76 = outN;
+    else if( outindex == 2 )
+        result76 = outN1;
+    else
+        result76 = newN5;
+
+
+
+
+
+
+    if( outindex1 == 0 )
+        result77 = newN4;
+    else if( outindex1 == 1 )
+        result77 = result76;
+    else if( outindex1 == 2 )
+        result77 = outN2;
+    else
+        result77 = outN4;
+
+
+    init_layer(layer1);
+
+    layer1.F = select(0, bsdf(), layer1.F);
+    layer1.Of = select(0, vector(), layer1.Of);
+    layer1.Ce = select(0, vector(), layer1.Ce);
+    layer1.P = select(1, result75, layer1.P);
+    layer1.N = select(1, result77, layer1.N);
+    layer1.masks = select(0, {}, layer1.masks);
+
+
+    layer = layer1;
+
+
+    export_uv = xformuvw;
+
+
+    vector	_uv9 = export_uv;
+    vector	_N9 = result77;
+    {
+
+
+        pre_disp_P = P;
+
+
+        nvec16 = normalize(N);
+
+
+        string	_tstyle4 = "uv";
+        vector	_uv10 = vector();
+        vector	_N10 = nvec16;
+        vector	_utan4 = vector();
+        vector	_vtan4 = vector();
+        float	_angle4 = 0.0;
+        {
+
+
+            connected4 = 0 ? 1 : 0;
+
+
+            result78 = 1 != 0 ? _N10 : N;
+
+
+            nvec17 = normalize(result78);
+
+
+            quat8 = quaternion(_angle4, nvec17);
+
+
+            tstyle4 = _tstyle4;
+
+
+            in_utan4 = _utan4;
+
+
+            in_vtan4 = _vtan4;
+
+
+            nml4 = nvec17;
+
+
+            bound_uv10 = isbound("uv");
+            if( bound_uv10 ) {
+                uv17 = uv;
+            } else {
+                uv17 = set(s, t, .5);
+            }
+
+
+            result79 = 0 != 0 ? _uv10 : uv17;
+
+
+            uv18 = result79;
+
+
+            vop_computeTangents(tstyle4, nml4, uv18, in_utan4, in_vtan4, utan4, vtan4);
+
+
+            result80 = qrotate(quat8, utan4);
+#line 2742 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                result81 = (0 != 0 ? (connected4 != 0 ? utan4 : result80)
+                                          : (connected4 != 0 ? result80 : utan4));
+
+
+
+
+            result82 = qrotate(quat8, vtan4);
+#line 2760 "/mat/materialbuilder1/principledshader1/DisplacementVexCode"
+                result83 = (0 != 0 ? (connected4 != 0 ? vtan4 : result82)
+                                          : (connected4 != 0 ? result82 : vtan4));
+
+
+
+
+            _utan4 = result81;
+            _vtan4 = result83;
+        }
+
+
+        pre_disp_utan = _utan4;
+
+
+        pre_disp_vtan = _vtan4;
+
+
+        pre_disp_N = nvec16;
+    }
+
+
+    vector tempP = result75;
+    vector tempN = result77;
+    P = tempP;
+    N = tempN;
+}

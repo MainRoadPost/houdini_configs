@@ -1,0 +1,22 @@
+
+
+~~~ Version history
+* Version cg::fg_imageplane::1.3 (DEVELOPMENT) created by aapalikov
+
+add alpha mask for matte
+
+* Version cg::fg_imageplane::1.3 (RELEASE) created by aapalikov
+
+add crop alpha mask for render
+
+* Version cg::fg_imageplane::1.4 (DEVELOPMENT) created by dkirillyak
+
+будет добавлена реакция fg image на оверскан камеры
+
+* Version cg::fg_imageplane::1.4 (RELEASE) created 2019-06-07 16:45:39 by aapalikov
+
+correct (invert) opacity
+* Version cg::fg_imageplane::1.5 (RELEASE) created 2020-07-02 20:42:39 by lipilin
+
+Prep for adding to studio houdini configs
+

@@ -1,0 +1,236 @@
+# Dialog script for mrp::skinshadercore::2.2 automatically generated
+
+{
+    name	mrp::skinshadercore::2.2
+    script	skinshader
+    label	"MRP Skin Shader Core"
+
+    input	normal	N	Normal
+    input	vector	diffusecolor	Color
+    input	float	sss	Amount
+    input	vector	shallowcolor	Color
+    input	float	shallowdist	"Scattering Distance"
+    input	float	shallowweight	Weight
+    input	vector	mediumcolor	Color
+    input	float	mediumdist	"Scattering Distance"
+    input	float	mediumweight	Weight
+    input	vector	deepcolor	Color
+    input	float	deepdist	"Scattering Distance"
+    input	float	deepweight	Weight
+    input	float	refl1	Reflectivity
+    input	float	reflrough1	Roughness
+    input	float	refl2	Reflectivity
+    input	float	sssdistmult	"Distance Multiplier"
+    input	float	reflrough2	Roughness
+    output	struct_ShaderLayer	layer	Layer
+    output	bsdf	f	BSDF
+    inputflags	N	0
+    inputflags	diffusecolor	2
+    inputflags	sss	2
+    inputflags	shallowcolor	2
+    inputflags	shallowdist	2
+    inputflags	shallowweight	2
+    inputflags	mediumcolor	2
+    inputflags	mediumdist	2
+    inputflags	mediumweight	2
+    inputflags	deepcolor	2
+    inputflags	deepdist	2
+    inputflags	deepweight	2
+    inputflags	refl1	2
+    inputflags	reflrough1	2
+    inputflags	refl2	2
+    inputflags	sssdistmult	2
+    inputflags	reflrough2	2
+    signature	"Default Inputs"	default	{ normal vector float vector float float vector float float vector float float float float float float float struct_ShaderLayer bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    groupsimple {
+        name    "folder10"
+        label   "Diffuse"
+        grouptag { "group_type" "simple" }
+
+        parm {
+            name    "diffusecolor"
+            label   "Color"
+            type    color
+            size    3
+            default { "0.3772" "0.2703" "0.1882" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder2"
+        label   "Subsurface Scattering"
+
+        parm {
+            name    "sss"
+            label   "Amount"
+            type    float
+            default { "1" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "sssdistmult"
+            label   "Distance Multiplier"
+            type    float
+            default { "1" }
+            range   { 0 10 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder11"
+        label   "Shallow Layer"
+        grouptag { "group_type" "simple" }
+
+        parm {
+            name    "shallowcolor"
+            label   "Color"
+            type    color
+            size    3
+            default { "0.583" "0.4346" "0.4211" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "shallowdist"
+            label   "Scattering Distance"
+            type    float
+            default { "0.05" }
+            range   { 0 10 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "shallowweight"
+            label   "Weight"
+            type    float
+            default { "0.333" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder12"
+        label   "Medium Layer"
+        grouptag { "group_type" "simple" }
+
+        parm {
+            name    "mediumcolor"
+            label   "Color"
+            type    color
+            size    3
+            default { "0.2417" "0.125" "0.0409" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "mediumdist"
+            label   "Scattering Distance"
+            type    float
+            default { "0.075" }
+            range   { 0 10 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "mediumweight"
+            label   "Weight"
+            type    float
+            default { "0.333" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder13"
+        label   "Deep Layer"
+        grouptag { "group_type" "simple" }
+
+        parm {
+            name    "deepcolor"
+            label   "Color"
+            type    color
+            size    3
+            default { "0.1335" "0.0377" "0.0289" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "deepdist"
+            label   "Scattering Distance"
+            type    float
+            default { "0.1" }
+            range   { 0 10 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "deepweight"
+            label   "Weight"
+            type    float
+            default { "0.333" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder0"
+        label   "Primary Reflection"
+
+        parm {
+            name    "refl1"
+            label   "Reflectivity"
+            type    float
+            default { "0.3" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "reflrough1"
+            label   "Roughness"
+            type    float
+            default { "0.7" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    groupsimple {
+        name    "folder1"
+        label   "Secondary Reflection"
+
+        parm {
+            name    "refl2"
+            label   "Reflectivity"
+            type    float
+            default { "0.25" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "reflrough2"
+            label   "Roughness"
+            type    float
+            default { "0.54" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+}

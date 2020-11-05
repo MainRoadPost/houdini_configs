@@ -1,0 +1,59 @@
+# Dialog script for mrp::hairnormal::1.0 automatically generated
+
+{
+    name	mrp::hairnormal::1.0
+    script	mrp::hairnormal::1.0
+    label	"MRP Hair Normal"
+
+    outercode {
+	"#include <voptype.h>"
+	"#include <voplib.h>"
+    }
+
+    code {
+	"VOPvector $ii = ($isconnected_nI != 0) ? normalize($nI) : normalize(I);"
+	"VOPvector $ht = ($isconnected_tang != 0) ? normalize($tang) : normalize(dPdt);"
+	"float $u = ($isconnected_ss != 0) ? $ss : s;"
+	""
+	"VOPvector $orth = cross($ht, -$ii);"
+	"VOPnormal $Nhair = cross($ht, $orth);"
+	"$Nhair = normalize(frontface($Nhair, $ii));"
+	""
+	"if ($bow){"
+	"    float $side = $u*2-1;"
+	"    float $up = sqrt(1-$u*$u);"
+	"    $Nhair = $side * normalize(dPds) + $up * $Nhair;"
+	"}"
+	""
+	"$hairNn = normalize($Nhair);"
+	""
+    }
+
+    input	vector	nI	"Incident Vector"
+    input	vector	tang	"Hair Tangent"
+    input	float	ss	"S Coordinate"
+    input	int	bow	"Do Rounding"
+    output	normal	hairNn	"Hair Normal"
+    inputflags	nI	0
+    inputflags	tang	0
+    inputflags	ss	0
+    inputflags	bow	0
+    signature	"Default Inputs"	default	{ vector vector float int normal }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0,0,0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "bow"
+        label   "Do Rounding"
+        type    toggle
+        default { "1" }
+    }
+}

@@ -1,0 +1,163 @@
+# Dialog script for mrp::roundededge::1.1 automatically generated
+
+{
+    name	mrp::roundededge::1.1
+    script	roundededge
+    label	"MRP Rounded Edge"
+
+    outercode {
+	"#include <math.h>"
+    }
+
+    code {
+	"vector $nn = ($isconnected_nN  != 0) ? $nN  : normalize(N);"
+	"$mask = 0;"
+	"$concave = 0;"
+	"$convex = 0;"
+	"if ($radius <= 0)"
+	"{"
+	"    $roundN = $nn;"
+	"}"
+	"else"
+	"{"
+	"    float $raybias = 0;"
+	"    renderstate(\"renderer:raybias\", $raybias);"
+	"    float $eps = max($radius * 0.01, $raybias * 2);"
+	"    vector $tanV = normalize(cross($nn, dPds));"
+	"    vector $tanU = cross($tanV, $nn);"
+	"    float $tmpdot = dot(normalize(Ng), $nn);"
+	"    float $push = 0;"
+	"    if ($tmpdot < 1)"
+	"        $push =  sqrt(1.0f - $tmpdot * $tmpdot);"
+	"    float $cuspthresh = cos(radians($cuspangle));"
+	"    int $testbegin = $mode < 2? 0 : 1;"
+	"    int $testend = $mode == 1? 1 : 2;"
+	"    "
+	"    // Stochastically choose trace dirs"
+	"    float $rr = random(SID);"
+	"    $roundN = $nn;"
+	"    for (int i = 0; i < $samples; ++i)"
+	"    {"
+	"        float ff = (float(i) + $rr) * M_PI * 2.0 / (float)$samples;"
+	"        float ss = sin(ff);"
+	"        float cc = cos(ff);"
+	"        vector dir = $tanU * ss + $tanV * cc;"
+	"        "
+	"        // Trace above the surface first. If it doesn't hit anything, trace below."
+	"        int done = 0;"
+	"        for (int j = $testbegin; j < $testend && !done; ++j)"
+	"        {"
+	"            float sign = j==0 ? -1 : 1;"
+	"            vector org = P - $nn * $eps * sign - dir * $eps * 0.5;"
+	"            // Trace direction is modified by angle between interpolated normals "
+	"            // and geometry normals to prevent self-intersection artifacts."
+	"            vector dir_m = normalize(dir - $nn * $push * sign);"
+	"            vector hitN;"
+	"            float hitDist = -$radius;"
+	"            gather(org, dir_m, \"pipeline\", \"displacement\", \"raystyle\", \"nolimit\", "
+	"                \"scope\", $scope, \"maxdist\", $radius + $eps * 0.5, "
+	"                \"samplefilter\", \"closest\", \"ray:length\", hitDist, \"N\", hitN)"
+	"            {"
+	"                hitDist -= $eps * 0.5;"
+	"                if (hitDist > 0 && "
+	"                    dot(hitN, dir) * sign > 0 &&"
+	"                    abs(dot(hitN, $nn)) < $cuspthresh)"
+	"                {"
+	"                    // Averaging weight:"
+	"                    // (1 - dist * dot(N,dir)) * 2 / #samples"
+	"                    // where N:   surface normal of the hit surface"
+	"                    //       dir: trace direction"
+	"                    hitN = normalize(hitN);"
+	"                    float pd = hitDist * dot(hitN, dir) * sign;"
+	"                    float weight = (1.0 - pd / $radius) * 2.0 / (float)$samples;"
+	"                    $roundN += hitN * weight;"
+	"                    done = 1;"
+	"                    $mask = 1;"
+	"                    $concave = $mask*(sign<0);"
+	"                    $convex = $mask*(sign>0);"
+	"                }"
+	"            }"
+	"        }"
+	"    }"
+	"    $roundN = normalize($roundN);"
+	"}"
+    }
+
+    input	int	mode	Mode
+    input	int	samples	Samples
+    input	float	radius	Radius
+    input	float	cuspangle	"Cusp Angle"
+    input	vector	nN	"Normalized Surface Normal"
+    input	string	scope	"Object Scope"
+    output	normal	roundN	"Output Normal"
+    output	float	mask	"Affected Mask"
+    output	float	concave	"Concave Mask"
+    output	float	convex	"Convex Mask"
+    inputflags	mode	0
+    inputflags	samples	0
+    inputflags	radius	0
+    inputflags	cuspangle	0
+    inputflags	nN	0
+    inputflags	scope	0
+    signature	"Default Inputs"	default	{ int int float float vector string normal float float float }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0,0,0)
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "mode"
+        label   "Mode"
+        type    ordinal
+        default { "0" }
+        help    "Edge types to smooth."
+        menu {
+            "both"      "Concave and Convex Edges"
+            "concave"   "Concave Edges"
+            "convex"    "Convex Edges"
+        }
+    }
+    parm {
+        name    "samples"
+        label   "Samples"
+        type    integer
+        default { "4" }
+        help    "Number of directions to trace."
+        range   { 2 10 }
+    }
+    parm {
+        name    "radius"
+        label   "Radius"
+        type    float
+        default { "0.01" }
+        help    "Rounding radius, in Houdini units."
+        range   { 0 1 }
+    }
+    parm {
+        name    "cuspangle"
+        label   "Cusp Angle"
+        type    angle
+        default { "30" }
+        help    "Ignore faces below this angle."
+        range   { 0 180 }
+    }
+    parm {
+        name    "scope"
+        label   "Object Scope"
+        type    string
+        default { "scope:self" }
+        help    "Space or comma separated list of categories to trace against."
+    }
+}

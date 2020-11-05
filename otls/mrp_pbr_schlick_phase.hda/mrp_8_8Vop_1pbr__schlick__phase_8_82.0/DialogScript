@@ -1,0 +1,53 @@
+# Dialog script for mrp::pbr_schlick_phase::1.0 automatically generated 05/07/14 23:53:15
+
+{
+    name	mrp::pbr_schlick_phase::1.0
+    script	pbr_rayleigh_phase
+    label	"PBR Schlick Phase Function"
+
+    outercode {
+	" "
+    }
+
+    code {
+	"$f = cvex_bsdf(\"schlick_phase_eval\", \"schlick_phase_sample\","
+	"                \"label\", $label,"
+	"                \"phase\", $phase);"
+	""
+	""
+    }
+
+    input	string	label	"Component Label"
+    input	float	phase	Phase
+    output	bsdf	f	f
+    inputflags	label	0
+    inputflags	phase	0
+    signature	"Default Inputs"	default	{ string float bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+	name	"label"
+	label	"Component Label"
+	type	string
+	default	{ "volume" }
+	range	{ 0 1 }
+	export	none
+    }
+    parm {
+	name	"phase"
+	label	"Phase"
+	type	float
+	default	{ "0.5" }
+	range	{ -1! 1! }
+	export	none
+    }
+}

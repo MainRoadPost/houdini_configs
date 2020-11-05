@@ -1,0 +1,14 @@
+Operator:     mrp::grade::2.0
+Label:        Grade
+Path:         oplib:/mrp::Vop/grade::2.0?mrp::Vop/grade::2.0
+Icon:         VOP_wGrade
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 8
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Thu Aug 20 17:25:11 2020
+

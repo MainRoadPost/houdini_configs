@@ -1,0 +1,129 @@
+=GGX Microfacet Glass Model=
+
+Combined both Specular and Transmission terms with a physically based Fresnel function to provide a
+physically plausible Rough Dielectric BSDF
+
+Beeing compared to Phong model, this one have a much narrower peak and longer tail at some time.
+
+Do not forget to multiply resulting BSDF to value near 0.35 for metals to avoid too bright albedo.
+For dielectrics, if recommended values of Fresnel0 parameter are used, total albedo is already in plausible range.
+
+@parameters
+
+Reflection Label:
+    #id: reflectlabel
+
+    Specifies a label for the reflection BSDF. This can be used to export
+    contributions from this component to a separate image plane.
+
+Refraction Label:
+    #id: refractlabel
+
+    Specifies a label for the refraction BSDF. This can be used to export
+    contributions from this component to a separate image plane.
+
+Reflect:
+    #id: reflect
+
+    Controls the amount of reflection output.
+
+Refract:
+    #id: refract
+
+    Controls the amount of reflection output.
+
+
+Roughness:
+    #id: rough
+    Controls how dull a surface appears. A value of `0.0` results in a smooth surface with perfectly sharp reflections. A value of `1.0` produces a completely dull surface.
+
+    This simulates microscopic bumps which become more pronounced the higher the __Roughness__, causing reflected light to be scattered more.
+
+    [Image:/images/nodes/vop/principled_shader_rough_dielectric.png]
+
+Anisotropic Bias:
+    The direction and amount of anisotropy in the specular highlight. Values less than 0 will sharpen the
+    specular highlight in the U direction while values larger than 0 will sharpen the specular highlight
+    in the V direction. When the Specular Anisotropy is -1 or 1, highlights will have a width of 0 in one of
+    the anisotropic directions.
+
+Anisotropic Angle:
+    The angle to rotate anisotropic specular highlights. A value of 0 will align it directly with
+    the parametric directions while other angles rotate clockwise. 
+
+Index of Refraction:
+    #id: ior
+    A relation of Inside material IOR to Ouside material IOR, for example, 
+    for Water in Vacuum it is 1.33/1.00 = 1.33
+
+    Higher values reflect more light and bend refraction rays more.
+
+    The impact on reflectivity is strongest on surfaces facing directly towards the viewer. Surfaces facing less directly towards the viewer generally reflect more light, regardless of this parameter's value.
+
+    NOTE:
+        The shininess of a surface also depends greatly on its __Roughness__.
+
+    [Image:/images/nodes/vop/principled_shader_ior_opaque.png]
+
+    [Image:/images/nodes/vop/principled_shader_ior_transparent.png]
+
+    The effect on a shiny black object in a white environment. Note how reflections at the edges are not affected, apart from the special value `1.0`:
+
+    [Image:/images/nodes/vop/principled_shader_ior_white.png]
+
+Surface Priority:
+    #id: priority
+    [Include:/nodes/vop/standard_shading_parms#priority]
+
+Dispersion:
+    #id: dispersion
+    [Include:/nodes/vop/standard_shading_parms#dispersion]
+
+Transmittance Color:
+    #id: transcolor
+    [Include:/nodes/vop/standard_shading_parms#transcolor]
+
+At Distance:
+    #id: transdist
+    [Include:/nodes/vop/standard_shading_parms#transdist]
+    
+== Roughness examples ==
+Mirror-like:
+    0.01
+Almost diffuse:
+    0.7
+
+== IOR values for most common transitions ==
+
+Water in Air:
+    1.33
+Glass in Air:
+    1.5
+Glass in Water:
+    1.125
+Water in Glass:
+    0.88888
+Diamond in Air:
+    2.42
+
+Based on paper "Microfacet Models for Refraction through Rough Surfaces" by Walter et.al, 2007
+
+@inputs
+
+nN:
+    A normalized normal.
+
+utan:
+    U tangent direction to use for anisotropic reflections.
+
+@outputs
+
+f:
+    The ggx glass bsdf.
+
+@related
+
+    - [PBR Non Metallic|Node:vop/pbrnonmetallic]
+    - [MRP GGX Metallic|Node:vop/mrp--ggx_metallic-1.0]
+    - [PBR Diffuse|Node:vop/pbrdiffuse]
+    - [Conserve Energy|Node:vop/conserveenergy]

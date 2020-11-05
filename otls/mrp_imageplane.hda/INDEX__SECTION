@@ -1,0 +1,84 @@
+Operator:     cg::fg_imageplane::1.0
+Label:        FG Image Plane
+Path:         oplib:/cg::Object/fg_imageplane::1.0?cg::Object/fg_imageplane::1.0
+Icon:         MISC_digital_asset
+Table:        Object
+License:      
+Extra:        
+User:         
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Jul  2 21:05:37 2020
+
+Operator:     cg::fg_imageplane::1.1
+Label:        FG Image Plane
+Path:         oplib:/cg::Object/fg_imageplane::1.1?cg::Object/fg_imageplane::1.1
+Icon:         MISC_digital_asset
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Jul  2 21:05:26 2020
+
+Operator:     cg::fg_imageplane::1.2
+Label:        FG Image Plane
+Path:         oplib:/cg::Object/fg_imageplane::1.2?cg::Object/fg_imageplane::1.2
+Icon:         MISC_digital_asset
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Jul  2 21:05:09 2020
+
+Operator:     cg::fg_imageplane::1.3
+Label:        FG Image Plane
+Path:         oplib:/cg::Object/fg_imageplane::1.3?cg::Object/fg_imageplane::1.3
+Icon:         MISC_digital_asset
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Jul  2 21:04:58 2020
+
+Operator:     cg::fg_imageplane::1.4
+Label:        FG Image Plane
+Path:         oplib:/cg::Object/fg_imageplane::1.4?cg::Object/fg_imageplane::1.4
+Icon:         MISC_digital_asset
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Jul  2 21:04:39 2020
+
+Operator:     mrp::imageplane::2.0
+Label:        Image Plane
+Path:         oplib:/mrp::Object/imageplane::2.0?mrp::Object/imageplane::2.0
+Icon:         VIEW_display_background
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Aug 20 16:51:49 2020
+

@@ -1,0 +1,149 @@
+# Dialog script for mrp::ggx_specular::1.0 automatically generated
+
+{
+    name	mrp::ggx_specular::1.0
+    script	pbrspecular
+    label	"MRP GGX Specular"
+
+    outercode {
+	"#include <math.h>"
+    }
+
+    code {
+	"#ifdef VOP_SHADING"
+	"vector $tnN = $isconnected_nN ? $nN : normalize(N);"
+	"vector $tanu = $isconnected_utan ? $utan : normalize(dPds);"
+	"#else"
+	"vector $tnN = $isconnected_nN ? $nN : {0, 1, 0};"
+	"vector $tanu = $isconnected_utan ? $utan : {1, 0, 0};"
+	"#endif"
+	""
+	"vector $f0 = $fresnel0;"
+	""
+	"float $index = $ior;"
+	""
+	"float $rx = $roughness*$roughness;"
+	"float $ry = $rx;"
+	""
+	"if($aniso!=0){"
+	"    {"
+	"        matrix3 $rot = ident();"
+	"        // 0.5  is because tangent sent to bsdf is actually tanV"
+	"        rotate($rot, -M_PI*($anisodir+0.5), cross(cross($tanu, $tnN), $tanu));"
+	"        $tanu *= $rot;"
+	"    }"
+	"    "
+	"    float aniso_value = $aniso*$aniso*$rx;"
+	"    $rx += aniso_value;"
+	"    $ry -= aniso_value;"
+	"} else {"
+	"    matrix3 to_world = dihedral({0.0,0.0,1.0}, $tnN);"
+	"    $tanu = {1,0,0} * to_world;"
+	"}"
+	""
+	"float $top_layer_eta = 1.0/$top_layer_ior;"
+	""
+	"$f = cvex_bsdf(\"mrp_ggx_eval\", \"mrp_ggx_sample\","
+	"               \"label\", $label,"
+	"               \"bouncemasklabels\", bouncemask($label),"
+	"               \"nN\", $tnN,"
+	"               \"fresnel0\", $f0,"
+	"               \"index\", $index,"
+	"               \"tangent\", $tanu,"
+	"               \"top_layer_eta\", $top_layer_eta,"
+	"               \"roughnessx\", $rx,"
+	"               \"roughnessy\", $ry);"
+    }
+
+    input	string	label	"Component Label"
+    input	vector	nN	Normal
+    input	vector	utan	"Tangent U"
+    input	float	roughness	Roughness
+    input	float	aniso	Anisotropy
+    input	float	anisodir	"Anisotropy Direction"
+    input	vector	fresnel0	Fresnel0
+    input	float	ior	"Index Of Refraction"
+    input	float	top_layer_ior	"Top Layer IOR"
+    output	bsdf	f	BSDF
+    inputflags	label	0
+    inputflags	nN	0
+    inputflags	utan	0
+    inputflags	roughness	0
+    inputflags	aniso	0
+    inputflags	anisodir	0
+    inputflags	fresnel0	0
+    inputflags	ior	0
+    inputflags	top_layer_ior	0
+    signature	"Default Inputs"	default	{ string vector vector float float float vector float float bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "label"
+        label   "Component Label"
+        type    string
+        default { "reflect" }
+        menureplace {
+            "diffuse"   "Diffuse"
+            "specular"  "Specular"
+            "reflect"   "Reflect"
+            "refract"   "Refract"
+        }
+        range   { 0 1 }
+    }
+    parm {
+        name    "roughness"
+        label   "Roughness"
+        type    float
+        default { "0.5" }
+        range   { 0! 1 }
+    }
+    parm {
+        name    "aniso"
+        label   "Anisotropy"
+        type    float
+        default { "0" }
+        range   { 0! 1! }
+    }
+    parm {
+        name    "anisodir"
+        label   "Anisotropy Direction"
+        type    float
+        default { "0" }
+        range   { -90 90 }
+    }
+    parm {
+        name    "ior"
+        label   "Eta (1/IOR)"
+        type    float
+        default { "1" }
+        help    "If index of refraction is 1, Fresnel0 parameter is used"
+        range   { 0 2 }
+    }
+    parm {
+        name    "fresnel0"
+        label   "Fresnel0"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        help    "Reflectance at zero Theta angle. Used only if ior is equal to 1"
+        disablewhen "{ ior != 1 }"
+        range   { 0 1 }
+    }
+    parm {
+        name    "top_layer_ior"
+        label   "Top Layer IOR"
+        type    float
+        default { "1" }
+        help    "If index of refraction is 1, there is no top layer"
+        range   { 0 2 }
+    }
+}

@@ -1,0 +1,27 @@
+= MRP Thin Dirty Glass =
+
+Shader, imitating double-sided glass with light absorbtion inside glass width and applying dirt on top on it's surface.
+
+Instead of refraction, opacity is used to speedup and optimize rendering process.
+
+@parameters
+Roughness:
+    Glass surface roughness
+
+Index Of Refraction:
+    Relation of outside IOR to inside IOR (for air/glass transition it is approximately equal to 1.5)
+
+Transmittance Color:
+    Transmittance color of glass
+
+At Distance:
+    At which distance glass transparency should reach value in Transmittance Color
+
+Glass Width:
+    Glass width in meters
+
+Dirt Mask:
+    Mask to apply dirt bsdf. Value of 1 means dirt covering glass with 100%
+
+Dirt BSDF:
+    BSDF of dirt

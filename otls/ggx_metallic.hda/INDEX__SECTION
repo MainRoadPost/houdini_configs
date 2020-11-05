@@ -1,0 +1,14 @@
+Operator:     mrp::ggx_metallic::1.0
+Label:        MRP GGX Metallic
+Path:         oplib:/mrp::Vop/ggx_metallic::1.0?mrp::Vop/ggx_metallic::1.0
+Icon:         VOP_specular
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 11
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Fri Jan 18 17:08:00 2019
+

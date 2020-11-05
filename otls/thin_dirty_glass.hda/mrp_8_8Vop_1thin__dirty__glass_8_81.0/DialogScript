@@ -1,0 +1,99 @@
+# Dialog script for mrp::thin_dirty_glass::1.0 automatically generated
+
+{
+    name	mrp::thin_dirty_glass::1.0
+    script	cg::fake_glass::1.0
+    label	"MRP Thin Dirty Glass"
+
+    input	float	roughness	Roughness
+    input	float	ior	"Index Of Refraction"
+    input	normal	nN	Normal
+    input	vector	transcolor	"Transmittance Color"
+    input	float	transdist	"At Distance"
+    input	float	width	"Glass Width"
+    input	float	dirt_mask	"Dirt Mask"
+    input	bsdf	dirt_bsdf	"Dirt BSDF"
+    output	struct_ShaderLayer	layer	layer
+    output	bsdf	bsdf	"Combined Value"
+    output	vector	opacity	"Complement: 1 - Input Value"
+    inputflags	roughness	2
+    inputflags	ior	2
+    inputflags	nN	0
+    inputflags	transcolor	2
+    inputflags	transdist	2
+    inputflags	width	2
+    inputflags	dirt_mask	2
+    inputflags	dirt_bsdf	2
+    signature	"Default Inputs"	default	{ float float normal vector float float float bsdf struct_ShaderLayer bsdf vector }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+	___begin	auto
+			(0,0,0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "roughness"
+        label   "Roughness"
+        type    float
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "ior"
+        label   "Index Of Refraction"
+        type    float
+        default { "1.5" }
+        range   { 1 3 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "transcolor"
+        label   "Transmittance Color"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "transdist"
+        label   "At Distance"
+        type    float
+        default { "0.1" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "width"
+        label   "Glass Width"
+        type    float
+        default { "0.005" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "dirt_mask"
+        label   "Dirt Mask"
+        type    float
+        default { "0" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "dirt_bsdf"
+        label   "Dirt BSDF"
+        type    label
+        default { "" }
+        parmtag { "parmvop" "1" }
+    }
+}
