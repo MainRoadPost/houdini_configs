@@ -10,7 +10,7 @@ function git.branch() {
 GIT_BRANCH=$(git.branch)
 if [ -z $GIT_BRANCH ]; then
   echo "ERROR: No current branch found. Exitting."
-  popd > /dev/null
+  popd >/dev/null
   exit 1
 fi
 MRP_REMOTE_BRANCH=$GIT_BRANCH
@@ -33,5 +33,5 @@ echo "Copying everything except asset libraries to _build directory"
 echo "Collapsing asset libraries..."
 mkdir -p _build/otls
 for hda in otls/*.hda; do
-  hotl -l $hda _build/$hda
+  hotl -l $hda _build/$hda || exit 1
 done
