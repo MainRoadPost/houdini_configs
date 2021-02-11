@@ -1,0 +1,59 @@
+# Dialog script for mrp::simplify::1.2 automatically generated
+
+{
+    name	mrp::simplify::1.2
+    script	mrp::simplify::1.1
+    label	"MRP BSDF Simplify"
+
+    input	struct_ShaderLayer	layer	Layer
+    input	bsdf	F	BSDF
+    input	normal	nN	Normal
+    input	vector	gain	"Diffuse Gain"
+    input	int	bounce	"Last Original Bounce"
+    output	struct_ShaderLayer	__layer	layer
+    output	bsdf	__F	layer
+    inputflags	layer	0
+    inputflags	F	0
+    inputflags	nN	0
+    inputflags	gain	2
+    inputflags	bounce	2
+    signature	BSDF	default	{ struct_ShaderLayer bsdf normal vector int struct_ShaderLayer bsdf }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "signature"
+        label   "Signature"
+        type    float
+        invisible
+        default { "0" }
+        range   { 0 10 }
+    }
+    parm {
+        name    "gain"
+        label   "Diffuse Gain"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+        parmtag { "parmvop" "1" }
+    }
+    parm {
+        name    "bounce"
+        label   "Last Original Bounce"
+        type    integer
+        default { "0" }
+        range   { 0 10 }
+        parmtag { "parmvop" "1" }
+    }
+}

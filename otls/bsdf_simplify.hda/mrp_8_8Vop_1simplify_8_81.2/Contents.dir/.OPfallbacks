@@ -1,0 +1,16 @@
+Vop/frontface /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/frontface otls/OPlibScripted.hda
+Vop/ifconnected /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/ifconnected otls/OPlibScripted.hda
+Vop/layerpack /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/layerpack otls/OPlibScripted.hda
+Vop/layerunpack /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibVop.hda
+Vop/layerunpack otls/OPlibVop.hda
+mrp::Vop/albedo::1.0 /home/mike/code/cg/houdini/public_configs/otls/mrp_albedo.hda
+mrp::Vop/albedo::1.0 otls/mrp_albedo.hda
+Vop/normalize /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/normalize otls/OPlibScripted.hda
+Vop/pbrdiffuse::3.0 /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibVop.hda
+Vop/pbrdiffuse::3.0 otls/OPlibVop.hda
+Vop/raybounce /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/raybounce otls/OPlibScripted.hda

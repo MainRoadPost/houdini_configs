@@ -1,5 +1,4 @@
 
-
 ~~~ Version history
 * Version mrp::conserveenergy::1.0 (RELEASE) created by skurak
 
@@ -9,5 +8,5 @@ release
 Publish in public configs and bugfix
 * Version mrp::conserveenergy::2.0 (RELEASE) created 2021-02-11 17:01:50 by Mikhail Lesin
 
-Separate bounce components controls
+Bounce components now controlled independently
 

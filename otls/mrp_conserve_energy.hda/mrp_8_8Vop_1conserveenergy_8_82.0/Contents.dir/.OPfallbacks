@@ -1,0 +1,6 @@
+Vop/invert /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/invert otls/OPlibScripted.hda
+Vop/luminance /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/luminance otls/OPlibScripted.hda
+mrp::Vop/albedo::1.0 /home/mike/code/cg/houdini/public_configs/otls/mrp_albedo.hda
+mrp::Vop/albedo::1.0 otls/mrp_albedo.hda

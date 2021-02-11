@@ -1,50 +1,34 @@
-# Dialog script for mrp::albedo::1.0 automatically generated
+# Dialog script for mrp::conserveenergy::2.0 automatically generated
 
 {
-    name	mrp::albedo::1.0
-    script	albedo
-    label	"MRP Get BSDF Albedo"
-
-    outercode {
-	"#include <voptype.h>"
-	"#include <voplib.h>"
-	"#include <pbr.h>"
-    }
+    name	mrp::conserveenergy::2.0
+    script	mrp::conserveenergy
+    label	"MRP Conserve Energy"
 
     code {
-	"VOPint $components = 0;"
-	"if ($diffuse_comp)"
-	"    $components |= PBR_DIFFUSE_MASK;"
-	"if ($glossy_comp)"
-	"    $components |= PBR_GLOSSY_MASK;"
-	"if ($volume_comp)"
-	"    $components |= PBR_VOLUME_MASK;"
-	"if ($sss_comp)"
-	"    $components |= PBR_SSS_MASK;"
-	"    "
-	"VOPvector $ii = ($isconnected_nI != 0) ? $nI : normalize(I);"
-	"$albedo = albedo($f, -$ii, $components);"
+	""
     }
 
     input	bsdf	f	BSDF
-    input	vector	nI	"Incident Vector"
     input	int	diffuse_comp	Diffuse
     input	int	glossy_comp	Glossy
     input	int	volume_comp	Volume
     input	int	sss_comp	SSS
-    output	vector	albedo	Albedo
+    output	bsdf	_f	f
+    output	float	scale	scale
     inputflags	f	0
-    inputflags	nI	0
     inputflags	diffuse_comp	0
     inputflags	glossy_comp	0
     inputflags	volume_comp	0
     inputflags	sss_comp	0
-    signature	"Default Inputs"	default	{ bsdf vector int int int int vector }
+    signature	"Default Inputs"	default	{ bsdf int int int int bsdf float }
 
     outputoverrides	default
     {
 	___begin	auto
-			(0,0,0)
+			(0)
+	___begin	auto
+			(0)
     }
 
     help {

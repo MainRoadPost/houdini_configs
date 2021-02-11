@@ -11,5 +11,20 @@ Outputs:      2048
 Subnet:       true
 Python:       false
 Empty:        false
-Modified:     Mon Jan 21 20:32:55 2019
+Modified:     Thu Feb 11 16:53:09 2021
+
+Operator:     mrp::simplify::1.2
+Label:        MRP BSDF Simplify
+Path:         oplib:/mrp::Vop/simplify::1.2?mrp::Vop/simplify::1.2
+Icon:         VOP_simplify
+Table:        Vop
+License:      
+Extra:        displace fog light photon shadow surface
+User:         
+Inputs:       0 to 5
+Outputs:      2048
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Feb 11 16:53:10 2021
 

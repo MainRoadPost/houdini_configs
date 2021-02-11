@@ -1,0 +1,17 @@
+{
+	"values":["18.5.462"
+	],
+	"indexes":{
+		"hdaroot/switch2.userdata":0,
+		"hdaroot/gain.userdata":0,
+		"hdaroot/switch1.userdata":0,
+		"hdaroot/is_layer_connected.userdata":0,
+		"hdaroot/bounce.userdata":0,
+		"hdaroot/multiply1.userdata":0,
+		"hdaroot/if_begin1.userdata":0,
+		"hdaroot/compare1.userdata":0,
+		"hdaroot/subinput1.userdata":0,
+		"hdaroot/end_if1.userdata":0,
+		"hdaroot/suboutput1.userdata":0
+	}
+}

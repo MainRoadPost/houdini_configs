@@ -23,7 +23,7 @@ Vop
 Content-Disposition: attachment; filename="hdaroot.init"
 Content-Type: text/plain
 
-type = mrp::conserveenergy::1.1
+type = mrp::conserveenergy::2.0
 matchesdef = 0
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
@@ -31,22 +31,28 @@ Content-Disposition: attachment; filename="hdaroot.def"
 Content-Type: text/plain
 
 comment ""
-position 24.1606 -9.41078
-connectornextid 3
+position 208.217 -3.66388
+connectornextid 6
 flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
 outputsNamed3
 {
-2 "_f"
+5 "_f"
 }
 inputsNamed3
 {
-0 	add1 0 1 "f"
-1 	"" "" 1 "type"
+0 	simplify1 6 1 "f"
+1 	"" "" 1 "diffuse_comp"
+2 	"" "" 1 "glossy_comp"
+3 	"" "" 1 "volume_comp"
+4 	"" "" 1 "sss_comp"
 }
 inputs
 {
-0 	add1 0 1
+0 	simplify1 1 1
 1 	"" 0 1
+2 	"" 0 1
+3 	"" 0 1
+4 	"" 0 1
 }
 stat
 {
@@ -68,70 +74,21 @@ Content-Type: text/plain
 	"___Version___":{
 		"type":"string",
 		"value":""
-	}
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/diffuse_n_glossy.init"
-Content-Type: text/plain
-
-type = albedo
-matchesdef = 0
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/diffuse_n_glossy.def"
-Content-Type: text/plain
-
-comment ""
-position -1.16789 3.4413
-connectornextid 0
-flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
-outputsNamed3
-{
-2 "albedo"
-}
-inputsNamed3
-{
-3 	(__dot1) "" 1 "f"
-}
-inputs
-{
-0 	(__dot1) 0 1
-}
-stat
-{
-  create -1
-  modify -1
-  author nobody@nowhere.sidefx.com
-  access 0777
-}
-color UT_Color RGB 0.8 0.8 0.8 
-delscript ""
-exprlanguage hscript
-end
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/diffuse_n_glossy.parm"
-Content-Type: text/plain
-
-{
-version 0.8
-folder0	[ 0	locks=0 ]	(	0	)
-diffuse_comp	[ 0	locks=0 ]	(	"on"	)
-glossy_comp	[ 0	locks=0 ]	(	"on"	)
-volume_comp	[ 0	locks=0 ]	(	"off"	)
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/diffuse_n_glossy.userdata"
-Content-Type: text/plain
-
-{
-	"___Version___":{
+	},
+	"__inputgroup_Bounce Components":{
 		"type":"string",
-		"value":""
+		"value":"collapsed"
 	}
 }
+
+--HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
+Content-Disposition: attachment; filename="hdaroot.outputinfos"
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+
+TnVtSW5mb3MgMgpWYWx1ZXNCaW5hcnkgMQpCZWdpbkluZm8KT3V0cHV0TmFtZSBfZgpEZWJ1Z0NvcnJJbnB1dE5hbWUgX19kZWZhdWx0X18KQnlwYXNzQ29ycklucHV0TmFtZSBfX2RlZmF1bHRfXwpOb3JtYWxNb2RlIDAKQnk=
+cGFzc01vZGUgMQpVc2VEZWZhdWx0VmFsdWUgMQpFbmRJbmZvCgAAAAAAAAAAQmVnaW5JbmZvCk91dHB1dE5hbWUgc2NhbGUKRGVidWdDb3JySW5wdXROYW1lIF9fZGVmYXVsdF9fCkJ5cGFzc0NvcnJJbnB1dE5hbWUgX19kZWY=
+YXVsdF9fCk5vcm1hbE1vZGUgMApCeXBhc3NNb2RlIDEKVXNlRGVmYXVsdFZhbHVlIDEKRW5kSW5mbwoAAAAAAAAAAA==
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
 Content-Disposition: attachment; filename="hdaroot/luminance.init"
@@ -154,11 +111,11 @@ outputsNamed3
 }
 inputsNamed3
 {
-3 	do_all 3 1 "rgb"
+3 	albedo1 6 1 "rgb"
 }
 inputs
 {
-0 	do_all 0 1
+0 	albedo1 0 1
 }
 stat
 {
@@ -267,13 +224,17 @@ Content-Disposition: attachment; filename="hdaroot/subinput1.def"
 Content-Type: text/plain
 
 comment ""
-position -5.79135 4.83255
-connectornextid 2
+position -3.98697 4.81898
+connectornextid 6
 flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
 outputsNamed3
 {
 0 "_f"
-1 "_type"
+1 "_diffuse_comp"
+2 "_glossy_comp"
+3 "_volume_comp"
+4 "_sss_comp"
+5 "_"
 }
 inputsNamed3
 {
@@ -325,7 +286,7 @@ Content-Type: text/plain
 
 comment ""
 position 14.4319 3.94158
-connectornextid 1
+connectornextid 7
 flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
 outputsNamed3
 {
@@ -333,14 +294,22 @@ outputsNamed3
 inputsNamed3
 {
 2 	multiply 2 1 "_f"
-3 	"" "" 1 "_type"
-0 	min 2 1 "scale"
+3 	"" "" 1 "_diffuse_comp"
+0 	"" "" 1 "_glossy_comp"
+1 	"" "" 1 "_volume_comp"
+4 	"" "" 1 "_sss_comp"
+5 	min 2 1 "scale"
+6 	"" "" 1 "next"
 }
 inputs
 {
 0 	multiply 0 1
 1 	"" 0 1
-2 	min 0 1
+2 	"" 0 1
+3 	"" 0 1
+4 	"" 0 1
+5 	min 0 1
+6 	"" 0 1
 }
 stat
 {
@@ -886,37 +855,47 @@ Content-Type: text/plain
 }
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/and_volume.init"
+Content-Disposition: attachment; filename="hdaroot/albedo1.init"
 Content-Type: text/plain
 
-type = albedo
+type = mrp::albedo::1.0
 matchesdef = 0
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/and_volume.def"
+Content-Disposition: attachment; filename="hdaroot/albedo1.def"
 Content-Type: text/plain
 
 comment ""
-position -1.16789 2.077
-connectornextid 0
-flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress off colordefault off exposed on lowdetail off mediumdetail off highdetail on material off
+position -0.821527 3.80028
+connectornextid 7
+flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
 outputsNamed3
 {
-2 "albedo"
+6 "albedo"
 }
 inputsNamed3
 {
-3 	(__dot1) "" 1 "f"
+0 	subinput1 0 1 "f"
+1 	"" "" 1 "nI"
+2 	subinput1 1 1 "diffuse_comp"
+3 	subinput1 2 1 "glossy_comp"
+4 	subinput1 3 1 "volume_comp"
+5 	subinput1 4 1 "sss_comp"
 }
 inputs
 {
-0 	(__dot1) 0 1
+0 	subinput1 0 1
+1 	"" 0 1
+2 	subinput1 1 1
+3 	subinput1 2 1
+4 	subinput1 3 1
+5 	subinput1 4 1
 }
 stat
 {
   create -1
   modify -1
-  author nobody@nowhere.sidefx.com
+  author mike@l93.mrpost.lan
   access 0777
 }
 color UT_Color RGB 0.8 0.8 0.8 
@@ -925,7 +904,7 @@ exprlanguage hscript
 end
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/and_volume.parm"
+Content-Disposition: attachment; filename="hdaroot/albedo1.parm"
 Content-Type: text/plain
 
 {
@@ -934,115 +913,29 @@ folder0	[ 0	locks=0 ]	(	0	)
 diffuse_comp	[ 0	locks=0 ]	(	"on"	)
 glossy_comp	[ 0	locks=0 ]	(	"on"	)
 volume_comp	[ 0	locks=0 ]	(	"on"	)
+sss_comp	[ 0	locks=0 ]	(	"on"	)
 }
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/and_volume.userdata"
+Content-Disposition: attachment; filename="hdaroot/albedo1.userdata"
 Content-Type: text/plain
 
 {
 	"___Version___":{
 		"type":"string",
 		"value":""
-	}
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/do_all.init"
-Content-Type: text/plain
-
-type = switch
-matchesdef = 0
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/do_all.def"
-Content-Type: text/plain
-
-comment ""
-position 0.747468 3.5913
-connectornextid 4
-flags =  lock off model off template off footprint off xray off bypass off display off render off highlight off unload off savedata off compress on colordefault on exposed on lowdetail off mediumdetail off highdetail on material off
-outputsNamed3
-{
-3 "result"
-}
-inputsNamed3
-{
-0 	(__dot2) "" 1 "switcher"
-1 	diffuse_n_glossy 2 1 "input1"
-2 	and_volume 2 1 "input2"
-}
-inputs
-{
-0 	(__dot2) 1 1
-1 	diffuse_n_glossy 0 1
-2 	and_volume 0 1
-}
-stat
-{
-  create -1
-  modify -1
-  author mpeshkov@l66.mrpost.lan
-  access 0777
-}
-color UT_Color RGB 0.8 0.8 0.8 
-delscript ""
-exprlanguage hscript
-end
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/do_all.parm"
-Content-Type: text/plain
-
-{
-version 0.8
-switcher	[ 0	locks=0 ]	(	0	)
-outofbounds	[ 0	locks=0 ]	(	"last"	)
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/do_all.userdata"
-Content-Type: text/plain
-
-{
-	"___Version___":{
+	},
+	"|-hdapath-|":{
 		"type":"string",
-		"value":"___EXTERNAL___"
+		"value":"/cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibVop.hda"
 	}
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/__dot1.networkdotinit"
-Content-Type: text/plain
-
-{
-	"version":1,
-	"posx":-2.51426582283064182,
-	"posy":2.79489200925282999,
-	"pinned":false,
-	"color":"FROMOUTPUT",
-	"input":"subinput1 0 1"
-}
-
---HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
-Content-Disposition: attachment; filename="hdaroot/__dot2.networkdotinit"
-Content-Type: text/plain
-
-{
-	"version":1,
-	"posx":-2.51426582283064182,
-	"posy":3.55130003580003972,
-	"pinned":false,
-	"color":"FROMOUTPUT",
-	"input":"subinput1 1 1"
 }
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
 Content-Disposition: attachment; filename="hdaroot.order"
 Content-Type: text/plain
 
-12
-diffuse_n_glossy
+10
 luminance
 invert
 subinput1
@@ -1052,8 +945,7 @@ min
 multiply
 max
 eps
-and_volume
-do_all
+albedo1
 
 --HOUDINIMIMEBOUNDARY0xD3ADD339-0x00000F49-0x56B122C9-0x00000001HOUDINIMIMEBOUNDARY
 Content-Disposition: attachment; filename="hdaroot.net"
