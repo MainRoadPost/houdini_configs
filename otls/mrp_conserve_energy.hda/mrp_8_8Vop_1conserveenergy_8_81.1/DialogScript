@@ -1,0 +1,42 @@
+# Dialog script for mrp::conserveenergy automatically generated
+
+{
+    name	mrp::conserveenergy
+    script	mrp::conserveenergy
+    label	"Conserve Energy"
+
+    code {
+	""
+    }
+
+    input	bsdf	f	BSDF
+    input	int	type	type
+    output	bsdf	_f	f
+    output	float	scale	scale
+    inputflags	f	0
+    inputflags	type	0
+    signature	"Default Inputs"	default	{ bsdf int bsdf float }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "type"
+        label   "use "
+        type    ordinal
+        default { "0" }
+        menu {
+            "0" "diffuse and glossy"
+            "1" "diffuse, glossy and volume"
+        }
+    }
+}

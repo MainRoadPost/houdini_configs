@@ -1,0 +1,264 @@
+# Dialog script for mrp::principled::2.2 automatically generated
+
+{
+    name	mrp::principled::2.2
+    script	cg_principal
+    label	"MRP Principled Shader Core"
+
+    input	normal	baseN	"Base Normal"
+    input	normal	coatN	"Coat Normal"
+    input	normal	utan	"Tangent U"
+    input	vector	basecolor	"Base Color"
+    input	float	roughness	Roughness
+    input	float	reflect	Reflect
+    input	float	reflecttint	"Reflect Tint"
+    input	float	metallic	Metallic
+    input	float	aniso	Anisotropy
+    input	float	anisodir	"Anisotropy Direction"
+    input	float	coat	Coat
+    input	float	coatrough	"Coat Roughness"
+    input	float	coatlightcull	"Coat Light Cull"
+    input	vector	emitcolor	"Emission Color"
+    input	int	emitillum	"Emission Illuminates Objects"
+    input	string	diffuse_label	"Diffuse Label"
+    input	string	reflect_label	"Reflection Label"
+    input	string	coat_label	"Coat Label"
+    input	float	sss	Subsurface
+    input	float	sssdist	"Subsurface Distance"
+    input	vector	ssscolor	"Subsurface Color"
+    input	string	ssslabel	"Subsurface Label"
+    input	float	sheen	Sheen
+    input	float	sheentint	"Sheen Tint"
+    input	float	top_layer_ior	"Top Layer IOR"
+    output	bsdf	F	BSDF
+    output	vector	Ce	Emission
+    output	struct_ShaderLayer	layer	Layer
+    inputflags	baseN	0
+    inputflags	coatN	0
+    inputflags	utan	0
+    inputflags	basecolor	2
+    inputflags	roughness	2
+    inputflags	reflect	2
+    inputflags	reflecttint	2
+    inputflags	metallic	2
+    inputflags	aniso	2
+    inputflags	anisodir	2
+    inputflags	coat	2
+    inputflags	coatrough	2
+    inputflags	coatlightcull	2
+    inputflags	emitcolor	2
+    inputflags	emitillum	2
+    inputflags	diffuse_label	2
+    inputflags	reflect_label	2
+    inputflags	coat_label	2
+    inputflags	sss	2
+    inputflags	sssdist	2
+    inputflags	ssscolor	2
+    inputflags	ssslabel	2
+    inputflags	sheen	2
+    inputflags	sheentint	2
+    inputflags	top_layer_ior	2
+    signature	"Default Inputs"	default	{ normal normal normal vector float float float float float float float float float vector int string string string float float vector string float float float bsdf vector struct_ShaderLayer }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0,0,0)
+	___begin	auto
+			(0)
+    }
+
+    help {
+	""
+    }
+
+    group {
+        name    "folder0"
+        label   "Surface"
+
+        parm {
+            name    "basecolor"
+            label   "Base Color"
+            type    color
+            size    3
+            default { "0.25" "0.25" "0.25" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "metallic"
+            label   "Metallic"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "reflect"
+            label   "Reflect"
+            type    float
+            default { "0.5" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "reflecttint"
+            label   "Reflect Tint"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "roughness"
+            label   "Roughness"
+            type    float
+            default { "0.5" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "aniso"
+            label   "Anisotropy"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "anisodir"
+            label   "Anisotropy Direction"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "coat"
+            label   "Coat"
+            type    float
+            default { "0.25" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "coatrough"
+            label   "Coat Roughness"
+            type    float
+            default { "0.1" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "coatlightcull"
+            label   "Coat Light Cull"
+            type    float
+            default { "1" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "top_layer_ior"
+            label   "Top Layer IOR"
+            type    float
+            default { "1" }
+            help    "If index of refraction is 1, there is no top layer"
+            range   { 1 1.5 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "sss"
+            label   "Subsurface"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "sssdist"
+            label   "Subsurface Distance"
+            type    float
+            default { "0.1" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "ssscolor"
+            label   "Subsurface Color"
+            type    color
+            size    3
+            default { "1" "1" "1" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "sheen"
+            label   "Sheen"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "sheentint"
+            label   "Sheen Tint"
+            type    float
+            default { "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "emitcolor"
+            label   "Emission Color"
+            type    color
+            size    3
+            default { "0" "0" "0" }
+            range   { 0 1 }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "emitillum"
+            label   "Emission Illuminates Objects"
+            type    toggle
+            default { "on" }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+    group {
+        name    "folder0_1"
+        label   "Settings"
+
+        parm {
+            name    "diffuse_label"
+            label   "Diffuse Label"
+            type    string
+            default { "diffuse" }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "reflect_label"
+            label   "Reflection Label"
+            type    string
+            default { "reflect" }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "coat_label"
+            label   "Coat Label"
+            type    string
+            default { "coat" }
+            parmtag { "parmvop" "1" }
+        }
+        parm {
+            name    "ssslabel"
+            label   "Subsurface Label"
+            type    string
+            default { "sss" }
+            parmtag { "parmvop" "1" }
+        }
+    }
+
+}

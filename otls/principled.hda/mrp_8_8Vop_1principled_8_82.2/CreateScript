@@ -1,0 +1,15 @@
+# Automatically generated script
+\set noalias = 1
+#
+#  Creation script for mrp::principled::2.2 operator
+#
+
+if ( "$arg1" == "" ) then
+    echo This script is intended as a creation script
+    exit
+endif
+
+# Node $arg1 (mrp::Vop/principled::2.2)
+opexprlanguage -s hscript $arg1
+opuserdata -n '___Version___' -v '' $arg1
+opuserdata -n '|-hdapath-|' -v '/cg/tools/houdini/public_configs/houdini18.5/otls/principled.hda' $arg1

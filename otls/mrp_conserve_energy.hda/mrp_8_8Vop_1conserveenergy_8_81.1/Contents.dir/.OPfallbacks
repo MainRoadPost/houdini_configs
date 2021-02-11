@@ -1,0 +1,6 @@
+Vop/albedo /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibVop.hda
+Vop/albedo otls/OPlibVop.hda
+Vop/invert /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/invert otls/OPlibScripted.hda
+Vop/luminance /cgsoft/sesi/hfs18.5.462/houdini/otls/OPlibScripted.hda
+Vop/luminance otls/OPlibScripted.hda

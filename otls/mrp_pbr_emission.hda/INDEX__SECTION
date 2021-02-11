@@ -1,0 +1,15 @@
+Operator:     mrp::pbremission::1.0
+Label:        MRP PBR Emission
+Path:         oplib:/mrp::Vop/pbremission::1.0?mrp::Vop/pbremission::1.0
+Icon:         VOP_pbremission
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 5
+Outputs:      2
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Thu Feb 11 11:14:05 2021
+

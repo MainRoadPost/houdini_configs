@@ -1,0 +1,103 @@
+# Dialog script for mrp::pbremission::1.0 automatically generated
+
+{
+    name	mrp::pbremission::1.0
+    script	pbrspecular
+    label	"MRP PBR Emission"
+
+    outercode {
+	"#include \"bsdf.h\""
+	"#include <shaderlayer.h>"
+    }
+
+    code {
+	"#ifdef VOP_SHADING"
+	"vector $tnN = $isconnected_nN ? $nN : normalize(N);"
+	"vector $tnNg = normalize(Ng);"
+	"vector $tnI = $isconnected_nI ? $nI : normalize(I);"
+	"vector $tanu = $isconnected_utan ? $utan : normalize(dPds);"
+	"vector $tanv = $isconnected_vtan ? $vtan : normalize(dPdt);"
+	"#else"
+	"vector $tnN = $isconnected_nN ? $nN : {0, 1, 0};"
+	"vector $tnNg = $tnN;"
+	"vector $tnI = $isconnected_nI ? $nI : {0, -1, 0};"
+	"vector $tanu = $isconnected_utan ? $utan : {1, 0, 0};"
+	"vector $tanv = $isconnected_vtan ? $vtan : {0, 0, 1};"
+	"#endif"
+	""
+	"if($isconnected_base)"
+	"{"
+	"    $layer = $base;"
+	"}"
+	"else"
+	"{"
+	"    init_layer($layer);"
+	"}"
+	""
+	"if($frontface)"
+	"    $tnN = frontface($tnN, $tnI);"
+	""
+	"{"
+	"    float $scale = $intensity * (dot($tnI,$tnN) < 0 ? 1 : 0);"
+	"    $Ce = $scale * $color;"
+	"    $Ce *= $illum || getraylevel() == 0;"
+	"    $layer.Ce = $Ce;"
+	"}"
+    }
+
+    input	struct_ShaderLayer	base	Base
+    input	vector	color	Color
+    input	float	intensity	Intensity
+    input	int	illum	"Illuminate Objects"
+    input	int	frontface	"Shade Both Sides As Front"
+    output	struct_ShaderLayer	layer	Layer
+    output	color	Ce	Ce
+    inputflags	base	0
+    inputflags	color	0
+    inputflags	intensity	0
+    inputflags	illum	0
+    inputflags	frontface	0
+    signature	"Default Inputs"	default	{ struct_ShaderLayer vector float int int struct_ShaderLayer color }
+
+    outputoverrides	default
+    {
+	___begin	auto
+			(0)
+	___begin	auto
+			(0,0,0)
+    }
+
+    help {
+	""
+    }
+
+    parm {
+        name    "color"
+        label   "Color"
+        type    color
+        size    3
+        default { "1" "1" "1" }
+        range   { 0 1 }
+    }
+    parm {
+        name    "intensity"
+        label   "Intensity"
+        type    float
+        default { "1" }
+        range   { 0 10 }
+    }
+    parm {
+        name    "illum"
+        label   "Illuminate Objects"
+        type    toggle
+        default { "1" }
+        range   { 0 1 }
+    }
+    parm {
+        name    "frontface"
+        label   "Shade Both Sides As Front"
+        type    toggle
+        default { "1" }
+        range   { 0 1 }
+    }
+}

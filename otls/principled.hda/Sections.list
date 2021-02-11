@@ -3,3 +3,5 @@ INDEX__SECTION	INDEX_SECTION
 houdini.hdalibrary	houdini.hdalibrary
 mrp_8_8Vop_1principled_8_82.1	mrp::Vop/principled::2.1
 mrp_8_8Vop_1principledshader_8_81.1	mrp::Vop/principledshader::1.1
+mrp_8_8Vop_1principled_8_82.2	mrp::Vop/principled::2.2
+mrp_8_8Vop_1principledshader_8_81.2	mrp::Vop/principledshader::1.2

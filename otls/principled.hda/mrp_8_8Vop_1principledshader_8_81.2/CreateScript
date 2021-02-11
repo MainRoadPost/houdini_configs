@@ -1,0 +1,22 @@
+# Automatically generated script
+\set noalias = 1
+#
+#  Creation script for mrp::principledshader::1.2 operator
+#
+
+if ( "$arg1" == "" ) then
+    echo This script is intended as a creation script
+    exit
+endif
+
+# Node $arg1 (mrp::Vop/principledshader::1.2)
+opexprlanguage -s hscript $arg1
+opuserdata -n '___Version___' -v '' $arg1
+opuserdata -n '___toolcount___' -v '176' $arg1
+opuserdata -n '___toolid___' -v 'convertGallery' $arg1
+opuserdata -n '__inputgroup_Bump & Normals' -v 'collapsed' $arg1
+opuserdata -n '__inputgroup_Displacement' -v 'collapsed' $arg1
+opuserdata -n '__inputgroup_Opacity' -v 'collapsed' $arg1
+opuserdata -n '__inputgroup_Settings' -v 'collapsed' $arg1
+opuserdata -n '__inputgroup_Surface' -v 'collapsed' $arg1
+opuserdata -n '__inputgroup_Textures' -v 'collapsed' $arg1

@@ -1,0 +1,1 @@
+kwargs['node'].setColor(hou.Color(0, 0, 0))

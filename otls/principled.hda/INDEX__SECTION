@@ -11,7 +11,7 @@ Outputs:      2048
 Subnet:       true
 Python:       false
 Empty:        false
-Modified:     Fri Jan 18 17:10:00 2019
+Modified:     Thu Feb 11 11:19:25 2021
 
 Operator:     mrp::principledshader::1.1
 Label:        MRP Principled Shader
@@ -26,5 +26,35 @@ Outputs:      2048
 Subnet:       true
 Python:       false
 Empty:        false
-Modified:     Fri Jan 18 17:08:39 2019
+Modified:     Thu Feb 11 11:33:17 2021
+
+Operator:     mrp::principled::2.2
+Label:        MRP Principled Shader Core
+Path:         oplib:/mrp::Vop/principled::2.2?mrp::Vop/principled::2.2
+Icon:         VOP_principled
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 25
+Outputs:      2048
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Feb 11 11:19:28 2021
+
+Operator:     mrp::principledshader::1.2
+Label:        MRP Principled Shader
+Path:         oplib:/mrp::Vop/principledshader::1.2?mrp::Vop/principledshader::1.2
+Icon:         VOP_principledshadercore
+Table:        Vop
+License:      
+Extra:        subtype=material shadertype=vopmaterial 
+User:         
+Inputs:       0 to 178
+Outputs:      2048
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Thu Feb 11 11:33:27 2021
 
