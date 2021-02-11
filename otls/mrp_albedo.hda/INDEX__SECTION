@@ -1,0 +1,14 @@
+Operator:     mrp::albedo::1.0
+Label:        MRP Get BSDF Albedo
+Path:         oplib:/mrp::Vop/albedo::1.0?mrp::Vop/albedo::1.0
+Icon:         VOP_albedo
+Table:        Vop
+License:      
+Extra:        
+User:         
+Inputs:       0 to 2
+Subnet:       false
+Python:       false
+Empty:        false
+Modified:     Thu Feb 11 15:03:56 2021
+
