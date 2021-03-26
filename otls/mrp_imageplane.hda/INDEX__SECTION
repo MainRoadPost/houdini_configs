@@ -80,5 +80,19 @@ Inputs:       1 to 1
 Subnet:       true
 Python:       false
 Empty:        false
-Modified:     Thu Aug 20 16:51:49 2020
+Modified:     Fri Mar 26 18:11:05 2021
+
+Operator:     mrp::imageplane::2.1
+Label:        Image Plane
+Path:         oplib:/mrp::Object/imageplane::2.1?mrp::Object/imageplane::2.1
+Icon:         VIEW_display_background
+Table:        Object
+License:      
+Extra:        
+User:         Version 1.2 created by egoncharenko
+Inputs:       1 to 1
+Subnet:       true
+Python:       false
+Empty:        false
+Modified:     Fri Mar 26 18:11:33 2021
 
