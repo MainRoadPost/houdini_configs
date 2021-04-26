@@ -7,7 +7,7 @@ cvex mrp_cone_phase_sample(
     float sx = 0;           // Uniform random value between 0 and 1, correlated with sy in a 2D sampling pattern
     float sy = 0;           // Uniform random value between 0 and 1, correlated with sx in a 2D sampling pattern
     int bounces = 0;        // A mask specifying the type of reflections that should be evaluated
-    export vector refl = 1;     // The reflectivity (albedo) of the bsdf, tinted by the color of the light in the sampled direction.
+    export vector refl = 0;     // The reflectivity (albedo) of the bsdf, tinted by the color of the light in the sampled direction.
                                 // The luminance of this value should match refl from the evaluation function.
                                 // If the sampling distribution does not match the evaluation function exactly,
                                 // this value should be scaled by the ratio of the evaluation distribution to the sampling distribution.
@@ -16,13 +16,13 @@ cvex mrp_cone_phase_sample(
     export float pdf = 0;       // The sampling pdf. The integral of this value over the sphere should be a constant 2*PI
                                 // note that this differs from the pdf produced by the evaluation function
                                 // by a factor of luminance(refl).
-    int bouncemasklabels = 0;
+    int mybounces = 0;
     float angle = 0.1;
     float delta = 0.05;
     float eps = 0.0005;
 )
 {
-    if (bounces & bouncemasklabels)
+    if (bounces & mybounces)
     {
         refl = 1;
 
@@ -31,7 +31,7 @@ cvex mrp_cone_phase_sample(
 
         pdf = npdf(phi,angle,delta)*M_TWO_PI;
         
-        bouncetype = bouncemasklabels;
+        bouncetype = mybounces;
 
         float z = mu;
         float w = sqrt(1-z*z);

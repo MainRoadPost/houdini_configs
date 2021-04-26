@@ -11,7 +11,6 @@
 	"float $_eps = $eps;"
 	"$f = cvex_bsdf(\"mrp_cone_phase_eval\", \"mrp_cone_phase_sample\","
 	"              \"label\", $label,"
-	"              \"bouncemasklabels\", bouncemask($label),"
 	"              \"angle\", $_angle,"
 	"              \"delta\", $_delta,"
 	"              \"eps\", $_eps);"
